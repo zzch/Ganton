@@ -1,0 +1,611 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A98CA3811BC75A5800695BD0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A98CA3801BC75A5800695BD0 /* main.m */; };
+		A98CA3841BC75A5800695BD0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A98CA3831BC75A5800695BD0 /* AppDelegate.m */; };
+		A98CA38C1BC75A5800695BD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A98CA38B1BC75A5800695BD0 /* Assets.xcassets */; };
+		A98CA38F1BC75A5800695BD0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A98CA38D1BC75A5800695BD0 /* LaunchScreen.storyboard */; };
+		A98CA39A1BC75A5800695BD0 /* GantonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A98CA3991BC75A5800695BD0 /* GantonTests.m */; };
+		A98CA3A51BC75A5800695BD0 /* GantonUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A98CA3A41BC75A5800695BD0 /* GantonUITests.m */; };
+		A98CA3BB1BC7810900695BD0 /* ZCHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A98CA3BA1BC7810900695BD0 /* ZCHomeViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A98CA3C71BC7B62000695BD0 /* ZCReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A98CA3C61BC7B62000695BD0 /* ZCReservationViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A98CA3CA1BC7BABA00695BD0 /* ZCCardPackageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A98CA3C91BC7BABA00695BD0 /* ZCCardPackageViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A98CA3CD1BC7BDB800695BD0 /* ZCCardPackageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A98CA3CC1BC7BDB800695BD0 /* ZCCardPackageTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A98CA3961BC75A5800695BD0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A98CA3741BC75A5700695BD0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A98CA37B1BC75A5700695BD0;
+			remoteInfo = Ganton;
+		};
+		A98CA3A11BC75A5800695BD0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A98CA3741BC75A5700695BD0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A98CA37B1BC75A5700695BD0;
+			remoteInfo = Ganton;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A98CA37C1BC75A5700695BD0 /* Ganton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ganton.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A98CA3801BC75A5800695BD0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A98CA3821BC75A5800695BD0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A98CA3831BC75A5800695BD0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A98CA38B1BC75A5800695BD0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A98CA38E1BC75A5800695BD0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A98CA3901BC75A5800695BD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A98CA3951BC75A5800695BD0 /* GantonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GantonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A98CA3991BC75A5800695BD0 /* GantonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GantonTests.m; sourceTree = "<group>"; };
+		A98CA39B1BC75A5800695BD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A98CA3A01BC75A5800695BD0 /* GantonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GantonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A98CA3A41BC75A5800695BD0 /* GantonUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GantonUITests.m; sourceTree = "<group>"; };
+		A98CA3A61BC75A5800695BD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A98CA3B91BC7810900695BD0 /* ZCHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCHomeViewController.h; sourceTree = "<group>"; };
+		A98CA3BA1BC7810900695BD0 /* ZCHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCHomeViewController.m; sourceTree = "<group>"; };
+		A98CA3BF1BC7B1C600695BD0 /* pchFile.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pchFile.pch; sourceTree = "<group>"; };
+		A98CA3C51BC7B62000695BD0 /* ZCReservationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCReservationViewController.h; sourceTree = "<group>"; };
+		A98CA3C61BC7B62000695BD0 /* ZCReservationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCReservationViewController.m; sourceTree = "<group>"; };
+		A98CA3C81BC7BABA00695BD0 /* ZCCardPackageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCCardPackageViewController.h; sourceTree = "<group>"; };
+		A98CA3C91BC7BABA00695BD0 /* ZCCardPackageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCCardPackageViewController.m; sourceTree = "<group>"; };
+		A98CA3CB1BC7BDB800695BD0 /* ZCCardPackageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCCardPackageTableViewCell.h; sourceTree = "<group>"; };
+		A98CA3CC1BC7BDB800695BD0 /* ZCCardPackageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCCardPackageTableViewCell.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A98CA3791BC75A5700695BD0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A98CA3921BC75A5800695BD0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A98CA39D1BC75A5800695BD0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A98CA3731BC75A5700695BD0 = {
+			isa = PBXGroup;
+			children = (
+				A98CA37E1BC75A5700695BD0 /* Ganton */,
+				A98CA3981BC75A5800695BD0 /* GantonTests */,
+				A98CA3A31BC75A5800695BD0 /* GantonUITests */,
+				A98CA37D1BC75A5700695BD0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A98CA37D1BC75A5700695BD0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A98CA37C1BC75A5700695BD0 /* Ganton.app */,
+				A98CA3951BC75A5800695BD0 /* GantonTests.xctest */,
+				A98CA3A01BC75A5800695BD0 /* GantonUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A98CA37E1BC75A5700695BD0 /* Ganton */ = {
+			isa = PBXGroup;
+			children = (
+				A98CA3B21BC7608100695BD0 /* Classes */,
+				A98CA3821BC75A5800695BD0 /* AppDelegate.h */,
+				A98CA3831BC75A5800695BD0 /* AppDelegate.m */,
+				A98CA3BF1BC7B1C600695BD0 /* pchFile.pch */,
+				A98CA38B1BC75A5800695BD0 /* Assets.xcassets */,
+				A98CA38D1BC75A5800695BD0 /* LaunchScreen.storyboard */,
+				A98CA3901BC75A5800695BD0 /* Info.plist */,
+				A98CA37F1BC75A5700695BD0 /* Supporting Files */,
+			);
+			path = Ganton;
+			sourceTree = "<group>";
+		};
+		A98CA37F1BC75A5700695BD0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A98CA3801BC75A5800695BD0 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A98CA3981BC75A5800695BD0 /* GantonTests */ = {
+			isa = PBXGroup;
+			children = (
+				A98CA3991BC75A5800695BD0 /* GantonTests.m */,
+				A98CA39B1BC75A5800695BD0 /* Info.plist */,
+			);
+			path = GantonTests;
+			sourceTree = "<group>";
+		};
+		A98CA3A31BC75A5800695BD0 /* GantonUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A98CA3A41BC75A5800695BD0 /* GantonUITests.m */,
+				A98CA3A61BC75A5800695BD0 /* Info.plist */,
+			);
+			path = GantonUITests;
+			sourceTree = "<group>";
+		};
+		A98CA3B21BC7608100695BD0 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				A98CA3C11BC7B5F900695BD0 /* Reservation(预约) */,
+				A98CA3B31BC7608100695BD0 /* HomePage(首页) */,
+				A98CA3B41BC7608100695BD0 /* Other(其他) */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		A98CA3B31BC7608100695BD0 /* HomePage(首页) */ = {
+			isa = PBXGroup;
+			children = (
+				A98CA3BD1BC7811500695BD0 /* View */,
+				A98CA3BC1BC7810F00695BD0 /* Model */,
+				A98CA3B81BC7810900695BD0 /* Controller */,
+			);
+			path = "HomePage(首页)";
+			sourceTree = "<group>";
+		};
+		A98CA3B41BC7608100695BD0 /* Other(其他) */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Other(其他)";
+			sourceTree = "<group>";
+		};
+		A98CA3B81BC7810900695BD0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A98CA3B91BC7810900695BD0 /* ZCHomeViewController.h */,
+				A98CA3BA1BC7810900695BD0 /* ZCHomeViewController.m */,
+				A98CA3C81BC7BABA00695BD0 /* ZCCardPackageViewController.h */,
+				A98CA3C91BC7BABA00695BD0 /* ZCCardPackageViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A98CA3BC1BC7810F00695BD0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A98CA3BD1BC7811500695BD0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A98CA3CB1BC7BDB800695BD0 /* ZCCardPackageTableViewCell.h */,
+				A98CA3CC1BC7BDB800695BD0 /* ZCCardPackageTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A98CA3C11BC7B5F900695BD0 /* Reservation(预约) */ = {
+			isa = PBXGroup;
+			children = (
+				A98CA3C21BC7B5F900695BD0 /* Controller */,
+				A98CA3C31BC7B5F900695BD0 /* Model */,
+				A98CA3C41BC7B5F900695BD0 /* View */,
+			);
+			path = "Reservation(预约)";
+			sourceTree = "<group>";
+		};
+		A98CA3C21BC7B5F900695BD0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A98CA3C51BC7B62000695BD0 /* ZCReservationViewController.h */,
+				A98CA3C61BC7B62000695BD0 /* ZCReservationViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A98CA3C31BC7B5F900695BD0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A98CA3C41BC7B5F900695BD0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A98CA37B1BC75A5700695BD0 /* Ganton */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A98CA3A91BC75A5800695BD0 /* Build configuration list for PBXNativeTarget "Ganton" */;
+			buildPhases = (
+				A98CA3781BC75A5700695BD0 /* Sources */,
+				A98CA3791BC75A5700695BD0 /* Frameworks */,
+				A98CA37A1BC75A5700695BD0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Ganton;
+			productName = Ganton;
+			productReference = A98CA37C1BC75A5700695BD0 /* Ganton.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A98CA3941BC75A5800695BD0 /* GantonTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A98CA3AC1BC75A5800695BD0 /* Build configuration list for PBXNativeTarget "GantonTests" */;
+			buildPhases = (
+				A98CA3911BC75A5800695BD0 /* Sources */,
+				A98CA3921BC75A5800695BD0 /* Frameworks */,
+				A98CA3931BC75A5800695BD0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A98CA3971BC75A5800695BD0 /* PBXTargetDependency */,
+			);
+			name = GantonTests;
+			productName = GantonTests;
+			productReference = A98CA3951BC75A5800695BD0 /* GantonTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A98CA39F1BC75A5800695BD0 /* GantonUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A98CA3AF1BC75A5800695BD0 /* Build configuration list for PBXNativeTarget "GantonUITests" */;
+			buildPhases = (
+				A98CA39C1BC75A5800695BD0 /* Sources */,
+				A98CA39D1BC75A5800695BD0 /* Frameworks */,
+				A98CA39E1BC75A5800695BD0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A98CA3A21BC75A5800695BD0 /* PBXTargetDependency */,
+			);
+			name = GantonUITests;
+			productName = GantonUITests;
+			productReference = A98CA3A01BC75A5800695BD0 /* GantonUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A98CA3741BC75A5700695BD0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = zhongchuang;
+				TargetAttributes = {
+					A98CA37B1BC75A5700695BD0 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					A98CA3941BC75A5800695BD0 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = A98CA37B1BC75A5700695BD0;
+					};
+					A98CA39F1BC75A5800695BD0 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = A98CA37B1BC75A5700695BD0;
+					};
+				};
+			};
+			buildConfigurationList = A98CA3771BC75A5700695BD0 /* Build configuration list for PBXProject "Ganton" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A98CA3731BC75A5700695BD0;
+			productRefGroup = A98CA37D1BC75A5700695BD0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A98CA37B1BC75A5700695BD0 /* Ganton */,
+				A98CA3941BC75A5800695BD0 /* GantonTests */,
+				A98CA39F1BC75A5800695BD0 /* GantonUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A98CA37A1BC75A5700695BD0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A98CA38F1BC75A5800695BD0 /* LaunchScreen.storyboard in Resources */,
+				A98CA38C1BC75A5800695BD0 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A98CA3931BC75A5800695BD0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A98CA39E1BC75A5800695BD0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A98CA3781BC75A5700695BD0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A98CA3CA1BC7BABA00695BD0 /* ZCCardPackageViewController.m in Sources */,
+				A98CA3BB1BC7810900695BD0 /* ZCHomeViewController.m in Sources */,
+				A98CA3841BC75A5800695BD0 /* AppDelegate.m in Sources */,
+				A98CA3CD1BC7BDB800695BD0 /* ZCCardPackageTableViewCell.m in Sources */,
+				A98CA3C71BC7B62000695BD0 /* ZCReservationViewController.m in Sources */,
+				A98CA3811BC75A5800695BD0 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A98CA3911BC75A5800695BD0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A98CA39A1BC75A5800695BD0 /* GantonTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A98CA39C1BC75A5800695BD0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A98CA3A51BC75A5800695BD0 /* GantonUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A98CA3971BC75A5800695BD0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A98CA37B1BC75A5700695BD0 /* Ganton */;
+			targetProxy = A98CA3961BC75A5800695BD0 /* PBXContainerItemProxy */;
+		};
+		A98CA3A21BC75A5800695BD0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A98CA37B1BC75A5700695BD0 /* Ganton */;
+			targetProxy = A98CA3A11BC75A5800695BD0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A98CA38D1BC75A5800695BD0 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A98CA38E1BC75A5800695BD0 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A98CA3A71BC75A5800695BD0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		A98CA3A81BC75A5800695BD0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A98CA3AA1BC75A5800695BD0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Ganton/pchFile.pch";
+				INFOPLIST_FILE = Ganton/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhongchuang.Ganton;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A98CA3AB1BC75A5800695BD0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Ganton/pchFile.pch";
+				INFOPLIST_FILE = Ganton/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhongchuang.Ganton;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		A98CA3AD1BC75A5800695BD0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = GantonTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhongchuang.GantonTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ganton.app/Ganton";
+			};
+			name = Debug;
+		};
+		A98CA3AE1BC75A5800695BD0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = GantonTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhongchuang.GantonTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ganton.app/Ganton";
+			};
+			name = Release;
+		};
+		A98CA3B01BC75A5800695BD0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = GantonUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhongchuang.GantonUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Ganton;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		A98CA3B11BC75A5800695BD0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = GantonUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhongchuang.GantonUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Ganton;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A98CA3771BC75A5700695BD0 /* Build configuration list for PBXProject "Ganton" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A98CA3A71BC75A5800695BD0 /* Debug */,
+				A98CA3A81BC75A5800695BD0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A98CA3A91BC75A5800695BD0 /* Build configuration list for PBXNativeTarget "Ganton" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A98CA3AA1BC75A5800695BD0 /* Debug */,
+				A98CA3AB1BC75A5800695BD0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A98CA3AC1BC75A5800695BD0 /* Build configuration list for PBXNativeTarget "GantonTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A98CA3AD1BC75A5800695BD0 /* Debug */,
+				A98CA3AE1BC75A5800695BD0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A98CA3AF1BC75A5800695BD0 /* Build configuration list for PBXNativeTarget "GantonUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A98CA3B01BC75A5800695BD0 /* Debug */,
+				A98CA3B11BC75A5800695BD0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A98CA3741BC75A5700695BD0 /* Project object */;
+}
