@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ZCHomeViewController.h"
+#import "ZCAccountViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -21,8 +22,9 @@
     self.window.backgroundColor=[UIColor whiteColor];
     
     
-    
+   
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[ZCHomeViewController alloc] init]];
+    //UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[ZCAccountViewController alloc] init]];
     self.window.rootViewController = nav;
     
     // 4.显示window

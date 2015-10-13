@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A96AC3A11BCCD746008A1D4B /* ZCGoodsDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A96AC3A01BCCD746008A1D4B /* ZCGoodsDetailsViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A96AC3A51BCCE41E008A1D4B /* ZCRestaurantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A96AC3A41BCCE41E008A1D4B /* ZCRestaurantViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A96AC3A81BCCE86A008A1D4B /* ZCRestaurantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A96AC3A71BCCE86A008A1D4B /* ZCRestaurantCell.m */; settings = {ASSET_TAGS = (); }; };
+		A97115D71BCB92400013C17A /* ZCCourseDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97115D61BCB92400013C17A /* ZCCourseDetailsViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A97115DB1BCB9F530013C17A /* ZCRecordsOfConsumptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97115DA1BCB9F530013C17A /* ZCRecordsOfConsumptionViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A97115DE1BCBA2270013C17A /* ZCConsumptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A97115DD1BCBA2270013C17A /* ZCConsumptionCell.m */; settings = {ASSET_TAGS = (); }; };
+		A97115E11BCBB6180013C17A /* ZCDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97115E01BCBB6180013C17A /* ZCDetailViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A98436BF1BC8BE4E0004AC94 /* ZCAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A98436BE1BC8BE4E0004AC94 /* ZCAccountViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A98436C71BC8FB840004AC94 /* ZCReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A98436C41BC8FB840004AC94 /* ZCReservationViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A98436CB1BC8FC070004AC94 /* ZCTeachingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A98436CA1BC8FC070004AC94 /* ZCTeachingViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A98436CE1BC900280004AC94 /* ZCTeachingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A98436CD1BC900280004AC94 /* ZCTeachingCell.m */; settings = {ASSET_TAGS = (); }; };
+		A98436D11BC913170004AC94 /* ZCTeachingHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A98436D01BC913170004AC94 /* ZCTeachingHeaderCell.m */; settings = {ASSET_TAGS = (); }; };
+		A98436D41BC926BE0004AC94 /* ZCCoachViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A98436D31BC926BE0004AC94 /* ZCCoachViewController.m */; settings = {ASSET_TAGS = (); }; };
 		A98CA3811BC75A5800695BD0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A98CA3801BC75A5800695BD0 /* main.m */; };
 		A98CA3841BC75A5800695BD0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A98CA3831BC75A5800695BD0 /* AppDelegate.m */; };
 		A98CA38C1BC75A5800695BD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A98CA38B1BC75A5800695BD0 /* Assets.xcassets */; };
@@ -14,9 +27,11 @@
 		A98CA39A1BC75A5800695BD0 /* GantonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A98CA3991BC75A5800695BD0 /* GantonTests.m */; };
 		A98CA3A51BC75A5800695BD0 /* GantonUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A98CA3A41BC75A5800695BD0 /* GantonUITests.m */; };
 		A98CA3BB1BC7810900695BD0 /* ZCHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A98CA3BA1BC7810900695BD0 /* ZCHomeViewController.m */; settings = {ASSET_TAGS = (); }; };
-		A98CA3C71BC7B62000695BD0 /* ZCReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A98CA3C61BC7B62000695BD0 /* ZCReservationViewController.m */; settings = {ASSET_TAGS = (); }; };
 		A98CA3CA1BC7BABA00695BD0 /* ZCCardPackageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A98CA3C91BC7BABA00695BD0 /* ZCCardPackageViewController.m */; settings = {ASSET_TAGS = (); }; };
 		A98CA3CD1BC7BDB800695BD0 /* ZCCardPackageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A98CA3CC1BC7BDB800695BD0 /* ZCCardPackageTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		A9929E7A1BCCB60000342A58 /* ZCMallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9929E791BCCB60000342A58 /* ZCMallViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A9929E7D1BCCB81100342A58 /* ZCMallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9929E7C1BCCB81100342A58 /* ZCMallCell.m */; settings = {ASSET_TAGS = (); }; };
+		A99D0D701BCB8072006AACE2 /* ZCCoachViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A99D0D6F1BCB8072006AACE2 /* ZCCoachViewCell.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +52,32 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A96AC39F1BCCD746008A1D4B /* ZCGoodsDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCGoodsDetailsViewController.h; sourceTree = "<group>"; };
+		A96AC3A01BCCD746008A1D4B /* ZCGoodsDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCGoodsDetailsViewController.m; sourceTree = "<group>"; };
+		A96AC3A31BCCE41E008A1D4B /* ZCRestaurantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCRestaurantViewController.h; sourceTree = "<group>"; };
+		A96AC3A41BCCE41E008A1D4B /* ZCRestaurantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCRestaurantViewController.m; sourceTree = "<group>"; };
+		A96AC3A61BCCE86A008A1D4B /* ZCRestaurantCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCRestaurantCell.h; sourceTree = "<group>"; };
+		A96AC3A71BCCE86A008A1D4B /* ZCRestaurantCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCRestaurantCell.m; sourceTree = "<group>"; };
+		A97115D51BCB92400013C17A /* ZCCourseDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCCourseDetailsViewController.h; sourceTree = "<group>"; };
+		A97115D61BCB92400013C17A /* ZCCourseDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCCourseDetailsViewController.m; sourceTree = "<group>"; };
+		A97115D91BCB9F530013C17A /* ZCRecordsOfConsumptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCRecordsOfConsumptionViewController.h; sourceTree = "<group>"; };
+		A97115DA1BCB9F530013C17A /* ZCRecordsOfConsumptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCRecordsOfConsumptionViewController.m; sourceTree = "<group>"; };
+		A97115DC1BCBA2270013C17A /* ZCConsumptionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCConsumptionCell.h; sourceTree = "<group>"; };
+		A97115DD1BCBA2270013C17A /* ZCConsumptionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCConsumptionCell.m; sourceTree = "<group>"; };
+		A97115DF1BCBB6180013C17A /* ZCDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCDetailViewController.h; sourceTree = "<group>"; };
+		A97115E01BCBB6180013C17A /* ZCDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCDetailViewController.m; sourceTree = "<group>"; };
+		A98436BD1BC8BE4E0004AC94 /* ZCAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCAccountViewController.h; sourceTree = "<group>"; };
+		A98436BE1BC8BE4E0004AC94 /* ZCAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCAccountViewController.m; sourceTree = "<group>"; };
+		A98436C31BC8FB840004AC94 /* ZCReservationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCReservationViewController.h; sourceTree = "<group>"; };
+		A98436C41BC8FB840004AC94 /* ZCReservationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCReservationViewController.m; sourceTree = "<group>"; };
+		A98436C91BC8FC070004AC94 /* ZCTeachingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCTeachingViewController.h; sourceTree = "<group>"; };
+		A98436CA1BC8FC070004AC94 /* ZCTeachingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCTeachingViewController.m; sourceTree = "<group>"; };
+		A98436CC1BC900280004AC94 /* ZCTeachingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCTeachingCell.h; sourceTree = "<group>"; };
+		A98436CD1BC900280004AC94 /* ZCTeachingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCTeachingCell.m; sourceTree = "<group>"; };
+		A98436CF1BC913170004AC94 /* ZCTeachingHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCTeachingHeaderCell.h; sourceTree = "<group>"; };
+		A98436D01BC913170004AC94 /* ZCTeachingHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCTeachingHeaderCell.m; sourceTree = "<group>"; };
+		A98436D21BC926BE0004AC94 /* ZCCoachViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCCoachViewController.h; sourceTree = "<group>"; };
+		A98436D31BC926BE0004AC94 /* ZCCoachViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCCoachViewController.m; sourceTree = "<group>"; };
 		A98CA37C1BC75A5700695BD0 /* Ganton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ganton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A98CA3801BC75A5800695BD0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A98CA3821BC75A5800695BD0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -53,12 +94,16 @@
 		A98CA3B91BC7810900695BD0 /* ZCHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCHomeViewController.h; sourceTree = "<group>"; };
 		A98CA3BA1BC7810900695BD0 /* ZCHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCHomeViewController.m; sourceTree = "<group>"; };
 		A98CA3BF1BC7B1C600695BD0 /* pchFile.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pchFile.pch; sourceTree = "<group>"; };
-		A98CA3C51BC7B62000695BD0 /* ZCReservationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCReservationViewController.h; sourceTree = "<group>"; };
-		A98CA3C61BC7B62000695BD0 /* ZCReservationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCReservationViewController.m; sourceTree = "<group>"; };
 		A98CA3C81BC7BABA00695BD0 /* ZCCardPackageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCCardPackageViewController.h; sourceTree = "<group>"; };
 		A98CA3C91BC7BABA00695BD0 /* ZCCardPackageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCCardPackageViewController.m; sourceTree = "<group>"; };
 		A98CA3CB1BC7BDB800695BD0 /* ZCCardPackageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCCardPackageTableViewCell.h; sourceTree = "<group>"; };
 		A98CA3CC1BC7BDB800695BD0 /* ZCCardPackageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCCardPackageTableViewCell.m; sourceTree = "<group>"; };
+		A9929E781BCCB60000342A58 /* ZCMallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCMallViewController.h; sourceTree = "<group>"; };
+		A9929E791BCCB60000342A58 /* ZCMallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCMallViewController.m; sourceTree = "<group>"; };
+		A9929E7B1BCCB81100342A58 /* ZCMallCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCMallCell.h; sourceTree = "<group>"; };
+		A9929E7C1BCCB81100342A58 /* ZCMallCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCMallCell.m; sourceTree = "<group>"; };
+		A99D0D6E1BCB8072006AACE2 /* ZCCoachViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCCoachViewCell.h; sourceTree = "<group>"; };
+		A99D0D6F1BCB8072006AACE2 /* ZCCoachViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCCoachViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +131,105 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A96AC3A21BCCE40E008A1D4B /* Restaurant(餐饮服务) */ = {
+			isa = PBXGroup;
+			children = (
+				A96AC3A31BCCE41E008A1D4B /* ZCRestaurantViewController.h */,
+				A96AC3A41BCCE41E008A1D4B /* ZCRestaurantViewController.m */,
+			);
+			path = "Restaurant(餐饮服务)";
+			sourceTree = "<group>";
+		};
+		A97115D81BCB9F220013C17A /* RecordsOfConsumption(消费记录) */ = {
+			isa = PBXGroup;
+			children = (
+				A97115D91BCB9F530013C17A /* ZCRecordsOfConsumptionViewController.h */,
+				A97115DA1BCB9F530013C17A /* ZCRecordsOfConsumptionViewController.m */,
+				A97115DF1BCBB6180013C17A /* ZCDetailViewController.h */,
+				A97115E01BCBB6180013C17A /* ZCDetailViewController.m */,
+			);
+			path = "RecordsOfConsumption(消费记录)";
+			sourceTree = "<group>";
+		};
+		A98436BC1BC8BCE10004AC94 /* AccountInformation(账号) */ = {
+			isa = PBXGroup;
+			children = (
+				A98436BD1BC8BE4E0004AC94 /* ZCAccountViewController.h */,
+				A98436BE1BC8BE4E0004AC94 /* ZCAccountViewController.m */,
+			);
+			path = "AccountInformation(账号)";
+			sourceTree = "<group>";
+		};
+		A98436C01BC8FB840004AC94 /* function(功能模块) */ = {
+			isa = PBXGroup;
+			children = (
+				A98436C11BC8FB840004AC94 /* Controller */,
+				A98436C51BC8FB840004AC94 /* Model */,
+				A98436C61BC8FB840004AC94 /* View */,
+			);
+			path = "function(功能模块)";
+			sourceTree = "<group>";
+		};
+		A98436C11BC8FB840004AC94 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A96AC3A21BCCE40E008A1D4B /* Restaurant(餐饮服务) */,
+				A9929E771BCCB5EE00342A58 /* Mall(会员商城) */,
+				A97115D81BCB9F220013C17A /* RecordsOfConsumption(消费记录) */,
+				A98436C81BC8FBF00004AC94 /* Teaching（教学） */,
+				A98436C21BC8FB840004AC94 /* Reservation(预约) */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A98436C21BC8FB840004AC94 /* Reservation(预约) */ = {
+			isa = PBXGroup;
+			children = (
+				A98436C31BC8FB840004AC94 /* ZCReservationViewController.h */,
+				A98436C41BC8FB840004AC94 /* ZCReservationViewController.m */,
+			);
+			path = "Reservation(预约)";
+			sourceTree = "<group>";
+		};
+		A98436C51BC8FB840004AC94 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A98436C61BC8FB840004AC94 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A98436CC1BC900280004AC94 /* ZCTeachingCell.h */,
+				A98436CD1BC900280004AC94 /* ZCTeachingCell.m */,
+				A98436CF1BC913170004AC94 /* ZCTeachingHeaderCell.h */,
+				A98436D01BC913170004AC94 /* ZCTeachingHeaderCell.m */,
+				A99D0D6E1BCB8072006AACE2 /* ZCCoachViewCell.h */,
+				A99D0D6F1BCB8072006AACE2 /* ZCCoachViewCell.m */,
+				A97115DC1BCBA2270013C17A /* ZCConsumptionCell.h */,
+				A97115DD1BCBA2270013C17A /* ZCConsumptionCell.m */,
+				A9929E7B1BCCB81100342A58 /* ZCMallCell.h */,
+				A9929E7C1BCCB81100342A58 /* ZCMallCell.m */,
+				A96AC3A61BCCE86A008A1D4B /* ZCRestaurantCell.h */,
+				A96AC3A71BCCE86A008A1D4B /* ZCRestaurantCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A98436C81BC8FBF00004AC94 /* Teaching（教学） */ = {
+			isa = PBXGroup;
+			children = (
+				A98436C91BC8FC070004AC94 /* ZCTeachingViewController.h */,
+				A98436CA1BC8FC070004AC94 /* ZCTeachingViewController.m */,
+				A98436D21BC926BE0004AC94 /* ZCCoachViewController.h */,
+				A98436D31BC926BE0004AC94 /* ZCCoachViewController.m */,
+				A97115D51BCB92400013C17A /* ZCCourseDetailsViewController.h */,
+				A97115D61BCB92400013C17A /* ZCCourseDetailsViewController.m */,
+			);
+			path = "Teaching（教学）";
+			sourceTree = "<group>";
+		};
 		A98CA3731BC75A5700695BD0 = {
 			isa = PBXGroup;
 			children = (
@@ -150,7 +294,8 @@
 		A98CA3B21BC7608100695BD0 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				A98CA3C11BC7B5F900695BD0 /* Reservation(预约) */,
+				A98436C01BC8FB840004AC94 /* function(功能模块) */,
+				A98436BC1BC8BCE10004AC94 /* AccountInformation(账号) */,
 				A98CA3B31BC7608100695BD0 /* HomePage(首页) */,
 				A98CA3B41BC7608100695BD0 /* Other(其他) */,
 			);
@@ -201,37 +346,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		A98CA3C11BC7B5F900695BD0 /* Reservation(预约) */ = {
+		A9929E771BCCB5EE00342A58 /* Mall(会员商城) */ = {
 			isa = PBXGroup;
 			children = (
-				A98CA3C21BC7B5F900695BD0 /* Controller */,
-				A98CA3C31BC7B5F900695BD0 /* Model */,
-				A98CA3C41BC7B5F900695BD0 /* View */,
+				A9929E781BCCB60000342A58 /* ZCMallViewController.h */,
+				A9929E791BCCB60000342A58 /* ZCMallViewController.m */,
+				A96AC39F1BCCD746008A1D4B /* ZCGoodsDetailsViewController.h */,
+				A96AC3A01BCCD746008A1D4B /* ZCGoodsDetailsViewController.m */,
 			);
-			path = "Reservation(预约)";
-			sourceTree = "<group>";
-		};
-		A98CA3C21BC7B5F900695BD0 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				A98CA3C51BC7B62000695BD0 /* ZCReservationViewController.h */,
-				A98CA3C61BC7B62000695BD0 /* ZCReservationViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		A98CA3C31BC7B5F900695BD0 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		A98CA3C41BC7B5F900695BD0 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
+			path = "Mall(会员商城)";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -363,12 +486,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A96AC3A51BCCE41E008A1D4B /* ZCRestaurantViewController.m in Sources */,
+				A96AC3A11BCCD746008A1D4B /* ZCGoodsDetailsViewController.m in Sources */,
+				A98436D41BC926BE0004AC94 /* ZCCoachViewController.m in Sources */,
+				A97115DB1BCB9F530013C17A /* ZCRecordsOfConsumptionViewController.m in Sources */,
+				A97115E11BCBB6180013C17A /* ZCDetailViewController.m in Sources */,
+				A98436BF1BC8BE4E0004AC94 /* ZCAccountViewController.m in Sources */,
+				A97115DE1BCBA2270013C17A /* ZCConsumptionCell.m in Sources */,
 				A98CA3CA1BC7BABA00695BD0 /* ZCCardPackageViewController.m in Sources */,
+				A97115D71BCB92400013C17A /* ZCCourseDetailsViewController.m in Sources */,
+				A98436CE1BC900280004AC94 /* ZCTeachingCell.m in Sources */,
+				A9929E7D1BCCB81100342A58 /* ZCMallCell.m in Sources */,
 				A98CA3BB1BC7810900695BD0 /* ZCHomeViewController.m in Sources */,
 				A98CA3841BC75A5800695BD0 /* AppDelegate.m in Sources */,
+				A98436CB1BC8FC070004AC94 /* ZCTeachingViewController.m in Sources */,
 				A98CA3CD1BC7BDB800695BD0 /* ZCCardPackageTableViewCell.m in Sources */,
-				A98CA3C71BC7B62000695BD0 /* ZCReservationViewController.m in Sources */,
 				A98CA3811BC75A5800695BD0 /* main.m in Sources */,
+				A98436D11BC913170004AC94 /* ZCTeachingHeaderCell.m in Sources */,
+				A99D0D701BCB8072006AACE2 /* ZCCoachViewCell.m in Sources */,
+				A9929E7A1BCCB60000342A58 /* ZCMallViewController.m in Sources */,
+				A96AC3A81BCCE86A008A1D4B /* ZCRestaurantCell.m in Sources */,
+				A98436C71BC8FB840004AC94 /* ZCReservationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +726,7 @@
 				A98CA3AB1BC75A5800695BD0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A98CA3AC1BC75A5800695BD0 /* Build configuration list for PBXNativeTarget "GantonTests" */ = {
 			isa = XCConfigurationList;
@@ -596,6 +735,7 @@
 				A98CA3AE1BC75A5800695BD0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A98CA3AF1BC75A5800695BD0 /* Build configuration list for PBXNativeTarget "GantonUITests" */ = {
 			isa = XCConfigurationList;
@@ -604,6 +744,7 @@
 				A98CA3B11BC75A5800695BD0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

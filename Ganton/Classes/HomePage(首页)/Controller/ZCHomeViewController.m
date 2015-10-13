@@ -9,6 +9,10 @@
 #import "ZCHomeViewController.h"
 #import "ZCReservationViewController.h"
 #import "ZCCardPackageViewController.h"
+#import "ZCTeachingViewController.h"
+#import "ZCRecordsOfConsumptionViewController.h"
+#import "ZCMallViewController.h"
+#import "ZCRestaurantViewController.h"
 @interface ZCHomeViewController ()<UIScrollViewDelegate>
 @property(nonatomic,weak)UIScrollView *scrollView;
 @end
@@ -158,18 +162,30 @@
 -(void)clickTheButton:(UIButton *)button
 {
     if (button.tag==100) {
+        
         ZCReservationViewController *VC=[[ZCReservationViewController alloc] init];
         [self.navigationController pushViewController:VC animated:YES];
         
-       
-    }else if (button.tag==101){
+       }else if (button.tag==101){
+           
+        ZCTeachingViewController *VC=[[ZCTeachingViewController alloc] init];
+        [self.navigationController pushViewController:VC animated:YES];
     
     }else if (button.tag==102){
         
+        ZCMallViewController *VC=[[ZCMallViewController alloc] init];
+        [self.navigationController pushViewController:VC animated:YES];
+        
     }else if (button.tag==103){
-        
-    }else if (button.tag==104){
-        
+       
+        ZCRecordsOfConsumptionViewController *VC=[[ZCRecordsOfConsumptionViewController alloc] init];
+        [self.navigationController pushViewController:VC animated:YES];
+
+     }else if (button.tag==104){
+         
+         ZCRestaurantViewController *VC=[[ZCRestaurantViewController alloc] init];
+         [self.navigationController pushViewController:VC animated:YES];
+         
     }else if (button.tag==105){
         
     }

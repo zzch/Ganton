@@ -1,23 +1,28 @@
 //
-//  ZCReservationViewController.m
+//  ZCGoodsDetailsViewController.m
 //  Ganton
 //
-//  Created by hh on 15/10/9.
+//  Created by hh on 15/10/13.
 //  Copyright © 2015年 zhongchuang. All rights reserved.
 //
 
-#import "ZCReservationViewController.h"
+#import "ZCGoodsDetailsViewController.h"
 
-@interface ZCReservationViewController ()
+@interface ZCGoodsDetailsViewController ()
 
 @end
 
-@implementation ZCReservationViewController
+@implementation ZCGoodsDetailsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
-    self.navigationItem.title=@"打位预约";
+    self.navigationItem.title=@"详情";
+    
+    
+    UIWebView *webView=[[UIWebView alloc] init];
+    webView.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    [self.view addSubview:webView];
 }
 
 - (void)didReceiveMemoryWarning {
