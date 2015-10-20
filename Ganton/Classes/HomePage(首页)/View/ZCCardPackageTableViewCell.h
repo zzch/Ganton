@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZCCardModel.h"
 @interface ZCCardPackageTableViewCell : UITableViewCell
 +(instancetype)cellWithTable:(UITableView *)tableView;
+@property(nonatomic,strong)ZCCardModel *cardModel;
 @end

@@ -7,9 +7,9 @@
 //
 
 #import "ZCCourseDetailsViewController.h"
-
+#import "ZCCourseDetailsModel.h"
 @interface ZCCourseDetailsViewController ()
-
+@property(nonatomic,strong)ZCCourseDetailsModel *courseDetailsModel;
 @end
 
 @implementation ZCCourseDetailsViewController
@@ -21,8 +21,36 @@
     self.navigationItem.title=@"授课详情";
     
     
-    [self addControls];
+    [self addData];
 }
+
+
+// 网络加载
+-(void)addData
+{
+    NSMutableDictionary *params=[NSMutableDictionary dictionary];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [defaults objectForKey:@"token"];
+    NSString *uuid = [defaults objectForKey:@"uuid"];
+    params[@"token"]=token;
+    params[@"club_uuid"]=uuid;
+    params[@"uuid"]=self.uuid;
+    NSString *URL=[NSString stringWithFormat:@"%@v1/courses/detail",API];
+    
+    
+    [ZCTool getWithUrl:URL params:params success:^(id responseObject) {
+        ZCLog(@"%@",responseObject);
+        
+        self.courseDetailsModel=[ZCCourseDetailsModel courseDetailsModelWithDict:responseObject];
+        
+       
+        [self addControls];
+    } failure:^(NSError *error) {
+        ZCLog(@"%@",error);
+    }];
+    
+}
+
 
 
 -(void)addControls
@@ -50,23 +78,23 @@
 
     UILabel *nameLabel=[[UILabel alloc] init];
     nameLabel.frame=CGRectMake(10, 20, 200, 30);
-    nameLabel.text=@"课程名称: 10节课";
+    nameLabel.text=[NSString stringWithFormat:@"课程名称: %@",self.courseDetailsModel.name];
     [view addSubview:nameLabel];
     
     UILabel *timeLabel=[[UILabel alloc] init];
     timeLabel.frame=CGRectMake(10, 60, 200, 30);
-    timeLabel.text=@"有消息: 3个月";
+    timeLabel.text=[NSString stringWithFormat:@"有效期: %@个月",self.courseDetailsModel.valid_months ];
     [view addSubview:timeLabel];
     
     UILabel *modelLabel=[[UILabel alloc] init];
     modelLabel.frame=CGRectMake(10, 100, 200, 30);
-    modelLabel.text=@"授课形式: 1对1";
+    modelLabel.text=[NSString stringWithFormat:@"授课形式: 1对%@",self.courseDetailsModel.maximum_students ];
     [view addSubview:modelLabel];
     
     
     UILabel *money=[[UILabel alloc] init];
     money.frame=CGRectMake(SCREEN_WIDTH-100, 10, 100, 30);
-    money.text=@"￥120000";
+    money.text=[NSString stringWithFormat:@"￥%@", self.courseDetailsModel.price];
     [view addSubview:money];
     
     
@@ -83,7 +111,7 @@
     
     UILabel *textLabel=[[UILabel alloc] init];
     textLabel.frame=CGRectMake(10, 30, SCREEN_WIDTH-20, 80);
-    textLabel.text=@"课程特色课程特色课程特色课程特色课程特色课程特色课程特色课程特色课程特色课程特色课程特色课程特色课程特色课程特色课程特色";
+    textLabel.text=self.courseDetailsModel.Description;
     textLabel.numberOfLines=0;
     [view addSubview:textLabel];
 

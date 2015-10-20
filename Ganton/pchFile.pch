@@ -5,6 +5,13 @@
 //  Created by hh on 15/10/9.
 //  Copyright © 2015年 zhongchuang. All rights reserved.
 //
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+//#import "UIBarButtonItem+DC.h"
+#import "ZCTool.h"
+#import "UIImageView+WebCache.h"
+#import "MBProgressHUD+NJ.h"
+//#import "MBProgressHUD+Show.h"
 
 #ifndef pchFile_pch
 #define pchFile_pch
@@ -31,7 +38,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 
 //测试服务器
-#define API @"HTTP://182.92.190.131/"
+#define API @"http://123.57.210.52:80/api/"
 
 
 // 3.自定义Log

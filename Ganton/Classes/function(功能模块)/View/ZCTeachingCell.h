@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZCCoachModel.h"
 @interface ZCTeachingCell : UITableViewCell
 +(instancetype)cellWithTable:(UITableView *)tableView;
+@property(nonatomic,strong)ZCCoachModel *coachModel;
 @end

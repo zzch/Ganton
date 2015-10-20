@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZCGoodsModel.h"
 @interface ZCRestaurantCell : UITableViewCell
 +(instancetype)cellWithTableView:(UITableView *)tableView;
 
-@property(nonatomic,strong)NSString *nameStr;
-@property(nonatomic,strong)NSString *imageStr;
+@property(nonatomic,strong)ZCGoodsModel *goodsModel;
+
 @end

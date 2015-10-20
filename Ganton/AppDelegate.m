@@ -21,11 +21,19 @@
     self.window=[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor=[UIColor whiteColor];
     
-    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [defaults objectForKey:@"token"];
    
+    if (token) {
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[ZCHomeViewController alloc] init]];
-    //UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[ZCAccountViewController alloc] init]];
-    self.window.rootViewController = nav;
+        self.window.rootViewController = nav;
+
+    }else{
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[ZCAccountViewController alloc] init]];
+        self.window.rootViewController = nav;
+
+    }
+    
     
     // 4.显示window
     [self.window makeKeyAndVisible];

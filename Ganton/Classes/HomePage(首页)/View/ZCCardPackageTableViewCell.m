@@ -55,11 +55,25 @@
 }
 
 
+
+-(void)setCardModel:(ZCCardModel *)cardModel
+{
+    _cardModel=cardModel;
+    
+    [self.photoImageView sd_setImageWithURL:[NSURL URLWithString:cardModel.logo] placeholderImage:[UIImage imageNamed:@"3088644_150703431167_2"] ];
+    
+    self.nameLabel.text=[NSString stringWithFormat:@"%@",cardModel.name];
+
+}
+
+
+
+
 -(void)layoutSubviews{
 
     [super layoutSubviews];
-    self.photoImageView.frame=CGRectMake(10, 10, 50, self.frame.size.height-20);
-    self.nameLabel.frame=CGRectMake(60, 0, self.frame.size.width-self.frame.size.height, self.frame.size.height);
+    self.photoImageView.frame=CGRectMake(10, 10, 150, self.frame.size.height-20);
+    self.nameLabel.frame=CGRectMake(160, 0, self.frame.size.width-self.frame.size.height, self.frame.size.height);
 
 }
 

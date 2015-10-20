@@ -8,8 +8,10 @@
 
 #import "ZCCardPackageViewController.h"
 #import "ZCCardPackageTableViewCell.h"
+#import "ZCCardModel.h"
 @interface ZCCardPackageViewController ()<UITableViewDataSource,UITableViewDelegate>
-
+@property(nonatomic,strong)NSMutableArray *cardArray;
+@property(nonatomic,weak)UITableView *tableView;
 @end
 
 @implementation ZCCardPackageViewController
@@ -26,20 +28,73 @@
     tableView.dataSource=self;
     [self.view addSubview:tableView];
     tableView.rowHeight=200;
+    self.tableView=tableView;
     
+    self.cardArray=[NSMutableArray array];
+    
+    [self onlineData];
+    
+}
+
+
+
+//网络数据
+-(void)onlineData
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [defaults objectForKey:@"token"];
+    NSMutableDictionary *params=[NSMutableDictionary dictionary];
+    params[@"token"]=token;
+    
+    NSString *URL=[NSString stringWithFormat:@"%@v1/clubs/membership",API];
+    
+    [ZCTool getWithUrl:URL params:params success:^(id responseObject) {
+        
+        ZCLog(@"%@",responseObject);
+        for (NSDictionary *dict in responseObject) {
+            ZCCardModel *cardModel=[ZCCardModel cardModelWithDict:dict];
+            [self.cardArray addObject:cardModel];
+        }
+        [self.tableView reloadData];
+        
+        ZCLog(@"%@",self.cardArray);
+    } failure:^(NSError *error) {
+        
+        ZCLog(@"%@",error);
+    }];
+
 }
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return self.cardArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZCCardPackageTableViewCell *cell=[ZCCardPackageTableViewCell cellWithTable:tableView];
-    
+    cell.cardModel=self.cardArray[indexPath.row];
     return cell;
+}
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSUserDefaults *userDf = [NSUserDefaults standardUserDefaults];
+    [userDf setObject:[self.cardArray[indexPath.row] uuid] forKey:@"uuid"];
+    
+    if ([self.delegate respondsToSelector:@selector(clickTheOtherCardWithcardPackageViewController:)]) {
+        [self.delegate clickTheOtherCardWithcardPackageViewController:self];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+
+    
+   // self.view.subviews
+    
+   
+    
 }
 
 

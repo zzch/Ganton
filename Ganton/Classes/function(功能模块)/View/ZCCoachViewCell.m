@@ -7,7 +7,11 @@
 //
 
 #import "ZCCoachViewCell.h"
-
+@interface ZCCoachViewCell()
+@property(nonatomic,weak)UILabel *TextLabel;
+@property(nonatomic,weak)UILabel *moneyLabel;
+//@property(nonatomic,weak)UILabel *TextLabel;
+@end
 @implementation ZCCoachViewCell
 
 +(instancetype)cellWithTable:(UITableView *)tableView
@@ -28,12 +32,13 @@
         textLabel.frame=CGRectMake(10, 0, 50, self.frame.size.height);
         textLabel.text=@"系统高尔夫教程";
         [self.contentView addSubview:textLabel];
-        
+        self.TextLabel=textLabel;
         
         UILabel *moneyLabel=[[UILabel alloc] init];
         moneyLabel.frame=CGRectMake(SCREEN_WIDTH-100-50, 0, 100, self.frame.size.height);
         moneyLabel.text=@"100000元";
         [self.contentView addSubview:moneyLabel];
+        self.moneyLabel=moneyLabel;
         
         UIImageView *rightImage=[[UIImageView alloc] init];
         rightImage.frame=CGRectMake(SCREEN_WIDTH-40, (self.frame.size.height-10)/2, 10, 10);
@@ -42,6 +47,18 @@
     }
     return self;
 }
+
+
+-(void)setCourseModel:(ZCCourseModel *)courseModel
+{
+    _courseModel=courseModel;
+    
+    self.TextLabel.text=courseModel.name;
+    self.moneyLabel.text=courseModel.price;
+
+}
+
+
 
 - (void)awakeFromNib {
     // Initialization code

@@ -10,8 +10,11 @@
 #import "ZCTeachingHeaderCell.h"
 #import "ZCTeachingCell.h"
 #import "ZCCoachViewController.h"
+#import "ZCTeachingModel.h"
+#import "ZCCoachModel.h"
 @interface ZCTeachingViewController ()<UITableViewDelegate,UITableViewDataSource>
-
+@property(nonatomic,strong)ZCTeachingModel *teachingModel;
+@property(nonatomic,weak)UITableView *tableView;
 @end
 
 @implementation ZCTeachingViewController
@@ -26,8 +29,40 @@
     tableView.delegate=self;
     tableView.dataSource=self;
     [self.view addSubview:tableView];
+    self.tableView=tableView;
+    
+    [self addData];
+}
+
+
+// 网络加载
+-(void)addData
+{
+    NSMutableDictionary *params=[NSMutableDictionary dictionary];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [defaults objectForKey:@"token"];
+    NSString *uuid = [defaults objectForKey:@"uuid"];
+    params[@"token"]=token;
+    params[@"club_uuid"]=uuid;
+    NSString *URL=[NSString stringWithFormat:@"%@v1/coaches",API];
+    
+    [ZCTool getWithUrl:URL params:params success:^(id responseObject) {
+        ZCLog(@"%@",responseObject);
+        
+        self.teachingModel=[ZCTeachingModel teachingModelWithDict:responseObject];
+//        ZCHomeModel *homeModel=[ZCHomeModel homeModelWithDict:responseObject];
+//        self.homeModel=homeModel;
+//        
+//        [self addControls];
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        ZCLog(@"%@",error);
+    }];
     
 }
+
+
+
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -38,9 +73,9 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section==0) {
-        return 2;
+        return self.teachingModel.featured.count;
     }else{
-        return 5;
+        return self.teachingModel.normal.count;
     }
     
 }
@@ -50,9 +85,11 @@
     
     if (indexPath.section==0) {
         ZCTeachingHeaderCell *cell=[ZCTeachingHeaderCell cellWithTable:tableView];
+        cell.coachModel=self.teachingModel.featured[indexPath.row];
         return cell;
     }else{
         ZCTeachingCell *cell=[ZCTeachingCell cellWithTable:tableView];
+        cell.coachModel=self.teachingModel.normal[indexPath.row];
         return cell;
     }
     
@@ -85,6 +122,12 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZCCoachViewController *vc=[[ZCCoachViewController alloc] init];
+    if (indexPath.section==0) {
+        vc.uuid=[self.teachingModel.featured[indexPath.row] uuid];
+    }else{
+        vc.uuid=[self.teachingModel.normal[indexPath.row] uuid];
+    }
+    
     [self.navigationController pushViewController:vc animated:YES];
    
 }

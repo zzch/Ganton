@@ -13,8 +13,16 @@
 #import "ZCRecordsOfConsumptionViewController.h"
 #import "ZCMallViewController.h"
 #import "ZCRestaurantViewController.h"
-@interface ZCHomeViewController ()<UIScrollViewDelegate>
+#import "ZCOpinionViewController.h"
+#import "ZCPersonalViewController.h"
+#import "ZCAnnouncementView.h"
+#import "ZCHomeModel.h"
+#import "ZCMemberModel.h"
+#import "ZCAnnouncementModel.h"
+#import "ZCAnnouncementViewController.h"
+@interface ZCHomeViewController ()<UIScrollViewDelegate,ZCCardPackageViewControllerDelegate>
 @property(nonatomic,weak)UIScrollView *scrollView;
+@property(nonatomic,strong)ZCHomeModel *homeModel;
 @end
 
 @implementation ZCHomeViewController
@@ -26,15 +34,66 @@
     
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"卡包" style:UIBarButtonItemStyleDone target:self action:@selector(clickTheRightBarButtonItem)];
     
-    [self addControls];
+    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"个人" style:UIBarButtonItemStyleDone target:self action:@selector(clickTheLiftBarButtonItem)];
+    
+    
+    
+    [self addData];
     
 }
+
+
+// 网络加载
+-(void)addData
+{
+    NSMutableDictionary *params=[NSMutableDictionary dictionary];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [defaults objectForKey:@"token"];
+    NSString *uuid = [defaults objectForKey:@"uuid"];
+    params[@"token"]=token;
+    params[@"club_uuid"]=uuid;
+    NSString *URL=[NSString stringWithFormat:@"%@v1/clubs/home",API];
+    
+    [ZCTool getWithUrl:URL params:params success:^(id responseObject) {
+        ZCLog(@"%@",responseObject);
+        
+        ZCHomeModel *homeModel=[ZCHomeModel homeModelWithDict:responseObject];
+        self.homeModel=homeModel;
+        
+        [self addControls];
+        
+    } failure:^(NSError *error) {
+        ZCLog(@"%@",error);
+    }];
+
+}
+
+
+
+-(void)clickTheOtherCardWithcardPackageViewController:(ZCCardPackageViewController *)cardPackageViewController
+{
+    
+     ZCLog(@"%lu",(unsigned long)self.view.subviews.count);
+    
+    [self.view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj removeFromSuperview];
+    }];
+    
+    
+
+    [self addData];
+    
+    
+     ZCLog(@"%lu",(unsigned long)self.view.subviews.count);
+}
+
 
 //添加控件
 -(void)addControls
 {
       self.automaticallyAdjustsScrollViewInsets = NO;
 
+    
     UIScrollView *scrollView=[[UIScrollView alloc] init];
     scrollView.frame=CGRectMake(0, 74, self.view.frame.size.width, 200);
     //scrollView.delegate = self;
@@ -42,17 +101,19 @@
     self.scrollView=scrollView;
     scrollView.pagingEnabled = YES;
     
-    int index=3;
+    //int index=3;
     
-    for (int i=0; i<index; i++) {
-        UILabel *imageView=[[UILabel alloc] init];
-        imageView.backgroundColor=[UIColor yellowColor];
-        imageView.text=[NSString stringWithFormat:@"%d",i];
-        imageView.textColor=[UIColor redColor];
-        imageView.textAlignment=NSTextAlignmentCenter;
+    for (int i=0; i<self.homeModel.members.count; i++) {
+        UIView *imageView=[[UIView alloc] init];
+        //imageView.backgroundColor=[UIColor yellowColor];
+        
+        
+        
         
         imageView.frame=CGRectMake(i*self.view.frame.size.width, 0, self.view.frame.size.width, 200);
         [self.scrollView addSubview:imageView];
+        
+        [self addControlsForCard:imageView andData:self.homeModel.members[i]];
         
         self.scrollView.contentSize=CGSizeMake((i+1)*self.view.frame.size.width, 0);
         
@@ -76,13 +137,19 @@
     [noticeView addSubview:imageView];
     
     
-    UILabel *textLabel=[[UILabel alloc] init];
+    ZCAnnouncementView *textLabel=[[ZCAnnouncementView alloc] init];
     textLabel.frame=CGRectMake(30, 0, self.view.frame.size.width-30, 30);
-    textLabel.textColor=[UIColor blackColor];
-    textLabel.backgroundColor=[UIColor yellowColor];
-    textLabel.text=@"9月到店有礼领取高尔夫一枚";
+
     [noticeView addSubview:textLabel];
+    textLabel.announcements=self.homeModel.announcements;
     
+    UIButton *button=[[UIButton alloc] init];
+    button.frame=CGRectMake(30, 0, self.view.frame.size.width-30, 30);
+    
+    [noticeView addSubview:button];
+    
+    
+    [button addTarget:self action:@selector(clickThetextLabel) forControlEvents:UIControlEventTouchUpInside];
     
     UIView *lastView=[[UIView alloc] init];
     
@@ -159,6 +226,90 @@
 }
 
 
+
+-(void)addControlsForCard:(UIView *)view andData:(ZCMemberModel *)memberModel
+{
+    
+    
+//    unsigned result=0;
+//    NSScanner *scanner=[NSScanner scannerWithString:memberModel.background_color];
+//    [scanner setScanLocation:1];
+//    [scanner scanHexInt:&result];
+    view.backgroundColor=[ZCTool colorWithHexString:memberModel.background_color];
+    
+    
+    UIImageView *logoImage=[[UIImageView alloc] init];
+    CGFloat logoImageX=10;
+    CGFloat logoImageY=10;
+    CGFloat logoImageW=50;
+    CGFloat logoImageH=30;
+    logoImage.frame=CGRectMake(logoImageX, logoImageY, logoImageW, logoImageH);
+    [logoImage sd_setImageWithURL:[NSURL URLWithString:self.homeModel.logo] placeholderImage:[UIImage imageNamed:@"3088644_150703431167_2"] ];
+    [view addSubview:logoImage];
+    
+    UILabel *nameLabel=[[UILabel alloc] init];
+    CGFloat nameLabelX=logoImageX+logoImageW+10;
+    CGFloat nameLabelY=logoImageY;
+    CGFloat nameLabelW=200;
+    CGFloat nameLabelH=30;
+    nameLabel.frame=CGRectMake(nameLabelX, nameLabelY, nameLabelW, nameLabelH);
+    nameLabel.text=self.homeModel.name;
+    nameLabel.textColor=[ZCTool colorWithHexString:memberModel.font_color];
+    [view addSubview:nameLabel];
+    
+    UILabel *cardName=[[UILabel alloc] init];
+    CGFloat cardNameW=SCREEN_WIDTH;
+    CGFloat cardNameH=30;
+    CGFloat cardNameX=0;
+    CGFloat cardNameY=(view.frame.size.height-cardNameH)/2;
+    cardName.frame=CGRectMake(cardNameX, cardNameY, cardNameW, cardNameH);
+    cardName.textColor=[ZCTool colorWithHexString:memberModel.font_color];
+    cardName.textAlignment=NSTextAlignmentCenter;
+    cardName.text=memberModel.name;
+    [view addSubview:cardName];
+    
+    UILabel *remainingLabel=[[UILabel alloc] init];
+    CGFloat remainingLabelX=SCREEN_WIDTH-200;
+    CGFloat remainingLabelY=view.frame.size.height-70;
+    CGFloat remainingLabelW=150;
+    CGFloat remainingLabelH=30;
+    remainingLabel.frame=CGRectMake(remainingLabelX, remainingLabelY, remainingLabelW, remainingLabelH);
+    remainingLabel.textAlignment=NSTextAlignmentRight;
+    remainingLabel.text=[NSString stringWithFormat:@"剩余: ￥%@",memberModel.balance];
+    remainingLabel.textColor=[ZCTool colorWithHexString:memberModel.font_color];
+    [view addSubview:remainingLabel];
+    
+    UILabel *numberLabel=[[UILabel alloc] init];
+    CGFloat numberLabelX=10;
+    CGFloat numberLabelY=view.frame.size.height-40;
+    CGFloat numberLabelW=300;
+    CGFloat numberLabelH=30;
+    numberLabel.frame=CGRectMake(numberLabelX, numberLabelY, numberLabelW, numberLabelH);
+    numberLabel.textColor=[ZCTool colorWithHexString:memberModel.font_color];
+    numberLabel.text=[NSString stringWithFormat:@"NO: %@",memberModel.number];
+    [view addSubview:numberLabel];
+    
+    
+    
+
+}
+
+
+
+/**
+ *  当scrollView正在滚动就会调用
+ */
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    // 根据scrollView的滚动位置决定pageControl显示第几页
+    CGFloat scrollW = scrollView.frame.size.width;
+    int page = (scrollView.contentOffset.x + scrollW * 0.5) / scrollW;
+   // self.pageControl.currentPage = page;
+}
+
+
+
+
 -(void)clickTheButton:(UIButton *)button
 {
     if (button.tag==100) {
@@ -188,6 +339,9 @@
          
     }else if (button.tag==105){
         
+        ZCOpinionViewController *VC=[[ZCOpinionViewController alloc] init];
+        [self.navigationController pushViewController:VC animated:YES];
+        
     }
     
 
@@ -199,11 +353,25 @@
 -(void)clickTheRightBarButtonItem
 {
     ZCCardPackageViewController *vc=[[ZCCardPackageViewController alloc] init];
+    vc.delegate=self;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 
+//点击左上角按钮
+-(void)clickTheLiftBarButtonItem
+{
+    ZCPersonalViewController *vc=[[ZCPersonalViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 
+}
+
+
+-(void)clickThetextLabel
+{
+    ZCAnnouncementViewController *vc=[[ZCAnnouncementViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

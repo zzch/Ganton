@@ -7,11 +7,20 @@
 //
 
 #import "ZCReservationViewController.h"
-
-@interface ZCReservationViewController ()
+#import "ZCWeathersModel.h"
+@interface ZCReservationViewController ()<UIPickerViewDataSource,UIPickerViewDelegate>
 @property(nonatomic,weak)UILabel *timeLabel;
 @property(nonatomic,weak)UIImageView *imageView;
 @property(nonatomic,weak)UILabel *temperatureLabel;
+@property(nonatomic,weak)UILabel *textLabel;
+@property(nonatomic,strong)NSMutableArray *weathersArray;
+@property(nonatomic,strong)NSArray *pickArray;
+
+@property(nonatomic,weak)UIPickerView *pickView;
+
+@property(nonatomic,copy)NSString *chooseTime;
+//选中今天  明天 的时间戳
+@property(nonatomic,assign)long time;
 @end
 
 @implementation ZCReservationViewController
@@ -21,9 +30,102 @@
     self.view.backgroundColor=[UIColor whiteColor];
     self.navigationItem.title=@"打位预约";
     
+    self.weathersArray=[NSMutableArray array];
     
-    [self addControls];
+    [self addData];
 }
+
+
+// 网络加载
+-(void)addData
+{
+    NSMutableDictionary *params=[NSMutableDictionary dictionary];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [defaults objectForKey:@"token"];
+    NSString *uuid = [defaults objectForKey:@"uuid"];
+    params[@"token"]=token;
+    params[@"club_uuid"]=uuid;
+    NSString *URL=[NSString stringWithFormat:@"%@v1/weathers/recently",API];
+    ZCLog(@"%@",token);
+    ZCLog(@"%@",uuid);
+    
+    [ZCTool getWithUrl:URL params:params success:^(id responseObject) {
+        ZCLog(@"%@",responseObject);
+        
+        for (NSDictionary *dict in responseObject) {
+            ZCWeathersModel *weathersModel=[ZCWeathersModel weathersModelWithDict:dict];
+            [self.weathersArray addObject:weathersModel];
+        }
+        
+//        ZCHomeModel *homeModel=[ZCHomeModel homeModelWithDict:responseObject];
+//        self.homeModel=homeModel;
+        
+        [self addControls];
+        
+        
+    } failure:^(NSError *error) {
+        ZCLog(@"%@",error);
+    }];
+    
+}
+
+
+
+- (NSDate *)dateWithYMDDate:(NSDate *)date
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd";
+    NSString *selfStr = [dateFormatter stringFromDate:date];
+    return [dateFormatter dateFromString:selfStr];
+}
+
+-(NSString * )JudgmentIsWhichDay:(long )dateTime
+{
+    
+    NSDate *confromTimesp=[NSDate dateWithTimeIntervalSince1970:dateTime];
+   
+    NSDate *nowDate = [self dateWithYMDDate:[NSDate date]];
+    NSDate *selfDate = [self dateWithYMDDate:confromTimesp];
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *cmps = [calendar components:NSCalendarUnitDay fromDate:nowDate toDate:selfDate options:0];
+    //return cmps.day == 1;
+    ZCLog(@"%@",nowDate);
+    ZCLog(@"%@",selfDate);
+    ZCLog(@"%ld",(long)cmps.day);
+    
+    if (cmps.day == 0) {
+        return @"今天";
+    }else if (cmps.day == 1){
+       return @"明天";
+    }else if (cmps.day == 2){
+       return @"后天";
+    }else if (cmps.day == 3){
+        return @"大后天";
+    }else{
+        return nil;
+    }
+    
+}
+
+
+-(NSString *)whatDayIsNow:(long)dateTime
+{
+    // 创建一个日期格式器
+    NSDateFormatter *nowDateFormatter = [[NSDateFormatter alloc] init];
+    // 为日期格式器设置格式字符串
+    [nowDateFormatter setDateFormat:@"MM月dd日"];
+    // 使用日期格式器格式化日期、时间
+    NSDate *confromTimesp=[NSDate dateWithTimeIntervalSince1970:dateTime];
+    NSString *nowDateString = [nowDateFormatter stringFromDate:confromTimesp ];
+    
+    NSString *str=[NSString stringWithFormat:@"%@%@",[self JudgmentIsWhichDay:dateTime],nowDateString];
+    
+    return str;
+
+}
+
+
 
 //添加控件
 -(void)addControls
@@ -48,7 +150,12 @@
     CGFloat firstButtonH=40;
     firstButton.frame=CGRectMake(firstButtonX, firstButtonY, firstButtonW, firstButtonH);
     firstButton.backgroundColor=[UIColor redColor];
-    [firstButton setTitle:@"今天" forState:UIControlStateNormal];
+    
+    ZCWeathersModel *model=self.weathersArray[0];
+    
+     //NSString *whichDay=[self JudgmentIsWhichDay:model.date];
+
+    [firstButton setTitle:[self JudgmentIsWhichDay:model.date] forState:UIControlStateNormal];
     [firstButton addTarget:self action:@selector(clickTheFirstButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:firstButton];
     
@@ -57,7 +164,9 @@
     CGFloat secondButtonX=firstButtonX+firstButtonW+10;
     secondButton.frame=CGRectMake(secondButtonX, firstButtonY, firstButtonW, firstButtonH);
     secondButton.backgroundColor=[UIColor redColor];
-    [secondButton setTitle:@"明天" forState:UIControlStateNormal];
+    ZCWeathersModel *model2=self.weathersArray[1];
+    
+    [secondButton setTitle:[self JudgmentIsWhichDay:model2.date] forState:UIControlStateNormal];
     [secondButton addTarget:self action:@selector(clickTheSecondButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:secondButton];
     
@@ -66,7 +175,8 @@
     CGFloat thirdButtonX=secondButtonX+firstButtonW+10;
     thirdButton.frame=CGRectMake(thirdButtonX, firstButtonY, firstButtonW, firstButtonH);
     thirdButton.backgroundColor=[UIColor redColor];
-    [thirdButton setTitle:@"后天" forState:UIControlStateNormal];
+    ZCWeathersModel *model3=self.weathersArray[2];
+    [thirdButton setTitle:[self JudgmentIsWhichDay:model3.date] forState:UIControlStateNormal];
     [thirdButton addTarget:self action:@selector(clickTheThirdButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:thirdButton];
 
@@ -75,21 +185,20 @@
     
     
     
-    UIDatePicker *datePicker=[[UIDatePicker alloc] initWithFrame:CGRectZero];
-    //模式
-    datePicker.datePickerMode=UIDatePickerModeTime;
-    datePicker.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
+    UIPickerView *pickView=[[UIPickerView alloc] initWithFrame:CGRectZero];
+    pickView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    pickView.delegate=self;
+    pickView.dataSource = self;
+    //pickView.tintColor=[UIColor whiteColor];
+    CGFloat pickViewW=SCREEN_WIDTH;
+    CGFloat pickViewH=260;
+    CGFloat pickViewX=0;
+    CGFloat pickViewY=thirdButton.frame.size.height+thirdButton.frame.origin.y+20;
+    pickView.frame = CGRectMake(pickViewX, pickViewY, pickViewW, pickViewH);
+    pickView.showsSelectionIndicator = YES;
+    self.pickView=pickView;
     
-    //[datePicker addTarget:self action:@selector(dateChange:) forControlEvents:UIControlEventValueChanged];
-    //[datePicker setValue:ZCColor(85, 85, 85) forKeyPath:@"textColor"];
-    // [ datePicker setDate:[datePicker date] animated:YES];
-    
-//    [datePicker setMaximumDate:maxDate];
-//    [datePicker setMinimumDate:minDate];
-    
-    datePicker.frame=CGRectMake(0, thirdButton.frame.size.height+thirdButton.frame.origin.y, SCREEN_WIDTH, 200);
-    
-    [self.view addSubview:datePicker];
+    [self.view addSubview:pickView];
     
 
     
@@ -105,39 +214,91 @@
 
 -(void)clickTheFirstButton
 {
-    self.timeLabel.text=@"今天9月26号";
+    ZCWeathersModel *model=self.weathersArray[0];
+    
+    self.timeLabel.text=[self whatDayIsNow:model.date];
     self.imageView.backgroundColor=[UIColor redColor];
-    self.temperatureLabel.text=@"24℃";
+    self.textLabel.text=[NSString stringWithFormat:@"%@",model.content];
+    self.temperatureLabel.text=[NSString stringWithFormat:@"%@°",model.maximum_temperature];
 
+    self.time=model.date;
 
 }
 
 -(void)clickTheSecondButton
 {
-    self.timeLabel.text=@"明天9月27号";
-    self.imageView.backgroundColor=[UIColor yellowColor];
-    self.temperatureLabel.text=@"27℃";
+    ZCWeathersModel *model=self.weathersArray[1];
+    
+    self.timeLabel.text=[self whatDayIsNow:model.date];
+    self.imageView.backgroundColor=[UIColor blackColor];
+    self.textLabel.text=[NSString stringWithFormat:@"%@",model.content];
+    self.temperatureLabel.text=[NSString stringWithFormat:@"%@°",model.maximum_temperature];
 
+    self.time=model.date;
 
 }
 
 -(void)clickTheThirdButton
 {
-    self.timeLabel.text=@"后天9月28号";
-    self.imageView.backgroundColor=[UIColor brownColor];
-    self.temperatureLabel.text=@"37℃";
+    ZCWeathersModel *model=self.weathersArray[2];
+    
+    self.timeLabel.text=[self whatDayIsNow:model.date];
+    self.imageView.backgroundColor=[UIColor yellowColor];
+    self.textLabel.text=[NSString stringWithFormat:@"%@",model.content];
+    self.temperatureLabel.text=[NSString stringWithFormat:@"%@°",model.maximum_temperature];
 
+
+    self.time=model.date;
 }
 
 
 //点击预定
 -(void)clickTheReserveButton
 {
-    // 弹框
-    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"预定成功" message:@"球场预定成功，请在个人中心查看" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-    // 设置对话框的类型
-    alert.alertViewStyle=UIKeyboardTypeNumberPad;
-    [alert show];
+    NSDate *selfDate=[NSDate dateWithTimeIntervalSince1970:self.time];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd";
+    NSString *selfStr = [dateFormatter stringFromDate:selfDate];
+    
+    NSString *timeStr=[NSString stringWithFormat:@"%@ %@:00",selfStr,self.chooseTime];
+    ZCLog(@"%@",timeStr);
+    
+     NSDate *date=[dateFormatter dateFromString:selfStr];
+    
+    //吧时间变成时间濯
+    long time=(long)[date timeIntervalSince1970];
+    ZCLog(@"%ld",time);
+    
+    NSMutableDictionary *params=[NSMutableDictionary dictionary];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [defaults objectForKey:@"token"];
+    NSString *uuid = [defaults objectForKey:@"uuid"];
+    params[@"token"]=token;
+    params[@"club_uuid"]=uuid;
+    params[@"reserve_at"]=@(time);
+    NSString *URL=[NSString stringWithFormat:@"%@v1/reservations",API];
+    ZCLog(@"%@",token);
+    ZCLog(@"%@",uuid);
+
+    [ZCTool postWithUrl:URL params:params success:^(id responseObject) {
+        ZCLog(@"%@",responseObject);
+        
+        // 弹框
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"预定成功" message:@"球场预定成功，请在个人中心查看" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        // 设置对话框的类型
+        alert.alertViewStyle=UIKeyboardTypeNumberPad;
+        [alert show];
+        
+        
+    } failure:^(NSError *error) {
+        ZCLog(@"%@",error);
+    }];
+    
+    
+    
+    
+   
 }
 
 
@@ -181,9 +342,11 @@
 
 -(void)addControlsForweatherView:(UIView *)view
 {
+    ZCWeathersModel *model=self.weathersArray[0];
+    self.time=model.date;
     UILabel *timeLabel=[[UILabel alloc] init];
-    timeLabel.frame=CGRectMake(10, 10, 100, 20);
-    timeLabel.text=@"今天9月28号";
+    timeLabel.frame=CGRectMake(10, 10, 180, 20);
+    timeLabel.text=[self whatDayIsNow:model.date];
     [view addSubview:timeLabel];
     self.timeLabel=timeLabel;
     
@@ -197,15 +360,131 @@
     [view addSubview:imageView];
     self.imageView=imageView;
     
+    UILabel *textLabel=[[UILabel alloc] init];
+    CGFloat textLabelX=imageViewX+imageViewW+10;
+    CGFloat textLabelY=imageViewY;
+    CGFloat textLabelW=100;
+    CGFloat textLabelH=30;
+    textLabel.text=[NSString stringWithFormat:@"%@",model.content];
+    textLabel.frame=CGRectMake(textLabelX, textLabelY, textLabelW, textLabelH);
+    [view addSubview:textLabel];
+    self.textLabel=textLabel;
     
     UILabel *temperatureLabel=[[UILabel alloc] init];
     temperatureLabel.frame=CGRectMake(view.frame.size.width-60, 10, 40, 30);
-    temperatureLabel.text=@"24℃";
+    temperatureLabel.text=[NSString stringWithFormat:@"%@°",model.maximum_temperature];
     [view addSubview:temperatureLabel];
     self.temperatureLabel=temperatureLabel;
     
     
 }
+
+
+
+
+-(NSArray *)pickArray
+{
+    if (_pickArray==nil) {
+        _pickArray=[NSArray array];
+//        NSMutableArray *pickArray1=[NSMutableArray array];
+//        for (int i = 0; i < 81; i ++) {
+//            [pickArray1 addObject:[NSString stringWithFormat:@"%d",i*5]];
+//        }
+        
+        
+        //NSArray *pickArray2=[NSArray array];
+        _pickArray=@[@"8:30",@"8:45",@"9:00",@"9:15",@"9:30",@"9:45",@"10:00",@"10:15",@"10:30",@"10:45",@"11:00",@"11:15",@"11:30",@"11:45",@"12:00",@"12:15",@"12:30",@"12:45",@"13:00"];
+        
+        //_pickArray=@[pickArray1,pickArray2];
+        
+    }
+    
+    return _pickArray;
+}
+
+
+
+#pragma mark - 数据源方法
+
+
+/**
+ *  一共有多少列
+ */
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    ZCLog(@"%lu",(unsigned long)self.pickArray.count);
+    return 1;
+    
+    
+    
+}
+
+/**
+ *  第component列显示多少行
+ */
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    
+    return self.pickArray.count;
+}
+
+
+/**
+ *  第component列的第row行显示什么文字
+ */
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return self.pickArray[component][row];
+}
+
+
+/**
+ *  选中了第component列的第row行
+ */
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    
+    
+    self.chooseTime=self.pickArray[row];
+    
+//    if (component == 0) { //
+//        self.distanceLabel.text = self.pickArray[component][row];
+//    } else if (component == 1) { //
+//        self.hitLabel.text = self.pickArray[component][row];
+//    }
+    
+    
+    
+    
+    
+    
+}
+
+//改变pickview的字体颜色
+
+- (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    NSString *title;
+    title = [NSString stringWithFormat:@"%@",self.pickArray[row]];
+//    if (component==0) {
+//        title = [NSString stringWithFormat:@"%@码",self.pickArray[row]];
+//    }else{
+//        title = [NSString stringWithFormat:@"%@",self.pickArray[component][row]];
+//    }
+    
+    NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:ZCColor(85, 85, 85)}];
+    
+    return attString;
+    
+}
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
+{
+    
+    return 120;
+}
+
+
 
 
 - (void)didReceiveMemoryWarning {

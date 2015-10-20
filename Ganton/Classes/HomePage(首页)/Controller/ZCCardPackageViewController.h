@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class ZCCardPackageViewController;
+@protocol ZCCardPackageViewControllerDelegate<NSObject>
+@optional
+-(void)clickTheOtherCardWithcardPackageViewController:(ZCCardPackageViewController *)cardPackageViewController;
+@end
 @interface ZCCardPackageViewController : UIViewController
-
+@property(nonatomic,weak)id <ZCCardPackageViewControllerDelegate >delegate;
 @end

@@ -76,17 +76,24 @@
 
 }
 
--(void)setNameStr:(NSString *)nameStr
-{
-    _nameStr=nameStr;
-    self.nameLabel.text=nameStr;
 
-}
 
--(void)setImageStr:(NSString *)imageStr
+
+
+-(void)setGoodsModel:(ZCGoodsModel *)goodsModel
 {
-    _imageStr=imageStr;
-    self.imageView.image=[UIImage imageNamed:imageStr];
+    _goodsModel=goodsModel;
+    
+    if ([ZCTool _valueOrNil:goodsModel.image]==nil) {
+        self.imageView.image=[UIImage imageNamed:@"u=2942189691,876443177&fm=21&gp=0.jpg"];
+    }else{
+    
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:goodsModel.image] placeholderImage:[UIImage imageNamed:@"u=2942189691,876443177&fm=21&gp=0.jpg"]];
+    }
+    self.nameLabel.text=goodsModel.name;
+    
+    self.moneyLabel.text=goodsModel.price;
+    
 
 }
 
