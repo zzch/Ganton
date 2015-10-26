@@ -9,7 +9,7 @@
 #import "ZCAccountViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import "ZCHomeViewController.h"
-@interface ZCAccountViewController ()<CLLocationManagerDelegate>
+@interface ZCAccountViewController ()<CLLocationManagerDelegate,UITextFieldDelegate>
 @property(nonatomic,weak)UITextField *phoneTextField;
 @property(nonatomic,weak)UITextField *VerificationTextField;
 
@@ -20,6 +20,22 @@
 
 @property(nonatomic,assign) double longitude;
 
+
+
+
+@property(nonatomic,weak)UIView *view1;
+
+@property(nonatomic,weak)UIView *welcomeView;
+@property(nonatomic,weak)UIView *welcomeView2;
+@property(nonatomic,weak)UIView *thirdView;
+@property(nonatomic,weak)UIButton *landingButton;
+
+@property(nonatomic,weak)UIView *failureView;
+//验证码按钮
+@property(nonatomic,weak)UIButton *getButton;
+
+
+@property(nonatomic,strong)id time;
 @end
 
 @implementation ZCAccountViewController
@@ -29,7 +45,11 @@
     
    // [self addControls];
     
+    self.navigationItem.title=@"用户登录";
+   
     
+    
+    self.view.backgroundColor=[UIColor whiteColor];
     //创建CLLocationManager定位
     [self initCLLocationManager];
 }
@@ -115,12 +135,49 @@
 
 -(void)addControls
 {
+    
+//    UIImageView *imageView=[[UIImageView alloc] init];
+//    CGFloat imageViewX=0;
+//    CGFloat imageViewY=0;
+//    CGFloat imageViewW=10;
+//    CGFloat imageViewH=10;
+//    imageView.frame=CGRectMake(imageViewX, imageViewY, imageViewW, imageViewH);
+//    [self.view addSubview:imageView];
+    
+    
+    UIView *view=[[UIView alloc] init];
+    CGFloat viewX=42;
+    CGFloat viewY=SCREEN_HEIGHT*0.2;
+    CGFloat viewW=SCREEN_WIDTH-2*viewX;
+    CGFloat viewH=40;
+    view.frame=CGRectMake(viewX, viewY, viewW, viewH);
+    [self.view addSubview:view];
+    self.view1=view;
+    [self addControlsWithView:view];
+    
+    UIImageView *personImage=[[UIImageView alloc] init];
+    CGFloat personImageX=0;
+    CGFloat personImageY=11;
+    CGFloat personImageW=15;
+    CGFloat personImageH=17;
+    personImage.frame=CGRectMake(personImageX, personImageY, personImageW, personImageH);
+    personImage.image=[UIImage imageNamed:@"denglu_yonghu_icon"];
+    [view addSubview:personImage];
+    
 
     UITextField *phoneTextField=[[UITextField alloc] init];
-    phoneTextField.frame=CGRectMake(20, 100, SCREEN_WIDTH-40, 40);
-    phoneTextField.backgroundColor=[UIColor redColor];
-    [self.view addSubview:phoneTextField];
+    CGFloat phoneTextFieldX=personImageH+10;
+    CGFloat phoneTextFieldY=0;
+    CGFloat phoneTextFieldW=viewW-phoneTextFieldX;
+    CGFloat phoneTextFieldH=40;
+    phoneTextField.frame=CGRectMake(phoneTextFieldX, phoneTextFieldY, phoneTextFieldW, phoneTextFieldH);
+   phoneTextField.placeholder=@"输入手机号码";
+    phoneTextField.keyboardType=UIKeyboardTypeNumberPad;
+    [view addSubview:phoneTextField];
+    phoneTextField.delegate=self;
     self.phoneTextField=phoneTextField;
+    
+   // [phoneTextField addTarget:self action:@selector(nameTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     
     [phoneTextField addTarget:self action:@selector(phoneTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     
@@ -136,9 +193,96 @@
             [MBProgressHUD showError:@"手机号输入有误"];
         }
         
+    }else if (textField.text.length>11)
+    {
+      self.phoneTextField.text = [self.phoneTextField.text substringToIndex:11];
+    }else{
+        
+        [self removeTheAnimation];
     }
 
 }
+
+
+//移除动画
+-(void)removeTheAnimation
+{
+    
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        
+        CGFloat failureViewX=SCREEN_WIDTH;
+        CGFloat failureViewY=self.view1.frame.size.height+self.view1.frame.origin.y+15;
+        CGFloat failureViewW=self.view1.frame.size.width;
+        CGFloat failureViewH=self.view1.frame.size.height;
+        self.failureView.frame=CGRectMake(failureViewX, failureViewY, failureViewW, failureViewH);
+        
+        
+    } completion:^(BOOL finished) {
+        [self.welcomeView removeFromSuperview];
+    }];
+
+    
+    
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        
+        CGFloat welcomeViewX=SCREEN_WIDTH;
+        CGFloat welcomeViewY=self.view1.frame.size.height+self.view1.frame.origin.y+15;
+        CGFloat welcomeViewW=self.view1.frame.size.width;
+        CGFloat welcomeViewH=self.view1.frame.size.height;
+        self.welcomeView.frame=CGRectMake(welcomeViewX, welcomeViewY, welcomeViewW, welcomeViewH);
+        
+        
+    } completion:^(BOOL finished) {
+        [self.welcomeView removeFromSuperview];
+    }];
+
+    [UIView animateWithDuration:0.8 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        
+        CGFloat welcomeView2X=SCREEN_WIDTH;
+        CGFloat welcomeView2Y=self.welcomeView.frame.size.height+self.welcomeView.frame.origin.y+15;
+        CGFloat welcomeView2W=self.view1.frame.size.width;
+        CGFloat welcomeView2H=self.view1.frame.size.height;
+        self.welcomeView2.frame=CGRectMake(welcomeView2X, welcomeView2Y, welcomeView2W, welcomeView2H);
+        
+        
+    } completion:^(BOOL finished) {
+        [self.welcomeView2 removeFromSuperview];
+    }];
+    
+    
+    
+    [UIView animateWithDuration:0.6 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        
+        CGFloat viewX=42;
+        CGFloat viewY=self.welcomeView2.frame.size.height+self.welcomeView2.frame.origin.y+15;
+        CGFloat viewW=SCREEN_WIDTH-2*viewX;
+        CGFloat viewH=40;
+        self.thirdView.frame=CGRectMake(viewX, viewY, viewW, viewH);
+        
+        
+    } completion:^(BOOL finished) {
+       [self.thirdView removeFromSuperview];
+        if (_time==nil) {
+            
+        }else{
+        dispatch_source_cancel(_time);
+        }
+        
+    }];
+
+    
+    
+    [UIView animateWithDuration:0.8 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        
+        self.landingButton.alpha=0.0;
+        
+        
+    } completion:^(BOOL finished) {
+        [self.landingButton removeFromSuperview];
+    }];
+}
+
+
 
 
 //网络请求
@@ -155,9 +299,17 @@
     NSString *URL=[NSString stringWithFormat:@"%@v1/welcome",API];
     [ZCTool  getWithUrl:URL params:params success:^(id responseObject) {
         
-        //成功
-        [self theRequestIsSuccessful:responseObject[@"sentences"]];
         ZCLog(@"%@",responseObject[@"sentences"]);
+        if (responseObject[@"sentences"]) {
+            //成功
+          [self theRequestIsSuccessful:responseObject[@"sentences"]];
+
+        }else{
+            //不成功
+            [self theRequestIsNoSuccessful];
+        }
+        
+        
     } failure:^(NSError *error) {
         ZCLog(@"%@",error);
     }];
@@ -166,59 +318,120 @@
 }
 
 
+//手机号不存在这个账户 不成功
+-(void)theRequestIsNoSuccessful
+{
+    UIView *failureView=[[UIView alloc] init];
+    CGFloat failureViewX=SCREEN_WIDTH;
+    CGFloat failureViewY=self.view1.frame.size.height+self.view1.frame.origin.y+15;
+    CGFloat failureViewW=self.view1.frame.size.width;
+    CGFloat failureViewH=self.view1.frame.size.height;
+    failureView.frame=CGRectMake(failureViewX, failureViewY, failureViewW, failureViewH);
+    [self.view addSubview:failureView];
+    self.failureView=failureView;
+    [self addControlsWithView:failureView];
+    
+    UILabel *failureLabel=[[UILabel alloc] init];
+    failureLabel.text=@"手机号不存在，请重试";
+    failureLabel.alpha=0.1;
+    //welcomeLabel.textAlignment=NSTextAlignmentCenter;
+    failureLabel.frame=CGRectMake(SCREEN_WIDTH, 0, failureViewW, 40);
+    [failureView addSubview:failureLabel];
+
+    
+    [UIView animateWithDuration:0.6 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        
+        CGFloat failureViewX=42;
+        CGFloat failureViewY=self.view1.frame.size.height+self.view1.frame.origin.y+15;
+        CGFloat failureViewW=self.view1.frame.size.width;
+        CGFloat failureViewH=self.view1.frame.size.height;
+        failureView.frame=CGRectMake(failureViewX, failureViewY, failureViewW, failureViewH);
+        
+    } completion:^(BOOL finished) {
+        
+        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            
+            failureLabel.frame=CGRectMake(27, 0, failureViewW, 40);
+            failureLabel.alpha=0.8;
+            
+            
+            
+        } completion:^(BOOL finished) {
+            
+            
+            
+        }];
+
+        
+    }];
+
+}
+
+
+
+
+
 //成功
 -(void)theRequestIsSuccessful:(NSArray *)array
 {
+    [self.view endEditing:YES];
+    
+    UIView *welcomeView=[[UIView alloc] init];
+    CGFloat welcomeViewX=SCREEN_WIDTH;
+    CGFloat welcomeViewY=self.view1.frame.size.height+self.view1.frame.origin.y+15;
+    CGFloat welcomeViewW=self.view1.frame.size.width;
+    CGFloat welcomeViewH=self.view1.frame.size.height;
+    welcomeView.frame=CGRectMake(welcomeViewX, welcomeViewY, welcomeViewW, welcomeViewH);
+    [self.view addSubview:welcomeView];
+    self.welcomeView=welcomeView;
+    [self addControlsWithView:welcomeView];
+    
+   
+    
+    
     UILabel *welcomeLabel=[[UILabel alloc] init];
     welcomeLabel.text=[NSString stringWithFormat:@"%@",array[0]];
     welcomeLabel.alpha=0.1;
-    welcomeLabel.textAlignment=NSTextAlignmentCenter;
-    welcomeLabel.frame=CGRectMake(0, 200, SCREEN_WIDTH, 30);
-    [self.view addSubview:welcomeLabel];
+    //welcomeLabel.textAlignment=NSTextAlignmentCenter;
+    welcomeLabel.frame=CGRectMake(SCREEN_WIDTH, 0, welcomeViewW, 40);
+    [welcomeView addSubview:welcomeLabel];
     
-    UILabel *welcomeLabel2=[[UILabel alloc] init];
-    welcomeLabel2.text=[NSString stringWithFormat:@"%@",array[1]];
-    welcomeLabel2.alpha=0.1;
-    welcomeLabel2.textAlignment=NSTextAlignmentCenter;
-    welcomeLabel2.frame=CGRectMake(0, 250, SCREEN_WIDTH, 30);
-    [self.view addSubview:welcomeLabel2];
+   //添加第二句话
+    [self addSecondView:welcomeView andArray:array];
+    
+    
+    [UIView animateWithDuration:0.6 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        
+        
+        CGFloat welcomeViewX=42;
+        CGFloat welcomeViewY=self.view1.frame.size.height+self.view1.frame.origin.y+15;
+        CGFloat welcomeViewW=self.view1.frame.size.width;
+        CGFloat welcomeViewH=self.view1.frame.size.height;
+        welcomeView.frame=CGRectMake(welcomeViewX, welcomeViewY, welcomeViewW, welcomeViewH);
 
-    
-    [UIView animateWithDuration:1.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         
-        welcomeLabel.transform = CGAffineTransformMakeScale(1.3, 1.3);
-        welcomeLabel.alpha=1.0;
         
-        welcomeLabel2.transform = CGAffineTransformMakeScale(1.3, 1.3);
-        welcomeLabel2.alpha=1.0;
+      
+        
+//        welcomeLabel2.transform = CGAffineTransformMakeScale(1.3, 1.3);
+//        welcomeLabel2.alpha=1.0;
         
     } completion:^(BOOL finished) {
        
      
-    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         
         
         
-        UITextField *VerificationTextField=[[UITextField alloc] init];
-        VerificationTextField.frame=CGRectMake(120, 300, SCREEN_WIDTH-240, 40);
-        VerificationTextField.backgroundColor=[UIColor redColor];
-        [self.view addSubview:VerificationTextField];
-        self.VerificationTextField=VerificationTextField;
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         
-    } completion:^(BOOL finished) {
+        welcomeLabel.frame=CGRectMake(27, 0, welcomeViewW, 40);
+       welcomeLabel.alpha=0.8;
         
-    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        UIButton *landingButton=[[UIButton alloc] init];
-        landingButton.frame=CGRectMake(100, 370, SCREEN_WIDTH-200, 30);
-        [landingButton setTitle:@"登陆" forState:UIControlStateNormal];
-        [landingButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        landingButton.backgroundColor=[UIColor yellowColor];
-        [self.view addSubview:landingButton];
-        [landingButton addTarget:self action:@selector(clickTheLandingButton) forControlEvents:UIControlEventTouchUpInside];
+       
         
     } completion:^(BOOL finished) {
         
-    }];
+    
         
     }];
      
@@ -227,6 +440,198 @@
     }];
     
 }
+
+
+
+//添加显示第2
+-(void)addSecondView:(UIView *)view andArray:(NSArray *)array
+{
+    
+    UIView *welcomeView2=[[UIView alloc] init];
+    CGFloat welcomeView2X=SCREEN_WIDTH;
+    CGFloat welcomeView2Y=view.frame.size.height+view.frame.origin.y+15;
+    CGFloat welcomeView2W=self.view1.frame.size.width;
+    CGFloat welcomeView2H=self.view1.frame.size.height;
+    welcomeView2.frame=CGRectMake(welcomeView2X, welcomeView2Y, welcomeView2W, welcomeView2H);
+    [self.view addSubview:welcomeView2];
+    self.welcomeView2=welcomeView2;
+    [self addControlsWithView:welcomeView2];
+    
+    
+    
+    UILabel *welcomeLabel2=[[UILabel alloc] init];
+    welcomeLabel2.text=[NSString stringWithFormat:@"%@",array[1]];
+    welcomeLabel2.alpha=0.1;
+    //welcomeLabel2.textAlignment=NSTextAlignmentCenter;
+    welcomeLabel2.frame=CGRectMake(SCREEN_WIDTH, 0, welcomeView2W, 40);
+    [welcomeView2 addSubview:welcomeLabel2];
+
+    
+    
+    [UIView animateWithDuration:0.9 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        
+        CGFloat welcomeView2X=42;
+        CGFloat welcomeView2Y=view.frame.size.height+view.frame.origin.y+15;
+        CGFloat welcomeView2W=self.view1.frame.size.width;
+        CGFloat welcomeView2H=self.view1.frame.size.height;
+        welcomeView2.frame=CGRectMake(welcomeView2X, welcomeView2Y, welcomeView2W, welcomeView2H);
+        
+    } completion:^(BOOL finished) {
+        
+        
+        
+        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+             welcomeLabel2.frame=CGRectMake(27, 0, welcomeView2W, 40);
+            welcomeLabel2.alpha=0.8;
+        } completion:^(BOOL finished) {
+            //调用登陆
+            [self addThirdView:welcomeView2];
+        }];
+    
+    }];
+
+}
+
+
+
+
+//添加验证码登陆框
+-(void)addThirdView:(UIView *)view
+{
+    
+    UIView *thirdView=[[UIView alloc] init];
+    CGFloat viewX=42;
+    CGFloat viewY=view.frame.size.height+view.frame.origin.y+15;
+    CGFloat viewW=SCREEN_WIDTH-2*viewX;
+    CGFloat viewH=40;
+    thirdView.frame=CGRectMake(viewX, viewY, viewW, viewH);
+    [self.view addSubview:thirdView];
+    self.thirdView=thirdView;
+    [self addControlsWithView2:thirdView];
+    
+    
+    
+    
+    UIImageView *personImage=[[UIImageView alloc] init];
+    CGFloat personImageX=0;
+    CGFloat personImageY=11;
+    CGFloat personImageW=15;
+    CGFloat personImageH=17;
+    personImage.frame=CGRectMake(personImageX, personImageY, personImageW, personImageH);
+    personImage.alpha=0.0;
+    personImage.image=[UIImage imageNamed:@"denglu_yanzhen_icon"];
+    [thirdView addSubview:personImage];
+    
+    
+    UITextField *VerificationTextField=[[UITextField alloc] init];
+    VerificationTextField.frame=CGRectMake(SCREEN_WIDTH, 0, 110, 40);
+    VerificationTextField.placeholder=@"请输入验证码";
+    [thirdView addSubview:VerificationTextField];
+    VerificationTextField.delegate=self;
+    VerificationTextField.keyboardType=UIKeyboardTypeNumberPad;
+    self.VerificationTextField=VerificationTextField;
+
+    [VerificationTextField addTarget:self action:@selector(verificationTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        
+        CGFloat viewX=42;
+        CGFloat viewY=view.frame.size.height+view.frame.origin.y+15;
+        CGFloat viewW=self.view1.frame.size.width;
+        CGFloat viewH=self.view1.frame.size.height;
+        thirdView.frame=CGRectMake(viewX, viewY, viewW, viewH);
+        
+    } completion:^(BOOL finished) {
+        
+        personImage.alpha=1.0;
+        
+        
+        [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            
+            VerificationTextField.frame=CGRectMake(30, 0, 110, 40);
+            
+        } completion:^(BOOL finished) {
+            
+            //添加验证码按钮
+            [self VerificationCodeButton:thirdView];
+            
+        }];
+        
+        
+        
+    }];
+    
+
+}
+
+
+//添加验证码按钮
+-(void)VerificationCodeButton:(UIView *)view
+{
+    //获取验证码
+    UIButton *getButton=[[UIButton alloc] init];
+    [getButton setBackgroundImage:[UIImage imageNamed:@"denglu_yanzhen"] forState:UIControlStateNormal];
+    CGFloat  getButtonW=SCREEN_WIDTH*0.28;
+    CGFloat  getButtonX=view.frame.size.width-getButtonW-10;
+    CGFloat  getButtonH=25*(getButtonW/90);
+    CGFloat  getButtonY=view.frame.size.height-(getButtonH/2);
+    getButton.frame=CGRectMake(getButtonX, getButtonY, getButtonW, getButtonH);
+    [getButton setTitle:@"重新发送" forState:UIControlStateNormal];
+    [getButton setTitleColor:ZCColor(85, 85, 85) forState:UIControlStateNormal];
+    [getButton addTarget:self action:@selector(clickgetButton) forControlEvents:UIControlEventTouchUpInside];
+    //第一次默认倒计时
+    [self startTheCountdown];
+    getButton.titleLabel.font=[UIFont systemFontOfSize:14];
+    getButton.alpha=0.0;
+    [view addSubview:getButton];
+    self.getButton=getButton;
+
+    
+    [UIView animateWithDuration:0.6 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        getButton.alpha=1.0;
+    } completion:^(BOOL finished) {
+       
+        //登陆按钮
+        [self heLandingButton];
+    }];
+    
+    
+}
+
+
+
+
+
+
+
+//登陆按钮
+-(void)heLandingButton
+{
+    UIButton *landingButton=[[UIButton alloc] init];
+    landingButton.frame=CGRectMake((SCREEN_WIDTH-105)/2, 370, 110, 32);
+    [landingButton setTitle:@"登录" forState:UIControlStateNormal];
+//    [landingButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    landingButton.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"denglu_icon"]];
+   
+    [self.view addSubview:landingButton];
+    self.landingButton=landingButton;
+    
+    [landingButton addTarget:self action:@selector(clickTheLandingButton) forControlEvents:UIControlEventTouchUpInside];
+    landingButton.alpha=0;
+    
+    
+    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        
+        landingButton.alpha=1.0;
+        
+    } completion:^(BOOL finished) {
+        [self.VerificationTextField becomeFirstResponder];
+    }];
+
+}
+
+
+
 
 //点击登陆
 -(void)clickTheLandingButton
@@ -244,6 +649,10 @@
     [ZCTool postWithUrl:URL params:params success:^(id responseObject) {
         
         ZCLog(@"%@",responseObject);
+        
+        if (responseObject[@"exception_code"]) {
+            [MBProgressHUD showError:@"验证码输入错误"];
+        }else{
         
         NSUserDefaults *userDf = [NSUserDefaults standardUserDefaults];
         [userDf setObject:responseObject[@"club"][@"uuid"] forKey:@"uuid"];
@@ -265,7 +674,7 @@
         
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[ZCHomeViewController alloc] init]];
         window.rootViewController = nav;
-        
+        }
         
     } failure:^(NSError *error) {
         
@@ -275,6 +684,150 @@
   
 }
 
+//点击重新发送
+-(void)clickgetButton
+{
+    [self startTheCountdown];
+}
+
+//View上的线
+-(void)addControlsWithView:(UIView *)view
+{
+    UIView *xianView=[[UIView alloc] init];
+    xianView.frame=CGRectMake(0, view.frame.size.height-1, view.frame.size.width, 0.5);
+    xianView.backgroundColor=ZCColor(215, 215, 215);
+    [view addSubview:xianView];
+
+}
+
+//View上的线
+-(void)addControlsWithView2:(UIView *)view
+{
+    UIView *xianView=[[UIView alloc] init];
+    xianView.frame=CGRectMake(0, view.frame.size.height-1, view.frame.size.width-SCREEN_WIDTH*0.28-10, 0.5);
+    xianView.backgroundColor=ZCColor(215, 215, 215);
+    [view addSubview:xianView];
+    
+}
+
+
+//开始倒计时
+-(void)startTheCountdown
+{
+    __block int timeout=60; //倒计时时间
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    self.time=_timer;
+    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
+    dispatch_source_set_event_handler(_timer, ^{
+        if(timeout<=0){ //倒计时结束，关闭
+            dispatch_source_cancel(_timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+                [_getButton setTitle:@"重新发送" forState:UIControlStateNormal];
+                _getButton.userInteractionEnabled = YES;
+                //_getButton.backgroundColor = kNaviBgColor;
+                
+            });
+        }else{
+            //            int minutes = timeout / 60;
+            //            int seconds = timeout % 60;
+            int seconds = timeout;
+            NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+                NSLog(@"____%@",strTime);
+                [_getButton setTitle:[NSString stringWithFormat:@"%@s",strTime] forState:UIControlStateNormal];
+                _getButton.userInteractionEnabled = NO;
+                //l_timeButton.backgroundColor = kSourceColor;
+                
+            });
+            timeout--;
+            
+        }
+    });
+    dispatch_resume(_timer);
+    
+    
+    
+    
+}
+
+//判断验证码输入
+-(void)verificationTextFieldDidChange:(UITextField *)textField
+{
+    if (textField.text.length==4) {
+        [self.view endEditing:YES];
+    }else if (textField.text.length>4)
+    {
+        self.VerificationTextField.text = [self.VerificationTextField.text substringToIndex:4];
+        
+    }
+
+}
+
+
+//开始编辑输入框的时候，软键盘出现，执行此事件
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    
+    //textField.superview
+    
+    
+    CGRect frame = textField.superview.frame;
+    int offset = frame.origin.y + 32 - (self.view.frame.size.height - 216.0);//键盘高度216
+    
+    NSTimeInterval animationDuration = 0.30f;
+    [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    
+    //将视图的Y坐标向上移动offset个单位，以使下面腾出地方用于软键盘的显示
+    if(offset > 0)
+        self.view.frame = CGRectMake(0.0f, -offset, self.view.frame.size.width, self.view.frame.size.height);
+    
+    [UIView commitAnimations];
+}
+
+//当用户按下return键或者按回车键，keyboard消失
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField.superview resignFirstResponder];
+    return YES;
+}
+
+//输入框编辑完成以后，将视图恢复到原始状态
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.view.frame =CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height);
+}
+
+
+//- (void)keyboardDidChangeFrame:(NSNotification *)noti
+//{
+//    ZCLog(@"ddasdasdasdasd");
+//    // self.view.transform = CGAffineTransformMakeTranslation(0,-140 );
+//    if (self.bKeyBoardHide==NO) {
+//        self.view.transform = CGAffineTransformMakeTranslation(0,-40 );
+//        //        [UIView animateWithDuration:keyDuration animations:^{
+//        //            self.view.transform = CGAffineTransformMakeTranslation(0, -40 );
+//        //        }];
+//        self.bKeyBoardHide = YES;
+//        
+//    }else
+//    {
+//        self.bKeyBoardHide = NO;
+//        self.view.transform = CGAffineTransformMakeTranslation(0,0 );
+//        
+//    }
+//    
+//}
+
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

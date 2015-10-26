@@ -15,6 +15,7 @@
 @property(nonatomic,copy)NSString *name;
 @property(nonatomic,copy)NSString *number;
 @property(nonatomic,copy)NSString *uuid;
+@property(nonatomic,assign)long expired_at;
 
 + (instancetype)memberModelWithDict:(NSDictionary *)dict;
 - (instancetype)initWithDict:(NSDictionary *)dict;

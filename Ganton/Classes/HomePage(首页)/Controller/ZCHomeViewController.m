@@ -23,6 +23,8 @@
 @interface ZCHomeViewController ()<UIScrollViewDelegate,ZCCardPackageViewControllerDelegate>
 @property(nonatomic,weak)UIScrollView *scrollView;
 @property(nonatomic,strong)ZCHomeModel *homeModel;
+
+@property (nonatomic, weak) UIPageControl *pageControl;
 @end
 
 @implementation ZCHomeViewController
@@ -31,12 +33,17 @@
     [super viewDidLoad];
     
     self.navigationItem.title=@"会员卡";
-    
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"卡包" style:UIBarButtonItemStyleDone target:self action:@selector(clickTheRightBarButtonItem)];
-    
-    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"个人" style:UIBarButtonItemStyleDone target:self action:@selector(clickTheLiftBarButtonItem)];
+    self.view.backgroundColor=ZCColor(239, 239, 244);
     
     
+    self.navigationItem.rightBarButtonItem=[UIBarButtonItem barBtnItemWithNormalImageName:@"window" hightImageName:nil action:@selector(clickTheRightBarButtonItem) target:self withBtnName:nil];
+    
+    
+//    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"卡包" style:UIBarButtonItemStyleDone target:self action:@selector(clickTheRightBarButtonItem)];
+    
+    //self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"个人" style:UIBarButtonItemStyleDone target:self action:@selector(clickTheLiftBarButtonItem)];
+    
+    self.navigationItem.leftBarButtonItem=[UIBarButtonItem barBtnItemWithNormalImageName:@"user-profile" hightImageName:nil action:@selector(clickTheLiftBarButtonItem) target:self withBtnName:nil];
     
     [self addData];
     
@@ -93,24 +100,75 @@
 {
       self.automaticallyAdjustsScrollViewInsets = NO;
 
+    //公告背景条
+    UIView *noticeView=[[UIView alloc] init];
+    noticeView.frame=CGRectMake(0, 0, self.view.frame.size.width, 40);
+    noticeView.backgroundColor=[UIColor whiteColor];
+    [self.view addSubview:noticeView];
+    
+    
+    
+    UILabel *weatherLabel=[[UILabel alloc] init];
+    weatherLabel.frame=CGRectMake(0, 0, 90, 40);
+    weatherLabel.text=@"今天: 23 ℃";
+    weatherLabel.font=[UIFont systemFontOfSize:14];
+    weatherLabel.textAlignment=NSTextAlignmentCenter;
+    [noticeView addSubview:weatherLabel];
+
+    
+    UIView *bjView=[[UIView alloc] init];
+    bjView.frame=CGRectMake(90, 5, 1, 30);
+    bjView.backgroundColor=ZCColor(240, 240, 240);
+    [noticeView addSubview:bjView];
+    
+    
+    UIImageView *imageView=[[UIImageView alloc] init];
+    imageView.frame=CGRectMake(100, 14, 18, 12.5);
+    imageView.image=[UIImage imageNamed:@"shouye_laba_icon"];
+    [noticeView addSubview:imageView];
+
+    
+    ZCAnnouncementView *textLabel=[[ZCAnnouncementView alloc] init];
+    textLabel.frame=CGRectMake(128, 0, self.view.frame.size.width-128-6-10, 40);
+    [noticeView addSubview:textLabel];
+    textLabel.announcements=self.homeModel.announcements;
+    
+    UIImageView *rightImage=[[UIImageView alloc] init];
+    rightImage.frame=CGRectMake(self.view.frame.size.width-6-10, 14.5, 6, 11);
+    rightImage.image=[UIImage imageNamed:@"shouye_arrow_icon"];
+    [noticeView addSubview:rightImage];
+    
+    
+    
+    //监听 公告
+    UIButton *button=[[UIButton alloc] init];
+    button.frame=CGRectMake(0, 0, self.view.frame.size.width, 40);
+    [noticeView addSubview:button];
+    [button addTarget:self action:@selector(clickThetextLabel) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
+    
     
     UIScrollView *scrollView=[[UIScrollView alloc] init];
-    scrollView.frame=CGRectMake(0, 74, self.view.frame.size.width, 200);
-    //scrollView.delegate = self;
+    scrollView.frame=CGRectMake(0, 50, self.view.frame.size.width, SCREEN_HEIGHT*0.34);
+    scrollView.delegate = self;
     [self.view addSubview:scrollView];
     self.scrollView=scrollView;
     scrollView.pagingEnabled = YES;
-    
+    scrollView.showsVerticalScrollIndicator = FALSE;
+    scrollView.showsHorizontalScrollIndicator = FALSE;
     //int index=3;
     
     for (int i=0; i<self.homeModel.members.count; i++) {
         UIView *imageView=[[UIView alloc] init];
         //imageView.backgroundColor=[UIColor yellowColor];
+        imageView.layer.cornerRadius=5;
+        imageView.layer.masksToBounds=YES;
         
         
         
-        
-        imageView.frame=CGRectMake(i*self.view.frame.size.width, 0, self.view.frame.size.width, 200);
+        imageView.frame=CGRectMake(i*self.view.frame.size.width+10, 0, self.view.frame.size.width-20, SCREEN_HEIGHT*0.34);
         [self.scrollView addSubview:imageView];
         
         [self addControlsForCard:imageView andData:self.homeModel.members[i]];
@@ -120,40 +178,23 @@
     }
     
     
-    UIView *bjView=[[UIView alloc] init];
-    bjView.frame=CGRectMake(0, scrollView.frame.origin.y+scrollView.frame.size.height, self.view.frame.size.width, 1);
-    bjView.backgroundColor=[UIColor redColor];
-    [self.view addSubview:bjView];
+    UIView *PageControlView=[[UIView alloc] init];
+    PageControlView.frame=CGRectMake(0, scrollView.frame.origin.y+scrollView.frame.size.height, self.view.frame.size.width, 23);
+   // PageControlView.backgroundColor=[UIColor redColor];
+    [self.view addSubview:PageControlView];
+    [self setupPageControl:PageControlView];
     
     
     
-    UIView *noticeView=[[UIView alloc] init];
-    noticeView.frame=CGRectMake(0, bjView.frame.origin.y+2, self.view.frame.size.width, 30);
-    [self.view addSubview:noticeView];
     
-    UIImageView *imageView=[[UIImageView alloc] init];
-    imageView.backgroundColor=[UIColor redColor];
-    imageView.frame=CGRectMake(0, 0, 20, 30);
-    [noticeView addSubview:imageView];
+   
     
     
-    ZCAnnouncementView *textLabel=[[ZCAnnouncementView alloc] init];
-    textLabel.frame=CGRectMake(30, 0, self.view.frame.size.width-30, 30);
-
-    [noticeView addSubview:textLabel];
-    textLabel.announcements=self.homeModel.announcements;
-    
-    UIButton *button=[[UIButton alloc] init];
-    button.frame=CGRectMake(30, 0, self.view.frame.size.width-30, 30);
-    
-    [noticeView addSubview:button];
-    
-    
-    [button addTarget:self action:@selector(clickThetextLabel) forControlEvents:UIControlEventTouchUpInside];
     
     UIView *lastView=[[UIView alloc] init];
-    
-    lastView.frame=CGRectMake(0, noticeView.frame.size.height+noticeView.frame.origin.y, self.view.frame.size.width, 300);
+    CGFloat Y=scrollView.frame.size.height+scrollView.frame.origin.y+23;
+    lastView.backgroundColor=ZCColor(240, 240, 240);
+    lastView.frame=CGRectMake(0, Y, self.view.frame.size.width, self.view.frame.size.height-Y);
     
     [self.view addSubview:lastView];
     
@@ -162,17 +203,18 @@
     
     int totalColumns = 3;
     // 1.数字的尺寸
-    CGFloat appW = (self.view.frame.size.width-80)/3;
-    CGFloat appH=appW;
+    CGFloat appW = (self.view.frame.size.width-2)/3;
+    CGFloat appH=(lastView.frame.size.height-1)/2;
     
     //间隙
-    CGFloat marginX = 20;
-    CGFloat marginY = 20;
+    CGFloat marginX = 1;
+    CGFloat marginY = 1;
 
     
     for (int j=0; j<6; j++) {
         
         UIButton *button=[[UIButton alloc] init];
+        button.backgroundColor=[UIColor whiteColor];
         button.tag=100+j;
         // 计算行号和列号
         int row = j / totalColumns;
@@ -186,44 +228,139 @@
         
         [lastView addSubview:button];
         
+        
         [button addTarget:self action:@selector(clickTheButton:) forControlEvents:UIControlEventTouchUpInside];
         
         
         
         if (j==0) {
-            [button setTitle:@"打位预约" forState:UIControlStateNormal];
-            [button setBackgroundColor:[UIColor brownColor]];
+            
+            [self addControlsWithButton:button andImage:@"shouye_yuyue_icon" andName:@"打位预约"];
+
         }else if (j==1)
         {
-            [button setTitle:@"教练教学" forState:UIControlStateNormal];
-            [button setBackgroundColor:[UIColor blueColor]];
+            [self addControlsWithButton:button andImage:@"shouye_jiaolian_icon" andName:@"教练教学"];
 
         }else if (j==2)
         {
-            [button setTitle:@"会员商城" forState:UIControlStateNormal];
-            [button setBackgroundColor:[UIColor redColor]];
+            [self addControlsWithButton:button andImage:@"shouye_shangcheng_icon" andName:@"会员商城"];
             
         }else if (j==3)
         {
-            [button setTitle:@"消费记录" forState:UIControlStateNormal];
-            [button setBackgroundColor:[UIColor greenColor]];
-            
+            [self addControlsWithButton:button andImage:@"shouye_xiaofei_icon" andName:@"消费记录"];
         }else if (j==4)
         {
-            [button setTitle:@"餐饮服务" forState:UIControlStateNormal];
-            [button setBackgroundColor:[UIColor grayColor]];
+            [self addControlsWithButton:button andImage:@"shouye_canyin_icon" andName:@"餐饮服务"];
             
         }else if (j==5)
         {
-            [button setTitle:@"意见反馈" forState:UIControlStateNormal];
-            [button setBackgroundColor:[UIColor greenColor]];
+            [self addControlsWithButton:button andImage:@"shouye_yijian_icon" andName:@"意见反馈"];
             
         }
         
     }
     
-    
+    ZCLog(@"%f",SCREEN_HEIGHT);
 }
+
+
+
+
+
+/**
+ *  添加pageControl
+ */
+- (void)setupPageControl:(UIView *)view
+{
+    if (self.homeModel.members.count==1) {
+        return ;
+    }else{
+    
+    // 1.添加
+    UIPageControl *pageControl = [[UIPageControl alloc] init];
+    pageControl.numberOfPages = self.homeModel.members.count;
+    CGFloat centerX = view.frame.size.width * 0.5;
+    CGFloat centerY = view.frame.size.height*0.5 ;
+    pageControl.center = CGPointMake(centerX, centerY);
+    pageControl.bounds = CGRectMake(0, 0, 100, 23);
+    pageControl.userInteractionEnabled = NO;
+    [view addSubview:pageControl];
+    self.pageControl = pageControl;
+    //pageControl.backgroundColor=[UIColor redColor];
+    
+//    // 2.设置圆点的颜色
+//    pageControl.currentPageIndicatorTintColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"shouye_xuanzhong_icon"]];
+//    pageControl.pageIndicatorTintColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"shouye_moren_icon"]];
+    
+    
+        // 2.设置圆点的颜色
+        pageControl.currentPageIndicatorTintColor = ZCColor(102, 102, 102);
+        pageControl.pageIndicatorTintColor = ZCColor(203, 203, 203);
+    }
+}
+
+/**
+ *  只要UIScrollView滚动了,就会调用
+ *
+ */
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    // 1.取出水平方向上滚动的距离
+    CGFloat offsetX = scrollView.contentOffset.x;
+    
+    // 2.求出页码
+    double pageDouble = offsetX / scrollView.frame.size.width;
+    int pageInt = (int)(pageDouble + 0.5);
+    self.pageControl.currentPage = pageInt;
+    
+    
+    //    if (pageInt==2) {
+    //        self.pageControl.hidden=YES ;
+    //    }else
+    //    {
+    //        self.pageControl.hidden=NO;
+    //    }
+}
+
+
+
+-(void)addControlsWithButton:(UIButton *)button andImage:(NSString *)image andName:(NSString *)nameStr
+{
+    
+    UIImageView *imageView=[[UIImageView alloc] init];
+    CGFloat imageViewW;
+    CGFloat imageViewH;
+   //CGFloat imageViewY;
+    
+    if (SCREEN_HEIGHT==480) {
+        imageViewW=45;
+        imageViewH=45;
+        
+    }else{
+        imageViewW=58;
+        imageViewH=58;
+    }
+    CGFloat imageViewX=(button.frame.size.width-imageViewW)/2;
+    CGFloat imageViewY=(button.frame.size.height-imageViewH-30)/3+10;
+    imageView.frame=CGRectMake(imageViewX, imageViewY, imageViewW, imageViewH);
+    imageView.image=[UIImage imageNamed:image];
+    [button addSubview:imageView];
+    
+    
+    UILabel *textLabel=[[UILabel alloc] init];
+    CGFloat textLabelX=0;
+    CGFloat textLabelY=2*imageViewY+imageViewH-10;
+    CGFloat textLabelW=button.frame.size.width;
+    CGFloat textLabelH=20;
+    textLabel.frame=CGRectMake(textLabelX, textLabelY, textLabelW, textLabelH);
+    textLabel.text=nameStr;
+    textLabel.textAlignment=NSTextAlignmentCenter;
+    textLabel.font=[UIFont systemFontOfSize:14];
+    [button addSubview:textLabel];
+    
+
+}
+
 
 
 
@@ -239,10 +376,10 @@
     
     
     UIImageView *logoImage=[[UIImageView alloc] init];
-    CGFloat logoImageX=10;
-    CGFloat logoImageY=10;
-    CGFloat logoImageW=50;
-    CGFloat logoImageH=30;
+    CGFloat logoImageX=20;
+    CGFloat logoImageY=20;
+    CGFloat logoImageW=23;
+    CGFloat logoImageH=32;
     logoImage.frame=CGRectMake(logoImageX, logoImageY, logoImageW, logoImageH);
     [logoImage sd_setImageWithURL:[NSURL URLWithString:self.homeModel.logo] placeholderImage:[UIImage imageNamed:@"3088644_150703431167_2"] ];
     [view addSubview:logoImage];
@@ -255,6 +392,7 @@
     nameLabel.frame=CGRectMake(nameLabelX, nameLabelY, nameLabelW, nameLabelH);
     nameLabel.text=self.homeModel.name;
     nameLabel.textColor=[ZCTool colorWithHexString:memberModel.font_color];
+    nameLabel.font=[UIFont systemFontOfSize:12];
     [view addSubview:nameLabel];
     
     UILabel *cardName=[[UILabel alloc] init];
@@ -264,47 +402,69 @@
     CGFloat cardNameY=(view.frame.size.height-cardNameH)/2;
     cardName.frame=CGRectMake(cardNameX, cardNameY, cardNameW, cardNameH);
     cardName.textColor=[ZCTool colorWithHexString:memberModel.font_color];
+    cardName.font=[UIFont systemFontOfSize:24];
     cardName.textAlignment=NSTextAlignmentCenter;
     cardName.text=memberModel.name;
     [view addSubview:cardName];
     
+    
+    
+    
+    // 创建一个日期格式器
+    NSDateFormatter *nowDateFormatter = [[NSDateFormatter alloc] init];
+    // 为日期格式器设置格式字符串
+    [nowDateFormatter setDateFormat:@"yyyy-MM-dd"];
+    // 使用日期格式器格式化日期、时间
+    NSDate *confromTimesp=[NSDate dateWithTimeIntervalSince1970:memberModel.expired_at];
+    NSString *nowDateString = [nowDateFormatter stringFromDate:confromTimesp ];
+
+    
+    //有效期 expired_at
+    UILabel *periodLabel=[[UILabel alloc] init];
+    CGFloat periodLabelX=20;
+    CGFloat periodLabelY=view.frame.size.height-60;
+    CGFloat periodLabelW=200;
+    CGFloat periodLabelH=30;
+    periodLabel.frame=CGRectMake(periodLabelX, periodLabelY, periodLabelW, periodLabelH);
+    periodLabel.text=[NSString stringWithFormat:@"有效期: %@",nowDateString ];
+    periodLabel.textColor=[ZCTool colorWithHexString:memberModel.font_color];
+    periodLabel.font=[UIFont systemFontOfSize:12];
+    [view addSubview:periodLabel];
+    
+    
     UILabel *remainingLabel=[[UILabel alloc] init];
     CGFloat remainingLabelX=SCREEN_WIDTH-200;
-    CGFloat remainingLabelY=view.frame.size.height-70;
+    CGFloat remainingLabelY=view.frame.size.height-60;
     CGFloat remainingLabelW=150;
     CGFloat remainingLabelH=30;
     remainingLabel.frame=CGRectMake(remainingLabelX, remainingLabelY, remainingLabelW, remainingLabelH);
     remainingLabel.textAlignment=NSTextAlignmentRight;
-    remainingLabel.text=[NSString stringWithFormat:@"剩余: ￥%@",memberModel.balance];
+    remainingLabel.text=[NSString stringWithFormat:@"余额: %@",memberModel.balance];
     remainingLabel.textColor=[ZCTool colorWithHexString:memberModel.font_color];
+    remainingLabel.font=[UIFont systemFontOfSize:12];
     [view addSubview:remainingLabel];
     
+    UIView *bjView=[[UIView alloc] init];
+    bjView.frame=CGRectMake(20, view.frame.size.height-29, view.frame.size.width-40, 0.5);
+    bjView.backgroundColor=[UIColor whiteColor];
+    [view addSubview:bjView];
+    
+    
+    
     UILabel *numberLabel=[[UILabel alloc] init];
-    CGFloat numberLabelX=10;
-    CGFloat numberLabelY=view.frame.size.height-40;
+    CGFloat numberLabelX=20;
+    CGFloat numberLabelY=view.frame.size.height-28;
     CGFloat numberLabelW=300;
-    CGFloat numberLabelH=30;
+    CGFloat numberLabelH=28;
     numberLabel.frame=CGRectMake(numberLabelX, numberLabelY, numberLabelW, numberLabelH);
     numberLabel.textColor=[ZCTool colorWithHexString:memberModel.font_color];
     numberLabel.text=[NSString stringWithFormat:@"NO: %@",memberModel.number];
+    numberLabel.font=[UIFont systemFontOfSize:12];
     [view addSubview:numberLabel];
     
     
     
 
-}
-
-
-
-/**
- *  当scrollView正在滚动就会调用
- */
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    // 根据scrollView的滚动位置决定pageControl显示第几页
-    CGFloat scrollW = scrollView.frame.size.width;
-    int page = (scrollView.contentOffset.x + scrollW * 0.5) / scrollW;
-   // self.pageControl.currentPage = page;
 }
 
 

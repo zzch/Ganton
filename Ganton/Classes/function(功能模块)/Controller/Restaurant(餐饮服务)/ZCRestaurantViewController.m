@@ -7,10 +7,13 @@
 //
 
 #import "ZCRestaurantViewController.h"
-#import "ZCRestaurantCell.h"
+
 #import "ZCRestaurantListModel.h"
 #import "ZCGoodsModel.h"
-@interface ZCRestaurantViewController ()<UITableViewDataSource,UITableViewDelegate>
+#import "ZCRestaurantCollectionViewCell.h"
+static NSString *const identifier=@"cell";
+
+@interface ZCRestaurantViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 @property(nonatomic,copy)NSString *nameStr;
 @property(nonatomic,copy)NSString *imageStr;
 @property(nonatomic,weak)UIScrollView *scrollView;
@@ -19,6 +22,7 @@
 //有多少行
 @property(nonatomic,assign)int count;
 @property(nonatomic,strong)NSMutableArray *goodsArray;
+@property (nonatomic, weak) UICollectionView *collectionView;
 @end
 
 @implementation ZCRestaurantViewController
@@ -32,7 +36,7 @@
     self.nameStr=@"大闸蟹";
     
     
-   
+    self.view.backgroundColor=ZCColor(237, 237, 237);
    
     
     self.array=[NSMutableArray array];
@@ -82,11 +86,11 @@
     
     
     UIScrollView *scrollView=[[UIScrollView alloc] init];
-    scrollView.frame=CGRectMake(0, 64, SCREEN_WIDTH, 40);
-    scrollView.backgroundColor=[UIColor redColor];
+    scrollView.frame=CGRectMake(0, 0, SCREEN_WIDTH, 40);
+    scrollView.backgroundColor=ZCColor(41, 45, 47);
     //scrollView.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:scrollView];
-    //self.scrollView=scrollView;
+    self.scrollView=scrollView;
     [self addControlsForScrollView:scrollView];
     
     //设置数据默认为第0组
@@ -94,16 +98,34 @@
     
     self.goodsArray=model1.provisions;
     
-    UITableView *tableView=[[UITableView alloc] init];
-    tableView.frame=CGRectMake(0, 104, SCREEN_WIDTH, SCREEN_HEIGHT-104);
-    [self.view addSubview:tableView];
-    tableView.dataSource=self;
-    tableView.delegate=self;
-    tableView.rowHeight=120;
-    self.tableView=tableView;
+//    UITableView *tableView=[[UITableView alloc] init];
+//    tableView.frame=CGRectMake(0, 104, SCREEN_WIDTH, SCREEN_HEIGHT-104);
+//    [self.view addSubview:tableView];
+//    tableView.dataSource=self;
+//    tableView.delegate=self;
+//    tableView.rowHeight=120;
+//    self.tableView=tableView;
     
 
+     UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc] init];
+    //设置每个格子宽高100
+     layout.itemSize=CGSizeMake((SCREEN_WIDTH-30)/2, 165);
+   // layout.minimumInteritemSpacing=10;
+   // layout.minimumInteritemSpacing=10;
+   // layout.contentInset = UIEdgeInsetsMake(0, 0, 10, 0);
+    UICollectionView *clView=[[UICollectionView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, SCREEN_HEIGHT-40) collectionViewLayout:layout];
     
+    clView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
+    
+    //在成为数据源之前，告诉系统通过哪一个类来创建UICollectionViewCell
+    [clView registerClass:[ZCRestaurantCollectionViewCell class] forCellWithReuseIdentifier:identifier];
+    
+    //设置UICollectionView的数据源为当前控制器
+    clView.dataSource=self;
+    clView.delegate=self;
+    clView.backgroundColor=ZCColor(237, 237, 237);
+    [self.view addSubview:clView];
+    self.collectionView=clView;
 
 }
 
@@ -112,15 +134,33 @@
 -(void)addControlsForScrollView:(UIScrollView *)scrollView
 {
    
-    
+    CGFloat w = 0.0;
     for (int i=0; i<self.array.count; i++) {
         UIButton *button=[[UIButton alloc] init];
-        button.backgroundColor=[UIColor redColor];
+        button.backgroundColor=ZCColor(41, 45, 47);
         button.tag=i+200;
-        button.frame=CGRectMake(i*SCREEN_WIDTH/self.array.count, 0, SCREEN_WIDTH/self.array.count,scrollView.frame.size.height );
+        
+        if (self.array.count<5) {
+            w=SCREEN_WIDTH/self.array.count;
+        }else
+        {
+         w=SCREEN_WIDTH/4;
+        }
+        
+        
+        button.frame=CGRectMake(i*w, 0, w,scrollView.frame.size.height );
         ZCRestaurantListModel *RestaurantListModel=self.array[i];
         [button setTitle:[NSString stringWithFormat:@"%@",RestaurantListModel.name ] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        if (i==0) {
+            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        }else{
+        
+            [button setTitleColor:ZCColor(152, 152, 152) forState:UIControlStateNormal];
+        }
+        
+        
+        //添加控件
+        [self addControlsWithButton:button andIndex:i];
         [button addTarget:self action:@selector(clickTheButton:) forControlEvents:UIControlEventTouchUpInside];
         [scrollView addSubview:button];
         
@@ -128,7 +168,7 @@
         
     }
     
-    scrollView.contentSize=CGSizeMake(self.array.count*SCREEN_WIDTH/self.array.count, 0);
+    scrollView.contentSize=CGSizeMake(self.array.count*w, 0);
     scrollView.showsHorizontalScrollIndicator=NO;
     scrollView.showsVerticalScrollIndicator=NO;
    
@@ -136,8 +176,54 @@
 }
 
 
+//添加button上的控件
+-(void)addControlsWithButton:(UIButton *)button andIndex:(int) index
+{
+    UIView *view=[[UIView alloc] init];
+    view.frame=CGRectMake((button.frame.size.width-(button.frame.size.width*0.6))/2, button.frame.size.height-4, button.frame.size.width*0.6, 3);
+    view.backgroundColor=[UIColor whiteColor];
+    if (index==0) {
+        view.hidden=NO;
+    }else{
+    view.hidden=YES;
+    }
+    [button addSubview:view];
+    
+
+}
+
+
+
 -(void)clickTheButton:(UIButton *)button
 {
+    for (UIButton *button in self.scrollView.subviews) {
+        
+        [button setTitleColor:ZCColor(152, 152, 152) forState:UIControlStateNormal];
+        for (id  view in button.subviews) {
+            if ([view isKindOfClass:[UIView class]]) {
+                UIView *view1=(UIView*)view;
+                view1.hidden=YES;
+                break;
+            }
+            
+            
+
+        }
+    }
+    
+   [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    for (UIView * view in button.subviews) {
+        if ([view isKindOfClass:[UIView class]]) {
+            view.hidden=NO;
+            break;
+        }
+
+
+    }
+
+
+    
+    
     for (ZCRestaurantListModel *model in self.array) {
         if ([button.titleLabel.text isEqual:model.name]) {
             self.goodsArray=model.provisions;
@@ -145,31 +231,69 @@
         }
     }
     
-    [self.tableView reloadData];
+    [self.collectionView reloadData];
 
 }
 
 
 
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//告诉UICollectionView 一共多少组
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
+    return 1;
+}
+//告诉UICollectionView 每一组中需要展示多少个小方块
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+   
     return self.goodsArray.count;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+
+//告诉系统 每个小方块展示什么内容
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    ZCRestaurantCell *cell=[ZCRestaurantCell cellWithTableView:tableView];
-    cell.goodsModel=self.goodsArray[indexPath.row];
+    //UICollectionViewCell和UITableViewCell的区别UICollectionView的dequeueReusableCellWithReuseIdentifier这个方法如果去缓存池中去取，没有取到cell，那么该方法内部会自动创建一个cell 但是需要注意的是:通过哪一类来创建cell必须由我们来制定
+    
+    //    //如果缓存池中没有，创建一个collectionView
+    //    if (cell==nil) {
+    //
+    //    }
+    
+    
+    //1.从缓存池中获取cell
+    ZCRestaurantCollectionViewCell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    
+    
+    // cell.backgroundColor=[UIColor whiteColor];
+    
+    cell.goodsModel=self.goodsArray[indexPath.item];
+    
+    //添加阴影效果
+    
+    
+    //    cell.layer.borderWidth=4;
+    //
+    //    cell.layer.borderColor=[UIColor redColor].CGColor;
+    
+    //cell.delegate = self;
+    
     return cell;
     
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-}
+//-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    
+//    ZCRestaurantCell *cell=[ZCRestaurantCell cellWithTableView:tableView];
+//    cell.goodsModel=self.goodsArray[indexPath.row];
+//    return cell;
+//    
+//}
+
+
 
 
 - (void)didReceiveMemoryWarning {

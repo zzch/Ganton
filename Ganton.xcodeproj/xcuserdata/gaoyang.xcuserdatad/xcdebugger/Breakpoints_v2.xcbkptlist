@@ -16,31 +16,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Ganton/Classes/HomePage(&#x9996;&#x9875;)/Controller/ZCHomeViewController.m"
-            timestampString = "466670112.771926"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "-addData"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ganton/Classes/function(&#x529f;&#x80fd;&#x6a21;&#x5757;)/Controller/Restaurant(&#x9910;&#x996e;&#x670d;&#x52a1;)/ZCRestaurantViewController.m"
-            timestampString = "466919085.955874"
+            timestampString = "467194852.633778"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "-addData"
             landmarkType = "5">
          </BreakpointContent>
@@ -52,28 +36,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ganton/Classes/Personal(&#x4e2a;&#x4eba;&#x4e2d;&#x5fc3;)/Controller/ZCInformationViewController.m"
-            timestampString = "466926430.687282"
+            timestampString = "467190524.757897"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "312"
-            endingLineNumber = "312"
+            startingLineNumber = "313"
+            endingLineNumber = "313"
             landmarkName = "-clickTherightButton"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Ganton/Classes/HomePage(&#x9996;&#x9875;)/Controller/ZCHomeViewController.m"
-            timestampString = "467006947.246254"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "-clickTheOtherCardWithcardPackageViewController:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

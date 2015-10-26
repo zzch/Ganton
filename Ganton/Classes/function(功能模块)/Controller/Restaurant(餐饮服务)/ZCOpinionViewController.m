@@ -7,9 +7,9 @@
 //
 
 #import "ZCOpinionViewController.h"
-#import "DCTextView.h"
+#import "ZCViewsOnContentViewController.h"
 @interface ZCOpinionViewController ()
-@property(nonatomic,weak)DCTextView *content;
+@property(nonatomic,assign)int index;
 @end
 
 @implementation ZCOpinionViewController
@@ -21,55 +21,128 @@
     self.view.backgroundColor=ZCColor(237, 237, 237);
     
     
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStyleDone target:self action:@selector(clickTheRightBarButtonItem)];
+    //self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStyleDone target:self action:@selector(clickTheRightBarButtonItem)];
     
     
-    //看这个UIViewController的这个属性你就明白了，此属性默认为YES，这样UIViewController下如果只有一个UIScollView或者其子类，那么会自动留出空白，让scollview滚动经过各种bar下面时能隐约看到内容。但是每个UIViewController只能有唯一一个UIScollView或者其子类，如果超过一个，需要将此属性设置为NO,自己去控制留白以及坐标问题。
-    self.automaticallyAdjustsScrollViewInsets = NO;
+   
+    [self addControls];
     
-    DCTextView *content = [[DCTextView alloc] init];
-    CGFloat contentX = 14;
-    CGFloat contentY =  64+7;
-    CGFloat contentW = SCREEN_WIDTH - 2*contentX;
-    CGFloat contentH = 349/2;
-    content.frame = CGRectMake(contentX, contentY, contentW, contentH);
     
-    content.font=[UIFont systemFontOfSize:18];
-    content.backgroundColor = [UIColor whiteColor];
-    content.placehoder=@"请您说出对球场的建议和意见...";
-    [self.view addSubview:content];
-    self.content=content;
-
 }
 
-//点击提交
--(void)clickTheRightBarButtonItem
+
+//添加控件
+-(void)addControls
 {
-    NSMutableDictionary *params=[NSMutableDictionary dictionary];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *token = [defaults objectForKey:@"token"];
-    NSString *uuid = [defaults objectForKey:@"uuid"];
-    params[@"token"]=token;
-    params[@"club_uuid"]=uuid;
-    params[@"content"]=self.content.text;
-    NSString *URL=[NSString stringWithFormat:@"%@v1/feedbacks",API];
+    UIView *view=[[UIView alloc] init];
+    view.frame=CGRectMake(15, 25, SCREEN_WIDTH-30, 96);
+    view.backgroundColor=[UIColor whiteColor];
+    [self.view addSubview:view];
+    [self addControlsWithView:view andTopText:@"Catering" andLastText:@"球场餐饮服务"];
     
+    UIView *view2=[[UIView alloc] init];
+    view2.frame=CGRectMake(15, view.frame.size.height+view.frame.origin.y+35, SCREEN_WIDTH-30, 96);
+    view2.backgroundColor=[UIColor whiteColor];
+    [self.view addSubview:view2];
+    [self addControlsWithView:view2 andTopText:@"Catering" andLastText:@"球场餐饮服务"];
     
-    [ZCTool postWithUrl:URL params:params success:^(id responseObject) {
-        ZCLog(@"%@",responseObject);
-        
-        [MBProgressHUD showSuccess:@"意见提交成功"];
-        
-        [self.navigationController popViewControllerAnimated:YES];
-        
-        
-       
-    } failure:^(NSError *error) {
-        ZCLog(@"%@",error);
-    }];
-
+    UIView *view3=[[UIView alloc] init];
+    view3.frame=CGRectMake(15, view2.frame.size.height+view2.frame.origin.y+35, SCREEN_WIDTH-30, 96);
+    view3.backgroundColor=[UIColor whiteColor];
+    [self.view addSubview:view3];
+    [self addControlsWithView:view3 andTopText:@"Catering" andLastText:@"球场餐饮服务"];
 
 }
+
+
+-(void)addControlsWithView:(UIView *)view andTopText:(NSString *)topText andLastText:(NSString *)lastStr
+{
+    
+    UILabel *topLable=[[UILabel alloc] init];
+    topLable.frame=CGRectMake(0, 5, view.frame.size.width, 42.5);
+    topLable.text=topText;
+    topLable.textAlignment=NSTextAlignmentCenter;
+    topLable.textColor=[UIColor grayColor];
+    [view addSubview:topLable];
+    
+    UIImageView *imageView=[[UIImageView alloc] init];
+    imageView.frame=CGRectMake((view.frame.size.width-30)/2, -18, 35, 35);
+    imageView.image=[UIImage imageNamed:@"yjfk_iocn_canting"];
+    [view addSubview:imageView];
+    
+    UIView *bjView=[[UIView alloc] init];
+    bjView.frame=CGRectMake(10, 47.5, view.frame.size.width-20, 1);
+    bjView.backgroundColor=ZCColor(240, 240, 240);
+    [view addSubview:bjView];
+    
+    UIButton *button=[[UIButton alloc] init];
+    button.frame=CGRectMake(0, bjView.frame.origin.y+1, view.frame.size.width, 47.5);
+    [button setTitle:lastStr forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [view addSubview:button];
+    
+    [button addTarget:self action:@selector(clickTheButton:) forControlEvents:UIControlEventTouchUpInside];
+    self.index++;
+    button.tag=1100+self.index;
+    
+    
+    
+    UIImageView *rightImage=[[UIImageView alloc] init];
+    rightImage.frame=CGRectMake(button.frame.size.width-6-18, (button.frame.size.height-11)/2, 6, 11);
+    rightImage.image=[UIImage imageNamed:@"yjfk_iocn_zuo"];
+    [button addSubview:rightImage];
+    
+    
+    
+    
+
+}
+
+
+-(void)clickTheButton:(UIButton *)button
+{
+    if (button.tag==1101) {
+      
+        ZCViewsOnContentViewController *vc=[[ZCViewsOnContentViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (button.tag==1102){
+    
+    }else{
+    
+    }
+        
+
+}
+
+
+////点击提交
+//-(void)clickTheRightBarButtonItem
+//{
+//    NSMutableDictionary *params=[NSMutableDictionary dictionary];
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSString *token = [defaults objectForKey:@"token"];
+//    NSString *uuid = [defaults objectForKey:@"uuid"];
+//    params[@"token"]=token;
+//    params[@"club_uuid"]=uuid;
+//    params[@"content"]=self.content.text;
+//    NSString *URL=[NSString stringWithFormat:@"%@v1/feedbacks",API];
+//    
+//    
+//    [ZCTool postWithUrl:URL params:params success:^(id responseObject) {
+//        ZCLog(@"%@",responseObject);
+//        
+//        [MBProgressHUD showSuccess:@"意见提交成功"];
+//        
+//        [self.navigationController popViewControllerAnimated:YES];
+//        
+//        
+//       
+//    } failure:^(NSError *error) {
+//        ZCLog(@"%@",error);
+//    }];
+//
+//
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

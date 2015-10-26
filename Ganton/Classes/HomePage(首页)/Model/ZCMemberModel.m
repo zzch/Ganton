@@ -24,6 +24,7 @@
         self.name=dict[@"card"][@"name"];
         self.number=dict[@"number"];
         self.uuid=dict[@"uuid"];
+        self.expired_at=[dict[@"expired_at"] longValue];
     }
     return self;
 }

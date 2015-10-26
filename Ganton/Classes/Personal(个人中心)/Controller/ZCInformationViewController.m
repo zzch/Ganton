@@ -38,16 +38,16 @@
     UIButton *photoViewBtn=[[UIButton alloc] init];
     photoViewBtn.backgroundColor=[UIColor whiteColor];
     CGFloat photoViewBtnX=0;
-    CGFloat photoViewBtnY=64;
+    CGFloat photoViewBtnY=0;
     CGFloat photoViewBtnW=SCREEN_WIDTH-(2*photoViewBtnX);
-    CGFloat photoViewBtnH=82;
+    CGFloat photoViewBtnH=80;
     photoViewBtn.frame=CGRectMake(photoViewBtnX, photoViewBtnY, photoViewBtnW, photoViewBtnH);
-    UIImage *image=[UIImage imageNamed:@"hang_bj_03" ];
-    // 指定为拉伸模式，伸缩后重新赋值
-    image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(25,25,10,10) resizingMode:UIImageResizingModeStretch];
-    
-    //[photoViewBtn setBackgroundColor:[UIColor whiteColor]];
-    [photoViewBtn setBackgroundImage:image forState:UIControlStateNormal];
+//    UIImage *image=[UIImage imageNamed:@"hang_bj_03" ];
+//    // 指定为拉伸模式，伸缩后重新赋值
+//    image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(25,25,10,10) resizingMode:UIImageResizingModeStretch];
+//    
+//    //[photoViewBtn setBackgroundColor:[UIColor whiteColor]];
+//    [photoViewBtn setBackgroundImage:image forState:UIControlStateNormal];
     [photoViewBtn addTarget:self action:@selector(clickphotoViewBtn) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:photoViewBtn];
     
@@ -56,9 +56,9 @@
     
     UIButton *button1=[[UIButton alloc] init];
     CGFloat button1X=0;
-    CGFloat button1Y=photoViewBtnY+photoViewBtnH+20;
+    CGFloat button1Y=photoViewBtnY+photoViewBtnH+15;
     CGFloat button1W=SCREEN_WIDTH;
-    CGFloat button1H=40;
+    CGFloat button1H=50;
     button1.frame=CGRectMake(button1X, button1Y, button1W, button1H);
     button1.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:button1];
@@ -68,21 +68,24 @@
     
     UIButton *button2=[[UIButton alloc] init];
     CGFloat button2X=0;
-    CGFloat button2Y=button1Y+button1H+20;
+    CGFloat button2Y=button1Y+button1H+15;
     CGFloat button2W=SCREEN_WIDTH;
-    CGFloat button2H=40;
+    CGFloat button2H=50;
     button2.frame=CGRectMake(button2X, button2Y, button2W, button2H);
     button2.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:button2];
     [self addChildControls:button2 andNameStr:@"性别" andText:self.dict[@"gender"]];
     
-    
+    UIView *bjView=[[UIView alloc] init];
+    bjView.frame=CGRectMake(0, button2Y+button2H, 20, 1);
+    bjView.backgroundColor=[UIColor whiteColor];
+    [self.view addSubview:bjView];
     
     UIButton *button3=[[UIButton alloc] init];
     CGFloat button3X=0;
-    CGFloat button3Y=button2Y+button2H+20;
+    CGFloat button3Y=button2Y+button2H+1;
     CGFloat button3W=SCREEN_WIDTH;
-    CGFloat button3H=40;
+    CGFloat button3H=50;
     button3.frame=CGRectMake(button3X, button3Y, button3W, button3H);
     button3.tag=311;
     button3.backgroundColor=[UIColor whiteColor];
@@ -96,7 +99,7 @@
          // 创建一个日期格式器
          NSDateFormatter *nowDateFormatter = [[NSDateFormatter alloc] init];
          // 为日期格式器设置格式字符串
-         [nowDateFormatter setDateFormat:@"yyyy年MM月dd日"];
+         [nowDateFormatter setDateFormat:@"yyyy-MM-dd"];
          // 使用日期格式器格式化日期、时间
          NSDate *confromTimesp=[NSDate dateWithTimeIntervalSince1970:data];
          NSString *nowDateString = [nowDateFormatter stringFromDate:confromTimesp ];
@@ -130,13 +133,13 @@
     
     //头像
     UIImageView *photoView=[[UIImageView alloc] init];
-    CGFloat photoViewX=SCREEN_WIDTH-100;
     CGFloat photoViewW=60;
+    CGFloat photoViewX=SCREEN_WIDTH-36-photoViewW;
     CGFloat photoViewH=60;
     CGFloat photoViewY=(photoViewBtn.frame.size.height-photoViewH)*0.5;
     photoView.frame=CGRectMake(photoViewX, photoViewY, photoViewW, photoViewH);
     photoView.layer.masksToBounds = YES;
-    photoView.layer.cornerRadius = 30;
+    photoView.layer.cornerRadius = 5;
     if ([ZCTool _valueOrNil:self.dict[@"portrait"]]==nil) {
         photoView.image=[UIImage imageNamed:@"3088644_150703431167_2.jpg"];
     }else{
@@ -154,14 +157,13 @@
     
     //向右箭头
     UIImageView *rightImageView=[[UIImageView alloc] init];
-    rightImageView.backgroundColor=[UIColor redColor];
-    CGFloat rightImageViewW=10;
-    CGFloat rightImageViewH=17;
-    CGFloat rightImageViewY=(photoViewBtn.frame.size.height-rightImageViewH)*0.5;
-    CGFloat rightImageViewX=photoViewBtn.frame.size.width-rightImageViewW-10;
-    rightImageView.frame=CGRectMake(rightImageViewX, rightImageViewY, rightImageViewW, rightImageViewH);
-    rightImageView.image=[UIImage imageNamed:@"icon_arrow3"];
     
+    CGFloat rightImageViewW=6;
+    CGFloat rightImageViewH=11;
+    CGFloat rightImageViewY=(photoViewBtn.frame.size.height-rightImageViewH)*0.5;
+    CGFloat rightImageViewX=photoViewBtn.frame.size.width-rightImageViewW-18;
+    rightImageView.frame=CGRectMake(rightImageViewX, rightImageViewY, rightImageViewW, rightImageViewH);
+    rightImageView.image=[UIImage imageNamed:@"shouye_arrow_icon"];
     [photoViewBtn addSubview:rightImageView];
 }
 
@@ -184,7 +186,7 @@
     
     //设置
     UILabel *settingsLabel=[[UILabel alloc] init];
-    CGFloat settingsLabelX=SCREEN_WIDTH-250;
+    CGFloat settingsLabelX=SCREEN_WIDTH-236;
     CGFloat settingsLabelW=200;
     CGFloat settingsLabelH=30;
     CGFloat settingsLabelY=(Button.frame.size.height-settingsLabelH)*0.5;
@@ -199,13 +201,12 @@
         
     //向右箭头
     UIImageView *rightImageView=[[UIImageView alloc] init];
-    rightImageView.backgroundColor=[UIColor redColor];
-    CGFloat rightImageViewW=10;
-    CGFloat rightImageViewH=17;
+    CGFloat rightImageViewW=6;
+    CGFloat rightImageViewH=11;
     CGFloat rightImageViewY=(Button.frame.size.height-rightImageViewH)*0.5;
-    CGFloat rightImageViewX=SCREEN_WIDTH-rightImageViewW-10;
+    CGFloat rightImageViewX=SCREEN_WIDTH-rightImageViewW-18;
     rightImageView.frame=CGRectMake(rightImageViewX, rightImageViewY, rightImageViewW, rightImageViewH);
-    rightImageView.image=[UIImage imageNamed:@"icon_arrow3"];
+    rightImageView.image=[UIImage imageNamed:@"shouye_arrow_icon"];
     
     [Button addSubview:rightImageView];
     
@@ -409,11 +410,11 @@
         datePicker.delegate=self;
         
         
-        CGFloat datePickerY=SCREEN_HEIGHT-200;
+        CGFloat datePickerY=SCREEN_HEIGHT-300;
         CGFloat datePickerX=0;
         
         CGFloat datePickerW=SCREEN_WIDTH;
-        CGFloat datePickerH=200;
+        CGFloat datePickerH=300;
         datePicker.frame=CGRectMake(datePickerX, datePickerY, datePickerW, datePickerH);
         
         [self.view addSubview:datePicker];
@@ -438,7 +439,7 @@
     // 创建一个日期格式器
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     // 为日期格式器设置格式字符串
-    [dateFormatter setDateFormat:@"yyyy年MM月dd日"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     // 使用日期格式器格式化日期、时间
     NSString *destDateString = [dateFormatter stringFromDate:selected];
     self.birtdayLabel.text=destDateString;

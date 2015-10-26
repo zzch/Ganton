@@ -31,20 +31,28 @@
 {
     _announcements=announcements;
     
+//    
+//    UILabel *weatherLabel=[[UILabel alloc] init];
+//    weatherLabel.frame=CGRectMake(0, 0, 90, 40);
+//    weatherLabel.text=@"今天: 23 ℃";
+//    [self addSubview:weatherLabel];
+    
+    
     
     
     UIScrollView *scrollView=[[UIScrollView alloc] init];
-    scrollView.frame=CGRectMake(0, 0, SCREEN_WIDTH, 20);
+    scrollView.frame=CGRectMake(0, 0, self.frame.size.width, 40);
     [self addSubview:scrollView];
     self.scrollView=scrollView;
     
-    scrollView.contentSize = CGSizeMake(0, 3*20);
+    scrollView.contentSize = CGSizeMake(0, 3*40);
     scrollView.pagingEnabled = YES;
     
     for (int i=0; i<announcements.count; i++) {
         UILabel *label=[[UILabel alloc] init];
-        label.frame=CGRectMake(0, i*20, SCREEN_WIDTH, 20);
+        label.frame=CGRectMake(0, i*40, self.frame.size.width, 40);
         label.text=[NSString stringWithFormat:@"%@",[announcements[i] title]];
+        label.font=[UIFont systemFontOfSize:14];
         [scrollView addSubview:label];
         
     }
@@ -61,7 +69,7 @@
  */
 - (void)addTimer
 {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(nextImage) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(nextImage) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
 
@@ -96,7 +104,7 @@
     }
     
     // 2.计算scrollView滚动的位置
-    CGFloat offsetX = self.page * 20;
+    CGFloat offsetX = self.page * 40;
     CGPoint offset = CGPointMake(0, offsetX);
     [self.scrollView setContentOffset:offset animated:YES];
 }

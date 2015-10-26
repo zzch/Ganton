@@ -21,10 +21,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor=ZCColor(237, 237, 237);
+   // self.view.backgroundColor=ZCColor(237, 237, 237);
     self.navigationItem.title=@"个人中心";
     
-    
+    self.view.backgroundColor=ZCColor(239, 239, 244);
     
     [self addData];
 }
@@ -64,16 +64,16 @@
     UIButton *photoViewBtn=[[UIButton alloc] init];
     photoViewBtn.backgroundColor=[UIColor whiteColor];
     CGFloat photoViewBtnX=0;
-    CGFloat photoViewBtnY=64;
+    CGFloat photoViewBtnY=0;
     CGFloat photoViewBtnW=SCREEN_WIDTH-(2*photoViewBtnX);
-    CGFloat photoViewBtnH=82;
+    CGFloat photoViewBtnH=80;
     photoViewBtn.frame=CGRectMake(photoViewBtnX, photoViewBtnY, photoViewBtnW, photoViewBtnH);
-    UIImage *image=[UIImage imageNamed:@"hang_bj_03" ];
+    //UIImage *image=[UIImage imageNamed:@"hang_bj_03" ];
     // 指定为拉伸模式，伸缩后重新赋值
-    image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(25,25,10,10) resizingMode:UIImageResizingModeStretch];
+   // image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(25,25,10,10) resizingMode:UIImageResizingModeStretch];
     
     //[photoViewBtn setBackgroundColor:[UIColor whiteColor]];
-    [photoViewBtn setBackgroundImage:image forState:UIControlStateNormal];
+    //[photoViewBtn setBackgroundImage:image forState:UIControlStateNormal];
     [photoViewBtn addTarget:self action:@selector(clickphotoViewBtn) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:photoViewBtn];
@@ -83,14 +83,14 @@
   
     UIButton *button1=[[UIButton alloc] init];
     CGFloat button1X=0;
-    CGFloat button1Y=photoViewBtnY+photoViewBtnH+20;
+    CGFloat button1Y=photoViewBtnY+photoViewBtnH+15;
     CGFloat button1W=SCREEN_WIDTH;
-    CGFloat button1H=40;
+    CGFloat button1H=50;
     button1.frame=CGRectMake(button1X, button1Y, button1W, button1H);
     button1.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:button1];
     [button1 addTarget:self action:@selector(clickTheButton1) forControlEvents:UIControlEventTouchUpInside];
-    [self addChildControls:button1 andImageStr:@"3088644_150703431167_2.jpg" andText:@"我的红包"];
+    [self addChildControls:button1 andImageStr:@"geren_hongbao_icon" andText:@"我的红包"];
     
     UIView *bjView=[[UIView alloc] init];
     bjView.frame=CGRectMake(0, button1Y+button1H, 20, 1);
@@ -101,12 +101,12 @@
     CGFloat button2X=0;
     CGFloat button2Y=button1Y+button1H+1;
     CGFloat button2W=SCREEN_WIDTH;
-    CGFloat button2H=40;
+    CGFloat button2H=50;
     button2.frame=CGRectMake(button2X, button2Y, button2W, button2H);
     button2.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:button2];
     [button2 addTarget:self action:@selector(clickTheButton2) forControlEvents:UIControlEventTouchUpInside];
-    [self addChildControls:button2 andImageStr:@"3088644_150703431167_2.jpg" andText:@"我的消费"];
+    [self addChildControls:button2 andImageStr:@"geren_xiaof_icon" andText:@"我的消费"];
     
     UIView *bjView2=[[UIView alloc] init];
     bjView2.frame=CGRectMake(0, button2Y+button2H, 20, 1);
@@ -116,27 +116,28 @@
     
     UIButton *button3=[[UIButton alloc] init];
     CGFloat button3X=0;
-    CGFloat button3Y=button2Y+button2H+1;
+    CGFloat button3Y=button2Y+button2H+15;
     CGFloat button3W=SCREEN_WIDTH;
-    CGFloat button3H=40;
+    CGFloat button3H=50;
     button3.frame=CGRectMake(button3X, button3Y, button3W, button3H);
     button3.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:button3];
     [button3 addTarget:self action:@selector(clickTheButton3) forControlEvents:UIControlEventTouchUpInside];
-    [self addChildControls:button3 andImageStr:@"3088644_150703431167_2.jpg" andText:@"打位预约"];
+    [self addChildControls:button3 andImageStr:@"geren_dawei_icon" andText:@"打位预约"];
     
     
     
     
     UIButton *exitButton=[[UIButton alloc] init];
-    exitButton.backgroundColor=[UIColor redColor];
-    CGFloat exitButtonX=30;
-    CGFloat exitButtonY=button3Y+button3H+40;
+    exitButton.backgroundColor=[UIColor whiteColor];
+    CGFloat exitButtonX=0;
+    CGFloat exitButtonY=button3Y+button3H+15;
     CGFloat exitButtonW=SCREEN_WIDTH-2*exitButtonX;
     CGFloat exitButtonH=60;
     exitButton.frame=CGRectMake(exitButtonX, exitButtonY, exitButtonW, exitButtonH);
     [exitButton setTitle:@"退出登录" forState:UIControlStateNormal];
     [self.view addSubview:exitButton];
+    [exitButton setTitleColor:[UIColor redColor]  forState:UIControlStateNormal];
     [exitButton addTarget:self action:@selector(clickTheExitButton) forControlEvents:UIControlEventTouchUpInside];
     
 }
@@ -241,13 +242,13 @@
     
     //头像
     UIImageView *photoView=[[UIImageView alloc] init];
-    CGFloat photoViewX=10;
+    CGFloat photoViewX=13;
     CGFloat photoViewW=60;
     CGFloat photoViewH=60;
     CGFloat photoViewY=(photoViewBtn.frame.size.height-photoViewH)*0.5;
     photoView.frame=CGRectMake(photoViewX, photoViewY, photoViewW, photoViewH);
     photoView.layer.masksToBounds = YES;
-    photoView.layer.cornerRadius = 30;
+    photoView.layer.cornerRadius = 5;
     if ([ZCTool _valueOrNil:self.personDict[@"portrait"]]==nil) {
          photoView.image=[UIImage imageNamed:@"3088644_150703431167_2.jpg"];
     }else{
@@ -260,12 +261,13 @@
     
     //跟换头像提示
     UILabel *photoLabel=[[UILabel alloc] init];
-    CGFloat photoLabelX=photoViewX+photoViewW+10;
+    CGFloat photoLabelX=photoViewX+photoViewW+17;
     CGFloat photoLabelW=70;
     CGFloat photoLabelH=30;
     CGFloat photoLabelY=(photoViewBtn.frame.size.height-photoLabelH)*0.5;
     photoLabel.frame=CGRectMake(photoLabelX, photoLabelY, photoLabelW, photoLabelH);
     photoLabel.text=self.personDict[@"name"];
+    photoLabel.font=[UIFont systemFontOfSize:18];
     photoLabel.textColor=ZCColor(85, 85, 85);
     [photoViewBtn addSubview:photoLabel];
     
@@ -273,13 +275,13 @@
     
     //向右箭头
     UIImageView *rightImageView=[[UIImageView alloc] init];
-    rightImageView.backgroundColor=[UIColor redColor];
-    CGFloat rightImageViewW=10;
-    CGFloat rightImageViewH=17;
+    
+    CGFloat rightImageViewW=6;
+    CGFloat rightImageViewH=11;
     CGFloat rightImageViewY=(photoViewBtn.frame.size.height-rightImageViewH)*0.5;
-    CGFloat rightImageViewX=photoViewBtn.frame.size.width-rightImageViewW-10;
+    CGFloat rightImageViewX=photoViewBtn.frame.size.width-rightImageViewW-18;
     rightImageView.frame=CGRectMake(rightImageViewX, rightImageViewY, rightImageViewW, rightImageViewH);
-    rightImageView.image=[UIImage imageNamed:@"icon_arrow3"];
+    rightImageView.image=[UIImage imageNamed:@"shouye_arrow_icon"];
     
     [photoViewBtn addSubview:rightImageView];
 }
@@ -291,9 +293,9 @@
 {
     
     UIImageView *iocnImage=[[UIImageView alloc] init];
-    CGFloat iocnImageW=10;
-    CGFloat iocnImageH=10;
-    CGFloat iocnImageX=10;
+    CGFloat iocnImageW=16;
+    CGFloat iocnImageH=21;
+    CGFloat iocnImageX=20;
     CGFloat iocnImageY=(Button.frame.size.height-iocnImageH)/2;
     iocnImage.frame=CGRectMake(iocnImageX, iocnImageY, iocnImageW, iocnImageH);
     iocnImage.image=[UIImage imageNamed:imageStr];
@@ -317,12 +319,12 @@
     //向右箭头
     UIImageView *rightImageView=[[UIImageView alloc] init];
     
-    CGFloat rightImageViewW=10;
-    CGFloat rightImageViewH=17;
+    CGFloat rightImageViewW=6;
+    CGFloat rightImageViewH=11;
     CGFloat rightImageViewY=(Button.frame.size.height-rightImageViewH)*0.5;
-    CGFloat rightImageViewX=SCREEN_WIDTH-rightImageViewW-10;
+    CGFloat rightImageViewX=SCREEN_WIDTH-rightImageViewW-18;
     rightImageView.frame=CGRectMake(rightImageViewX, rightImageViewY, rightImageViewW, rightImageViewH);
-    rightImageView.image=[UIImage imageNamed:@"icon_arrow3"];
+    rightImageView.image=[UIImage imageNamed:@"shouye_arrow_icon"];
     
     [Button addSubview:rightImageView];
     

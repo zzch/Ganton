@@ -18,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor=[UIColor whiteColor];
+    self.view.backgroundColor=ZCColor(237, 237, 237);
     self.navigationItem.title=@"卡包";
     
     
@@ -27,9 +27,11 @@
     tableView.delegate=self;
     tableView.dataSource=self;
     [self.view addSubview:tableView];
-    tableView.rowHeight=200;
+    tableView.rowHeight=193;
     self.tableView=tableView;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    self.tableView.backgroundColor=ZCColor(237, 237, 237);
     self.cardArray=[NSMutableArray array];
     
     [self onlineData];

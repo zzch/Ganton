@@ -10,7 +10,7 @@
 #import "ZCCoachViewCell.h"
 #import "ZCCourseDetailsViewController.h"
 #import "ZCCoachDetailsModel.h"
-@interface ZCCoachViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface ZCCoachViewController ()<UITableViewDataSource,UITableViewDelegate,UIWebViewDelegate>
 @property(nonatomic,weak)UITableView *tableView;
 @property(nonatomic,strong)ZCCoachDetailsModel *coachDetailsModel;
 @end
@@ -99,6 +99,13 @@
     
     UIWebView *webView=[[UIWebView alloc] init];
     webView.frame=CGRectMake(0, topView.frame.size.height+topView.frame.origin.y+10, SCREEN_WIDTH, 200);
+    webView.delegate=self;
+    
+    webView.scrollView.bounces = NO;
+    webView.scrollView.showsHorizontalScrollIndicator = NO;
+    webView.scrollView.scrollEnabled = NO;
+    [webView sizeToFit];
+    
     //webView.backgroundColor=[UIColor redColor];
     //[webView loadHTMLString:[NSString stringWithFormat:@"%@",self.coachDetailsModel.description] baseURL:nil];
     [view addSubview:webView];
@@ -107,6 +114,35 @@
     ZCLog(@"%@",[NSString stringWithFormat:@"%@",self.coachDetailsModel.Description]);
     return view;
 
+}
+
+
+
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    CGFloat webViewHeight=[webView.scrollView contentSize].height;
+    CGRect newFrame = webView.frame;
+    newFrame.size.height = webViewHeight;
+    webView.frame = newFrame;
+    
+//    //获取页面高度（像素）
+//    NSString * clientheight_str = [webView stringByEvaluatingJavaScriptFromString: @"document.body.offsetHeight"];
+//    float clientheight = [clientheight_str floatValue];
+//    ZCLog(@"%f",clientheight);
+//    
+//    //设置到WebView上
+//    webView.frame = CGRectMake(0, 0, self.view.frame.size.width, clientheight);
+//    //获取WebView最佳尺寸（点）
+//    CGSize frame = [webView sizeThatFits:webView.frame.size];
+//    //获取内容实际高度（像素）
+//    NSString * height_str= [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight + parseInt(window.getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('margin-top'))  + parseInt(window.getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('margin-bottom'))"];
+//    float height = [height_str floatValue];
+//    //内容实际高度（像素）* 点和像素的比
+//    height = height * frame.height / clientheight;
+//    //再次设置WebView高度（点）
+//   // webView.frame = CGRectMake(0, 0, self.view.frame.size.width, height);
+//    webView.frame=CGRectMake(0, 100, SCREEN_WIDTH, height);
 }
 
 

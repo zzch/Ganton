@@ -21,6 +21,8 @@
     self.window=[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor=[UIColor whiteColor];
     
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [defaults objectForKey:@"token"];
    
@@ -34,6 +36,17 @@
 
     }
     
+    
+    
+    
+    //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    //导航栏的背景颜色和字体
+    
+    UINavigationBar *bar = [UINavigationBar appearance];
+    //bar.barTintColor = ZCColor(60, 57, 78);
+    [bar setBackgroundImage:[UIImage imageNamed:@"daohanglan"] forBarMetrics:UIBarMetricsDefault];
+    bar.tintColor=[UIColor whiteColor];
+    bar.titleTextAttributes=@{UITextAttributeTextColor: [UIColor whiteColor],UITextAttributeFont : [UIFont boldSystemFontOfSize:18]};
     
     // 4.显示window
     [self.window makeKeyAndVisible];
