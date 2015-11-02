@@ -33,7 +33,7 @@
     tableView.delegate=self;
     tableView.dataSource=self;
     [self.view addSubview:tableView];
-    tableView.rowHeight=110;
+    tableView.rowHeight=97;
 
 }
 
@@ -54,6 +54,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //取消反选
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     ZCDetailViewController *vc=[[ZCDetailViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 

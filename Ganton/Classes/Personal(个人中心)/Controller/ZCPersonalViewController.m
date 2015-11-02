@@ -14,7 +14,8 @@
 #import "ZCAccountViewController.h"
 @interface ZCPersonalViewController ()
 @property(nonatomic,strong)NSDictionary *personDict;
-
+@property(nonatomic,weak)UIImageView *photoView;
+@property(nonatomic,weak)UILabel *photoLabel;
 @end
 
 @implementation ZCPersonalViewController
@@ -26,9 +27,16 @@
     
     self.view.backgroundColor=ZCColor(239, 239, 244);
     
-    [self addData];
+    
+    
+    [self addControls];
 }
 
+
+-(void)viewWillAppear:(BOOL)animated
+{
+  [self addData];
+}
 
 // 网络加载
 -(void)addData
@@ -46,7 +54,7 @@
         
         self.personDict=responseObject;
         
-        [self addControls];
+        [self reolData];
     } failure:^(NSError *error) {
         ZCLog(@"%@",error);
     }];
@@ -138,8 +146,37 @@
     [exitButton setTitle:@"退出登录" forState:UIControlStateNormal];
     [self.view addSubview:exitButton];
     [exitButton setTitleColor:[UIColor redColor]  forState:UIControlStateNormal];
-    [exitButton addTarget:self action:@selector(clickTheExitButton) forControlEvents:UIControlEventTouchUpInside];
+    [exitButton addTarget:self action:@selector(askPrompt) forControlEvents:UIControlEventTouchUpInside];
     
+}
+
+
+-(void)askPrompt
+{
+    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"确定要退出登录吗？" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alert show];
+}
+
+#pragma mark - alertView的代理方法
+/**
+ *  点击了alertView上面的按钮就会调用这个方法
+ *
+ *  @param buttonIndex 按钮的索引,从0开始
+ */
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        ZCLog(@"取消");
+        //[self.navigationController popViewControllerAnimated:YES];
+    }else
+    {
+        [self clickTheExitButton];
+    }
+
+    // 按钮的索引肯定不是0
+
 }
 
 
@@ -182,6 +219,10 @@
 
 
 }
+
+
+
+
 
 
 
@@ -249,14 +290,9 @@
     photoView.frame=CGRectMake(photoViewX, photoViewY, photoViewW, photoViewH);
     photoView.layer.masksToBounds = YES;
     photoView.layer.cornerRadius = 5;
-    if ([ZCTool _valueOrNil:self.personDict[@"portrait"]]==nil) {
-         photoView.image=[UIImage imageNamed:@"3088644_150703431167_2.jpg"];
-    }else{
-        [photoView sd_setImageWithURL:[NSURL URLWithString:self.personDict[@"portrait"]] placeholderImage:[UIImage imageNamed:@"3088644_150703431167_2.jpg"]];
-    }
     photoView.image=[UIImage imageNamed:@"3088644_150703431167_2.jpg"];
     [photoViewBtn addSubview:photoView];
-   // self.photoView=photoView;
+    self.photoView=photoView;
     
     
     //跟换头像提示
@@ -266,10 +302,11 @@
     CGFloat photoLabelH=30;
     CGFloat photoLabelY=(photoViewBtn.frame.size.height-photoLabelH)*0.5;
     photoLabel.frame=CGRectMake(photoLabelX, photoLabelY, photoLabelW, photoLabelH);
-    photoLabel.text=self.personDict[@"name"];
+    
     photoLabel.font=[UIFont systemFontOfSize:18];
     photoLabel.textColor=ZCColor(85, 85, 85);
     [photoViewBtn addSubview:photoLabel];
+    self.photoLabel=photoLabel;
     
     
     
@@ -284,6 +321,20 @@
     rightImageView.image=[UIImage imageNamed:@"shouye_arrow_icon"];
     
     [photoViewBtn addSubview:rightImageView];
+}
+
+
+//跟新数据
+-(void)reolData
+{
+    if ([ZCTool _valueOrNil:self.personDict[@"portrait"]]==nil) {
+       // self.photoView.image=[UIImage imageNamed:@"3088644_150703431167_2.jpg"];
+    }else{
+        [self.photoView sd_setImageWithURL:[NSURL URLWithString:self.personDict[@"portrait"]] placeholderImage:[UIImage imageNamed:@"3088644_150703431167_2.jpg"]];
+    }
+
+
+    self.photoLabel.text=self.personDict[@"name"];
 }
 
 
@@ -338,8 +389,17 @@
 -(void)clickphotoViewBtn
 {
     ZCInformationViewController *vc=[[ZCInformationViewController alloc] init];
+    //vc.delegate=self;
     vc.dict=self.personDict;
     [self.navigationController pushViewController:vc animated:YES];
+
+}
+
+//代理方法
+-(void)informationViewControllerWithImage:(UIImage *)image
+{
+
+    self.photoView.image=image;
 
 }
 

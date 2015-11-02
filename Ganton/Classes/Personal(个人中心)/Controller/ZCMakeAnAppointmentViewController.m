@@ -17,12 +17,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationItem.title=@"打位预约";
+    
     UITableView *tableView=[[UITableView alloc] init];
     tableView.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     [self.view addSubview:tableView];
     tableView.dataSource=self;
     tableView.delegate=self;
-    tableView.rowHeight=120;
+    tableView.rowHeight=80;
 }
 
 

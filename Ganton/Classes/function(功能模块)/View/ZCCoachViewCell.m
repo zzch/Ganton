@@ -10,7 +10,7 @@
 @interface ZCCoachViewCell()
 @property(nonatomic,weak)UILabel *TextLabel;
 @property(nonatomic,weak)UILabel *moneyLabel;
-//@property(nonatomic,weak)UILabel *TextLabel;
+@property(nonatomic,weak)UIImageView *rightImage;
 @end
 @implementation ZCCoachViewCell
 
@@ -29,21 +29,24 @@
     if (self=[super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         UILabel *textLabel=[[UILabel alloc] init];
-        textLabel.frame=CGRectMake(10, 0, 50, self.frame.size.height);
         textLabel.text=@"系统高尔夫教程";
+        textLabel.font=[UIFont systemFontOfSize:15];
         [self.contentView addSubview:textLabel];
         self.TextLabel=textLabel;
         
         UILabel *moneyLabel=[[UILabel alloc] init];
-        moneyLabel.frame=CGRectMake(SCREEN_WIDTH-100-50, 0, 100, self.frame.size.height);
+        
         moneyLabel.text=@"100000元";
+        moneyLabel.font=[UIFont systemFontOfSize:15];
+        moneyLabel.textAlignment=NSTextAlignmentRight;
         [self.contentView addSubview:moneyLabel];
         self.moneyLabel=moneyLabel;
         
         UIImageView *rightImage=[[UIImageView alloc] init];
-        rightImage.frame=CGRectMake(SCREEN_WIDTH-40, (self.frame.size.height-10)/2, 10, 10);
-        rightImage.backgroundColor=[UIColor redColor];
+        rightImage.image=[UIImage imageNamed:@"shouye_arrow_icon"];
         [self.contentView addSubview:rightImage];
+        self.rightImage=rightImage;
+    
     }
     return self;
 }
@@ -54,11 +57,23 @@
     _courseModel=courseModel;
     
     self.TextLabel.text=courseModel.name;
-    self.moneyLabel.text=courseModel.price;
+    self.moneyLabel.text=[NSString stringWithFormat:@"%@元",courseModel.price];
 
 }
 
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    
+    
+    self.TextLabel.frame=CGRectMake(15, 0, 150, self.frame.size.height);
+    
+    self.moneyLabel.frame=CGRectMake(self.frame.size.width-6-15-165, 0, 150, self.frame.size.height);
+    
+    self.rightImage.frame=CGRectMake(self.frame.size.width-6-15, (self.frame.size.height-11)/2, 6, 11);
 
+}
 
 - (void)awakeFromNib {
     // Initialization code

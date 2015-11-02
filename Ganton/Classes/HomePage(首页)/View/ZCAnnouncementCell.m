@@ -32,24 +32,29 @@
     if (self=[super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         UILabel *nameLabel=[[UILabel alloc] init];
+        nameLabel.font=[UIFont systemFontOfSize:15];
         [self.contentView addSubview:nameLabel];
         self.nameLabel=nameLabel;
         
         
         UILabel *detailsLabel=[[UILabel alloc] init];
+        detailsLabel.font=[UIFont systemFontOfSize:12];
+        detailsLabel.textColor=ZCColor(153, 153, 153);
         [self.contentView addSubview:detailsLabel];
         detailsLabel.numberOfLines=0;
         self.detailsLabel=detailsLabel;
         
         UILabel *timeLabel=[[UILabel alloc] init];
+        timeLabel.font=[UIFont systemFontOfSize:12];
+        detailsLabel.textColor=ZCColor(153, 153, 153);
         [self.contentView addSubview:timeLabel];
         timeLabel.textAlignment=NSTextAlignmentRight;
         self.timeLabel=timeLabel;
         
-        UIImageView *rightImage=[[UIImageView alloc] init];
-        rightImage.backgroundColor=[UIColor redColor];
-        [self.contentView addSubview:rightImage];
-        self.rightImage=rightImage;
+//        UIImageView *rightImage=[[UIImageView alloc] init];
+//        rightImage.backgroundColor=[UIColor redColor];
+//        [self.contentView addSubview:rightImage];
+//        self.rightImage=rightImage;
 
     }
     return  self;
@@ -68,7 +73,7 @@
     // 创建一个日期格式器
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     // 为日期格式器设置格式字符串
-    [dateFormatter setDateFormat:@"yyyy/MM/dd"];
+    [dateFormatter setDateFormat:@"MM-dd"];
     // 使用日期格式器格式化日期、时间
     NSString *destDateString = [dateFormatter stringFromDate:confromTimesp];
     self.timeLabel.text=destDateString;
@@ -81,29 +86,30 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
+    
     CGFloat nameLabelX=10;
-    CGFloat nameLabelY=10;
-    CGFloat nameLabelW=150;
-    CGFloat nameLabelH=30;
+    CGFloat nameLabelY=14;
+    CGFloat nameLabelW=250;
+    CGFloat nameLabelH=15;
     self.nameLabel.frame=CGRectMake(nameLabelX, nameLabelY, nameLabelW, nameLabelH);
     
     CGFloat detailsLabelX=10;
-    CGFloat detailsLabelY=nameLabelY+nameLabelH+10;
-    CGFloat detailsLabelW=300;
-    CGFloat detailsLabelH=130;
+    CGFloat detailsLabelY=nameLabelY+nameLabelH+15;
+    CGFloat detailsLabelW=SCREEN_WIDTH-detailsLabelX-15;
+    CGFloat detailsLabelH=15;
     self.detailsLabel.frame=CGRectMake(detailsLabelX, detailsLabelY, detailsLabelW, detailsLabelH);
     
-    CGFloat timeLabelX=SCREEN_WIDTH-150;
+    CGFloat timeLabelX=SCREEN_WIDTH-135;
     CGFloat timeLabelY=nameLabelY;
     CGFloat timeLabelW=120;
-    CGFloat timeLabelH=30;
+    CGFloat timeLabelH=15;
     self.timeLabel.frame=CGRectMake(timeLabelX, timeLabelY, timeLabelW, timeLabelH);
-    
-    CGFloat rightImageW=15;
-    CGFloat rightImageH=15;
-    CGFloat rightImageX=(SCREEN_WIDTH-rightImageW)-20;
-    CGFloat rightImageY=(self.frame.size.height-rightImageH)/2;
-    self.rightImage.frame=CGRectMake(rightImageX, rightImageY, rightImageW, rightImageH);
+//    
+//    CGFloat rightImageW=15;
+//    CGFloat rightImageH=15;
+//    CGFloat rightImageX=(SCREEN_WIDTH-rightImageW)-20;
+//    CGFloat rightImageY=(self.frame.size.height-rightImageH)/2;
+//    self.rightImage.frame=CGRectMake(rightImageX, rightImageY, rightImageW, rightImageH);
 
 }
 

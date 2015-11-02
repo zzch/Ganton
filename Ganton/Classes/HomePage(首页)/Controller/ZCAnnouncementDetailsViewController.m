@@ -8,7 +8,7 @@
 
 #import "ZCAnnouncementDetailsViewController.h"
 
-@interface ZCAnnouncementDetailsViewController ()
+@interface ZCAnnouncementDetailsViewController ()<UIWebViewDelegate>
 @property(nonatomic,strong)NSDictionary *detailsDict;
 @end
 
@@ -16,6 +16,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.view.backgroundColor=[UIColor whiteColor];
+    
+    self.navigationItem.title=@"公告详情";
     
     [self onlineData];
     
@@ -54,18 +58,41 @@
 {
     
     UILabel *nameLabel=[[UILabel alloc] init];
-    nameLabel.frame=CGRectMake(0, 64, SCREEN_WIDTH, 50);
+    nameLabel.frame=CGRectMake(0, 0, SCREEN_WIDTH, 50);
     nameLabel.textAlignment=NSTextAlignmentCenter;
     nameLabel.text=self.detailsDict[@"title"];
     nameLabel.font=[UIFont systemFontOfSize:24];
     [self.view addSubview:nameLabel];
     
     UIWebView *webView=[[UIWebView alloc] init];
-    webView.frame=CGRectMake(0, 116, SCREEN_WIDTH, SCREEN_HEIGHT);
+    webView.frame=CGRectMake(0, 60, SCREEN_WIDTH, 10);
+    webView.delegate=self;
     [self.view addSubview:webView];
+    
+    webView.scrollView.bounces = NO;
+    webView.scrollView.showsHorizontalScrollIndicator = NO;
+    webView.scrollView.scrollEnabled = NO;
+    [webView sizeToFit];
     
     [webView loadHTMLString:self.detailsDict[@"content"] baseURL:nil];
 }
+
+
+
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    CGFloat webViewHeight=[webView.scrollView contentSize].height;
+    CGRect newFrame = webView.frame;
+    newFrame.size.height = webViewHeight;
+    webView.frame = newFrame;
+    
+   // self.scrollView.contentSize=CGSizeMake(0, webViewHeight+130);
+    
+    ZCLog(@"%f",webViewHeight);
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

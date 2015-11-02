@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZCMallModel.h"
 @interface ZCMallCell : UITableViewCell
 +(instancetype)cellWithTableView:(UITableView *)tableView;
+@property(nonatomic,strong)ZCMallModel *mallModel;
 @end

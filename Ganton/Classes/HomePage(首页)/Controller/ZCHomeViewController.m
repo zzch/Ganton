@@ -32,7 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title=@"会员卡";
+    self.navigationItem.title=@"首页";
     self.view.backgroundColor=ZCColor(239, 239, 244);
     
     
@@ -142,7 +142,7 @@
     
     //监听 公告
     UIButton *button=[[UIButton alloc] init];
-    button.frame=CGRectMake(0, 0, self.view.frame.size.width, 40);
+    button.frame=CGRectMake(128, 0, self.view.frame.size.width-128, 40);
     [noticeView addSubview:button];
     [button addTarget:self action:@selector(clickThetextLabel) forControlEvents:UIControlEventTouchUpInside];
     
@@ -337,8 +337,8 @@
         imageViewH=45;
         
     }else{
-        imageViewW=58;
-        imageViewH=58;
+        imageViewW=59;
+        imageViewH=59;
     }
     CGFloat imageViewX=(button.frame.size.width-imageViewW)/2;
     CGFloat imageViewY=(button.frame.size.height-imageViewH-30)/3+10;
@@ -433,7 +433,7 @@
     
     
     UILabel *remainingLabel=[[UILabel alloc] init];
-    CGFloat remainingLabelX=SCREEN_WIDTH-200;
+    CGFloat remainingLabelX=view.frame.size.width-170;
     CGFloat remainingLabelY=view.frame.size.height-60;
     CGFloat remainingLabelW=150;
     CGFloat remainingLabelH=30;

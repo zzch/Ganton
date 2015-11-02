@@ -8,7 +8,8 @@
 
 #import "ZCInformationViewController.h"
 #import "ZCDatapickerView.h"
-@interface ZCInformationViewController ()<UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,ZCDatapickerViewDelegate>
+#import "ZCBirthdayViewController.h"
+@interface ZCInformationViewController ()<UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,ZCDatapickerViewDelegate,ZCBirthdayViewControllerDelegate>
 @property(nonatomic,weak)UIImageView *photoView;
 @property (nonatomic, assign, getter = isOpened1) BOOL opened1;
 @property(nonatomic,weak)ZCDatapickerView *datePicker;
@@ -26,7 +27,7 @@
     self.navigationItem.title=@"个人信息";
     
     
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStyleDone target:self action:@selector(clickTherightButton)];
+    //self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStyleDone target:self action:@selector(clickTherightButton)];
     
     [self addControls];
     
@@ -377,6 +378,10 @@
 //        [data writeToFile:path atomically:YES];
         
         
+//        if ([self.delegate respondsToSelector:@selector(informationViewControllerWithImage:)]) {
+//            [self.delegate informationViewControllerWithImage:self.photoView.image];
+//        }
+        
         ZCLog(@"%@",responseObject);
         // success
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -403,32 +408,62 @@
 //点击生日
 -(void)clickTheButton3
 {
-    if (self.opened1==NO) {
-        //显示生日
-        ZCDatapickerView *datePicker=[[ZCDatapickerView alloc] init];
-        self.opened1=YES;
-        datePicker.delegate=self;
-        
-        
-        CGFloat datePickerY=SCREEN_HEIGHT-300;
-        CGFloat datePickerX=0;
-        
-        CGFloat datePickerW=SCREEN_WIDTH;
-        CGFloat datePickerH=300;
-        datePicker.frame=CGRectMake(datePickerX, datePickerY, datePickerW, datePickerH);
-        
-        [self.view addSubview:datePicker];
-        self.datePicker=datePicker;
-        
-        
-    }else
-    {
-        [self.datePicker removeFromSuperview];
-        self.opened1=NO;
-    }
+    
+    
+    ZCBirthdayViewController *vc=[[ZCBirthdayViewController alloc] init];
+    vc.delegate=self;
+    vc.birthday= self.dict[@"birthday"];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+//    if (self.opened1==NO) {
+//        //显示生日
+//        ZCDatapickerView *datePicker=[[ZCDatapickerView alloc] init];
+//        self.opened1=YES;
+//        datePicker.delegate=self;
+//        
+//        
+//        CGFloat datePickerY=SCREEN_HEIGHT-300;
+//        CGFloat datePickerX=0;
+//        
+//        CGFloat datePickerW=SCREEN_WIDTH;
+//        CGFloat datePickerH=300;
+//        datePicker.frame=CGRectMake(datePickerX, datePickerY, datePickerW, datePickerH);
+//        
+//        [self.view addSubview:datePicker];
+//        self.datePicker=datePicker;
+//        
+//        
+//    }else
+//    {
+//        [self.datePicker removeFromSuperview];
+//        self.opened1=NO;
+//    }
 
 
 }
+
+
+-(void)birthdayViewControllerDelegate:(long)data
+{
+     self.time=data;
+
+    // 创建一个日期格式器
+    NSDateFormatter *nowDateFormatter = [[NSDateFormatter alloc] init];
+    // 为日期格式器设置格式字符串
+    [nowDateFormatter setDateFormat:@"yyyy-MM-dd"];
+    // 使用日期格式器格式化日期、时间
+    NSDate *confromTimesp=[NSDate dateWithTimeIntervalSince1970:data];
+    NSString *nowDateString = [nowDateFormatter stringFromDate:confromTimesp ];
+    self.birtdayLabel.text=nowDateString;
+    
+    //执行网络上传
+    [self clickTherightButton];
+    
+   
+
+}
+
+
 
 
 //时间代理

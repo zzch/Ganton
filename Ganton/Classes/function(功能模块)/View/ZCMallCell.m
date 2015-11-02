@@ -32,23 +32,37 @@
 {
     if (self=[super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
+        
+        //self.=UITableViewCellSeparatorStyleNone;
+       // self.separatorInset
+        
         UIImageView *goodsImage=[[UIImageView alloc] init];
         goodsImage.backgroundColor=[UIColor redColor];
         [self.contentView addSubview:goodsImage];
         self.goodsImage=goodsImage;
         
-        UILabel *nameLabel=[[UILabel alloc] init];
-        nameLabel.text=@"高尔夫球杆3号";
-        [self.contentView addSubview:nameLabel];
-        self.nameLabel=nameLabel;
-        
-        UILabel *moneyLabel=[[UILabel alloc] init];
-        moneyLabel.text=@"￥ 10000";
-        [self.contentView addSubview:moneyLabel];
-        self.moneyLabel=moneyLabel;
+//        UILabel *nameLabel=[[UILabel alloc] init];
+//        nameLabel.text=@"高尔夫球杆3号";
+//        [self.contentView addSubview:nameLabel];
+//        self.nameLabel=nameLabel;
+//        
+//        UILabel *moneyLabel=[[UILabel alloc] init];
+//        moneyLabel.text=@"￥ 10000";
+//        [self.contentView addSubview:moneyLabel];
+//        self.moneyLabel=moneyLabel;
         
     }
     return self;
+}
+
+
+
+-(void)setMallModel:(ZCMallModel *)mallModel
+{
+    _mallModel=mallModel;
+    
+
+    [self.goodsImage sd_setImageWithURL:[NSURL URLWithString:mallModel.image] placeholderImage:nil];
 }
 
 
@@ -56,23 +70,23 @@
 {
     [super layoutSubviews];
     
-    CGFloat goodsImageW=50;
-    CGFloat goodsImageH=50;
-    CGFloat goodsImageX=10;
-    CGFloat goodsImageY=(self.frame.size.height-goodsImageH)/2;
+    CGFloat goodsImageW=self.frame.size.width;
+    CGFloat goodsImageH=self.frame.size.height;
+    CGFloat goodsImageX=0;
+    CGFloat goodsImageY=0;
     self.goodsImage.frame=CGRectMake(goodsImageX, goodsImageY, goodsImageW, goodsImageH);
     
-    CGFloat nameLabelX=goodsImageX+goodsImageW+10;
-    CGFloat nameLabelY=20;
-    CGFloat nameLabelW=100;
-    CGFloat nameLabelH=30;
-    self.nameLabel.frame=CGRectMake(nameLabelX, nameLabelY, nameLabelW, nameLabelH);
-    
-    CGFloat moneyLabelW=50;
-    CGFloat moneyLabelH=30;
-    CGFloat moneyLabelX=SCREEN_WIDTH-moneyLabelW-20;
-    CGFloat moneyLabelY=20;
-    self.moneyLabel.frame=CGRectMake(moneyLabelX, moneyLabelY, moneyLabelW, moneyLabelH);
+//    CGFloat nameLabelX=goodsImageX+goodsImageW+10;
+//    CGFloat nameLabelY=20;
+//    CGFloat nameLabelW=100;
+//    CGFloat nameLabelH=30;
+//    self.nameLabel.frame=CGRectMake(nameLabelX, nameLabelY, nameLabelW, nameLabelH);
+//    
+//    CGFloat moneyLabelW=50;
+//    CGFloat moneyLabelH=30;
+//    CGFloat moneyLabelX=SCREEN_WIDTH-moneyLabelW-20;
+//    CGFloat moneyLabelY=20;
+//    self.moneyLabel.frame=CGRectMake(moneyLabelX, moneyLabelY, moneyLabelW, moneyLabelH);
 
 }
 

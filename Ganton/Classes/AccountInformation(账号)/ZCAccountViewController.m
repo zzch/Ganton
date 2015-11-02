@@ -10,7 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "ZCHomeViewController.h"
 @interface ZCAccountViewController ()<CLLocationManagerDelegate,UITextFieldDelegate>
-@property(nonatomic,weak)UITextField *phoneTextField;
+@property(nonatomic,weak)UITextField *PhoneTextField;
 @property(nonatomic,weak)UITextField *VerificationTextField;
 
 //定位
@@ -145,6 +145,8 @@
 //    [self.view addSubview:imageView];
     
     
+    
+    
     UIView *view=[[UIView alloc] init];
     CGFloat viewX=42;
     CGFloat viewY=SCREEN_HEIGHT*0.2;
@@ -165,21 +167,19 @@
     [view addSubview:personImage];
     
 
-    UITextField *phoneTextField=[[UITextField alloc] init];
+    UITextField *PhoneTextField=[[UITextField alloc] init];
     CGFloat phoneTextFieldX=personImageH+10;
     CGFloat phoneTextFieldY=0;
     CGFloat phoneTextFieldW=viewW-phoneTextFieldX;
     CGFloat phoneTextFieldH=40;
-    phoneTextField.frame=CGRectMake(phoneTextFieldX, phoneTextFieldY, phoneTextFieldW, phoneTextFieldH);
-   phoneTextField.placeholder=@"输入手机号码";
-    phoneTextField.keyboardType=UIKeyboardTypeNumberPad;
-    [view addSubview:phoneTextField];
-    phoneTextField.delegate=self;
-    self.phoneTextField=phoneTextField;
+    PhoneTextField.frame=CGRectMake(phoneTextFieldX, phoneTextFieldY, phoneTextFieldW, phoneTextFieldH);
+    PhoneTextField.placeholder=@"请输入手机号码";
+    PhoneTextField.keyboardType=UIKeyboardTypeNumberPad;
+    [view addSubview:PhoneTextField];
+    PhoneTextField.delegate=self;
+    self.PhoneTextField=PhoneTextField;
     
-   // [phoneTextField addTarget:self action:@selector(nameTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-    
-    [phoneTextField addTarget:self action:@selector(phoneTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    [PhoneTextField addTarget:self action:@selector(phoneTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     
 }
 
@@ -195,7 +195,7 @@
         
     }else if (textField.text.length>11)
     {
-      self.phoneTextField.text = [self.phoneTextField.text substringToIndex:11];
+      self.PhoneTextField.text = [self.PhoneTextField.text substringToIndex:11];
     }else{
         
         [self removeTheAnimation];
@@ -218,7 +218,7 @@
         
         
     } completion:^(BOOL finished) {
-        [self.welcomeView removeFromSuperview];
+        [self.failureView removeFromSuperview];
     }];
 
     
@@ -289,7 +289,7 @@
 -(void)networkRequest
 {
     NSMutableDictionary *params=[NSMutableDictionary dictionary];
-    params[@"phone"]=self.phoneTextField.text;
+    params[@"phone"]=self.PhoneTextField.text;
     if (!self.longitude==0) {
         params[@"longitude"] = @(self.longitude);
         params[@"latitude"]=@(self.latitude) ;
@@ -331,6 +331,18 @@
     self.failureView=failureView;
     [self addControlsWithView:failureView];
     
+    
+    UIImageView *personImage=[[UIImageView alloc] init];
+    CGFloat personImageX=0;
+    CGFloat personImageY=11;
+    CGFloat personImageW=15;
+    CGFloat personImageH=15;
+    personImage.frame=CGRectMake(personImageX, personImageY, personImageW, personImageH);
+    personImage.alpha=0.0;
+    personImage.image=[UIImage imageNamed:@"denglu_cuowu"];
+    [failureView addSubview:personImage];
+    
+    
     UILabel *failureLabel=[[UILabel alloc] init];
     failureLabel.text=@"手机号不存在，请重试";
     failureLabel.alpha=0.1;
@@ -348,6 +360,8 @@
         failureView.frame=CGRectMake(failureViewX, failureViewY, failureViewW, failureViewH);
         
     } completion:^(BOOL finished) {
+        
+        personImage.alpha=1.0;
         
         [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             
@@ -387,6 +401,15 @@
     [self addControlsWithView:welcomeView];
     
    
+    UIImageView *personImage=[[UIImageView alloc] init];
+    CGFloat personImageX=0;
+    CGFloat personImageY=11;
+    CGFloat personImageW=15;
+    CGFloat personImageH=15;
+    personImage.frame=CGRectMake(personImageX, personImageY, personImageW, personImageH);
+    personImage.alpha=0.0;
+    personImage.image=[UIImage imageNamed:@"denglu_icon2"];
+    [welcomeView addSubview:personImage];
     
     
     UILabel *welcomeLabel=[[UILabel alloc] init];
@@ -418,7 +441,7 @@
         
     } completion:^(BOOL finished) {
        
-     
+     personImage.alpha=1.0;
         
         
         
@@ -458,6 +481,17 @@
     [self addControlsWithView:welcomeView2];
     
     
+    UIImageView *personImage=[[UIImageView alloc] init];
+    CGFloat personImageX=0;
+    CGFloat personImageY=11;
+    CGFloat personImageW=15;
+    CGFloat personImageH=21;
+    personImage.frame=CGRectMake(personImageX, personImageY, personImageW, personImageH);
+    personImage.alpha=0.0;
+    personImage.image=[UIImage imageNamed:@"denglu_icon1"];
+    [welcomeView2 addSubview:personImage];
+
+    
     
     UILabel *welcomeLabel2=[[UILabel alloc] init];
     welcomeLabel2.text=[NSString stringWithFormat:@"%@",array[1]];
@@ -478,7 +512,7 @@
         
     } completion:^(BOOL finished) {
         
-        
+        personImage.alpha=1.0;
         
         [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
              welcomeLabel2.frame=CGRectMake(27, 0, welcomeView2W, 40);
@@ -625,7 +659,7 @@
         landingButton.alpha=1.0;
         
     } completion:^(BOOL finished) {
-        [self.VerificationTextField becomeFirstResponder];
+        //[self.VerificationTextField becomeFirstResponder];
     }];
 
 }
@@ -637,7 +671,7 @@
 -(void)clickTheLandingButton
 {
     NSMutableDictionary *params=[NSMutableDictionary dictionary];
-    params[@"phone"]=self.phoneTextField.text;
+    params[@"phone"]=self.PhoneTextField.text;
     params[@"verification_code"]=self.VerificationTextField.text;
     if (!self.longitude==0) {
         params[@"longitude"] = @(self.longitude);

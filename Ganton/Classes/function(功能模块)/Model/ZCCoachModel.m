@@ -24,6 +24,9 @@
         self.portrait=dict[@"portrait"];
         self.title=dict[@"title"];
         self.uuid=dict[@"uuid"];
+        ZCLog(@"%@",dict[@"description"]);
+        self.Description=dict[@"description"];
+        self.starting_price=dict[@"starting_price"];
     }
     return self;
 

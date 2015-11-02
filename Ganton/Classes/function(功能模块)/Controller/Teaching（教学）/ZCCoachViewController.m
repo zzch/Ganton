@@ -13,6 +13,9 @@
 @interface ZCCoachViewController ()<UITableViewDataSource,UITableViewDelegate,UIWebViewDelegate>
 @property(nonatomic,weak)UITableView *tableView;
 @property(nonatomic,strong)ZCCoachDetailsModel *coachDetailsModel;
+
+@property(nonatomic,weak)UIView *headerView;
+@property(nonatomic,assign)CGFloat webViewHight;
 @end
 
 @implementation ZCCoachViewController
@@ -21,9 +24,10 @@
     [super viewDidLoad];
     self.view.backgroundColor=ZCColor(237, 237, 237);
     
-    
+    self.navigationItem.title=@"教练详情";
     
     [self addData];
+    
     
 }
 
@@ -51,8 +55,12 @@
         //        self.homeModel=homeModel;
         //
         //        [self addControls];
-        [self.tableView reloadData];
-        [self addControls];
+        //[self.tableView reloadData];
+        
+        
+       // self.headerView=[self tableViewHeaderView];
+        [self webViewForHight];
+        
     } failure:^(NSError *error) {
         ZCLog(@"%@",error);
     }];
@@ -67,39 +75,64 @@
 -(void)addControls
 {
     UITableView *tableView=[[UITableView alloc] init];
-    tableView.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT);
+    tableView.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     tableView.delegate=self;
     tableView.dataSource=self;
     
-    tableView.sectionHeaderHeight = 400;
+    tableView.sectionHeaderHeight = self.webViewHight+110;
+    NSLog(@"%f",self.webViewHight);
+    
     //self.tableView.
     tableView.tableHeaderView=[self tableViewHeaderView];
    // tableView.se=[self tableViewHeaderView];
    // tableView.sectionHeaderHeight=400;
-    tableView.rowHeight=40;
-    
+    tableView.rowHeight=50;
+    tableView.backgroundColor=ZCColor(237, 237, 237);
+    tableView.contentInset = UIEdgeInsetsMake(0, 0, 75, 0);
    [self.view addSubview:tableView];
     self.tableView=tableView;
-    
+    //让下面没内容的分割线不显示
+    self.tableView.tableFooterView = [[UIView alloc] init];
+
 }
 
+
+//提前调查处webView的高度 零时控件
+-(void)webViewForHight
+{
+    
+    UIWebView *webView=[[UIWebView alloc] init];
+    webView.frame=CGRectMake(0, 0, SCREEN_WIDTH, 200);
+    webView.delegate=self;
+    
+    webView.scrollView.bounces = NO;
+    webView.scrollView.showsHorizontalScrollIndicator = NO;
+    webView.scrollView.scrollEnabled = NO;
+    [webView sizeToFit];
+    
+    //webView.backgroundColor=[UIColor redColor];
+    //[webView loadHTMLString:[NSString stringWithFormat:@"%@",self.coachDetailsModel.description] baseURL:nil];
+    [self.view addSubview:webView];
+    [webView loadHTMLString:[NSString stringWithFormat:@"%@",self.coachDetailsModel.Description] baseURL:nil];
+    webView.hidden=YES;
+}
 
 
 -(UIView *)tableViewHeaderView
 {
     UIView *view=[[UIView alloc] init];
-    view.frame=CGRectMake(0, 0, SCREEN_WIDTH, 400);
+    view.frame=CGRectMake(0, 0, SCREEN_WIDTH, self.webViewHight+110);
 
     UIView *topView=[[UIView alloc] init];
-    topView.frame=CGRectMake(0, 0, SCREEN_WIDTH, 100);
+    topView.frame=CGRectMake(0, 0, SCREEN_WIDTH, 80);
     [view addSubview:topView];
     topView.backgroundColor=[UIColor whiteColor];
     [self addTopViewControls:topView];
     
     
     UIWebView *webView=[[UIWebView alloc] init];
-    webView.frame=CGRectMake(0, topView.frame.size.height+topView.frame.origin.y+10, SCREEN_WIDTH, 200);
-    webView.delegate=self;
+    webView.frame=CGRectMake(0, topView.frame.size.height+topView.frame.origin.y+15, SCREEN_WIDTH, self.webViewHight);
+   // webView.delegate=self;
     
     webView.scrollView.bounces = NO;
     webView.scrollView.showsHorizontalScrollIndicator = NO;
@@ -125,6 +158,12 @@
     CGRect newFrame = webView.frame;
     newFrame.size.height = webViewHeight;
     webView.frame = newFrame;
+    
+    ZCLog(@"%f",webViewHeight);
+   //self.headerView.frame=CGRectMake(0, 0, SCREEN_WIDTH, webViewHeight+110);
+    self.webViewHight=webViewHeight;
+    //添加控件
+    [self addControls];
     
 //    //获取页面高度（像素）
 //    NSString * clientheight_str = [webView stringByEvaluatingJavaScriptFromString: @"document.body.offsetHeight"];
@@ -154,6 +193,8 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    
     ZCCoachViewCell *cell=[ZCCoachViewCell cellWithTable:tableView];
     cell.courseModel=self.coachDetailsModel.courses[indexPath.row];
     return cell;
@@ -168,6 +209,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     ZCCourseDetailsViewController *vc=[[ZCCourseDetailsViewController alloc] init];
     vc.uuid=[self.coachDetailsModel.courses[indexPath.row] uuid];
     [self.navigationController pushViewController:vc animated:YES];
@@ -180,12 +223,13 @@
 -(void)addTopViewControls:(UIView *)view
 {
     UIImageView *personImage=[[UIImageView alloc] init];
-    CGFloat personImageX=10;
-    CGFloat personImageY=10;
+    CGFloat personImageX=15;
+    CGFloat personImageY=(view.frame.size.height-50)/2;
     CGFloat personImageW=50;
-    CGFloat personImageH=view.frame.size.height-20;
+    CGFloat personImageH=50;
     personImage.frame=CGRectMake(personImageX, personImageY, personImageW, personImageH);
-    
+    personImage.layer.cornerRadius=5;//设置圆角的半径为10
+    personImage.layer.masksToBounds=YES;
     if ([ZCTool _valueOrNil:self.coachDetailsModel.portrait]==nil) {
         personImage.image=[UIImage imageNamed:@"3088644_150703431167_2.jpg"];
     }else{
@@ -195,11 +239,12 @@
     
     
     UILabel *nameLabel=[[UILabel alloc] init];
-    CGFloat nameLabelX=personImageX+personImageW+10;
+    CGFloat nameLabelX=personImageX+personImageW+15;
     CGFloat nameLabelY=personImageY;
-    CGFloat nameLabelW=60;
-    CGFloat nameLabelH=30;
+    CGFloat nameLabelW=100;
+    CGFloat nameLabelH=25;
     nameLabel.frame=CGRectMake(nameLabelX, nameLabelY, nameLabelW, nameLabelH);
+    nameLabel.font=[UIFont systemFontOfSize:18];
     nameLabel.text=self.coachDetailsModel.name;
     [view addSubview:nameLabel];
     
@@ -207,21 +252,23 @@
     UILabel *titleLabel=[[UILabel alloc] init];
     CGFloat titleLabelX=nameLabelX;
     CGFloat titleLabelY=nameLabelY+nameLabelH;
-    CGFloat titleLabelW=50;
-    CGFloat titleLabelH=30;
+    CGFloat titleLabelW=150;
+    CGFloat titleLabelH=25;
     titleLabel.frame=CGRectMake(titleLabelX, titleLabelY, titleLabelW, titleLabelH);
+    titleLabel.textColor=ZCColor(85, 85, 85);
+    titleLabel.font=[UIFont systemFontOfSize:14];
     titleLabel.text=self.coachDetailsModel.title;
     [view addSubview:titleLabel];
     //self.titleLabel=titleLabel;
     
-    UILabel *genderLabel=[[UILabel alloc] init];
-    CGFloat  genderLabelX=nameLabelX+nameLabelW+30;
-    CGFloat  genderLabelY=nameLabelY+10;
-    CGFloat  genderLabelW=40;
-    CGFloat  genderLabelH=30;
-    genderLabel.frame=CGRectMake(genderLabelX, genderLabelY, genderLabelW, genderLabelH);
-    genderLabel.text=[NSString stringWithFormat:@"%@",self.coachDetailsModel.gender];
-    [view addSubview:genderLabel];
+//    UILabel *genderLabel=[[UILabel alloc] init];
+//    CGFloat  genderLabelX=nameLabelX+nameLabelW+30;
+//    CGFloat  genderLabelY=nameLabelY+10;
+//    CGFloat  genderLabelW=40;
+//    CGFloat  genderLabelH=30;
+//    genderLabel.frame=CGRectMake(genderLabelX, genderLabelY, genderLabelW, genderLabelH);
+//    genderLabel.text=[NSString stringWithFormat:@"%@",self.coachDetailsModel.gender];
+//    [view addSubview:genderLabel];
     //self.genderLabel=genderLabel;
 
     

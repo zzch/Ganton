@@ -24,15 +24,32 @@
     
     self.navigationItem.title=@"教学信息";
     
-    UITableView *tableView=[[UITableView alloc] init];
-    tableView.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    UITableView *tableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStyleGrouped] ;
+    
+    //tableView.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     tableView.delegate=self;
     tableView.dataSource=self;
     [self.view addSubview:tableView];
     self.tableView=tableView;
+    tableView.backgroundColor=ZCColor(237, 237, 237);
     
+    
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 45, 0);
+    //设置组头可以随着tableView往上滚动
+   // self.automaticallyAdjustsScrollViewInsets = NO;
     [self addData];
 }
+
+////设置组头可以随着tableView往上滚动
+//-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//    CGFloat sectionHearderHeight = 30;
+//    if (scrollView.contentOffset.y<=sectionHearderHeight&&scrollView.contentOffset.y>=0) {
+//        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+//    }else if(scrollView.contentOffset.y>=sectionHearderHeight){
+//        scrollView.contentInset = UIEdgeInsetsMake(-sectionHearderHeight, 0, 0, 0);
+//    }
+//    
+//}
 
 
 // 网络加载
@@ -99,28 +116,65 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section==0) {
-        return 200;
+        return 125;
     }else{
-        return 100;
+        return 80;
     }
 
 }
 
+
+
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    
+//    //获取indexPath
+//    NSIndexPath *indexPath = [[NSIndexPath alloc]initWithIndex:section];
+//    if (0 == indexPath.section) {//第一组
+//        return 0;
+//    }else
+//        return 15;
+//}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
+    return 0.5;
+    
+}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section==0) {
-        return 20;
-    }else{
-        return 0;
-    }
-    
+    return 20;
 
 }
+
+//-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section
+//{
+//
+//    if (section==0) {
+//        
+//        
+//       return 0;
+//        
+//        
+//    }else{
+//        if (self.teachingModel.featured.count==0) {
+//            return 0;
+//        }else{
+//            return 20;
+//        }
+//    }
+//
+//}
+
+
+
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     ZCCoachViewController *vc=[[ZCCoachViewController alloc] init];
     if (indexPath.section==0) {
         vc.uuid=[self.teachingModel.featured[indexPath.row] uuid];

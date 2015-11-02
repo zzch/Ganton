@@ -69,14 +69,14 @@
         
         
         UIView *redView=[[UIView alloc] init];
-        redView.backgroundColor=[UIColor redColor];
+        redView.backgroundColor=ZCColor(229, 74, 74);
         [bjView addSubview:redView];
         self.redView=redView;
         
         
         
         UIImageView *photoImageView=[[UIImageView alloc] init];
-        photoImageView.backgroundColor=[UIColor redColor];
+        //photoImageView.backgroundColor=ZCColor(299, 74, 75);
         [redView addSubview:photoImageView];
         self.photoImageView=photoImageView;
         
@@ -129,8 +129,8 @@
     
     self.nameLabel.text=[NSString stringWithFormat:@"%@",cardModel.name];
 
-    self.addressLabel.text=@":开发区开发区开发区开发区开发区开发区开发区开发区开发区开发区开发区开发区";
-    self.phoneLabel.text=@":15010177980";
+    self.addressLabel.text=[NSString stringWithFormat:@": %@",cardModel.address];
+    self.phoneLabel.text=[NSString stringWithFormat:@": %@",cardModel.phone_number];
 }
 
 
@@ -174,19 +174,19 @@
     
     CGFloat phoneLabelX=imageView2X+imageView2W+5;
     CGFloat phoneLabelY=imageView2Y;
-    CGFloat phoneLabelW=bjViewH-phoneLabelX-15;
+    CGFloat phoneLabelW=bjViewW-phoneLabelX-15;
     CGFloat phoneLabelH=14;
     self.phoneLabel.frame=CGRectMake(phoneLabelX, phoneLabelY, phoneLabelW, phoneLabelH);
     
     
     CGFloat imageView3X=15;
-    CGFloat imageView3Y=imageView2Y+imageView2H+20;
+    CGFloat imageView3Y=imageView2Y+imageView2H+22;
     CGFloat imageView3W=14;
     CGFloat imageView3H=14;
     self.imageView3.frame=CGRectMake(imageView3X,imageView3Y, imageView3W, imageView3H);
     
     CGFloat addressLabelX=phoneLabelX;
-    CGFloat addressLabelY=imageView3Y;
+    CGFloat addressLabelY=imageView3Y-2;
     CGFloat addressLabelW=bjViewW-addressLabelX-10;
     CGFloat addressLabelH=[ZCTool getFrame:CGSizeMake(addressLabelW, 100) content:self.addressLabel.text fontSize:[UIFont systemFontOfSize:15]].size.height;
     self.addressLabel.frame=CGRectMake(addressLabelX, addressLabelY, addressLabelW, addressLabelH);

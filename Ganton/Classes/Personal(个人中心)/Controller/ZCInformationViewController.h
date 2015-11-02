@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@protocol ZCInformationViewControllerDelegate<NSObject>
+@optional
+-(void)informationViewControllerWithImage:(UIImage *)image;
+@end
 @interface ZCInformationViewController : UIViewController
 @property(nonatomic,strong)NSDictionary *dict;
+@property(nonatomic,weak)id<ZCInformationViewControllerDelegate>delegate;
 @end

@@ -13,6 +13,9 @@
 @property(nonatomic,weak)UILabel *nameLabel;
 @property(nonatomic,weak)UILabel *titleLabel;
 @property(nonatomic,weak)UIImageView *rightImage;
+@property(nonatomic,weak)UILabel *moneyNameLabel;
+@property(nonatomic,weak)UILabel *moneyLabel;
+@property(nonatomic,weak)UILabel *fuhaoLabel;
 
 @end
 @implementation ZCTeachingCell
@@ -33,31 +36,59 @@
     if (self=[super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
     
         UIImageView *personImage=[[UIImageView alloc] init];
-        personImage.backgroundColor=[UIColor redColor];
+        personImage.layer.cornerRadius=5;//设置圆角的半径为10
+         personImage.layer.masksToBounds=YES;
         [self.contentView addSubview:personImage];
         self.personImage=personImage;
         
         UILabel *nameLabel=[[UILabel alloc] init];
         nameLabel.text=@"教练昵称";
+        nameLabel.font=[UIFont systemFontOfSize:18];
         [self.contentView addSubview:nameLabel];
         self.nameLabel=nameLabel;
         
         UILabel *titleLabel=[[UILabel alloc] init];
         titleLabel.text=@"头衔";
+        titleLabel.textColor=ZCColor(85, 85, 85);
+        titleLabel.font=[UIFont systemFontOfSize:14];
         [self.contentView addSubview:titleLabel];
         self.titleLabel=titleLabel;
         
-        UILabel *genderLabel=[[UILabel alloc] init];
-        genderLabel.text=@"性别";
-        [self.contentView addSubview:genderLabel];
-        self.genderLabel=genderLabel;
+//        UILabel *genderLabel=[[UILabel alloc] init];
+//        genderLabel.text=@"性别";
+//        [self.contentView addSubview:genderLabel];
+//        self.genderLabel=genderLabel;
         
         
         
-        UIImageView *rightImage=[[UIImageView alloc] init];
-        rightImage.backgroundColor=[UIColor redColor];
-        [self.contentView addSubview:rightImage];
-        self.rightImage=rightImage;
+//        UIImageView *rightImage=[[UIImageView alloc] init];
+//        rightImage.backgroundColor=[UIColor redColor];
+//        [self.contentView addSubview:rightImage];
+//        self.rightImage=rightImage;
+        
+        
+        UILabel *moneyNameLabel=[[UILabel alloc] init];
+        moneyNameLabel.text=@"课程起售价:";
+        moneyNameLabel.textAlignment=NSTextAlignmentRight;
+        [self.contentView addSubview:moneyNameLabel];
+        self.moneyNameLabel=moneyNameLabel;
+        
+        UILabel *fuhaoLabel=[[UILabel alloc] init];
+        fuhaoLabel.text=@"￥";
+        fuhaoLabel.textColor=[UIColor redColor];
+        fuhaoLabel.font=[UIFont systemFontOfSize:12];
+        [self.contentView addSubview:fuhaoLabel];
+        self.fuhaoLabel=fuhaoLabel;
+        
+        UILabel *moneyLabel=[[UILabel alloc] init];
+        moneyLabel.text=@"10000";
+        [self.contentView addSubview:moneyLabel];
+        moneyLabel.font=[UIFont systemFontOfSize:22];
+        moneyLabel.textColor=[UIColor redColor];
+        
+        self.moneyLabel=moneyLabel;
+        
+        
         
     
     }
@@ -77,7 +108,9 @@
     self.nameLabel.text=[NSString stringWithFormat:@"%@",coachModel.name];
     self.titleLabel.text=[NSString stringWithFormat:@"%@",coachModel.title];
     //self.introductionLabel.text=[NSString stringWithFormat:@"%@",coachModel.title];
-    self.genderLabel.text=[NSString stringWithFormat:@"%@",coachModel.gender];
+    //self.genderLabel.text=[NSString stringWithFormat:@"%@",coachModel.gender];
+    
+    self.moneyLabel.text=coachModel.starting_price;
     
 }
 
@@ -86,36 +119,58 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    CGFloat personImageX=10;
-    CGFloat personImageY=10;
+    CGFloat personImageH=50;
+    CGFloat personImageX=15;
+    CGFloat personImageY=(self.frame.size.height-personImageH)/2;
     CGFloat personImageW=50;
-    CGFloat personImageH=self.frame.size.height-20;
+    
     self.personImage.frame=CGRectMake(personImageX, personImageY, personImageW, personImageH);
     
-    CGFloat nameLabelX=personImageX+personImageW+10;
+    CGFloat nameLabelX=personImageX+personImageW+15;
     CGFloat nameLabelY=personImageY;
-    CGFloat nameLabelW=60;
-    CGFloat nameLabelH=30;
+    CGFloat nameLabelW=100;
+    CGFloat nameLabelH=25;
     self.nameLabel.frame=CGRectMake(nameLabelX, nameLabelY, nameLabelW, nameLabelH);
     
     CGFloat titleLabelX=nameLabelX;
     CGFloat titleLabelY=nameLabelY+nameLabelH;
-    CGFloat titleLabelW=50;
-    CGFloat titleLabelH=30;
+    CGFloat titleLabelW=150;
+    CGFloat titleLabelH=25;
     self.titleLabel.frame=CGRectMake(titleLabelX, titleLabelY, titleLabelW, titleLabelH);
     
-    CGFloat  genderLabelX=nameLabelX+nameLabelW+30;
-    CGFloat  genderLabelY=nameLabelY+10;
-    CGFloat  genderLabelW=40;
-    CGFloat  genderLabelH=30;
-    self.genderLabel.frame=CGRectMake(genderLabelX, genderLabelY, genderLabelW, genderLabelH);
-
+//    CGFloat  genderLabelX=nameLabelX+nameLabelW+30;
+//    CGFloat  genderLabelY=nameLabelY+10;
+//    CGFloat  genderLabelW=40;
+//    CGFloat  genderLabelH=30;
+//    self.genderLabel.frame=CGRectMake(genderLabelX, genderLabelY, genderLabelW, genderLabelH);
+//
+//    
+//    CGFloat rightImageW=15;
+//    CGFloat rightImageH=15;
+//    CGFloat rightImageX=SCREEN_WIDTH-rightImageW-15;
+//    CGFloat rightImageY=(self.frame.size.height-rightImageH)/2;
+//    self.rightImage.frame=CGRectMake(rightImageX, rightImageY, rightImageW, rightImageH);
     
-    CGFloat rightImageW=15;
-    CGFloat rightImageH=15;
-    CGFloat rightImageX=SCREEN_WIDTH-rightImageW-15;
-    CGFloat rightImageY=(self.frame.size.height-rightImageH)/2;
-    self.rightImage.frame=CGRectMake(rightImageX, rightImageY, rightImageW, rightImageH);
+    
+    CGFloat moneyNameLabelY=personImageY;
+    CGFloat moneyNameLabelW=200;
+    CGFloat moneyNameLabelH=30;
+    CGFloat moneyNameLabelX=self.frame.size.width-moneyNameLabelW-15;
+    self.moneyNameLabel.frame=CGRectMake(moneyNameLabelX, moneyNameLabelY, moneyNameLabelW, moneyNameLabelH);
+    
+    
+    CGFloat fuhaoLabelW=12;
+    CGFloat fuhaoLabelH=7;
+    CGFloat fuhaoLabelX=self.frame.size.width-[ZCTool getFrame:CGSizeMake(1000, 25) content:self.moneyLabel.text fontSize:[UIFont systemFontOfSize:22]].size.width-fuhaoLabelW-15;
+    CGFloat fuhaoLabelY=moneyNameLabelY+moneyNameLabelH+13;
+    self.fuhaoLabel.frame=CGRectMake(fuhaoLabelX, fuhaoLabelY, fuhaoLabelW, fuhaoLabelH);
+    
+    CGFloat moneyLabelX=fuhaoLabelX+fuhaoLabelW;
+    CGFloat moneyLabelY=fuhaoLabelY-13;
+    CGFloat moneyLabelW=[ZCTool getFrame:CGSizeMake(1000, 25) content:self.moneyLabel.text fontSize:[UIFont systemFontOfSize:22]].size.width;
+    CGFloat moneyLabelH=25;
+    self.moneyLabel.frame=CGRectMake(moneyLabelX, moneyLabelY, moneyLabelW, moneyLabelH);
+    
 }
 
 

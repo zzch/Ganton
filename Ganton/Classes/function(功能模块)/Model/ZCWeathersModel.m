@@ -20,7 +20,7 @@
         self.date=[dict[@"date"] longValue];
         self.day_of_week=dict[@"day_of_week"];
         self.content=dict[@"content"];
-        self.day_code=dict[@"day_code"];
+        self.code=dict[@"code"];
         self.maximum_temperature=dict[@"maximum_temperature"];
         self.minimum_temperature=dict[@"minimum_temperature"];
         self.probability_of_precipitation=dict[@"probability_of_precipitation"];

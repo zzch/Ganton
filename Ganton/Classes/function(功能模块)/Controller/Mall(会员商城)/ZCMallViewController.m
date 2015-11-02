@@ -9,8 +9,10 @@
 #import "ZCMallViewController.h"
 #import "ZCMallCell.h"
 #import "ZCGoodsDetailsViewController.h"
+#import "ZCMallModel.h"
 @interface ZCMallViewController ()<UITableViewDataSource,UITableViewDelegate>
-
+@property(nonatomic,strong)NSMutableArray *mallArray;
+@property(nonatomic,weak)UITableView *tableView;
 @end
 
 @implementation ZCMallViewController
@@ -19,24 +21,68 @@
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
     
-    UITableView *tableView=[[UITableView alloc] init];
-    tableView.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    self.mallArray=[NSMutableArray array];
+    
+    [self addData];
+    
+    UITableView *tableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStyleGrouped];
+   // tableView.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     tableView.dataSource=self;
     tableView.delegate=self;
     [self.view addSubview:tableView];
-    tableView.rowHeight=100;
+    self.tableView=tableView;
+    tableView.rowHeight=150;
+    self.tableView.tableFooterView=[[UIView alloc] init];
     
+    
+    
+    
+    
+}
+
+//网络数据
+-(void)addData
+{
+    NSMutableDictionary *params=[[NSMutableDictionary alloc] init];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [defaults objectForKey:@"token"];
+    NSString *uuid = [defaults objectForKey:@"uuid"];
+    params[@"token"]=token;
+    params[@"club_uuid"]=uuid;
+    
+    NSString *URL=[NSString stringWithFormat:@"%@v1/promotions",API];
+
+    [ZCTool getWithUrl:URL params:params success:^(id responseObject) {
+        
+        ZCLog(@"%@",responseObject);
+        
+        for (NSDictionary *dict in responseObject) {
+            ZCMallModel *mallModel=[ZCMallModel mallModelWithDict:dict];
+            [self.mallArray addObject:mallModel];
+        }
+        
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+
+    return self.mallArray.count;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return 1;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     ZCMallCell *cell=[ZCMallCell cellWithTableView:tableView];
+    cell.mallModel=self.mallArray[indexPath.section];
     return cell;
     
 }
@@ -45,13 +91,23 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZCGoodsDetailsViewController *vc=[[ZCGoodsDetailsViewController alloc] init];
+    vc.uuid=[self.mallArray[indexPath.row] uuid];
     [self.navigationController pushViewController:vc animated:YES];
     
 }
 
 
 
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.1;
 
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 15;
+
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

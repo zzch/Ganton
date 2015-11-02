@@ -20,13 +20,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.navigationItem.title=@"球场公告";
+    
+    
     UITableView *tableView=[[UITableView alloc] init];
     tableView.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     tableView.delegate=self;
     tableView.dataSource=self;
     [self.view addSubview:tableView];
-    tableView.rowHeight=200;
+    tableView.rowHeight=70;
     self.tableView=tableView;
+    
+    self.tableView.tableFooterView=[[UIView alloc] init];
     
     self.announcementListArray=[NSMutableArray array];
     
@@ -80,6 +86,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     ZCAnnouncementDetailsViewController *vc=[[ZCAnnouncementDetailsViewController alloc] init];
     vc.uuid=[self.announcementListArray[indexPath.row] uuid];
     [self.navigationController pushViewController:vc animated:YES];

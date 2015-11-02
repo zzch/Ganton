@@ -8,8 +8,9 @@
 
 #import "ZCCourseDetailsViewController.h"
 #import "ZCCourseDetailsModel.h"
-@interface ZCCourseDetailsViewController ()
+@interface ZCCourseDetailsViewController ()<UIWebViewDelegate>
 @property(nonatomic,strong)ZCCourseDetailsModel *courseDetailsModel;
+@property(nonatomic,weak)UIScrollView *scrollView;
 @end
 
 @implementation ZCCourseDetailsViewController
@@ -17,8 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor=[UIColor whiteColor];
-    self.navigationItem.title=@"授课详情";
+    self.view.backgroundColor=ZCColor(237, 237, 237);
+    self.navigationItem.title=@"课程详情";
     
     
     [self addData];
@@ -55,47 +56,103 @@
 
 -(void)addControls
 {
+    
+    UIScrollView *scrollView=[[UIScrollView alloc] init];
+    scrollView.frame=self.view.frame;
+    [self.view addSubview:scrollView];
+    self.scrollView=scrollView;
+    
     UIView *topView=[[UIView alloc] init];
-    topView.frame=CGRectMake(0, 64, SCREEN_WIDTH, 200);
-    [self.view addSubview:topView];
+    topView.frame=CGRectMake(0, 0, SCREEN_WIDTH, 100);
+    topView.backgroundColor=[UIColor whiteColor];
+    [scrollView addSubview:topView];
     [self addTopViewControls:topView];
     
     
-    UIView *middleView=[[UIView alloc] init];
-    middleView.frame=CGRectMake(0, 264, SCREEN_WIDTH, 100);
-    [self.view addSubview:middleView];
-    [self addMiddleViewControls:middleView];
+//    UIView *middleView=[[UIView alloc] init];
+//    middleView.frame=CGRectMake(0, 264, SCREEN_WIDTH, 100);
+//    [self.view addSubview:middleView];
+//    [self addMiddleViewControls:middleView];
+//    
+//    UIView *lastView=[[UIView alloc] init];
+//    lastView.frame=CGRectMake(0, 370, SCREEN_WIDTH, 100);
+//    [self.view addSubview:lastView];
+//    [self addLastViewControls:lastView];
     
-    UIView *lastView=[[UIView alloc] init];
-    lastView.frame=CGRectMake(0, 370, SCREEN_WIDTH, 100);
-    [self.view addSubview:lastView];
-    [self addLastViewControls:lastView];
+    
+    UIWebView *webView=[[UIWebView alloc] init];
+    webView.frame=CGRectMake(0, topView.frame.size.height+topView.frame.origin.y+15, SCREEN_WIDTH, 200);
+     webView.delegate=self;
+    
+    webView.scrollView.bounces = NO;
+    webView.scrollView.showsHorizontalScrollIndicator = NO;
+    webView.scrollView.scrollEnabled = NO;
+    [webView sizeToFit];
+    
+    //webView.backgroundColor=[UIColor redColor];
+    //[webView loadHTMLString:[NSString stringWithFormat:@"%@",self.coachDetailsModel.description] baseURL:nil];
+    [scrollView addSubview:webView];
+    [webView loadHTMLString:[NSString stringWithFormat:@"%@",self.courseDetailsModel.Description] baseURL:nil];
 
 }
+
+
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    CGFloat webViewHeight=[webView.scrollView contentSize].height;
+    CGRect newFrame = webView.frame;
+    newFrame.size.height = webViewHeight;
+    webView.frame = newFrame;
+    
+    self.scrollView.contentSize=CGSizeMake(0, webViewHeight+130);
+    
+    ZCLog(@"%f",webViewHeight);
+}
+
 
 -(void)addTopViewControls:(UIView *)view
 {
 
     UILabel *nameLabel=[[UILabel alloc] init];
-    nameLabel.frame=CGRectMake(10, 20, 200, 30);
+    nameLabel.frame=CGRectMake(18, 12, 200, 20);
     nameLabel.text=[NSString stringWithFormat:@"课程名称: %@",self.courseDetailsModel.name];
+    nameLabel.font=[UIFont systemFontOfSize:15];
     [view addSubview:nameLabel];
     
     UILabel *timeLabel=[[UILabel alloc] init];
-    timeLabel.frame=CGRectMake(10, 60, 200, 30);
+    timeLabel.frame=CGRectMake(18, 40, 200, 20);
     timeLabel.text=[NSString stringWithFormat:@"有效期: %@个月",self.courseDetailsModel.valid_months ];
+    timeLabel.font=[UIFont systemFontOfSize:15];
     [view addSubview:timeLabel];
     
     UILabel *modelLabel=[[UILabel alloc] init];
-    modelLabel.frame=CGRectMake(10, 100, 200, 30);
+    modelLabel.frame=CGRectMake(18, 68, 200, 20);
     modelLabel.text=[NSString stringWithFormat:@"授课形式: 1对%@",self.courseDetailsModel.maximum_students ];
+    modelLabel.font=[UIFont systemFontOfSize:15];
     [view addSubview:modelLabel];
     
     
     UILabel *money=[[UILabel alloc] init];
-    money.frame=CGRectMake(SCREEN_WIDTH-100, 10, 100, 30);
-    money.text=[NSString stringWithFormat:@"￥%@", self.courseDetailsModel.price];
+    CGFloat moneyW=[ZCTool getFrame:CGSizeMake(300, 20) content:self.courseDetailsModel.price fontSize:[UIFont systemFontOfSize:22]].size.width;
+    CGFloat moneyH=20;
+    CGFloat moneyX=SCREEN_WIDTH-moneyW-15;
+    CGFloat moneyY=view.frame.size.height-20-12;
+    money.frame=CGRectMake(moneyX, moneyY, moneyW, moneyH);
+    money.text=[NSString stringWithFormat:@"%@", self.courseDetailsModel.price];
+    money.font=[UIFont systemFontOfSize:22];
+    money.textColor=[UIColor redColor];
     [view addSubview:money];
+    
+    UILabel *fuhaoLabel=[[UILabel alloc] init];
+    CGFloat fuhaoLabelX=moneyX-12;
+    CGFloat fuhaoLabelY=view.frame.size.height-12-10;
+    fuhaoLabel.frame=CGRectMake(fuhaoLabelX, fuhaoLabelY, 12, 8);
+    fuhaoLabel.text=@"￥";
+    fuhaoLabel.textColor=[UIColor redColor];
+    fuhaoLabel.font=[UIFont systemFontOfSize:12];
+    [view addSubview:fuhaoLabel];
+    
     
     
 }

@@ -12,7 +12,7 @@
 @property(nonatomic,assign)long date;
 @property(nonatomic,copy)NSString *day_of_week;
 @property(nonatomic,copy)NSString *content;
-@property(nonatomic,copy)NSString *day_code;
+@property(nonatomic,copy)NSString *code;
 @property(nonatomic,copy)NSString *maximum_temperature;
 @property(nonatomic,copy)NSString *minimum_temperature;
 @property(nonatomic,copy)NSString *probability_of_precipitation;

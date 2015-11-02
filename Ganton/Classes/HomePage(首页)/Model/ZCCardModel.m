@@ -20,6 +20,8 @@
         self.uuid=dict[@"uuid"];
         self.name=dict[@"name"];
         self.logo=dict[@"logo"];
+        self.phone_number=dict[@"phone_number"];
+        self.address=dict[@"address"];
     }
     return self;
 }
