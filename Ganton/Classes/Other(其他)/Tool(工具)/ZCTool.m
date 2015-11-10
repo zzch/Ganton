@@ -9,7 +9,7 @@
 #import "ZCTool.h"
 #import <AddressBook/AddressBook.h>
 #import "AppDelegate.h"
-
+#import "ZCAccountViewController.h"
 @interface ZCTool ()<AFMultipartFormData>
 
 @end
@@ -39,6 +39,46 @@
     r = (x >> 16) & 0xFF;
     return [UIColor colorWithRed:(float)r/255.0f green:(float)g/255.0f blue:(float)b/255.0f alpha:1];
 }
+
+//根据时间戳 返回是今天还是明天后天
++(NSString * )JudgmentIsWhichDay:(long )dateTime
+{
+    
+    NSDate *confromTimesp=[NSDate dateWithTimeIntervalSince1970:dateTime];
+    
+    NSDate *nowDate = [self dateWithYMDDate:[NSDate date]];
+    NSDate *selfDate = [self dateWithYMDDate:confromTimesp];
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *cmps = [calendar components:NSCalendarUnitDay fromDate:nowDate toDate:selfDate options:0];
+    //return cmps.day == 1;
+    ZCLog(@"%@",nowDate);
+    ZCLog(@"%@",selfDate);
+    ZCLog(@"%ld",(long)cmps.day);
+    
+    if (cmps.day == 0) {
+        return @"今日 ";
+    }else if (cmps.day == 1){
+        return @"明日 ";
+    }else if (cmps.day == 2){
+        return @"后日 ";
+    }else if (cmps.day == 3){
+        return @"大后天 ";
+    }else{
+        return nil;
+    }
+    
+}
+
+
++ (NSDate *)dateWithYMDDate:(NSDate *)date
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd";
+    NSString *selfStr = [dateFormatter stringFromDate:date];
+    return [dateFormatter dateFromString:selfStr];
+}
+
 
 
 + (id) _valueOrNil:(id)obj {
@@ -157,21 +197,38 @@
     
     [manger GET:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //        WWLog(@"AFN原生返回的数据%@",responseObject);
+         ZCLog(@"%@",responseObject);
         
-//        //判断token是否过期
-//        if ([responseObject[@"status"] integerValue] == 403)
-//        {
-//            [AppDelegate resetUserInfo];
-//            return ;
-//        }
         
+        if (![responseObject isKindOfClass:[NSArray class]]) {
+            //判断token是否过期
+            if ([responseObject[@"error_code"] integerValue] == 10002)
+            {
+                // [AppDelegate resetUserInfo];
+                [self tokenIsFailure];
+                return ;
+            }
+
+        }
+        
+        
+       ZCLog(@"%ld",(long)[operation.response statusCode]);
+       
         if (success)
         {
             success(responseObject);
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        WWLog(@"%@",error);
+        ZCLog(@"%ld",(long)[operation.response statusCode]);
+        
+        if ((long)[operation.response statusCode]==401 ) {
+            
+            [self tokenIsFailure];
+            return ;
+        }
+        
+        
         if (failure)
         {
             failure(error);
@@ -188,13 +245,18 @@
     [manger POST:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         // 请求成功, 通知调用者请求成功
         
-//        //判断token是否过期
-//        if ([responseObject[@"status"] integerValue] == 403)
-//        {
-//           // [AppDelegate resetUserInfo];
-//            return ;
-//        }
+        if (![responseObject isKindOfClass:[NSArray class]]) {
+            //判断token是否过期
+            if ([responseObject[@"error_code"] integerValue] == 10002)
+            {
+                // [AppDelegate resetUserInfo];
+                [self tokenIsFailure];
+                return ;
+            }
+            
+        }
 
+        
         if (success)
         {
             success(responseObject);
@@ -203,12 +265,59 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         // 通知调用者请求失败
 //        WWLog(@"请求成功");
+        
+        if ((long)[operation.response statusCode]==401 ) {
+            
+            [self tokenIsFailure];
+            
+            return ;
+        }
+        
+        
+        
         if (failure)
         {
             failure(error);
         }
     }];
 }
+
+
+
+//Token 失效
++(void)tokenIsFailure
+{
+    [MBProgressHUD showError:@"账号在其他设备上登录，请重新登录"];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:@"token"];
+    [defaults removeObjectForKey:@"uuid"];
+    [defaults removeObjectForKey:@"birthday"];
+    [defaults removeObjectForKey:@"portrait"];
+    [defaults removeObjectForKey:@"gender"];
+    [defaults removeObjectForKey:@"name"];
+
+    
+    [UIView animateWithDuration:0 delay:2 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        
+        UIWindow *window=[[UIApplication sharedApplication].delegate window];
+        
+        //UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[ZCAccountViewController alloc] init]];
+        window.rootViewController = [[ZCAccountViewController alloc] init];
+        
+    } completion:^(BOOL finished) {
+        
+    }];
+    
+    
+}
+
+
+
+
+
+
+
 
 
 

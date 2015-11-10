@@ -42,9 +42,24 @@
         [datePicker setMaximumDate:maxDate];
         [datePicker setMinimumDate:minDate];
         
+       
+        
+        
+//        NSCalendar *calendar = [[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] autorelease];
+//        NSDateComponents *components = [[[NSDateComponents alloc] init] autorelease];
+        [comps setYear:1980];
+        [comps setMonth:1];
+        [comps setDay:1];
+       // NSDate *defualtDate = [comps dateFromComponents:components];
+        NSDate *defualtDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+        
+        datePicker.date = defualtDate;
+        
+        
         [self addSubview:datePicker];
         
         
+       
         
         
         

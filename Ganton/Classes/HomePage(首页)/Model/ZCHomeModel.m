@@ -19,7 +19,8 @@
     if (self=[super init]) {
         self.name=dict[@"club"][@"name"];
         self.logo=dict[@"club"][@"logo"];
-        
+        self.maximum_temperature=dict[@"weather"][@"maximum_temperature"];
+        self.date=[dict[@"weather"][@"date"] longValue];
         
         
         NSMutableArray *array=[NSMutableArray array];

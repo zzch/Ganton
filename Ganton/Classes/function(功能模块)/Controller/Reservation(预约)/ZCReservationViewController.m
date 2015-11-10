@@ -228,6 +228,7 @@
     chooseTimeLabel.frame=CGRectMake(chooseTimeLabelX, chooseTimeLabelY, chooseTimeLabelW, chooseTimeLabelH);
     [timeButton addSubview:chooseTimeLabel];
     chooseTimeLabel.text=@"11:00";
+    self.chooseTime=@"11:00";
     self.chooseTimeLabel=chooseTimeLabel;
     
     
@@ -270,12 +271,14 @@
     todayLabel.frame=CGRectMake(0, 7, button.frame.size.width, 20);
     todayLabel.text=[self JudgmentIsWhichDay:dateTime];
     todayLabel.textAlignment=NSTextAlignmentCenter;
+    todayLabel.font=[UIFont systemFontOfSize:14];
     [button addSubview:todayLabel];
     
     UILabel *timeLabel=[[UILabel alloc] init];
     timeLabel.frame=CGRectMake(0, todayLabel.frame.size.height+7+5, button.frame.size.width, 20);
     timeLabel.text=nowDateString;
     timeLabel.textAlignment=NSTextAlignmentCenter;
+    timeLabel.font=[UIFont systemFontOfSize:14];
     [button addSubview:timeLabel];
     
 
@@ -395,17 +398,44 @@
     NSDate *selfDate=[NSDate dateWithTimeIntervalSince1970:self.time];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
     dateFormatter.dateFormat = @"yyyy-MM-dd";
     NSString *selfStr = [dateFormatter stringFromDate:selfDate];
-    
+    //
+   
     NSString *timeStr=[NSString stringWithFormat:@"%@ %@:00",selfStr,self.chooseTime];
     ZCLog(@"%@",timeStr);
     
-     NSDate *date=[dateFormatter dateFromString:selfStr];
     
+    
+     NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
+     dateFormatter2.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    [dateFormatter2 setLocale:[NSLocale currentLocale]];
+   
+     NSDate *timeDate=[dateFormatter2 dateFromString:timeStr];
+    
+     ZCLog(@"%@",timeDate);
+//    NSTimeZone *fromzone = [NSTimeZone systemTimeZone];
+//    NSInteger frominterval = [fromzone secondsFromGMTForDate: date];
+//    NSDate *fromDate = [date  dateByAddingTimeInterval: frominterval];
     //吧时间变成时间濯
-    long time=(long)[date timeIntervalSince1970];
+    long time=(long)[timeDate timeIntervalSince1970];
+    
     ZCLog(@"%ld",time);
+    
+    
+    
+//    // 创建一个日期格式器
+//    NSDateFormatter *nowDateFormatter = [[NSDateFormatter alloc] init];
+//    // 为日期格式器设置格式字符串
+//    [nowDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+//    // 使用日期格式器格式化日期、时间
+//    NSDate *confromTimesp=[NSDate dateWithTimeIntervalSince1970:time];
+//    NSString *nowDateString = [nowDateFormatter stringFromDate:confromTimesp ];
+//    
+//    ZCLog(@"%@",nowDateString);
+    
+    
     
     NSMutableDictionary *params=[NSMutableDictionary dictionary];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -446,6 +476,7 @@
     UIWindow *win=[[UIApplication sharedApplication].delegate window];
     timeView.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     timeView.delegate=self;
+    timeView.timeStr=self.chooseTime;
     [win addSubview:timeView];
 
 }
@@ -513,7 +544,7 @@
     
     UILabel *textLabel=[[UILabel alloc] init];
     textLabel.textColor=ZCColor(180, 191, 195);
-    textLabel.font=[UIFont systemFontOfSize:20];
+    textLabel.font=[UIFont systemFontOfSize:16];
     [view addSubview:textLabel];
     self.textLabel=textLabel;
     
@@ -538,7 +569,7 @@
     UILabel *windLabel=[[UILabel alloc] init];
     windLabel.textColor=ZCColor(180, 191, 195);
     //windLabel.backgroundColor=[UIColor redColor];
-    windLabel.font=[UIFont systemFontOfSize:18];
+    windLabel.font=[UIFont systemFontOfSize:14];
     [scrollView addSubview:windLabel];
     self.windLabel=windLabel;
     

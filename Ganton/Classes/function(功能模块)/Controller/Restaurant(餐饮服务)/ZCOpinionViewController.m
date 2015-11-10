@@ -38,24 +38,24 @@
     view.frame=CGRectMake(15, 25, SCREEN_WIDTH-30, 96);
     view.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:view];
-    [self addControlsWithView:view andTopText:@"Catering" andLastText:@"球场餐饮服务"];
+    [self addControlsWithView:view andTopText:@"Manager" andLastText:@"总经理" andImageStr:@"yjfk_zongjingli"];
     
     UIView *view2=[[UIView alloc] init];
     view2.frame=CGRectMake(15, view.frame.size.height+view.frame.origin.y+35, SCREEN_WIDTH-30, 96);
     view2.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:view2];
-    [self addControlsWithView:view2 andTopText:@"Catering" andLastText:@"球场餐饮服务"];
+    [self addControlsWithView:view2 andTopText:@"Reception" andLastText:@"前台经理" andImageStr:@"yjfk_qiantai"];
     
     UIView *view3=[[UIView alloc] init];
     view3.frame=CGRectMake(15, view2.frame.size.height+view2.frame.origin.y+35, SCREEN_WIDTH-30, 96);
     view3.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:view3];
-    [self addControlsWithView:view3 andTopText:@"Catering" andLastText:@"球场餐饮服务"];
+    [self addControlsWithView:view3 andTopText:@"Restaurant" andLastText:@"餐厅经理" andImageStr:@"yjfk_iocn_canting"];
 
 }
 
 
--(void)addControlsWithView:(UIView *)view andTopText:(NSString *)topText andLastText:(NSString *)lastStr
+-(void)addControlsWithView:(UIView *)view andTopText:(NSString *)topText andLastText:(NSString *)lastStr andImageStr:(NSString *)imageStr
 {
     
     UILabel *topLable=[[UILabel alloc] init];
@@ -67,7 +67,8 @@
     
     UIImageView *imageView=[[UIImageView alloc] init];
     imageView.frame=CGRectMake((view.frame.size.width-30)/2, -18, 35, 35);
-    imageView.image=[UIImage imageNamed:@"yjfk_iocn_canting"];
+    //imageView.image=[UIImage imageNamed:@"yjfk_iocn_canting"];
+    imageView.image=[UIImage imageNamed:imageStr];
     [view addSubview:imageView];
     
     UIView *bjView=[[UIView alloc] init];
@@ -104,10 +105,17 @@
     if (button.tag==1101) {
       
         ZCViewsOnContentViewController *vc=[[ZCViewsOnContentViewController alloc] init];
+        vc.chooseIndex=1;
         [self.navigationController pushViewController:vc animated:YES];
     }else if (button.tag==1102){
-    
+        ZCViewsOnContentViewController *vc=[[ZCViewsOnContentViewController alloc] init];
+        vc.chooseIndex=2;
+        [self.navigationController pushViewController:vc animated:YES];
     }else{
+        
+        ZCViewsOnContentViewController *vc=[[ZCViewsOnContentViewController alloc] init];
+        vc.chooseIndex=3;
+        [self.navigationController pushViewController:vc animated:YES];
     
     }
         

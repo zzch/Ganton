@@ -110,7 +110,7 @@
     
     UILabel *weatherLabel=[[UILabel alloc] init];
     weatherLabel.frame=CGRectMake(0, 0, 90, 40);
-    weatherLabel.text=@"今天: 23 ℃";
+    weatherLabel.text=[NSString stringWithFormat:@"%@ %@ ℃",[ZCTool JudgmentIsWhichDay:self.homeModel.date],self.homeModel.maximum_temperature ];
     weatherLabel.font=[UIFont systemFontOfSize:14];
     weatherLabel.textAlignment=NSTextAlignmentCenter;
     [noticeView addSubview:weatherLabel];
@@ -396,7 +396,7 @@
     [view addSubview:nameLabel];
     
     UILabel *cardName=[[UILabel alloc] init];
-    CGFloat cardNameW=SCREEN_WIDTH;
+    CGFloat cardNameW=view.frame.size.width;
     CGFloat cardNameH=30;
     CGFloat cardNameX=0;
     CGFloat cardNameY=(view.frame.size.height-cardNameH)/2;

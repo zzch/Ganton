@@ -31,8 +31,8 @@
         self.window.rootViewController = nav;
 
     }else{
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[ZCAccountViewController alloc] init]];
-        self.window.rootViewController = nav;
+        //UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[ZCAccountViewController alloc] init]];
+        self.window.rootViewController = [[ZCAccountViewController alloc] init];
 
     }
     

@@ -68,9 +68,15 @@
     params[@"token"]=token;
     params[@"club_uuid"]=uuid;
     params[@"content"]=self.content.text;
+    
+    if (self.chooseIndex==1) {
+        params[@"type"]=@"manager";
+    }else if (self.chooseIndex==2){
+        params[@"type"]=@"receiption";
+    }else if (self.chooseIndex==3){
+        params[@"type"]=@"restaurant";
+    }
     NSString *URL=[NSString stringWithFormat:@"%@v1/feedbacks",API];
-    
-    
     [ZCTool postWithUrl:URL params:params success:^(id responseObject) {
         ZCLog(@"%@",responseObject);
         

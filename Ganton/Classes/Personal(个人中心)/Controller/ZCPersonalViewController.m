@@ -141,7 +141,7 @@
     CGFloat exitButtonX=0;
     CGFloat exitButtonY=button3Y+button3H+15;
     CGFloat exitButtonW=SCREEN_WIDTH-2*exitButtonX;
-    CGFloat exitButtonH=60;
+    CGFloat exitButtonH=50;
     exitButton.frame=CGRectMake(exitButtonX, exitButtonY, exitButtonW, exitButtonH);
     [exitButton setTitle:@"退出登录" forState:UIControlStateNormal];
     [self.view addSubview:exitButton];
@@ -208,8 +208,8 @@
         
         UIWindow *wd = [[UIApplication sharedApplication].delegate window];
        
-        UINavigationController *nav=[[UINavigationController alloc] initWithRootViewController:vc];
-        wd.rootViewController=nav;
+       // UINavigationController *nav=[[UINavigationController alloc] initWithRootViewController:vc];
+        wd.rootViewController=vc;
        
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -290,7 +290,7 @@
     photoView.frame=CGRectMake(photoViewX, photoViewY, photoViewW, photoViewH);
     photoView.layer.masksToBounds = YES;
     photoView.layer.cornerRadius = 5;
-    photoView.image=[UIImage imageNamed:@"3088644_150703431167_2.jpg"];
+    photoView.image=[UIImage imageNamed:@"morengtouxiang"];
     [photoViewBtn addSubview:photoView];
     self.photoView=photoView;
     
@@ -330,7 +330,7 @@
     if ([ZCTool _valueOrNil:self.personDict[@"portrait"]]==nil) {
        // self.photoView.image=[UIImage imageNamed:@"3088644_150703431167_2.jpg"];
     }else{
-        [self.photoView sd_setImageWithURL:[NSURL URLWithString:self.personDict[@"portrait"]] placeholderImage:[UIImage imageNamed:@"3088644_150703431167_2.jpg"]];
+        [self.photoView sd_setImageWithURL:[NSURL URLWithString:self.personDict[@"portrait"]] placeholderImage:[UIImage imageNamed:@"morengtouxiang"]];
     }
 
 

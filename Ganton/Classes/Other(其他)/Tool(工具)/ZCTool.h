@@ -16,7 +16,8 @@ typedef void (^failureBlock)(NSError *error);
 
 + (UIColor *)colorWithHexString:(NSString *)str;
 + (id) _valueOrNil:(id)obj;
-
+//根据时间戳 返回是今天还是明天后天
++(NSString * )JudgmentIsWhichDay:(long )dateTime;
 /**
 
   根据字符串计算出宽高

@@ -11,6 +11,7 @@
 @property(nonatomic,weak)UILabel *TextLabel;
 @property(nonatomic,weak)UILabel *moneyLabel;
 @property(nonatomic,weak)UIImageView *rightImage;
+@property(nonatomic,weak)UILabel *fuhaoLabel;
 @end
 @implementation ZCCoachViewCell
 
@@ -35,12 +36,20 @@
         self.TextLabel=textLabel;
         
         UILabel *moneyLabel=[[UILabel alloc] init];
-        
         moneyLabel.text=@"100000元";
-        moneyLabel.font=[UIFont systemFontOfSize:15];
+        moneyLabel.font=[UIFont systemFontOfSize:18];
+        moneyLabel.textColor=[UIColor redColor];
         moneyLabel.textAlignment=NSTextAlignmentRight;
         [self.contentView addSubview:moneyLabel];
         self.moneyLabel=moneyLabel;
+        
+        
+        UILabel *fuhaoLabel=[[UILabel alloc] init];
+        fuhaoLabel.text=@"￥";
+        fuhaoLabel.textColor=[UIColor redColor];
+        fuhaoLabel.font=[UIFont systemFontOfSize:12];
+        [self.contentView addSubview:fuhaoLabel];
+        self.fuhaoLabel=fuhaoLabel;
         
         UIImageView *rightImage=[[UIImageView alloc] init];
         rightImage.image=[UIImage imageNamed:@"shouye_arrow_icon"];
@@ -57,7 +66,7 @@
     _courseModel=courseModel;
     
     self.TextLabel.text=courseModel.name;
-    self.moneyLabel.text=[NSString stringWithFormat:@"%@元",courseModel.price];
+    self.moneyLabel.text=[NSString stringWithFormat:@"%@",courseModel.price];
 
 }
 
@@ -69,7 +78,12 @@
     
     self.TextLabel.frame=CGRectMake(15, 0, 150, self.frame.size.height);
     
-    self.moneyLabel.frame=CGRectMake(self.frame.size.width-6-15-165, 0, 150, self.frame.size.height);
+    CGFloat moneyLabelW=[ZCTool getFrame:CGSizeMake(1000, self.frame.size.height) content:self.moneyLabel.text fontSize:[UIFont systemFontOfSize:18]].size.width;
+    self.moneyLabel.frame=CGRectMake(self.frame.size.width-6-15-moneyLabelW-15, 0, moneyLabelW, self.frame.size.height);
+    
+    CGFloat fuhaoLabelX=self.moneyLabel.frame.origin.x-12;
+    CGFloat fuhaoLabelY=(self.frame.size.height-7)/2+2;
+    self.fuhaoLabel.frame=CGRectMake(fuhaoLabelX, fuhaoLabelY, 12, 7);
     
     self.rightImage.frame=CGRectMake(self.frame.size.width-6-15, (self.frame.size.height-11)/2, 6, 11);
 

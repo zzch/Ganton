@@ -19,6 +19,11 @@
 //公告信息
 @property(nonatomic,strong)NSMutableArray *announcements;
 
+
+//天气模型 ，数据返回是是一个字典 单独抽取出来
+@property(nonatomic,copy)NSString *maximum_temperature;
+@property(nonatomic,assign)long date;
+
 + (instancetype)homeModelWithDict:(NSDictionary *)dict;
 - (instancetype)initWithDict:(NSDictionary *)dict;
 

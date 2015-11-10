@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "ZCCardModel.h"
 @interface ZCCardPackageTableViewCell : UITableViewCell
+@property (nonatomic, assign) CGFloat cellHeight;
 +(instancetype)cellWithTable:(UITableView *)tableView;
 @property(nonatomic,strong)ZCCardModel *cardModel;
+-(void)adjustFrame;
 @end

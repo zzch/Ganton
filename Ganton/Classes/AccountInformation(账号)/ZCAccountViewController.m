@@ -52,6 +52,8 @@
     self.view.backgroundColor=[UIColor whiteColor];
     //创建CLLocationManager定位
     [self initCLLocationManager];
+    
+    [self addControls];
 }
 
 
@@ -114,7 +116,7 @@
     self.latitude=location.coordinate.latitude;
     
     //网络数据加载
-    [self addControls];
+    
     
 }
 
@@ -128,7 +130,7 @@
     self.latitude=0;
     
     //网络数据加载
-    [self addControls];
+    //[self addControls];
 }
 
 
@@ -136,20 +138,21 @@
 -(void)addControls
 {
     
-//    UIImageView *imageView=[[UIImageView alloc] init];
-//    CGFloat imageViewX=0;
-//    CGFloat imageViewY=0;
-//    CGFloat imageViewW=10;
-//    CGFloat imageViewH=10;
-//    imageView.frame=CGRectMake(imageViewX, imageViewY, imageViewW, imageViewH);
-//    [self.view addSubview:imageView];
+    UIImageView *imageView=[[UIImageView alloc] init];
+    CGFloat imageViewX=0;
+    CGFloat imageViewY=0;
+    CGFloat imageViewW=SCREEN_WIDTH;
+    CGFloat imageViewH=310*(SCREEN_WIDTH/(1242/3));
+    imageView.frame=CGRectMake(imageViewX, imageViewY, imageViewW, imageViewH);
+    imageView.image=[UIImage imageNamed:@"dengluBjTu"];
+    [self.view addSubview:imageView];
     
     
     
     
     UIView *view=[[UIView alloc] init];
     CGFloat viewX=42;
-    CGFloat viewY=SCREEN_HEIGHT*0.2;
+    CGFloat viewY=imageViewH+5;
     CGFloat viewW=SCREEN_WIDTH-2*viewX;
     CGFloat viewH=40;
     view.frame=CGRectMake(viewX, viewY, viewW, viewH);
@@ -159,16 +162,16 @@
     
     UIImageView *personImage=[[UIImageView alloc] init];
     CGFloat personImageX=0;
-    CGFloat personImageY=11;
-    CGFloat personImageW=15;
-    CGFloat personImageH=17;
+    CGFloat personImageY=7;
+    CGFloat personImageW=25;
+    CGFloat personImageH=25;
     personImage.frame=CGRectMake(personImageX, personImageY, personImageW, personImageH);
-    personImage.image=[UIImage imageNamed:@"denglu_yonghu_icon"];
+    personImage.image=[UIImage imageNamed:@"1"];
     [view addSubview:personImage];
     
 
     UITextField *PhoneTextField=[[UITextField alloc] init];
-    CGFloat phoneTextFieldX=personImageH+10;
+    CGFloat phoneTextFieldX=personImageH+12;
     CGFloat phoneTextFieldY=0;
     CGFloat phoneTextFieldW=viewW-phoneTextFieldX;
     CGFloat phoneTextFieldH=40;
@@ -403,12 +406,12 @@
    
     UIImageView *personImage=[[UIImageView alloc] init];
     CGFloat personImageX=0;
-    CGFloat personImageY=11;
-    CGFloat personImageW=15;
-    CGFloat personImageH=15;
+    CGFloat personImageY=7;
+    CGFloat personImageW=25;
+    CGFloat personImageH=25;
     personImage.frame=CGRectMake(personImageX, personImageY, personImageW, personImageH);
     personImage.alpha=0.0;
-    personImage.image=[UIImage imageNamed:@"denglu_icon2"];
+    personImage.image=[UIImage imageNamed:@"2"];
     [welcomeView addSubview:personImage];
     
     
@@ -441,23 +444,25 @@
         
     } completion:^(BOOL finished) {
        
-     personImage.alpha=1.0;
+        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            personImage.alpha=1.0;
+        } completion:^(BOOL finished) {
+            
+            [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                
+                welcomeLabel.frame=CGRectMake(37, 0, welcomeViewW, 40);
+                welcomeLabel.alpha=0.8;
+            } completion:^(BOOL finished) {
+                
+            }];
+
+        }];
         
-        
-        
-    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        
-        welcomeLabel.frame=CGRectMake(27, 0, welcomeViewW, 40);
-       welcomeLabel.alpha=0.8;
-        
-       
-        
-    } completion:^(BOOL finished) {
-        
-    
-        
-    }];
      
+        
+        
+        
+        
 
         
     }];
@@ -483,12 +488,12 @@
     
     UIImageView *personImage=[[UIImageView alloc] init];
     CGFloat personImageX=0;
-    CGFloat personImageY=11;
-    CGFloat personImageW=15;
-    CGFloat personImageH=21;
+    CGFloat personImageY=7;
+    CGFloat personImageW=25;
+    CGFloat personImageH=25;
     personImage.frame=CGRectMake(personImageX, personImageY, personImageW, personImageH);
     personImage.alpha=0.0;
-    personImage.image=[UIImage imageNamed:@"denglu_icon1"];
+    personImage.image=[UIImage imageNamed:@"3"];
     [welcomeView2 addSubview:personImage];
 
     
@@ -512,16 +517,25 @@
         
     } completion:^(BOOL finished) {
         
-        personImage.alpha=1.0;
         
         [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-             welcomeLabel2.frame=CGRectMake(27, 0, welcomeView2W, 40);
-            welcomeLabel2.alpha=0.8;
+            personImage.alpha=1.0;
         } completion:^(BOOL finished) {
-            //调用登陆
-            [self addThirdView:welcomeView2];
+            [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                welcomeLabel2.frame=CGRectMake(37, 0, welcomeView2W, 40);
+                welcomeLabel2.alpha=0.8;
+            } completion:^(BOOL finished) {
+                //调用登陆
+                [self addThirdView:welcomeView2];
+            }];
+
+            
         }];
-    
+
+        
+       
+        
+        
     }];
 
 }
@@ -548,12 +562,12 @@
     
     UIImageView *personImage=[[UIImageView alloc] init];
     CGFloat personImageX=0;
-    CGFloat personImageY=11;
-    CGFloat personImageW=15;
-    CGFloat personImageH=17;
+    CGFloat personImageY=7;
+    CGFloat personImageW=25;
+    CGFloat personImageH=25;
     personImage.frame=CGRectMake(personImageX, personImageY, personImageW, personImageH);
     personImage.alpha=0.0;
-    personImage.image=[UIImage imageNamed:@"denglu_yanzhen_icon"];
+    personImage.image=[UIImage imageNamed:@"4"];
     [thirdView addSubview:personImage];
     
     
@@ -577,12 +591,17 @@
         
     } completion:^(BOOL finished) {
         
-        personImage.alpha=1.0;
+        
+        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            personImage.alpha=1.0;
+        } completion:^(BOOL finished) {
+        
+        
         
         
         [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             
-            VerificationTextField.frame=CGRectMake(30, 0, 110, 40);
+            VerificationTextField.frame=CGRectMake(37, 0, 110, 40);
             
         } completion:^(BOOL finished) {
             
@@ -590,7 +609,7 @@
             [self VerificationCodeButton:thirdView];
             
         }];
-        
+        }];
         
         
     }];
@@ -642,7 +661,7 @@
 -(void)heLandingButton
 {
     UIButton *landingButton=[[UIButton alloc] init];
-    landingButton.frame=CGRectMake((SCREEN_WIDTH-105)/2, 370, 110, 32);
+    landingButton.frame=CGRectMake((SCREEN_WIDTH-105)/2, self.thirdView.frame.size.height+self.thirdView.frame.origin.y+30, 110, 32);
     [landingButton setTitle:@"登录" forState:UIControlStateNormal];
 //    [landingButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     landingButton.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"denglu_icon"]];
@@ -809,7 +828,7 @@
     
     
     CGRect frame = textField.superview.frame;
-    int offset = frame.origin.y + 32 - (self.view.frame.size.height - 216.0);//键盘高度216
+    int offset = frame.origin.y + 32+32 - (self.view.frame.size.height - 216.0);//键盘高度216
     
     NSTimeInterval animationDuration = 0.30f;
     [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
@@ -832,7 +851,7 @@
 //输入框编辑完成以后，将视图恢复到原始状态
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    self.view.frame =CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height);
+    self.view.frame =CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
 }
 
 

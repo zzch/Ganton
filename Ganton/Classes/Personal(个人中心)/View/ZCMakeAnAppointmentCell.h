@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZCMakeAnAppointmentModel.h"
 @interface ZCMakeAnAppointmentCell : UITableViewCell
+@property(nonatomic,strong)ZCMakeAnAppointmentModel *makeAnAppointmentModel;
 +(instancetype)cellWithTable:(UITableView *)tableView;
 @end

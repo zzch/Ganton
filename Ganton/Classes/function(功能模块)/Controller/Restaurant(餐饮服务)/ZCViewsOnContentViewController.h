@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ZCViewsOnContentViewController : UIViewController
-
+@property(nonatomic,assign) int chooseIndex;
 @end

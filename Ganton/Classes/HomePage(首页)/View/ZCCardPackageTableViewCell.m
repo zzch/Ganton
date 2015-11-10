@@ -92,16 +92,18 @@
         
         UIImageView *imageView2=[[UIImageView alloc] init];
         imageView2.image=[UIImage imageNamed:@"phone"];
+        imageView2.alpha=0.5;
         [bjView addSubview:imageView2];
         self.imageView2=imageView2;
         
         UILabel *phoneLabel=[[UILabel alloc] init];
-        phoneLabel.text=@":15010177980";
+        phoneLabel.text=@"15010177980";
         [bjView addSubview:phoneLabel];
         self.phoneLabel=phoneLabel;
         
         UIImageView *imageView3=[[UIImageView alloc] init];
         imageView3.image=[UIImage imageNamed:@"location"];
+        imageView3.alpha=0.5;
         [bjView addSubview:imageView3];
         self.imageView3=imageView3;
 
@@ -129,22 +131,21 @@
     
     self.nameLabel.text=[NSString stringWithFormat:@"%@",cardModel.name];
 
-    self.addressLabel.text=[NSString stringWithFormat:@": %@",cardModel.address];
-    self.phoneLabel.text=[NSString stringWithFormat:@": %@",cardModel.phone_number];
+    self.addressLabel.text=[NSString stringWithFormat:@" %@",cardModel.address];
+    self.phoneLabel.text=[NSString stringWithFormat:@" %@",cardModel.phone_number];
 }
 
 
 
 
--(void)layoutSubviews{
+-(void)adjustFrame{
 
-    [super layoutSubviews];
+    //[super layoutSubviews];
     
     CGFloat bjViewX=10;
     CGFloat bjViewY=10;
-    CGFloat bjViewW=self.frame.size.width-2*bjViewX;
-    CGFloat bjViewH=self.frame.size.height-10;
-    self.bjView.frame=CGRectMake(bjViewX, bjViewY, bjViewW, bjViewH);
+    CGFloat bjViewW=SCREEN_WIDTH-2*bjViewX;
+    
     
     CGFloat redViewX=0;
     CGFloat redViewY=0;
@@ -185,12 +186,26 @@
     CGFloat imageView3H=14;
     self.imageView3.frame=CGRectMake(imageView3X,imageView3Y, imageView3W, imageView3H);
     
+//    CGFloat addressLabelX=phoneLabelX;
+//    CGFloat addressLabelY=imageView3Y-2;
+//    CGFloat addressLabelW=bjViewW-addressLabelX-10;
+//    CGFloat addressLabelH=[ZCTool getFrame:CGSizeMake(addressLabelW, 100) content:self.addressLabel.text fontSize:[UIFont systemFontOfSize:15]].size.height;
+//    self.addressLabel.frame=CGRectMake(addressLabelX, addressLabelY, addressLabelW, addressLabelH);
+
+    
+    
     CGFloat addressLabelX=phoneLabelX;
     CGFloat addressLabelY=imageView3Y-2;
     CGFloat addressLabelW=bjViewW-addressLabelX-10;
     CGFloat addressLabelH=[ZCTool getFrame:CGSizeMake(addressLabelW, 100) content:self.addressLabel.text fontSize:[UIFont systemFontOfSize:15]].size.height;
     self.addressLabel.frame=CGRectMake(addressLabelX, addressLabelY, addressLabelW, addressLabelH);
-
+    
+    
+    
+    CGFloat bjViewH=addressLabelY+addressLabelH+10;
+    self.bjView.frame=CGRectMake(bjViewX, bjViewY, bjViewW, bjViewH);
+    self.cellHeight=bjViewH+20;
+    ZCLog(@"%f",self.cellHeight);
 }
 
 

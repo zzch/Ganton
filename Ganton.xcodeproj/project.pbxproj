@@ -22,6 +22,7 @@
 		A98436CE1BC900280004AC94 /* ZCTeachingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A98436CD1BC900280004AC94 /* ZCTeachingCell.m */; settings = {ASSET_TAGS = (); }; };
 		A98436D11BC913170004AC94 /* ZCTeachingHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A98436D01BC913170004AC94 /* ZCTeachingHeaderCell.m */; settings = {ASSET_TAGS = (); }; };
 		A98436D41BC926BE0004AC94 /* ZCCoachViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A98436D31BC926BE0004AC94 /* ZCCoachViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A985CF131BEC9382001FFB46 /* ZCPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A985CF121BEC9382001FFB46 /* ZCPickerView.m */; settings = {ASSET_TAGS = (); }; };
 		A98CA3811BC75A5800695BD0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A98CA3801BC75A5800695BD0 /* main.m */; };
 		A98CA3841BC75A5800695BD0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A98CA3831BC75A5800695BD0 /* AppDelegate.m */; };
 		A98CA38C1BC75A5800695BD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A98CA38B1BC75A5800695BD0 /* Assets.xcassets */; };
@@ -130,6 +131,7 @@
 		A9D464061BCFC3A400EA13C5 /* ZCHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D464051BCFC3A400EA13C5 /* ZCHomeModel.m */; settings = {ASSET_TAGS = (); }; };
 		A9D464091BCFC48B00EA13C5 /* ZCMemberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D464081BCFC48B00EA13C5 /* ZCMemberModel.m */; settings = {ASSET_TAGS = (); }; };
 		A9D4640C1BCFC67E00EA13C5 /* ZCAnnouncementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D4640B1BCFC67E00EA13C5 /* ZCAnnouncementModel.m */; settings = {ASSET_TAGS = (); }; };
+		A9DE5D961BEB168D00BF713F /* ZCMakeAnAppointmentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9DE5D951BEB168D00BF713F /* ZCMakeAnAppointmentModel.m */; settings = {ASSET_TAGS = (); }; };
 		A9F28FCE1BDF5B9E0062BA65 /* ZCTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F28FCD1BDF5B9E0062BA65 /* ZCTimeView.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -181,6 +183,8 @@
 		A98436D01BC913170004AC94 /* ZCTeachingHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCTeachingHeaderCell.m; sourceTree = "<group>"; };
 		A98436D21BC926BE0004AC94 /* ZCCoachViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCCoachViewController.h; sourceTree = "<group>"; };
 		A98436D31BC926BE0004AC94 /* ZCCoachViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCCoachViewController.m; sourceTree = "<group>"; };
+		A985CF111BEC9382001FFB46 /* ZCPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCPickerView.h; sourceTree = "<group>"; };
+		A985CF121BEC9382001FFB46 /* ZCPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCPickerView.m; sourceTree = "<group>"; };
 		A98CA37C1BC75A5700695BD0 /* Ganton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ganton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A98CA3801BC75A5800695BD0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A98CA3821BC75A5800695BD0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -400,6 +404,8 @@
 		A9D464081BCFC48B00EA13C5 /* ZCMemberModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCMemberModel.m; sourceTree = "<group>"; };
 		A9D4640A1BCFC67E00EA13C5 /* ZCAnnouncementModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCAnnouncementModel.h; sourceTree = "<group>"; };
 		A9D4640B1BCFC67E00EA13C5 /* ZCAnnouncementModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCAnnouncementModel.m; sourceTree = "<group>"; };
+		A9DE5D941BEB168D00BF713F /* ZCMakeAnAppointmentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCMakeAnAppointmentModel.h; sourceTree = "<group>"; };
+		A9DE5D951BEB168D00BF713F /* ZCMakeAnAppointmentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCMakeAnAppointmentModel.m; sourceTree = "<group>"; };
 		A9F28FCC1BDF5B9E0062BA65 /* ZCTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCTimeView.h; sourceTree = "<group>"; };
 		A9F28FCD1BDF5B9E0062BA65 /* ZCTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCTimeView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -542,6 +548,8 @@
 				A99FA5D51BD8D1BD00154BB5 /* ZCRestaurantCollectionViewCell.m */,
 				A9F28FCC1BDF5B9E0062BA65 /* ZCTimeView.h */,
 				A9F28FCD1BDF5B9E0062BA65 /* ZCTimeView.m */,
+				A985CF111BEC9382001FFB46 /* ZCPickerView.h */,
+				A985CF121BEC9382001FFB46 /* ZCPickerView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -744,6 +752,8 @@
 		A98E76421BCE5F7B00583866 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A9DE5D941BEB168D00BF713F /* ZCMakeAnAppointmentModel.h */,
+				A9DE5D951BEB168D00BF713F /* ZCMakeAnAppointmentModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1162,6 +1172,7 @@
 				A9D463D51BCF9AFB00EA13C5 /* MJTypeEncoding.m in Sources */,
 				A9D463D71BCF9AFB00EA13C5 /* NSObject+MJKeyValue.m in Sources */,
 				A96AC3A51BCCE41E008A1D4B /* ZCRestaurantViewController.m in Sources */,
+				A985CF131BEC9382001FFB46 /* ZCPickerView.m in Sources */,
 				A9D463E21BCF9AFB00EA13C5 /* NSData+ImageContentType.m in Sources */,
 				A99E47CD1BD493A0007F6158 /* ZCRestaurantListModel.m in Sources */,
 				A96AC3A11BCCD746008A1D4B /* ZCGoodsDetailsViewController.m in Sources */,
@@ -1236,6 +1247,7 @@
 				A98CA3811BC75A5800695BD0 /* main.m in Sources */,
 				A9D463F01BCF9AFB00EA13C5 /* UIView+WebCacheOperation.m in Sources */,
 				A98436D11BC913170004AC94 /* ZCTeachingHeaderCell.m in Sources */,
+				A9DE5D961BEB168D00BF713F /* ZCMakeAnAppointmentModel.m in Sources */,
 				A9D464061BCFC3A400EA13C5 /* ZCHomeModel.m in Sources */,
 				A9D463DC1BCF9AFB00EA13C5 /* MJRefreshFooterView.m in Sources */,
 				A9D463CE1BCF9AFB00EA13C5 /* MJArgument.m in Sources */,

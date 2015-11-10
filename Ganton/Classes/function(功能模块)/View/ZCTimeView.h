@@ -13,4 +13,5 @@
 @end
 @interface ZCTimeView : UIView
 @property(nonatomic,weak)id<ZCTimeViewDelegate>delegate;
+@property(nonatomic,copy)NSString *timeStr;
 @end

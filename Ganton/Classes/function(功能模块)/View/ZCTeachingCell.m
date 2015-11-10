@@ -68,15 +68,17 @@
         
         
         UILabel *moneyNameLabel=[[UILabel alloc] init];
-        moneyNameLabel.text=@"课程起售价:";
+        moneyNameLabel.text=@"课程起售价";
         moneyNameLabel.textAlignment=NSTextAlignmentRight;
+        moneyNameLabel.font=[UIFont systemFontOfSize:14];
+        moneyNameLabel.textColor=ZCColor(136, 136, 136);
         [self.contentView addSubview:moneyNameLabel];
         self.moneyNameLabel=moneyNameLabel;
         
         UILabel *fuhaoLabel=[[UILabel alloc] init];
         fuhaoLabel.text=@"￥";
         fuhaoLabel.textColor=[UIColor redColor];
-        fuhaoLabel.font=[UIFont systemFontOfSize:12];
+        fuhaoLabel.font=[UIFont systemFontOfSize:14];
         [self.contentView addSubview:fuhaoLabel];
         self.fuhaoLabel=fuhaoLabel;
         
@@ -161,13 +163,13 @@
     
     CGFloat fuhaoLabelW=12;
     CGFloat fuhaoLabelH=7;
-    CGFloat fuhaoLabelX=self.frame.size.width-[ZCTool getFrame:CGSizeMake(1000, 25) content:self.moneyLabel.text fontSize:[UIFont systemFontOfSize:22]].size.width-fuhaoLabelW-15;
-    CGFloat fuhaoLabelY=moneyNameLabelY+moneyNameLabelH+13;
+    CGFloat fuhaoLabelX=self.frame.size.width-[ZCTool getFrame:CGSizeMake(1000, 25) content:self.moneyLabel.text fontSize:[UIFont systemFontOfSize:22]].size.width+2-fuhaoLabelW-19;
+    CGFloat fuhaoLabelY=moneyNameLabelY+moneyNameLabelH+5;
     self.fuhaoLabel.frame=CGRectMake(fuhaoLabelX, fuhaoLabelY, fuhaoLabelW, fuhaoLabelH);
     
-    CGFloat moneyLabelX=fuhaoLabelX+fuhaoLabelW;
-    CGFloat moneyLabelY=fuhaoLabelY-13;
-    CGFloat moneyLabelW=[ZCTool getFrame:CGSizeMake(1000, 25) content:self.moneyLabel.text fontSize:[UIFont systemFontOfSize:22]].size.width;
+    CGFloat moneyLabelX=fuhaoLabelX+fuhaoLabelW+1;
+    CGFloat moneyLabelY=fuhaoLabelY-11;
+    CGFloat moneyLabelW=[ZCTool getFrame:CGSizeMake(1000, 25) content:self.moneyLabel.text fontSize:[UIFont systemFontOfSize:22]].size.width+2;
     CGFloat moneyLabelH=25;
     self.moneyLabel.frame=CGRectMake(moneyLabelX, moneyLabelY, moneyLabelW, moneyLabelH);
     

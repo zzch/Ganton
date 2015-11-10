@@ -32,7 +32,8 @@
 {
     if (self=[super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
-        
+        //self.backgroundColor=ZCColor(237, 237, 237);
+        self.backgroundColor = [UIColor clearColor];
         //self.=UITableViewCellSeparatorStyleNone;
        // self.separatorInset
         
@@ -70,9 +71,9 @@
 {
     [super layoutSubviews];
     
-    CGFloat goodsImageW=self.frame.size.width;
+    CGFloat goodsImageW=self.frame.size.width-20;
     CGFloat goodsImageH=self.frame.size.height;
-    CGFloat goodsImageX=0;
+    CGFloat goodsImageX=10;
     CGFloat goodsImageY=0;
     self.goodsImage.frame=CGRectMake(goodsImageX, goodsImageY, goodsImageW, goodsImageH);
     

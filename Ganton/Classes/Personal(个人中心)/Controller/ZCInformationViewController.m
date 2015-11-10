@@ -75,7 +75,13 @@
     button2.frame=CGRectMake(button2X, button2Y, button2W, button2H);
     button2.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:button2];
-    [self addChildControls:button2 andNameStr:@"性别" andText:self.dict[@"gender"]];
+    if ([self.dict[@"gender"] isEqual:@"male"]) {
+        [self addChildControls:button2 andNameStr:@"性别" andText:@"男"];
+    }else{
+        [self addChildControls:button2 andNameStr:@"性别" andText:@"女"];
+    }
+    
+    
     
     UIView *bjView=[[UIView alloc] init];
     bjView.frame=CGRectMake(0, button2Y+button2H, 20, 1);

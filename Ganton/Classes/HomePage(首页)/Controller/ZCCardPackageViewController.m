@@ -27,7 +27,8 @@
     tableView.delegate=self;
     tableView.dataSource=self;
     [self.view addSubview:tableView];
-    tableView.rowHeight=193;
+    //tableView.rowHeight=193;
+   // tableView.rowHeight=173;
     self.tableView=tableView;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -77,7 +78,16 @@
 {
     ZCCardPackageTableViewCell *cell=[ZCCardPackageTableViewCell cellWithTable:tableView];
     cell.cardModel=self.cardArray[indexPath.row];
+    [cell adjustFrame];
     return cell;
+}
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ZCCardPackageTableViewCell *cell=(ZCCardPackageTableViewCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
+    return cell.cellHeight;
+
 }
 
 
