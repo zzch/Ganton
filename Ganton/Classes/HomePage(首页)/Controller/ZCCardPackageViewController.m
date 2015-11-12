@@ -77,6 +77,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZCCardPackageTableViewCell *cell=[ZCCardPackageTableViewCell cellWithTable:tableView];
+    
     cell.cardModel=self.cardArray[indexPath.row];
     [cell adjustFrame];
     return cell;

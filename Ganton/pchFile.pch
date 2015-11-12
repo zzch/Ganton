@@ -38,7 +38,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 
 //测试服务器
-#define API @"http://123.57.210.52:80/api/"
+#define API @"http://staging.lianqiubao.com/api/"
 
 
 // 3.自定义Log

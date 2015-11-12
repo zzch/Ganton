@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZCRecordsOfConsumptionModel.h"
 @interface ZCConsumptionCell : UITableViewCell
+@property(nonatomic,strong)ZCRecordsOfConsumptionModel *recordsOfConsumptionModel;
+@property(nonatomic,assign)CGFloat cellHight;
 +(instancetype)cellWithTable:(UITableView *)tableView;
+
 @end

@@ -38,7 +38,7 @@
        // self.separatorInset
         
         UIImageView *goodsImage=[[UIImageView alloc] init];
-        goodsImage.backgroundColor=[UIColor redColor];
+        
         [self.contentView addSubview:goodsImage];
         self.goodsImage=goodsImage;
         

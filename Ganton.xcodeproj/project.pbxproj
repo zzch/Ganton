@@ -39,6 +39,8 @@
 		A98E76481BCE600800583866 /* ZCDatapickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A98E76471BCE600800583866 /* ZCDatapickerView.m */; settings = {ASSET_TAGS = (); }; };
 		A98E764B1BCE65AD00583866 /* ZCRedEnvelopeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A98E764A1BCE65AD00583866 /* ZCRedEnvelopeViewController.m */; settings = {ASSET_TAGS = (); }; };
 		A98E764E1BCE662300583866 /* ZCRedEnvelopeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A98E764D1BCE662300583866 /* ZCRedEnvelopeCell.m */; settings = {ASSET_TAGS = (); }; };
+		A991CF481BF1CCCF00A7C34C /* ZCRecordsOfConsumptionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A991CF471BF1CCCF00A7C34C /* ZCRecordsOfConsumptionModel.m */; settings = {ASSET_TAGS = (); }; };
+		A991CF4B1BF1DBC100A7C34C /* ZCConsumptionDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A991CF4A1BF1DBC100A7C34C /* ZCConsumptionDetailModel.m */; settings = {ASSET_TAGS = (); }; };
 		A9929E7A1BCCB60000342A58 /* ZCMallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9929E791BCCB60000342A58 /* ZCMallViewController.m */; settings = {ASSET_TAGS = (); }; };
 		A9929E7D1BCCB81100342A58 /* ZCMallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9929E7C1BCCB81100342A58 /* ZCMallCell.m */; settings = {ASSET_TAGS = (); }; };
 		A99CB9A91BD0B59300877A19 /* ZCCardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A99CB9A81BD0B59300877A19 /* ZCCardModel.m */; settings = {ASSET_TAGS = (); }; };
@@ -219,6 +221,10 @@
 		A98E764A1BCE65AD00583866 /* ZCRedEnvelopeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCRedEnvelopeViewController.m; sourceTree = "<group>"; };
 		A98E764C1BCE662300583866 /* ZCRedEnvelopeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCRedEnvelopeCell.h; sourceTree = "<group>"; };
 		A98E764D1BCE662300583866 /* ZCRedEnvelopeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCRedEnvelopeCell.m; sourceTree = "<group>"; };
+		A991CF461BF1CCCF00A7C34C /* ZCRecordsOfConsumptionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCRecordsOfConsumptionModel.h; sourceTree = "<group>"; };
+		A991CF471BF1CCCF00A7C34C /* ZCRecordsOfConsumptionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCRecordsOfConsumptionModel.m; sourceTree = "<group>"; };
+		A991CF491BF1DBC100A7C34C /* ZCConsumptionDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCConsumptionDetailModel.h; sourceTree = "<group>"; };
+		A991CF4A1BF1DBC100A7C34C /* ZCConsumptionDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCConsumptionDetailModel.m; sourceTree = "<group>"; };
 		A9929E781BCCB60000342A58 /* ZCMallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCMallViewController.h; sourceTree = "<group>"; };
 		A9929E791BCCB60000342A58 /* ZCMallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCMallViewController.m; sourceTree = "<group>"; };
 		A9929E7B1BCCB81100342A58 /* ZCMallCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCMallCell.h; sourceTree = "<group>"; };
@@ -527,6 +533,10 @@
 				A99E47D21BD4C885007F6158 /* ZCWeathersModel.m */,
 				A99D57A51BE3557500E08408 /* ZCMallModel.h */,
 				A99D57A61BE3557500E08408 /* ZCMallModel.m */,
+				A991CF461BF1CCCF00A7C34C /* ZCRecordsOfConsumptionModel.h */,
+				A991CF471BF1CCCF00A7C34C /* ZCRecordsOfConsumptionModel.m */,
+				A991CF491BF1DBC100A7C34C /* ZCConsumptionDetailModel.h */,
+				A991CF4A1BF1DBC100A7C34C /* ZCConsumptionDetailModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1210,6 +1220,7 @@
 				A9D463E11BCF9AFB00EA13C5 /* MKAnnotationView+WebCache.m in Sources */,
 				A9D463E01BCF9AFB00EA13C5 /* UIView+MJExtension.m in Sources */,
 				A9D463C91BCF9AFB00EA13C5 /* AFURLResponseSerialization.m in Sources */,
+				A991CF4B1BF1DBC100A7C34C /* ZCConsumptionDetailModel.m in Sources */,
 				A9D463D61BCF9AFB00EA13C5 /* NSObject+MJCoding.m in Sources */,
 				A97115DE1BCBA2270013C17A /* ZCConsumptionCell.m in Sources */,
 				A98CA3CA1BC7BABA00695BD0 /* ZCCardPackageViewController.m in Sources */,
@@ -1242,6 +1253,7 @@
 				A98CA3CD1BC7BDB800695BD0 /* ZCCardPackageTableViewCell.m in Sources */,
 				A99FA5D91BD8F39400154BB5 /* UIBarButtonItem+DC.m in Sources */,
 				A9D463CD1BCF9AFB00EA13C5 /* MBProgressHUD.m in Sources */,
+				A991CF481BF1CCCF00A7C34C /* ZCRecordsOfConsumptionModel.m in Sources */,
 				A9D463E61BCF9AFB00EA13C5 /* SDWebImageDownloader.m in Sources */,
 				A9D463DD1BCF9AFB00EA13C5 /* MJRefreshHeaderView.m in Sources */,
 				A98CA3811BC75A5800695BD0 /* main.m in Sources */,
