@@ -14,6 +14,8 @@
 @interface ZCRecordsOfConsumptionViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)NSMutableArray *dataArray;
 @property(nonatomic,weak)UITableView *tableView;
+@property(nonatomic,assign) int page;
+@property(nonatomic,assign)BOOL isYes;
 @end
 
 @implementation ZCRecordsOfConsumptionViewController
@@ -41,10 +43,15 @@
     NSString *uuid = [defaults objectForKey:@"uuid"];
     params[@"token"]=token;
     params[@"club_uuid"]=uuid;
+    params[@"page"]=@(self.page);
     NSString *URL=[NSString stringWithFormat:@"%@v1/tabs",API];
     
     [ZCTool getWithUrl:URL params:params success:^(id responseObject) {
         ZCLog(@"%@",responseObject);
+        
+        if (self.isYes==YES) {
+            [self.dataArray removeAllObjects];
+        }
         
         for (NSDictionary *dict in responseObject) {
             ZCRecordsOfConsumptionModel *model=[ZCRecordsOfConsumptionModel recordsOfConsumptionModelWithDict:dict];
@@ -57,6 +64,9 @@
         [self.tableView reloadData];
     } failure:^(NSError *error) {
         
+        if (self.isYes==NO) {
+            self.page--;
+        }
         [self.tableView headerEndRefreshing];
         [self.tableView footerEndRefreshing];
     }];
@@ -79,7 +89,7 @@
     tableView.backgroundColor=ZCColor(237, 237, 237);
     self.tableView=tableView;
 
-    self.tableView.contentInset=UIEdgeInsetsMake(0, 0, 100, 0);
+    self.tableView.contentInset=UIEdgeInsetsMake(0, 0, 85, 0);
     
     // 3.增加刷新控件
     [self.tableView addFooterWithTarget:self action:@selector(loadMoreShops)];
@@ -89,9 +99,20 @@
     
 }
 
+//下拉刷新
 -(void)theDropDownRefresh
 {
+    self.page=1;
+    self.isYes=YES;
     [self addData];
+}
+//上啦加载更多
+-(void)loadMoreShops
+{
+    self.isYes=NO;
+    self.page++;
+    [self addData];
+
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

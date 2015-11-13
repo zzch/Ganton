@@ -148,9 +148,17 @@
     photoView.layer.masksToBounds = YES;
     photoView.layer.cornerRadius = 5;
     if ([ZCTool _valueOrNil:self.dict[@"portrait"]]==nil) {
-        photoView.image=[UIImage imageNamed:@"3088644_150703431167_2.jpg"];
+        
+        
+        if ([self.dict[@"gender"] isEqual:@"male"]) {
+            photoView.image=[UIImage imageNamed:@"nan"];
+        }else{
+            photoView.image=[UIImage imageNamed:@"nv"];
+        }
+
+        
     }else{
-        [photoView sd_setImageWithURL:[NSURL URLWithString:self.dict[@"portrait"]] placeholderImage:[UIImage imageNamed:@"3088644_150703431167_2.jpg"]];
+        [photoView sd_setImageWithURL:[NSURL URLWithString:self.dict[@"portrait"]] placeholderImage:nil];
     }
 
     

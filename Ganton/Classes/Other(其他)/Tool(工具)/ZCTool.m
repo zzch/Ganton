@@ -201,11 +201,11 @@
         
         
         if (![responseObject isKindOfClass:[NSArray class]]) {
-            //判断token是否过期
-            if ([responseObject[@"error_code"] integerValue] == 10002)
+            //判断失败信息
+            if ([responseObject[@"exception_code"] integerValue])
             {
                 // [AppDelegate resetUserInfo];
-                [self tokenIsFailure];
+                [self TheErrorMessage:[responseObject[@"exception_code"] integerValue]];
                 return ;
             }
 
@@ -246,11 +246,11 @@
         // 请求成功, 通知调用者请求成功
         
         if (![responseObject isKindOfClass:[NSArray class]]) {
-            //判断token是否过期
-            if ([responseObject[@"error_code"] integerValue] == 10002)
+            //判断失败信息
+            if ([responseObject[@"exception_code"] integerValue])
             {
                 // [AppDelegate resetUserInfo];
-                [self tokenIsFailure];
+                [self TheErrorMessage:[responseObject[@"exception_code"] integerValue]];
                 return ;
             }
             
@@ -265,7 +265,7 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         // 通知调用者请求失败
 //        WWLog(@"请求成功");
-        
+        //判断token是否过期
         if ((long)[operation.response statusCode]==401 ) {
             
             [self tokenIsFailure];
@@ -281,6 +281,18 @@
         }
     }];
 }
+
+
+//错误信息
++(void)TheErrorMessage:(NSInteger )errorID
+{
+    if (errorID==20004) {
+        [MBProgressHUD showError:@"重复预约：您已经预约过当天的打位"];
+    }
+
+}
+
+
 
 
 
