@@ -205,9 +205,7 @@ static NSString *const identifier=@"cell";
                 view1.hidden=YES;
                 break;
             }
-            
-            
-
+   
         }
     }
     
@@ -221,8 +219,6 @@ static NSString *const identifier=@"cell";
 
     }
 
-
-    
     
     for (ZCRestaurantListModel *model in self.array) {
         if ([button.titleLabel.text isEqual:model.name]) {

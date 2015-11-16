@@ -53,6 +53,10 @@
 // 网络加载
 -(void)addData
 {
+    //[MBProgressHUD showMessage:@"数据加载中..."];
+    
+    
+    
     NSMutableDictionary *params=[NSMutableDictionary dictionary];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [defaults objectForKey:@"token"];
@@ -61,16 +65,23 @@
     params[@"club_uuid"]=uuid;
     NSString *URL=[NSString stringWithFormat:@"%@v1/clubs/home",API];
     
+    //[MBProgressHUD showMessage:@"数据加载中..."];
+    
     [ZCTool getWithUrl:URL params:params success:^(id responseObject) {
         ZCLog(@"%@",responseObject);
         
         ZCHomeModel *homeModel=[ZCHomeModel homeModelWithDict:responseObject];
         self.homeModel=homeModel;
         
+        
+        //移除
+       // [MBProgressHUD hideHUD];
         [self addControls];
         
     } failure:^(NSError *error) {
         ZCLog(@"%@",error);
+        //移除
+       // [MBProgressHUD hideHUD];
     }];
 
 }
@@ -98,6 +109,9 @@
 //添加控件
 -(void)addControls
 {
+    //移除
+    [MBProgressHUD hideHUD];
+    
       self.automaticallyAdjustsScrollViewInsets = NO;
 
     //公告背景条
