@@ -233,12 +233,6 @@
     
     
     
-    
-    
-    
-    
-
-    
     UIButton *reserveButton=[[UIButton alloc] init];
     reserveButton.frame=CGRectMake(0, SCREEN_HEIGHT-45-64, SCREEN_WIDTH, 45);
     [reserveButton setTitle:@"预约" forState:UIControlStateNormal];

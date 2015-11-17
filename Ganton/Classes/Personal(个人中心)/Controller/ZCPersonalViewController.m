@@ -12,6 +12,7 @@
 #import "ZCRecordsOfConsumptionViewController.h"
 #import "ZCMakeAnAppointmentViewController.h"
 #import "ZCAccountViewController.h"
+#import "ZCAllConsumptionViewController.h"
 @interface ZCPersonalViewController ()
 @property(nonatomic,strong)NSDictionary *personDict;
 @property(nonatomic,weak)UIImageView *photoView;
@@ -89,50 +90,50 @@
     [self changePhotoView:photoViewBtn];
 
   
-//    UIButton *button1=[[UIButton alloc] init];
-//    CGFloat button1X=0;
-//    CGFloat button1Y=photoViewBtnY+photoViewBtnH+15;
-//    CGFloat button1W=SCREEN_WIDTH;
-//    CGFloat button1H=50;
-//    button1.frame=CGRectMake(button1X, button1Y, button1W, button1H);
-//    button1.backgroundColor=[UIColor whiteColor];
-//    [self.view addSubview:button1];
-//    [button1 addTarget:self action:@selector(clickTheButton1) forControlEvents:UIControlEventTouchUpInside];
-//    [self addChildControls:button1 andImageStr:@"geren_hongbao_icon" andText:@"我的红包"];
-//    
-//    UIView *bjView=[[UIView alloc] init];
-//    bjView.frame=CGRectMake(0, button1Y+button1H, 20, 1);
-//    bjView.backgroundColor=[UIColor whiteColor];
-//    [self.view addSubview:bjView];
-//    
-//    UIButton *button2=[[UIButton alloc] init];
-//    CGFloat button2X=0;
-//    CGFloat button2Y=button1Y+button1H+1;
-//    CGFloat button2W=SCREEN_WIDTH;
-//    CGFloat button2H=50;
-//    button2.frame=CGRectMake(button2X, button2Y, button2W, button2H);
-//    button2.backgroundColor=[UIColor whiteColor];
-//    [self.view addSubview:button2];
-//    [button2 addTarget:self action:@selector(clickTheButton2) forControlEvents:UIControlEventTouchUpInside];
-//    [self addChildControls:button2 andImageStr:@"geren_xiaof_icon" andText:@"我的消费"];
-//    
-//    UIView *bjView2=[[UIView alloc] init];
-//    bjView2.frame=CGRectMake(0, button2Y+button2H, 20, 1);
-//    bjView2.backgroundColor=[UIColor whiteColor];
-//    [self.view addSubview:bjView2];
+    UIButton *button1=[[UIButton alloc] init];
+    CGFloat button1X=0;
+    CGFloat button1Y=photoViewBtnY+photoViewBtnH+15;
+    CGFloat button1W=SCREEN_WIDTH;
+    CGFloat button1H=50;
+    button1.frame=CGRectMake(button1X, button1Y, button1W, button1H);
+    button1.backgroundColor=[UIColor whiteColor];
+    [self.view addSubview:button1];
+    [button1 addTarget:self action:@selector(clickTheButton1) forControlEvents:UIControlEventTouchUpInside];
+    [self addChildControls:button1 andImageStr:@"geren_hongbao_icon" andText:@"我的红包"];
+    
+    UIView *bjView=[[UIView alloc] init];
+    bjView.frame=CGRectMake(0, button1Y+button1H, 20, 1);
+    bjView.backgroundColor=[UIColor whiteColor];
+    [self.view addSubview:bjView];
+    
+    UIButton *button2=[[UIButton alloc] init];
+    CGFloat button2X=0;
+    CGFloat button2Y=button1Y+button1H+1;
+    CGFloat button2W=SCREEN_WIDTH;
+    CGFloat button2H=50;
+    button2.frame=CGRectMake(button2X, button2Y, button2W, button2H);
+    button2.backgroundColor=[UIColor whiteColor];
+    [self.view addSubview:button2];
+    [button2 addTarget:self action:@selector(clickTheButton2) forControlEvents:UIControlEventTouchUpInside];
+    [self addChildControls:button2 andImageStr:@"geren_xiaof_icon" andText:@"我的消费"];
+    
+    UIView *bjView2=[[UIView alloc] init];
+    bjView2.frame=CGRectMake(0, button2Y+button2H, 20, 1);
+    bjView2.backgroundColor=[UIColor whiteColor];
+    [self.view addSubview:bjView2];
     
     
     UIButton *button3=[[UIButton alloc] init];
-//    CGFloat button3X=0;
-//    CGFloat button3Y=button2Y+button2H+15;
-//    CGFloat button3W=SCREEN_WIDTH;
-//    CGFloat button3H=50;
-//    button3.frame=CGRectMake(button3X, button3Y, button3W, button3H);
-        CGFloat button3X=0;
-        CGFloat button3Y=photoViewBtnY+photoViewBtnH+15;
-        CGFloat button3W=SCREEN_WIDTH;
-        CGFloat button3H=50;
-        button3.frame=CGRectMake(button3X, button3Y, button3W, button3H);
+    CGFloat button3X=0;
+    CGFloat button3Y=button2Y+button2H+15;
+    CGFloat button3W=SCREEN_WIDTH;
+    CGFloat button3H=50;
+    button3.frame=CGRectMake(button3X, button3Y, button3W, button3H);
+//        CGFloat button3X=0;
+//        CGFloat button3Y=photoViewBtnY+photoViewBtnH+15;
+//        CGFloat button3W=SCREEN_WIDTH;
+//        CGFloat button3H=50;
+//        button3.frame=CGRectMake(button3X, button3Y, button3W, button3H);
 
     button3.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:button3];
@@ -242,7 +243,7 @@
 //消费记录
 -(void)clickTheButton2
 {
-    ZCRecordsOfConsumptionViewController *vc=[[ZCRecordsOfConsumptionViewController alloc] init];
+    ZCAllConsumptionViewController *vc=[[ZCAllConsumptionViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 
 }

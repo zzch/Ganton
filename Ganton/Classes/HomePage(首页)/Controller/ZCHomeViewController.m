@@ -395,7 +395,13 @@
     CGFloat logoImageW=23;
     CGFloat logoImageH=32;
     logoImage.frame=CGRectMake(logoImageX, logoImageY, logoImageW, logoImageH);
-    [logoImage sd_setImageWithURL:[NSURL URLWithString:self.homeModel.logo] placeholderImage:[UIImage imageNamed:@"3088644_150703431167_2"] ];
+    if ([ZCTool _valueOrNil:self.homeModel.logo]==nil) {
+        
+    }else{
+    [logoImage sd_setImageWithURL:[NSURL URLWithString:self.homeModel.logo] placeholderImage:nil ];
+    }
+    
+    
     [view addSubview:logoImage];
     
     UILabel *nameLabel=[[UILabel alloc] init];

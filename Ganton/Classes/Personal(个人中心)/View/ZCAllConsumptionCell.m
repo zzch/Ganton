@@ -1,82 +1,63 @@
 //
-//  ZCConsumptionCell.m
+//  ZCAllConsumptionCell.m
 //  Ganton
 //
-//  Created by hh on 15/10/12.
+//  Created by hh on 15/11/17.
 //  Copyright © 2015年 zhongchuang. All rights reserved.
-//消费记录
+//
 
-#import "ZCConsumptionCell.h"
-#import "ZCConsumptionDetailModel.h"
-@interface ZCConsumptionCell()
-@property(nonatomic,weak)UILabel *timeLabel;
-@property(nonatomic,weak)UILabel *cardType;
-@property(nonatomic,weak)UILabel *detailLabel1;
+#import "ZCAllConsumptionCell.h"
+@interface ZCAllConsumptionCell()
 @property(nonatomic,weak)UIImageView *bjImageView;
-@property(nonatomic,strong)UIView *detailView;
 @end
-@implementation ZCConsumptionCell
-
-+(instancetype)cellWithTable:(UITableView *)tableView
-{
-    static NSString *ID=@"ZCConsumptionCell";
-    ZCConsumptionCell *cell=[tableView dequeueReusableCellWithIdentifier:ID];
-    if (cell==nil) {
-        cell=[[ZCConsumptionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
-    }
-    return cell;
-
-
-}
-
-
+@implementation ZCAllConsumptionCell
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self=[super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-       
+        
         self.backgroundColor=[UIColor clearColor];
         
         self.selectionStyle=UITableViewCellSelectionStyleNone;
         
         //[self addDetailControls:detailView];
-//        
-//        for (int i=0; i<index; i++) {
-//            UILabel *label=[[UILabel alloc] init];
-//            label.frame=CGRectMake(115, 130+i*30, detailView.frame.size.width-130, 30);
-//            label.text=@"打位费：1000元";
-//            [detailView addSubview:label];
-//        }
-
+        //
+        //        for (int i=0; i<index; i++) {
+        //            UILabel *label=[[UILabel alloc] init];
+        //            label.frame=CGRectMake(115, 130+i*30, detailView.frame.size.width-130, 30);
+        //            label.text=@"打位费：1000元";
+        //            [detailView addSubview:label];
+        //        }
         
         
         
         
         
-//        UILabel *cardType=[[UILabel alloc] init];
-//        cardType.text=@"储蓄卡";
-//        //cardType.backgroundColor=[UIColor brownColor];
-//        cardType.font=[UIFont systemFontOfSize:13];
-//        [self.contentView addSubview:cardType];
-//        self.cardType=cardType;
         
-//        UILabel *moneyLabel=[[UILabel alloc] init];
-//        moneyLabel.text=@"消费金额: ￥500";
-//        moneyLabel.font=[UIFont systemFontOfSize:13];
-//        [self.contentView addSubview:moneyLabel];
-//        self.moneyLabel=moneyLabel;
-//        
-//        UILabel *accountLabel=[[UILabel alloc] init];
-//        accountLabel.text=@"消费账号: 王二蛋";
-//        accountLabel.font=[UIFont systemFontOfSize:13];
-//        [self.contentView addSubview:accountLabel];
-//        self.accountLabel=accountLabel;
-//        
-//        
-//        UIImageView *rightImage=[[UIImageView alloc] init];
-//        rightImage.image=[UIImage imageNamed:@"shouye_arrow_icon"];
-//        [self.contentView addSubview:rightImage];
-//        self.rightImage=rightImage;
+        //        UILabel *cardType=[[UILabel alloc] init];
+        //        cardType.text=@"储蓄卡";
+        //        //cardType.backgroundColor=[UIColor brownColor];
+        //        cardType.font=[UIFont systemFontOfSize:13];
+        //        [self.contentView addSubview:cardType];
+        //        self.cardType=cardType;
+        
+        //        UILabel *moneyLabel=[[UILabel alloc] init];
+        //        moneyLabel.text=@"消费金额: ￥500";
+        //        moneyLabel.font=[UIFont systemFontOfSize:13];
+        //        [self.contentView addSubview:moneyLabel];
+        //        self.moneyLabel=moneyLabel;
+        //
+        //        UILabel *accountLabel=[[UILabel alloc] init];
+        //        accountLabel.text=@"消费账号: 王二蛋";
+        //        accountLabel.font=[UIFont systemFontOfSize:13];
+        //        [self.contentView addSubview:accountLabel];
+        //        self.accountLabel=accountLabel;
+        //
+        //
+        //        UIImageView *rightImage=[[UIImageView alloc] init];
+        //        rightImage.image=[UIImage imageNamed:@"shouye_arrow_icon"];
+        //        [self.contentView addSubview:rightImage];
+        //        self.rightImage=rightImage;
         
     }
     return self;
@@ -84,38 +65,21 @@
 
 
 
-
--(void)setRecordsOfConsumptionModel:(ZCRecordsOfConsumptionModel *)recordsOfConsumptionModel
+-(void)setAllConsumptionModel:(ZCAllConsumptionModel *)allConsumptionModel
 {
-    
-    _recordsOfConsumptionModel=recordsOfConsumptionModel;
-    
+    _allConsumptionModel=allConsumptionModel;
     
     [self.bjImageView removeFromSuperview];
     
     
-    [self addControls:recordsOfConsumptionModel];
-    
-   
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-   // self.cellHight=bjImageViewH+5;
-    
+    [self addControls:allConsumptionModel];
 
 }
 
 
--(void)addControls:(ZCRecordsOfConsumptionModel *)recordsOfConsumptionModel
+
+
+-(void)addControls:(ZCAllConsumptionModel *)allConsumptionModel
 {
     
     UIImageView *bjImageView=[[UIImageView alloc] init];
@@ -148,7 +112,7 @@
     sequenceLabel.frame=CGRectMake(sequenceLabelX, sequenceLabelY, sequenceLabelW, sequenceLabelH);
     sequenceLabel.font=[UIFont systemFontOfSize:12];
     sequenceLabel.textColor=ZCColor(34, 34, 34);
-    sequenceLabel.text=recordsOfConsumptionModel.sequence;
+    sequenceLabel.text=allConsumptionModel.sequence;
     [bjImageView addSubview:sequenceLabel];
     
     UILabel *nameLabel2=[[UILabel alloc] init];
@@ -171,7 +135,7 @@
     CGFloat receptionPaymentLabelY=nameLabel2Y+nameLabel2H+1;
     receptionPaymentLabel.frame=CGRectMake(receptionPaymentLabelX, receptionPaymentLabelY, receptionPaymentLabelW, receptionPaymentLabelH);
     receptionPaymentLabel.font=[UIFont systemFontOfSize:15];
-    receptionPaymentLabel.text=recordsOfConsumptionModel.reception_payment;
+    receptionPaymentLabel.text=allConsumptionModel.reception_payment;
     receptionPaymentLabel.textAlignment=NSTextAlignmentRight;
     receptionPaymentLabel.textColor=ZCColor(248, 87, 34);
     [bjImageView addSubview:receptionPaymentLabel];
@@ -214,16 +178,16 @@
     timeLabel.font=[UIFont systemFontOfSize:14];
     timeLabel.textColor=ZCColor(34, 34, 34);
     [bjImageView addSubview:timeLabel];
-    self.timeLabel=timeLabel;
+    //self.timeLabel=timeLabel;
     
-    NSDate *entranceDate=[NSDate dateWithTimeIntervalSince1970:recordsOfConsumptionModel.entrance_time];
-    NSDate *departureDate=[NSDate dateWithTimeIntervalSince1970:recordsOfConsumptionModel.departure_time];
+    NSDate *entranceDate=[NSDate dateWithTimeIntervalSince1970:allConsumptionModel.entrance_time];
+    NSDate *departureDate=[NSDate dateWithTimeIntervalSince1970:allConsumptionModel.departure_time];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     
     dateFormatter.dateFormat = @"MM月dd日";
     NSString *selfStr = [dateFormatter stringFromDate:entranceDate];
-
+    
     dateFormatter.dateFormat = @"HH: dd";
     NSString *entranceStr = [dateFormatter stringFromDate:entranceDate];
     NSString *departureStr = [dateFormatter stringFromDate:departureDate];
@@ -232,9 +196,55 @@
     timeLabel.text=str;
     
     
+    
+    UIImageView *nameImage=[[UIImageView alloc] init];
+    CGFloat nameImageX=10;
+    CGFloat nameImageY=timeLabelY+timeLabelH+10;
+    CGFloat nameImageW=11;
+    CGFloat nameImageH=13;
+    nameImage.frame=CGRectMake(nameImageX, nameImageY, nameImageW, nameImageH);
+    nameImage.image=[UIImage imageNamed:@"xiaofeixinxi_xuanx"];
+    [bjImageView addSubview:nameImage];
+
+    
+    UILabel *stadiumNameLabel=[[UILabel alloc] init];
+    CGFloat stadiumNameLabelX=nameImageX+nameImageW+5;
+    CGFloat stadiumNameLabelY=nameImageY;
+    CGFloat stadiumNameLabelW=100;
+    CGFloat stadiumNameLabelH=13;
+    stadiumNameLabel.frame=CGRectMake(stadiumNameLabelX, stadiumNameLabelY, stadiumNameLabelW, stadiumNameLabelH);
+    stadiumNameLabel.text=@"消费球场";
+    stadiumNameLabel.font=[UIFont systemFontOfSize:15];
+    stadiumNameLabel.textColor=ZCColor(248, 87, 34);
+    [bjImageView addSubview:stadiumNameLabel];
+
+    UIView *bjX12=[[UIView alloc] init];
+    CGFloat bjX12Y=stadiumNameLabelY+stadiumNameLabelH+8;
+    CGFloat bjX12W=bjImageViewW-20;
+    bjX12.frame=CGRectMake(10, bjX12Y, bjX12W, 1);
+    bjX12.backgroundColor=ZCColor(248, 87, 34);
+    [bjImageView addSubview:bjX12];
+    
+    
+    UILabel *stadiumLabel=[[UILabel alloc] init];
+    CGFloat stadiumLabelX=stadiumNameLabelX;
+    CGFloat stadiumLabelY=bjX12Y+7;
+    CGFloat stadiumLabelW=bjImageViewW-stadiumLabelX;
+    CGFloat stadiumLabelH=20;
+    stadiumLabel.frame=CGRectMake(stadiumLabelX, stadiumLabelY, stadiumLabelW, stadiumLabelH);
+    stadiumLabel.font=[UIFont systemFontOfSize:14];
+    stadiumLabel.textColor=ZCColor(34, 34, 34);
+    stadiumLabel.text=allConsumptionModel.name;
+    [bjImageView addSubview:stadiumLabel];
+
+    
+    
+    
+    
+    
     UIImageView *detailImage=[[UIImageView alloc] init];
     CGFloat detailImageX=10;
-    CGFloat detailImageY=timeLabelY+timeLabelH+10;
+    CGFloat detailImageY=stadiumLabelY+stadiumLabelH+10;
     CGFloat detailImageW=11;
     CGFloat detailImageH=13;
     detailImage.frame=CGRectMake(detailImageX, detailImageY, detailImageW, detailImageH);
@@ -271,7 +281,7 @@
     detailLabel1.font=[UIFont systemFontOfSize:14];
     detailLabel1.textColor=ZCColor(34, 34, 34);
     [bjImageView addSubview:detailLabel1];
-    self.detailLabel1=detailLabel1;
+   // self.detailLabel1=detailLabel1;
     
     UILabel *detailLabel2=[[UILabel alloc] init];
     CGFloat detailLabel2W=100;
@@ -298,17 +308,17 @@
     [bjImageView addSubview:detailLabel3];
     
     //detailLabel3.backgroundColor=[UIColor redColor];
-
+    
     
     UIView *detailView=[[UIView alloc] init];
     //detailView.backgroundColor=[UIColor redColor];
     
-    self.detailView=detailView;
+    //self.detailView=detailView;
     
-    CGFloat detailViewY=self.detailLabel1.frame.size.height+self.detailLabel1.frame.origin.y+1;
+    CGFloat detailViewY=detailLabel1.frame.size.height+detailLabel1.frame.origin.y+1;
     CGFloat detailViewW=self.bjImageView.frame.size.width;
-    CGFloat detailViewH=recordsOfConsumptionModel.items.count*30;
-    self.detailView.frame=CGRectMake(0, detailViewY, detailViewW, detailViewH);
+    CGFloat detailViewH=allConsumptionModel.items.count*30;
+    detailView.frame=CGRectMake(0, detailViewY, detailViewW, detailViewH);
     [self.bjImageView addSubview:detailView];
     
     CGFloat bjImageViewH=detailViewY+detailViewH+20;
@@ -316,14 +326,14 @@
     
     
     
-    for (int i=0; i<recordsOfConsumptionModel.items.count; i++) {
+    for (int i=0; i<allConsumptionModel.items.count; i++) {
         UIView *view=[[UIView alloc] init];
         view.frame=CGRectMake(0, i*30, self.bjImageView.frame.size.width, 30);
         
-        [self addDetailControls:view andItem:recordsOfConsumptionModel.items[i]];
-        [self.detailView addSubview:view];
+        [self addDetailControls:view andItem:allConsumptionModel.items[i]];
+        [detailView addSubview:view];
     }
-
+    
     
     self.cellHight=bjImageViewH+5;
 }
@@ -398,43 +408,7 @@
     }
     
     
-
+    
 }
-
-
-
-
-//-(void)layoutSubviews
-//{
-//    [super layoutSubviews];
-//
-//    CGFloat timeLabelX=17;
-//    CGFloat timeLabelY=15;
-//    CGFloat timeLabelW=200;
-//    CGFloat timeLabelH=20;
-//    self.timeLabel.frame=CGRectMake(timeLabelX, timeLabelY, timeLabelW, timeLabelH);
-//    
-////    CGFloat cardTypeX=timeLabelX+timeLabelW+30;
-////    CGFloat cardTypeY=10;
-////    CGFloat cardTypeW=200;
-////    CGFloat cardTypeH=20;
-////    self.cardType.frame=CGRectMake(cardTypeX, cardTypeY, cardTypeW, cardTypeH);
-//    
-//    CGFloat moneyLabelX=timeLabelX;
-//    CGFloat moneyLabelY=13+timeLabelH+6;
-//    CGFloat moneyLabelW=200;
-//    CGFloat moneyLabelH=20;
-//    self.moneyLabel.frame=CGRectMake(moneyLabelX, moneyLabelY, moneyLabelW, moneyLabelH);
-//    
-//    CGFloat accountLabelX=timeLabelX;
-//    CGFloat accountLabelY=moneyLabelY+moneyLabelH+6;
-//    CGFloat accountLabelW=200;
-//    CGFloat accountLabelH=20;
-//    self.accountLabel.frame=CGRectMake(accountLabelX, accountLabelY, accountLabelW, accountLabelH);
-//
-//    self.rightImage.frame=CGRectMake(self.frame.size.width-6-10, (self.frame.size.height-11)/2, 6, 11);
-//
-//}
-
 
 @end
