@@ -24,6 +24,7 @@
         self.entrance_time=[dict[@"entrance_time"] longValue];
         self.departure_time=[dict[@"departure_time"] longValue];
         self.name=dict[@"club"][@"name"];
+        self.state=dict[@"state"];
         
         self.items=[NSMutableArray array];
         NSMutableArray *array=[NSMutableArray array];

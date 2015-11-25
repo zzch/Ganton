@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "ZCHomeViewController.h"
 #import "ZCAccountViewController.h"
+#import "APService.h"
 @interface AppDelegate ()
 
 @end
@@ -20,6 +21,31 @@
     //创建Window
     self.window=[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor=[UIColor whiteColor];
+    
+    
+    
+    // Required
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        //可以添加自定义categories
+        [APService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
+                                                       UIUserNotificationTypeSound |
+                                                       UIUserNotificationTypeAlert)
+                                           categories:nil];
+    } else {
+        //categories 必须为nil
+        [APService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                       UIRemoteNotificationTypeSound |
+                                                       UIRemoteNotificationTypeAlert)
+                                           categories:nil];
+    }
+    
+    // Required
+    [APService setupWithOption:launchOptions];
+    
+    
+    
+    
+    
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
@@ -51,10 +77,72 @@
     // 4.显示window
     [self.window makeKeyAndVisible];
     
+    
+//    
+//    [APService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |UIUserNotificationTypeSound |UIUserNotificationTypeAlert)
+//                                       categories:nil];
+//    
+//    //launchOptions  远程通知的内容
+//    [APService setupWithOption:launchOptions];
+    
+    
+    
     return YES;
 
 
 }
+
+
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
+    // Required
+    [APService registerDeviceToken:deviceToken];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
+    // Required
+    [APService handleRemoteNotification:userInfo];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    
+    
+    // IOS 7 Support Required
+    [APService handleRemoteNotification:userInfo];
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+
+
+
+
+//- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+//{
+//    //设置用户的别名  账号 而且每个人不一样
+//    [APService setAlias:@"137" callbackSelector:nil object:nil];
+//    
+//    //上传DeviceToken
+//    [APService registerDeviceToken:deviceToken];
+//}
+//
+//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+//    
+//    // Required
+//    [APService handleRemoteNotification:userInfo];
+//}
+////后台 真后台
+//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+//    
+//    // IOS 7 Support Required
+//    //[APService handleRemoteNotification:userInfo];
+//    
+//    //代码块
+//    //后台 还在继续运行  (下载  加载图片信息 -> 耗时 : 30)
+//    completionHandler(UIBackgroundFetchResultNewData);
+//}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

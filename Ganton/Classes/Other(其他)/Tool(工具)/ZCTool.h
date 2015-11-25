@@ -44,6 +44,9 @@ typedef void (^failureBlock)(NSError *error);
 
 //post请求
 +(void)postWithUrl:(NSString *)url params:(NSDictionary *)params success:(successBlock)success failure:(failureBlock)failure;
+
+//put请求
++(void)putWithUrl:(NSString *)url params:(NSDictionary *)params success:(successBlock)success failure:(failureBlock)failure;
 //上传通讯录
 +(BOOL)UploadTheAddressBook;
 

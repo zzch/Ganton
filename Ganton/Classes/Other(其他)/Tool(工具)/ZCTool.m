@@ -283,6 +283,54 @@
 }
 
 
+
++(void)putWithUrl:(NSString *)url params:(NSDictionary *)params success:(successBlock)success failure:(failureBlock)failure
+{
+    AFHTTPRequestOperationManager *manger = [AFHTTPRequestOperationManager manager];
+    manger.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"text/plain",@"application/xhtml+xml",@"application/xml",@"application/json", nil];
+    [manger PUT:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        
+        if (![responseObject isKindOfClass:[NSArray class]]) {
+            //判断失败信息
+            if ([responseObject[@"exception_code"] integerValue])
+            {
+                // [AppDelegate resetUserInfo];
+                [self TheErrorMessage:[responseObject[@"exception_code"] integerValue]];
+                return ;
+            }
+            
+        }
+        
+        
+        if (success)
+        {
+            success(responseObject);
+        }
+
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        //判断token是否过期
+        if ((long)[operation.response statusCode]==401 ) {
+            
+            [self tokenIsFailure];
+            
+            return ;
+        }
+        
+        if (failure)
+        {
+            failure(error);
+        }
+
+        
+    }];
+
+}
+
+
+
 //错误信息
 +(void)TheErrorMessage:(NSInteger )errorID
 {

@@ -22,6 +22,7 @@
         self.reception_payment=dict[@"reception_payment"];
         self.entrance_time=[dict[@"entrance_time"] longValue];
         self.departure_time=[dict[@"departure_time"] longValue];
+        self.state=dict[@"state"];
         
         self.items=[NSMutableArray array];
         NSMutableArray *array=[NSMutableArray array];

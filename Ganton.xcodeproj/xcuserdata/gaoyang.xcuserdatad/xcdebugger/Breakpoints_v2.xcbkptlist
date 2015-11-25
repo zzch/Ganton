@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Ganton/Classes/HomePage(&#x9996;&#x9875;)/Controller/ZCHomeViewController.m"
-            timestampString = "469336917.66267"
+            filePath = "Ganton/AppDelegate.m"
+            timestampString = "470056594.810442"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
-            landmarkName = "-clickTheOtherCardWithcardPackageViewController:"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "-application:didRegisterForRemoteNotificationsWithDeviceToken:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

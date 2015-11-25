@@ -321,9 +321,44 @@
     detailView.frame=CGRectMake(0, detailViewY, detailViewW, detailViewH);
     [self.bjImageView addSubview:detailView];
     
-    CGFloat bjImageViewH=detailViewY+detailViewH+20;
-    self.bjImageView.frame=CGRectMake(10, 10, SCREEN_WIDTH-2*10, bjImageViewH);
+//    CGFloat bjImageViewH=detailViewY+detailViewH+20;
+//    self.bjImageView.frame=CGRectMake(10, 10, SCREEN_WIDTH-2*10, bjImageViewH);
     
+    
+    
+    
+    UIImageView *imageView=[[UIImageView alloc] init];
+    CGFloat imageViewX=0;
+    CGFloat imageViewY=detailViewY+detailViewH+15;
+    CGFloat imageViewW=bjImageViewW;
+    CGFloat imageViewH=53;
+    imageView.frame=CGRectMake(imageViewX, imageViewY, imageViewW, imageViewH);
+    //label.backgroundColor=[UIColor colorWithPatternImage:[ZCTool imagePullLitre:@"xfjl_anniu"]];
+    imageView.image=[ZCTool imagePullLitre:@"xfjl_anniu"];
+    [bjImageView addSubview:imageView];
+    
+    
+    UILabel *textLabel=[[UILabel alloc] init];
+    textLabel.frame=CGRectMake(0, 0, imageViewW, imageViewH);
+    textLabel.textAlignment=NSTextAlignmentCenter;
+    textLabel.textColor=[UIColor whiteColor];
+    [imageView addSubview:textLabel];
+    
+    if ([allConsumptionModel.state isEqual:@"progressing"]) {
+        textLabel.text=@"进行中";
+    }else if ([allConsumptionModel.state isEqual:@"cancelled"]){
+        textLabel.text=@"已取消";
+    }else if ([allConsumptionModel.state isEqual:@"finished"]){
+        textLabel.text=@"已完成";
+    }else if ([allConsumptionModel.state isEqual:@"confirming"]){
+        textLabel.text=@"等待确认";
+    }
+    
+    
+    CGFloat bjImageViewH=imageViewY+imageViewH-2;
+    self.bjImageView.frame=CGRectMake(10, 10, SCREEN_WIDTH-2*10, bjImageViewH);
+    self.cellHight=bjImageViewH+10;
+
     
     
     for (int i=0; i<allConsumptionModel.items.count; i++) {
@@ -335,7 +370,9 @@
     }
     
     
-    self.cellHight=bjImageViewH+5;
+    
+    
+   // self.cellHight=bjImageViewH+5;
 }
 
 

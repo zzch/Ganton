@@ -78,7 +78,7 @@
         UILabel *fuhaoLabel=[[UILabel alloc] init];
         fuhaoLabel.text=@"￥";
         fuhaoLabel.textColor=[UIColor redColor];
-        fuhaoLabel.font=[UIFont systemFontOfSize:14];
+        fuhaoLabel.font=[UIFont systemFontOfSize:12];
         [self.contentView addSubview:fuhaoLabel];
         self.fuhaoLabel=fuhaoLabel;
         

@@ -23,6 +23,7 @@
 @property(nonatomic,strong)NSMutableArray *items;
 //名字
 @property(nonatomic,copy)NSString *name;
+@property(nonatomic,copy)NSString *state;
 
 + (instancetype)allConsumptionModelWithDict:(NSDictionary *)dict;
 - (instancetype)initWithDict:(NSDictionary *)dict;

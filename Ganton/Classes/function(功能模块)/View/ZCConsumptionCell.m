@@ -8,7 +8,7 @@
 
 #import "ZCConsumptionCell.h"
 #import "ZCConsumptionDetailModel.h"
-@interface ZCConsumptionCell()
+@interface ZCConsumptionCell()<UIAlertViewDelegate>
 @property(nonatomic,weak)UILabel *timeLabel;
 @property(nonatomic,weak)UILabel *cardType;
 @property(nonatomic,weak)UILabel *detailLabel1;
@@ -119,6 +119,7 @@
 {
     
     UIImageView *bjImageView=[[UIImageView alloc] init];
+    bjImageView.userInteractionEnabled=YES;
     CGFloat bjImageViewX=10;
     CGFloat bjImageViewY=10;
     CGFloat bjImageViewW=SCREEN_WIDTH-2*bjImageViewX;
@@ -311,8 +312,68 @@
     self.detailView.frame=CGRectMake(0, detailViewY, detailViewW, detailViewH);
     [self.bjImageView addSubview:detailView];
     
-    CGFloat bjImageViewH=detailViewY+detailViewH+20;
-    self.bjImageView.frame=CGRectMake(10, 10, SCREEN_WIDTH-2*10, bjImageViewH);
+    
+    
+    
+   
+    
+    if ([recordsOfConsumptionModel.state isEqual:@"confirming"]) {
+        
+        UIImageView *xianImage=[[UIImageView alloc] init];
+        xianImage.frame=CGRectMake(20, detailViewY+detailViewH+5, bjImageViewW-20-10, 1);
+        xianImage.image=[ZCTool imagePullLitre:@"xuxian"];
+        [bjImageView addSubview:xianImage];
+        
+        
+        UIButton *confirmBtn=[[UIButton alloc] init];
+        
+        CGFloat confirmBtnY=detailViewY+detailViewH+25;
+        CGFloat confirmBtnW=100;
+        CGFloat confirmBtnH=30;
+        CGFloat confirmBtnX=(SCREEN_WIDTH-confirmBtnW)/2;
+        confirmBtn.frame=CGRectMake(confirmBtnX, confirmBtnY, confirmBtnW, confirmBtnH);
+        [confirmBtn setBackgroundImage:[UIImage imageNamed:@"xfjl_niu" ] forState:UIControlStateNormal];
+        [confirmBtn setTitle:@"等待确认" forState:UIControlStateNormal];
+        [confirmBtn addTarget:self action:@selector(clickTheConfirmBtn) forControlEvents:UIControlEventTouchUpInside];
+        [bjImageView addSubview:confirmBtn];
+        
+        
+        CGFloat bjImageViewH=confirmBtnY+confirmBtnH+20;
+        self.bjImageView.frame=CGRectMake(10, 10, SCREEN_WIDTH-2*10, bjImageViewH);
+        self.cellHight=bjImageViewH+5;
+
+    }else
+    {
+        UIImageView *imageView=[[UIImageView alloc] init];
+        CGFloat imageViewX=0;
+        CGFloat imageViewY=detailViewY+detailViewH+15;
+        CGFloat imageViewW=bjImageViewW;
+        CGFloat imageViewH=53;
+        imageView.frame=CGRectMake(imageViewX, imageViewY, imageViewW, imageViewH);
+        //label.backgroundColor=[UIColor colorWithPatternImage:[ZCTool imagePullLitre:@"xfjl_anniu"]];
+        imageView.image=[ZCTool imagePullLitre:@"xfjl_anniu"];
+        [bjImageView addSubview:imageView];
+        
+        
+        UILabel *textLabel=[[UILabel alloc] init];
+        textLabel.frame=CGRectMake(0, 0, imageViewW, imageViewH);
+        textLabel.textAlignment=NSTextAlignmentCenter;
+        textLabel.textColor=[UIColor whiteColor];
+        [imageView addSubview:textLabel];
+        
+        if ([recordsOfConsumptionModel.state isEqual:@"progressing"]) {
+            textLabel.text=@"进行中";
+        }else if ([recordsOfConsumptionModel.state isEqual:@"cancelled"]){
+            textLabel.text=@"已取消";
+        }else if ([recordsOfConsumptionModel.state isEqual:@"finished"]){
+            textLabel.text=@"已完成";
+        }
+        
+    
+        CGFloat bjImageViewH=imageViewY+imageViewH-2;
+        self.bjImageView.frame=CGRectMake(10, 10, SCREEN_WIDTH-2*10, bjImageViewH);
+        self.cellHight=bjImageViewH+10;
+    }
     
     
     
@@ -325,8 +386,57 @@
     }
 
     
-    self.cellHight=bjImageViewH+5;
 }
+
+
+//点击确认按钮
+-(void)clickTheConfirmBtn
+{
+    // 弹框
+    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"您要确认该笔消费吗？" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    // 设置对话框的类型
+    alert.alertViewStyle=UIKeyboardTypeNumberPad;
+    
+    [alert show];
+
+}
+
+
+#pragma mark - alertView的代理方法
+/**
+ *  点击了alertView上面的按钮就会调用这个方法
+ *
+ *  @param buttonIndex 按钮的索引,从0开始
+ */
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        ZCLog(@"asdasda");
+        //[self.navigationController popViewControllerAnimated:YES];
+    }else
+    {
+        ZCLog(@"asdasda");
+        [self confirmRequest];
+    }
+
+    // 按钮的索引肯定不是0
+
+}
+
+
+//确认消费
+-(void)confirmRequest
+{
+    
+    if ([self.delegete respondsToSelector:@selector(clickTheConfirmBtn:)]) {
+        
+        [self.delegete clickTheConfirmBtn:self.recordsOfConsumptionModel.uuid];
+    }
+    //[self.delegete clickTheConfirmBtn:self.recordsOfConsumptionModel.uuid];
+}
+
 
 
 

@@ -11,7 +11,7 @@
 #import "ZCDetailViewController.h"
 #import "ZCRecordsOfConsumptionModel.h"
 #import "MJRefresh.h"
-@interface ZCRecordsOfConsumptionViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface ZCRecordsOfConsumptionViewController ()<UITableViewDelegate,UITableViewDataSource,ZCConsumptionCellDelegate>
 @property(nonatomic,strong)NSMutableArray *dataArray;
 @property(nonatomic,weak)UITableView *tableView;
 @property(nonatomic,assign) int page;
@@ -45,6 +45,8 @@
     params[@"club_uuid"]=uuid;
     params[@"page"]=@(self.page);
     NSString *URL=[NSString stringWithFormat:@"%@v1/tabs",API];
+    
+    
     
     [ZCTool getWithUrl:URL params:params success:^(id responseObject) {
         ZCLog(@"%@",responseObject);
@@ -125,10 +127,11 @@
     
      NSString *ID=[NSString stringWithFormat:@"ZCConsumptionCell%ld",(long)indexPath.row];
     ZCConsumptionCell *cell=[tableView dequeueReusableCellWithIdentifier:ID];
+    
     if (cell==nil) {
         cell=[[ZCConsumptionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
-    
+    cell.delegete=self;
     cell.recordsOfConsumptionModel=self.dataArray[indexPath.row];
     return cell;
     
@@ -143,10 +146,37 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZCConsumptionCell *cell=(ZCConsumptionCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
+    cell.delegete=self;
     return cell.cellHight;
   
 }
 
+
+
+
+//代理方法
+-(void)clickTheConfirmBtn:(NSString *)uuid
+{
+    NSMutableDictionary *params=[NSMutableDictionary dictionary];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [defaults objectForKey:@"token"];
+    NSString *club_uuid = [defaults objectForKey:@"uuid"];
+    params[@"token"]=token;
+    params[@"club_uuid"]=club_uuid;
+    params[@"uuid"]=uuid;
+
+    NSString *URL=[NSString stringWithFormat:@"%@v1/tabs/confirm",API];
+    [ZCTool putWithUrl:URL params:params success:^(id responseObject) {
+        
+        ZCLog(@"%@",responseObject);
+        
+        self.page=1;
+        [self addData];
+    } failure:^(NSError *error) {
+        ZCLog(@"%@",error);
+    }];
+
+}
 
 
 //-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

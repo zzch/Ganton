@@ -22,6 +22,8 @@
 // 消费明细
 @property(nonatomic,strong)NSMutableArray *items;
 
+@property(nonatomic,copy)NSString *state;
+
 + (instancetype)recordsOfConsumptionModelWithDict:(NSDictionary *)dict;
 - (instancetype)initWithDict:(NSDictionary *)dict;
 
