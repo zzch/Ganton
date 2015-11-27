@@ -10,6 +10,7 @@
 @interface ZCRestaurantCollectionViewCell()
 @property(nonatomic,weak)UIView *view;
 @property(nonatomic,weak)UIImageView *foodImage;
+@property(nonatomic,weak)UIImageView *foodImage2;
 @property(nonatomic,weak)UILabel *nameLabel;
 @property(nonatomic,weak)UILabel *moneyLabel;
 @end
@@ -34,9 +35,16 @@
         self.view=view;
         
         UIImageView *foodImage=[[UIImageView alloc] init];
-        //foodImage.backgroundColor=[UIColor redColor];
+        foodImage.backgroundColor=ZCColor(299, 299, 299);
         [view addSubview:foodImage];
         self.foodImage=foodImage;
+        
+        
+//        UIImageView *foodImage2=[[UIImageView alloc] init];
+//        //foodImage2.backgroundColor=ZCColor(299, 299, 299);
+//        foodImage2.hidden=YES;
+//        [foodImage addSubview:foodImage2];
+//        self.foodImage2=foodImage2;
         
         UILabel *nameLabel=[[UILabel alloc] init];
         nameLabel.textAlignment=NSTextAlignmentRight;
@@ -59,10 +67,11 @@
     _goodsModel=goodsModel;
     
     if ([ZCTool _valueOrNil:goodsModel.image]==nil) {
-        self.foodImage.image=[UIImage imageNamed:@"u=2942189691,876443177&fm=21&gp=0.jpg"];
+        self.foodImage.image=[UIImage imageNamed:@"cyfw_mr"];
+        //self.foodImage2.hidden=NO;
     }else{
         
-        [self.foodImage sd_setImageWithURL:[NSURL URLWithString:goodsModel.image] placeholderImage:[UIImage imageNamed:@"u=2942189691,876443177&fm=21&gp=0.jpg"]];
+        [self.foodImage sd_setImageWithURL:[NSURL URLWithString:goodsModel.image] placeholderImage:[UIImage imageNamed:@"cyfw_mr"]];
     }
     self.nameLabel.text=goodsModel.name;
     
@@ -86,6 +95,10 @@
     CGFloat foodImageW=viewW;
     CGFloat foodImageH=110;
     self.foodImage.frame=CGRectMake(foodImageX, foodImageY, foodImageW, foodImageH);
+    
+    
+    //self.foodImage2.frame=CGRectMake((foodImageW-87)/2, (foodImageH-49)/2, 87, 49);
+    
     
     CGFloat nameLabelX=0;
     CGFloat nameLabelY=foodImageY+foodImageH;

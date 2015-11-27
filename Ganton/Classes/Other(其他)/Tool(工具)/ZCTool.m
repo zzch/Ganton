@@ -10,6 +10,7 @@
 #import <AddressBook/AddressBook.h>
 #import "AppDelegate.h"
 #import "ZCAccountViewController.h"
+#import "APService.h"
 @interface ZCTool ()<AFMultipartFormData>
 
 @end
@@ -290,6 +291,7 @@
     manger.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"text/plain",@"application/xhtml+xml",@"application/xml",@"application/json", nil];
     [manger PUT:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
+        ZCLog(@"%@",responseObject);
         
         if (![responseObject isKindOfClass:[NSArray class]]) {
             //判断失败信息
@@ -310,6 +312,8 @@
 
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        ZCLog(@"%@",error);
         
         //判断token是否过期
         if ((long)[operation.response statusCode]==401 ) {
@@ -356,6 +360,8 @@
     [defaults removeObjectForKey:@"portrait"];
     [defaults removeObjectForKey:@"gender"];
     [defaults removeObjectForKey:@"name"];
+    [defaults removeObjectForKey:@"isYes"];
+    [defaults removeObjectForKey:@"registrationID"];
 
     
     [UIView animateWithDuration:0 delay:2 options:UIViewAnimationOptionCurveEaseOut animations:^{
@@ -374,10 +380,65 @@
 
 
 
+//判断是否要上传推送ID
++(void)uploadThePushID
+{
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *registrationID = [defaults objectForKey:@"registrationID"];
+    
+    //获取registrationID
+    NSString *registrationID1= [APService registrationID];
+    
+    if ([registrationID1 isEqual:@""]) {
+        return;
+    }
+    
+    ZCLog(@"-----%@",registrationID1);
+    
+    if (![registrationID isEqual:registrationID1]) {
+        [defaults setObject:registrationID1 forKey:@"registrationID"];
+        [defaults setObject:@"yes" forKey:@"isYes"];
+        //[self uploadRegistrationID];
+    }
+     
+    
+    
+    // NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *isYes = [defaults objectForKey:@"isYes"];
+    
+    if ([isYes isEqual:@"yes"]) {
+        [self uploadRegistrationID];
+    }
+    
+}
 
 
 
 
+//上传服务器registrationID
++(void)uploadRegistrationID
+{
+    NSMutableDictionary *params=[NSMutableDictionary dictionary];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [defaults objectForKey:@"token"];
+    NSString *registrationID = [defaults objectForKey:@"registrationID"];
+    params[@"registration_id"]=registrationID;
+    params[@"token"]=token;
+    NSString *URL=[NSString stringWithFormat:@"%@v1/users/registration_id",API];
+    
+    [ZCTool putWithUrl:URL params:params success:^(id responseObject) {
+        
+        ZCLog(@"%@",responseObject);
+        
+        [defaults removeObjectForKey:@"isYes"];
+        [defaults setObject:@"no" forKey:@"isYes"];
+        
+    } failure:^(NSError *error) {
+        ZCLog(@"%@",error);
+    }];
+    
+}
 
 
 

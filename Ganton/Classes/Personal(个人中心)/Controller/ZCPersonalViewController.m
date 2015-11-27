@@ -90,16 +90,36 @@
     [self changePhotoView:photoViewBtn];
 
   
+//    UIButton *button1=[[UIButton alloc] init];
+//    CGFloat button1X=0;
+//    CGFloat button1Y=photoViewBtnY+photoViewBtnH+15;
+//    CGFloat button1W=SCREEN_WIDTH;
+//    CGFloat button1H=50;
+//    button1.frame=CGRectMake(button1X, button1Y, button1W, button1H);
+//    button1.backgroundColor=[UIColor whiteColor];
+//    [self.view addSubview:button1];
+//    [button1 addTarget:self action:@selector(clickTheButton1) forControlEvents:UIControlEventTouchUpInside];
+//    [self addChildControls:button1 andImageStr:@"geren_hongbao_icon" andText:@"我的红包"];
+    
     UIButton *button1=[[UIButton alloc] init];
-    CGFloat button1X=0;
-    CGFloat button1Y=photoViewBtnY+photoViewBtnH+15;
-    CGFloat button1W=SCREEN_WIDTH;
-    CGFloat button1H=50;
-    button1.frame=CGRectMake(button1X, button1Y, button1W, button1H);
+        CGFloat button1X=0;
+        CGFloat button1Y=photoViewBtnY+photoViewBtnH+15;
+        CGFloat button1W=SCREEN_WIDTH;
+        CGFloat button1H=50;
+        button1.frame=CGRectMake(button1X, button1Y, button1W, button1H);
+
+    //        CGFloat button3X=0;
+    //        CGFloat button3Y=photoViewBtnY+photoViewBtnH+15;
+    //        CGFloat button3W=SCREEN_WIDTH;
+    //        CGFloat button3H=50;
+    //        button3.frame=CGRectMake(button3X, button3Y, button3W, button3H);
+    
     button1.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:button1];
-    [button1 addTarget:self action:@selector(clickTheButton1) forControlEvents:UIControlEventTouchUpInside];
-    [self addChildControls:button1 andImageStr:@"geren_hongbao_icon" andText:@"我的红包"];
+    [button1 addTarget:self action:@selector(clickTheButton3) forControlEvents:UIControlEventTouchUpInside];
+    [self addChildControls:button1 andImageStr:@"geren_dawei_icon" andText:@"打位预约"];
+    
+    
     
     UIView *bjView=[[UIView alloc] init];
     bjView.frame=CGRectMake(0, button1Y+button1H, 20, 1);
@@ -123,22 +143,22 @@
     [self.view addSubview:bjView2];
     
     
-    UIButton *button3=[[UIButton alloc] init];
-    CGFloat button3X=0;
-    CGFloat button3Y=button2Y+button2H+15;
-    CGFloat button3W=SCREEN_WIDTH;
-    CGFloat button3H=50;
-    button3.frame=CGRectMake(button3X, button3Y, button3W, button3H);
-//        CGFloat button3X=0;
-//        CGFloat button3Y=photoViewBtnY+photoViewBtnH+15;
-//        CGFloat button3W=SCREEN_WIDTH;
-//        CGFloat button3H=50;
-//        button3.frame=CGRectMake(button3X, button3Y, button3W, button3H);
-
-    button3.backgroundColor=[UIColor whiteColor];
-    [self.view addSubview:button3];
-    [button3 addTarget:self action:@selector(clickTheButton3) forControlEvents:UIControlEventTouchUpInside];
-    [self addChildControls:button3 andImageStr:@"geren_dawei_icon" andText:@"打位预约"];
+//    UIButton *button3=[[UIButton alloc] init];
+//    CGFloat button3X=0;
+//    CGFloat button3Y=button2Y+button2H+15;
+//    CGFloat button3W=SCREEN_WIDTH;
+//    CGFloat button3H=50;
+//    button3.frame=CGRectMake(button3X, button3Y, button3W, button3H);
+////        CGFloat button3X=0;
+////        CGFloat button3Y=photoViewBtnY+photoViewBtnH+15;
+////        CGFloat button3W=SCREEN_WIDTH;
+////        CGFloat button3H=50;
+////        button3.frame=CGRectMake(button3X, button3Y, button3W, button3H);
+//
+//    button3.backgroundColor=[UIColor whiteColor];
+//    [self.view addSubview:button3];
+//    [button3 addTarget:self action:@selector(clickTheButton3) forControlEvents:UIControlEventTouchUpInside];
+//    [self addChildControls:button3 andImageStr:@"geren_dawei_icon" andText:@"打位预约"];
     
     
     
@@ -146,7 +166,7 @@
     UIButton *exitButton=[[UIButton alloc] init];
     exitButton.backgroundColor=[UIColor whiteColor];
     CGFloat exitButtonX=0;
-    CGFloat exitButtonY=button3Y+button3H+15;
+    CGFloat exitButtonY=button2Y+button2H+15;
     CGFloat exitButtonW=SCREEN_WIDTH-2*exitButtonX;
     CGFloat exitButtonH=50;
     exitButton.frame=CGRectMake(exitButtonX, exitButtonY, exitButtonW, exitButtonH);
@@ -209,6 +229,8 @@
         [defaults removeObjectForKey:@"portrait"];
         [defaults removeObjectForKey:@"gender"];
         [defaults removeObjectForKey:@"name"];
+        [defaults removeObjectForKey:@"isYes"];
+        [defaults removeObjectForKey:@"registrationID"];
         
         
         ZCAccountViewController *vc=[[ZCAccountViewController alloc] init];

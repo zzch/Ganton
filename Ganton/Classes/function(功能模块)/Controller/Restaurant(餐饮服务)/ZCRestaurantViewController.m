@@ -32,8 +32,8 @@ static NSString *const identifier=@"cell";
     self.view.backgroundColor=[UIColor whiteColor];
     self.navigationItem.title=@"餐饮服务";
     
-    self.imageStr=@"3088644_150703431167_2.jpg";
-    self.nameStr=@"大闸蟹";
+//    self.imageStr=@"3088644_150703431167_2.jpg";
+//    self.nameStr=@"大闸蟹";
     
     
     self.view.backgroundColor=ZCColor(237, 237, 237);

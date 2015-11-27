@@ -47,6 +47,14 @@ typedef void (^failureBlock)(NSError *error);
 
 //put请求
 +(void)putWithUrl:(NSString *)url params:(NSDictionary *)params success:(successBlock)success failure:(failureBlock)failure;
+
+
+//判断是否要上传推送ID
++(void)uploadThePushID;
+
+//上传服务器registrationID
++(void)uploadRegistrationID;
+
 //上传通讯录
 +(BOOL)UploadTheAddressBook;
 

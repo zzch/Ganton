@@ -10,8 +10,9 @@
 #import "ZCHomeViewController.h"
 #import "ZCAccountViewController.h"
 #import "APService.h"
-@interface AppDelegate ()
-
+#import "ZCRecordsOfConsumptionViewController.h"
+@interface AppDelegate ()<UIAlertViewDelegate>
+@property(nonatomic,strong)NSDictionary *userInfo;
 @end
 
 @implementation AppDelegate
@@ -23,7 +24,9 @@
     self.window.backgroundColor=[UIColor whiteColor];
     
     
-    
+    //去掉右上角图标
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+
     // Required
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
         //可以添加自定义categories
@@ -43,8 +46,10 @@
     [APService setupWithOption:launchOptions];
     
     
+    NSDictionary *remoteNotification = [launchOptions objectForKey: UIApplicationLaunchOptionsRemoteNotificationKey];
     
     
+   
     
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
@@ -85,7 +90,11 @@
 //    //launchOptions  远程通知的内容
 //    [APService setupWithOption:launchOptions];
     
-    
+//    UILabel *label=[[UILabel alloc] init];
+//    label.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+//    label.numberOfLines=0;
+//    label.text=[NSString stringWithFormat:@"%@",remoteNotification];
+//    [self.window addSubview:label];
     
     return YES;
 
@@ -93,26 +102,208 @@
 }
 
 
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    // 取得 APNs 标准信息内容
+    NSDictionary *aps = [userInfo valueForKey:@"aps"];
+    NSString *content = [aps valueForKey:@"alert"]; //推送显示的内容
+    NSInteger badge = [[aps valueForKey:@"badge"] integerValue]; //badge数量
+    NSString *sound = [aps valueForKey:@"sound"]; //播放的声音
+    
+    // 取得自定义字段内容
+    NSString *customizeField1 = [userInfo valueForKey:@"customizeField1"]; //自定义参数，key是自己定义的
+    NSLog(@"content =[%@], badge=[%d], sound=[%@], customize field  =[%@]",content,badge,sound,customizeField1);
+    
+    UILabel *label=[[UILabel alloc] init];
+    label.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    label.numberOfLines=0;
+    label.backgroundColor=[UIColor whiteColor];
+    label.text=[NSString stringWithFormat:@"%@",userInfo];
+    [self.window addSubview:label];
+
+    
+    // Required
+    [APService handleRemoteNotification:userInfo];
+    
+}
+//iOS 7 Remote Notification
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:  (NSDictionary *)userInfo fetchCompletionHandler:(void (^)   (UIBackgroundFetchResult))completionHandler {
+    
+    
+    ZCLog(@"%ld",(long)application.applicationState);
+    
+    NSLog(@"this is iOS7 Remote Notification");
+    
+    if ((long)application.applicationState==0 ) {
+        
+        [self pushThepopUp:userInfo];
+        
+//        UILabel *label=[[UILabel alloc] init];
+//        label.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+//        label.numberOfLines=0;
+//        label.backgroundColor=[UIColor redColor];
+//        label.text=[NSString stringWithFormat:@"%@",userInfo];
+//        [self.window addSubview:label];
+    }else{
+    
+        
+        NSString *redirect_to = [userInfo valueForKey:@"redirect_to"];
+        if ([redirect_to isEqual:@"tabs_list"]) {
+            
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults removeObjectForKey:@"uuid"];
+            [defaults setObject:[userInfo valueForKey:@"club_uuid"] forKey:@"uuid"];
+            
+            ZCHomeViewController *vc= [[ZCHomeViewController alloc] init];
+            
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+            self.window.rootViewController = nav;
+            
+            [vc.navigationController pushViewController:[[ZCRecordsOfConsumptionViewController alloc] init] animated:NO];
+            
+        }
+
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+//    NSDictionary *aps = [userInfo valueForKey:@"aps"];
+//    NSString *content = [aps valueForKey:@"alert"]; //推送显示的内容
+//    NSInteger badge = [[aps valueForKey:@"badge"] integerValue]; //badge数量
+//    NSString *sound = [aps valueForKey:@"sound"]; //播放的声音
+//    
+//    // 取得自定义字段内容
+//    NSString *customizeField1 = [userInfo valueForKey:@"customizeField1"]; //自定义参数，key是自己定义的
+//    NSLog(@"content =[%@], badge=[%d], sound=[%@], customize field  =[%@]",content,badge,sound,customizeField1);
+    
+    
+    
+    
+    
+    
+    // Required
+    [APService handleRemoteNotification:userInfo];
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+
+
+
+//点击确认按钮
+-(void)pushThepopUp:(NSDictionary *)userInfo
+{
+    self.userInfo=userInfo;
+    
+    // 弹框
+    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"您有一笔消费单需要确认" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    // 设置对话框的类型
+    alert.alertViewStyle=UIKeyboardTypeNumberPad;
+    
+    [alert show];
+    
+}
+
+
+#pragma mark - alertView的代理方法
+/**
+ *  点击了alertView上面的按钮就会调用这个方法
+ *
+ *  @param buttonIndex 按钮的索引,从0开始
+ */
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        ZCLog(@"asdasda");
+        //[self.navigationController popViewControllerAnimated:YES];
+    }else
+    {
+        ZCLog(@"asdasda");
+        [self confirmRequest];
+    }
+    
+    // 按钮的索引肯定不是0
+    
+}
+
+
+
+//确认消费
+-(void)confirmRequest
+{
+    NSString *redirect_to = [self.userInfo valueForKey:@"redirect_to"];
+    if ([redirect_to isEqual:@"tabs_list"]) {
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults removeObjectForKey:@"uuid"];
+        [defaults setObject:[self.userInfo valueForKey:@"club_uuid"] forKey:@"uuid"];
+        
+        ZCHomeViewController *vc= [[ZCHomeViewController alloc] init];
+        
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+        self.window.rootViewController = nav;
+        
+        [vc.navigationController pushViewController:[[ZCRecordsOfConsumptionViewController alloc] init] animated:NO];
+        
+    }
+    
+}
+
+
+
+
+
+
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     // Required
     [APService registerDeviceToken:deviceToken];
+    
+    
+//    //判断是否要上传ID
+//    [ZCTool uploadThePushID];
+    
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSString *registrationID = [defaults objectForKey:@"registrationID"];
+//    
+//    //获取registrationID
+//   NSString *registrationID1= [APService registrationID];
+//    
+//    if (![registrationID isEqual:registrationID1]) {
+//        [defaults setObject:registrationID1 forKey:@"registrationID"];
+//        [defaults setObject:@"yes" forKey:@"isYes"];
+//        //[self uploadRegistrationID];
+//    }
+//    
+//    ZCLog(@"%@",registrationID);
 }
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    
-    // Required
-    [APService handleRemoteNotification:userInfo];
-}
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    
-    
-    // IOS 7 Support Required
-    [APService handleRemoteNotification:userInfo];
-    completionHandler(UIBackgroundFetchResultNewData);
-}
+
+
+
+//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+//    
+//    // Required
+//    [APService handleRemoteNotification:userInfo];
+//}
+
+
+
+//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+//    
+//    
+//    // IOS 7 Support Required
+//    [APService handleRemoteNotification:userInfo];
+//    completionHandler(UIBackgroundFetchResultNewData);
+//}
 
 
 
@@ -152,10 +343,15 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
+    //去掉右上角图标
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

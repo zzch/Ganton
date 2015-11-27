@@ -36,8 +36,14 @@
     self.view.backgroundColor=ZCColor(239, 239, 244);
     
     
+    
+    
     self.navigationItem.rightBarButtonItem=[UIBarButtonItem barBtnItemWithNormalImageName:@"window" hightImageName:nil action:@selector(clickTheRightBarButtonItem) target:self withBtnName:nil];
     
+    
+//    //判断是否要上传ID
+//    [ZCTool uploadThePushID];
+
     
 //    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"卡包" style:UIBarButtonItemStyleDone target:self action:@selector(clickTheRightBarButtonItem)];
     
@@ -47,7 +53,10 @@
     
     [self addData];
     
+    
+    
 }
+
 
 
 // 网络加载
@@ -120,11 +129,17 @@
     noticeView.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:noticeView];
     
+    UIView *widthXian=[[UIView alloc] init];
+    widthXian.frame=CGRectMake(0, 39.5, self.view.frame.size.width, 0.5);
+    widthXian.backgroundColor=ZCColor(211, 211, 211);
+    [noticeView addSubview:widthXian];
+    
     
     
     UILabel *weatherLabel=[[UILabel alloc] init];
-    weatherLabel.frame=CGRectMake(0, 0, 90, 40);
+    weatherLabel.frame=CGRectMake(0, 0, 90, 39.5);
     weatherLabel.text=[NSString stringWithFormat:@"%@ %@ ℃",[ZCTool JudgmentIsWhichDay:self.homeModel.date],self.homeModel.maximum_temperature ];
+    weatherLabel.backgroundColor=[UIColor whiteColor];
     weatherLabel.font=[UIFont systemFontOfSize:14];
     weatherLabel.textAlignment=NSTextAlignmentCenter;
     [noticeView addSubview:weatherLabel];
@@ -132,7 +147,7 @@
     
     UIView *bjView=[[UIView alloc] init];
     bjView.frame=CGRectMake(90, 5, 1, 30);
-    bjView.backgroundColor=ZCColor(240, 240, 240);
+    bjView.backgroundColor=ZCColor(211, 211, 211);
     [noticeView addSubview:bjView];
     
     
@@ -143,7 +158,7 @@
 
     
     ZCAnnouncementView *textLabel=[[ZCAnnouncementView alloc] init];
-    textLabel.frame=CGRectMake(128, 0, self.view.frame.size.width-128-6-10, 40);
+    textLabel.frame=CGRectMake(128, 0, self.view.frame.size.width-128-6-10, 39.5);
     [noticeView addSubview:textLabel];
     textLabel.announcements=self.homeModel.announcements;
     
@@ -156,7 +171,7 @@
     
     //监听 公告
     UIButton *button=[[UIButton alloc] init];
-    button.frame=CGRectMake(128, 0, self.view.frame.size.width-128, 40);
+    button.frame=CGRectMake(128, 0, self.view.frame.size.width-128, 39.5);
     [noticeView addSubview:button];
     [button addTarget:self action:@selector(clickThetextLabel) forControlEvents:UIControlEventTouchUpInside];
     
@@ -207,7 +222,7 @@
     
     UIView *lastView=[[UIView alloc] init];
     CGFloat Y=scrollView.frame.size.height+scrollView.frame.origin.y+23;
-    lastView.backgroundColor=ZCColor(240, 240, 240);
+    lastView.backgroundColor=ZCColor(211, 211, 211);
     lastView.frame=CGRectMake(0, Y, self.view.frame.size.width, self.view.frame.size.height-Y);
     
     [self.view addSubview:lastView];
@@ -217,12 +232,12 @@
     
     int totalColumns = 3;
     // 1.数字的尺寸
-    CGFloat appW = (self.view.frame.size.width-2)/3;
-    CGFloat appH=(lastView.frame.size.height-1)/2;
+    CGFloat appW = (self.view.frame.size.width-1)/3;
+    CGFloat appH=(lastView.frame.size.height-0.5)/2;
     
     //间隙
-    CGFloat marginX = 1;
-    CGFloat marginY = 1;
+    CGFloat marginX = 0.5;
+    CGFloat marginY = 0.5;
 
     
     for (int j=0; j<6; j++) {

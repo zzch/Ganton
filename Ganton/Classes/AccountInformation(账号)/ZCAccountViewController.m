@@ -9,6 +9,7 @@
 #import "ZCAccountViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import "ZCHomeViewController.h"
+#import "APService.h"
 @interface ZCAccountViewController ()<CLLocationManagerDelegate,UITextFieldDelegate>
 @property(nonatomic,weak)UITextField *PhoneTextField;
 @property(nonatomic,weak)UITextField *VerificationTextField;
@@ -729,6 +730,9 @@
         window.rootViewController = nav;
         }
         
+        //上传用户推送ID
+        [ZCTool uploadThePushID];
+        
     } failure:^(NSError *error) {
         
         ZCLog(@"%@",error);
@@ -736,6 +740,12 @@
     }];
   
 }
+
+
+
+
+
+
 
 //点击重新发送
 -(void)clickgetButton
