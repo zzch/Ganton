@@ -48,7 +48,7 @@
     
     self.navigationItem.title=@"用户登录";
    
-    
+   
     
     self.view.backgroundColor=[UIColor whiteColor];
     //创建CLLocationManager定位
@@ -153,9 +153,15 @@
     
     UIView *view=[[UIView alloc] init];
     CGFloat viewX=42;
-    CGFloat viewY=imageViewH+5;
+    CGFloat viewY;
     CGFloat viewW=SCREEN_WIDTH-2*viewX;
     CGFloat viewH=40;
+    if (SCREEN_HEIGHT==480) {
+        viewY=imageViewH-45;
+    }else{
+        viewY=imageViewH+5;
+    }
+    
     view.frame=CGRectMake(viewX, viewY, viewW, viewH);
     [self.view addSubview:view];
     self.view1=view;

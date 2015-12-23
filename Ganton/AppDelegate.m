@@ -11,6 +11,8 @@
 #import "ZCAccountViewController.h"
 #import "APService.h"
 #import "ZCRecordsOfConsumptionViewController.h"
+#import "UMSocialWechatHandler.h"
+#import "UMSocialSnsService.h"
 @interface AppDelegate ()<UIAlertViewDelegate>
 @property(nonatomic,strong)NSDictionary *userInfo;
 @end
@@ -51,6 +53,11 @@
     
    
     
+    //友盟分享
+     [UMSocialWechatHandler setWXAppId:@"wxaf828c2ffaaa6f94" appSecret:@"6bb03e9ee3ed10160b2df80eca4c6a4d" url:@"http://www.umeng.com/social"];
+    
+    
+    
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
@@ -68,6 +75,9 @@
     }
     
     
+    
+    //监听极光推送注册成功后调用
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(registeredSuccessfully) name:@"kJPFNetworkDidLoginNotification" object:nil];
     
     
     //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -101,6 +111,35 @@
 
 }
 
+//友盟回调
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    BOOL result = [UMSocialSnsService handleOpenURL:url];
+    if (result == FALSE) {
+        //调用其他SDK，例如支付宝SDK等
+    }
+    return result;
+}
+
+
+
+// 注册成功
+-(void)registeredSuccessfully
+{
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [defaults objectForKey:@"token"];
+    
+    if (token){
+    //判断是否要上传ID
+   [ZCTool uploadThePushID];
+        
+    }
+
+
+}
+
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     // 取得 APNs 标准信息内容
@@ -113,16 +152,37 @@
     NSString *customizeField1 = [userInfo valueForKey:@"customizeField1"]; //自定义参数，key是自己定义的
     NSLog(@"content =[%@], badge=[%d], sound=[%@], customize field  =[%@]",content,badge,sound,customizeField1);
     
-    UILabel *label=[[UILabel alloc] init];
-    label.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    label.numberOfLines=0;
-    label.backgroundColor=[UIColor whiteColor];
-    label.text=[NSString stringWithFormat:@"%@",userInfo];
-    [self.window addSubview:label];
-
+   
     
     // Required
     [APService handleRemoteNotification:userInfo];
+    
+    
+    if ((long)application.applicationState==0 ) {
+        
+        [self pushThepopUp:userInfo];
+        
+    }else{
+        
+        
+        NSString *redirect_to = [userInfo valueForKey:@"redirect_to"];
+        if ([redirect_to isEqual:@"tabs_list"]) {
+            
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults removeObjectForKey:@"uuid"];
+            [defaults setObject:[userInfo valueForKey:@"club_uuid"] forKey:@"uuid"];
+            
+            ZCHomeViewController *vc= [[ZCHomeViewController alloc] init];
+            
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+            self.window.rootViewController = nav;
+            
+            [vc.navigationController pushViewController:[[ZCRecordsOfConsumptionViewController alloc] init] animated:NO];
+            
+        }
+        
+    }
+    
     
 }
 //iOS 7 Remote Notification
@@ -137,12 +197,6 @@
         
         [self pushThepopUp:userInfo];
         
-//        UILabel *label=[[UILabel alloc] init];
-//        label.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-//        label.numberOfLines=0;
-//        label.backgroundColor=[UIColor redColor];
-//        label.text=[NSString stringWithFormat:@"%@",userInfo];
-//        [self.window addSubview:label];
     }else{
     
         

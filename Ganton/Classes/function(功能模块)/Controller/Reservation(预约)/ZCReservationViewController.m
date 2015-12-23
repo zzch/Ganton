@@ -169,10 +169,13 @@
     [self.view addSubview:firstButton];
     
     self.firstButton=firstButton;
-     ZCWeathersModel *model=self.weathersArray[0];
-    [self theTextOnTheAddButton:firstButton andTime:model.date];
-    //默认点击第一个
-    [self clickTheFirstButton];
+    if (self.weathersArray.count!=0) {
+        ZCWeathersModel *model=self.weathersArray[0];
+        [self theTextOnTheAddButton:firstButton andTime:model.date];
+        //默认点击第一个
+        [self clickTheFirstButton];
+    }
+    
     
     UIButton *secondButton=[[UIButton alloc] init];
     CGFloat secondButtonX=firstButtonX+firstButtonW+10;
@@ -183,9 +186,10 @@
     [secondButton addTarget:self action:@selector(clickTheSecondButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:secondButton];
     self.secondButton=secondButton;
+    if (self.weathersArray.count!=0) {
     ZCWeathersModel *model2=self.weathersArray[1];
     [self theTextOnTheAddButton:secondButton andTime:model2.date];
-    
+    }
     
     UIButton *thirdButton=[[UIButton alloc] init];
     CGFloat thirdButtonX=secondButtonX+firstButtonW+10;
@@ -196,11 +200,11 @@
     [self.view addSubview:thirdButton];
     self.thirdButton=thirdButton;
 
-    
+    if (self.weathersArray.count!=0) {
     ZCWeathersModel *model3=self.weathersArray[2];
     [self theTextOnTheAddButton:thirdButton andTime:model3.date];
     
-    
+    }
     
     
     UIButton *timeButton=[[UIButton alloc] init];
@@ -286,7 +290,7 @@
 {
     ZCWeathersModel *model=self.weathersArray[0];
     [self ToControlTheAssignmentOnTheWeather:model];
-    
+    ZCLog(@"%ld",model.date);
 
     self.firstButton.selected=YES;
     self.secondButton.selected=NO;

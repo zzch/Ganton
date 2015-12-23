@@ -13,6 +13,7 @@
 #import "ZCMakeAnAppointmentViewController.h"
 #import "ZCAccountViewController.h"
 #import "ZCAllConsumptionViewController.h"
+#import "ZCMyCourseViewController.h"
 @interface ZCPersonalViewController ()
 @property(nonatomic,strong)NSDictionary *personDict;
 @property(nonatomic,weak)UIImageView *photoView;
@@ -116,7 +117,7 @@
     
     button1.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:button1];
-    [button1 addTarget:self action:@selector(clickTheButton3) forControlEvents:UIControlEventTouchUpInside];
+    [button1 addTarget:self action:@selector(clickTheButton1) forControlEvents:UIControlEventTouchUpInside];
     [self addChildControls:button1 andImageStr:@"geren_dawei_icon" andText:@"打位预约"];
     
     
@@ -143,22 +144,22 @@
     [self.view addSubview:bjView2];
     
     
-//    UIButton *button3=[[UIButton alloc] init];
-//    CGFloat button3X=0;
-//    CGFloat button3Y=button2Y+button2H+15;
-//    CGFloat button3W=SCREEN_WIDTH;
-//    CGFloat button3H=50;
-//    button3.frame=CGRectMake(button3X, button3Y, button3W, button3H);
-////        CGFloat button3X=0;
-////        CGFloat button3Y=photoViewBtnY+photoViewBtnH+15;
-////        CGFloat button3W=SCREEN_WIDTH;
-////        CGFloat button3H=50;
-////        button3.frame=CGRectMake(button3X, button3Y, button3W, button3H);
-//
-//    button3.backgroundColor=[UIColor whiteColor];
-//    [self.view addSubview:button3];
-//    [button3 addTarget:self action:@selector(clickTheButton3) forControlEvents:UIControlEventTouchUpInside];
-//    [self addChildControls:button3 andImageStr:@"geren_dawei_icon" andText:@"打位预约"];
+    UIButton *button3=[[UIButton alloc] init];
+    CGFloat button3X=0;
+    CGFloat button3Y=button2Y+button2H+15;
+    CGFloat button3W=SCREEN_WIDTH;
+    CGFloat button3H=50;
+    button3.frame=CGRectMake(button3X, button3Y, button3W, button3H);
+//        CGFloat button3X=0;
+//        CGFloat button3Y=photoViewBtnY+photoViewBtnH+15;
+//        CGFloat button3W=SCREEN_WIDTH;
+//        CGFloat button3H=50;
+//        button3.frame=CGRectMake(button3X, button3Y, button3W, button3H);
+
+    button3.backgroundColor=[UIColor whiteColor];
+    [self.view addSubview:button3];
+    [button3 addTarget:self action:@selector(clickTheButton3) forControlEvents:UIControlEventTouchUpInside];
+    [self addChildControls:button3 andImageStr:@"geren_dawei_icon" andText:@"我的课程"];
     
     
     
@@ -166,7 +167,7 @@
     UIButton *exitButton=[[UIButton alloc] init];
     exitButton.backgroundColor=[UIColor whiteColor];
     CGFloat exitButtonX=0;
-    CGFloat exitButtonY=button2Y+button2H+15;
+    CGFloat exitButtonY=button3Y+button3H+15;
     CGFloat exitButtonW=SCREEN_WIDTH-2*exitButtonX;
     CGFloat exitButtonH=50;
     exitButton.frame=CGRectMake(exitButtonX, exitButtonY, exitButtonW, exitButtonH);
@@ -229,8 +230,7 @@
         [defaults removeObjectForKey:@"portrait"];
         [defaults removeObjectForKey:@"gender"];
         [defaults removeObjectForKey:@"name"];
-        [defaults removeObjectForKey:@"isYes"];
-        [defaults removeObjectForKey:@"registrationID"];
+        
         
         
         ZCAccountViewController *vc=[[ZCAccountViewController alloc] init];
@@ -254,12 +254,20 @@
 
 
 
+////红包
+//-(void)clickTheButton1
+//{
+//    ZCRedEnvelopeViewController *vc=[[ZCRedEnvelopeViewController alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
+//
+//}
 
+
+//红包
 -(void)clickTheButton1
 {
-    ZCRedEnvelopeViewController *vc=[[ZCRedEnvelopeViewController alloc] init];
+    ZCMakeAnAppointmentViewController *vc=[[ZCMakeAnAppointmentViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
-
 }
 
 //消费记录
@@ -270,9 +278,10 @@
 
 }
 
+//课程
 -(void)clickTheButton3
 {
-    ZCMakeAnAppointmentViewController *vc=[[ZCMakeAnAppointmentViewController alloc] init];
+    ZCMyCourseViewController *vc=[[ZCMyCourseViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 
 }

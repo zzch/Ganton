@@ -14,6 +14,7 @@
 
 @property(nonatomic,weak)UITableView *tableView;
 @property(nonatomic,strong)NSMutableArray *announcementListArray;
+
 @end
 
 @implementation ZCAnnouncementViewController

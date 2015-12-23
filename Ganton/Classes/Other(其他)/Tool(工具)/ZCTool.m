@@ -171,9 +171,7 @@
     NSString *token = [defaults objectForKey:@"user_accessToken"];
     NSString *users_id = [defaults objectForKey:@"user_id"];
     
-//    WWLog(@"%@",token);
-//    token = @"1";
-//    users_id = @"1";
+
 
     AFHTTPRequestOperationManager *manger = [AFHTTPRequestOperationManager manager];
     manger.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"text/plain",@"application/xhtml+xml",@"application/xml",@"application/json", nil];
@@ -206,8 +204,15 @@
             if ([responseObject[@"exception_code"] integerValue])
             {
                 // [AppDelegate resetUserInfo];
+                
+                if ([responseObject[@"exception_code"] integerValue]==20001) {
+                    ZCLog(@"111111");
+                }else{
+                
+                
                 [self TheErrorMessage:[responseObject[@"exception_code"] integerValue]];
                 return ;
+                }
             }
 
         }
@@ -250,9 +255,12 @@
             //判断失败信息
             if ([responseObject[@"exception_code"] integerValue])
             {
+                
+                
                 // [AppDelegate resetUserInfo];
                 [self TheErrorMessage:[responseObject[@"exception_code"] integerValue]];
                 return ;
+                
             }
             
         }
@@ -397,19 +405,22 @@
     ZCLog(@"-----%@",registrationID1);
     
     if (![registrationID isEqual:registrationID1]) {
+        
+        [defaults removeObjectForKey:@"registrationID"];
+        
         [defaults setObject:registrationID1 forKey:@"registrationID"];
-        [defaults setObject:@"yes" forKey:@"isYes"];
-        //[self uploadRegistrationID];
+        
+        [self uploadRegistrationID];
     }
      
     
     
     // NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *isYes = [defaults objectForKey:@"isYes"];
-    
-    if ([isYes isEqual:@"yes"]) {
-        [self uploadRegistrationID];
-    }
+//    NSString *isYes = [defaults objectForKey:@"isYes"];
+//    
+//    if ([isYes isEqual:@"yes"]) {
+//        [self uploadRegistrationID];
+//    }
     
 }
 
@@ -431,8 +442,8 @@
         
         ZCLog(@"%@",responseObject);
         
-        [defaults removeObjectForKey:@"isYes"];
-        [defaults setObject:@"no" forKey:@"isYes"];
+//        [defaults removeObjectForKey:@"isYes"];
+//        [defaults setObject:@"no" forKey:@"isYes"];
         
     } failure:^(NSError *error) {
         ZCLog(@"%@",error);

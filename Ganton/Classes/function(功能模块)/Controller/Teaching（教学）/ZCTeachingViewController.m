@@ -12,6 +12,8 @@
 #import "ZCCoachViewController.h"
 #import "ZCTeachingModel.h"
 #import "ZCCoachModel.h"
+#import "ZCTeachingCourseCell.h"
+#import "ZCAppointmentCoachViewController.h"
 @interface ZCTeachingViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)ZCTeachingModel *teachingModel;
 @property(nonatomic,weak)UITableView *tableView;
@@ -33,6 +35,7 @@
     self.tableView=tableView;
     tableView.backgroundColor=ZCColor(237, 237, 237);
     
+    [self.tableView   setSeparatorColor:ZCColor(211, 211, 211)];
     
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 45, 0);
     //设置组头可以随着tableView往上滚动
@@ -84,12 +87,16 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     
-    return 2;
+    return 3;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section==0) {
+        
+        return 5;
+        
+    }else if (section==1) {
         return self.teachingModel.featured.count;
     }else{
         return self.teachingModel.normal.count;
@@ -99,8 +106,13 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     if (indexPath.section==0) {
+        ZCTeachingCourseCell *cell=[ZCTeachingCourseCell cellWithTableView:tableView];
+        
+        return cell;
+    }
+    
+    if (indexPath.section==1) {
         ZCTeachingHeaderCell *cell=[ZCTeachingHeaderCell cellWithTable:tableView];
         cell.coachModel=self.teachingModel.featured[indexPath.row];
         return cell;
@@ -116,8 +128,13 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section==0) {
+        
+        return 80;
+    }else if (indexPath.section==1) {
+        
         return 125;
     }else{
+        
         return 80;
     }
 
@@ -144,7 +161,18 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 20;
+    if (section==0) {
+        return 0.5;
+    }else{
+    
+        if (self.teachingModel.featured.count==0){
+            return 0.5;
+        }else
+        {
+            return 20;
+        }
+    }
+    
 
 }
 
@@ -175,15 +203,20 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    ZCCoachViewController *vc=[[ZCCoachViewController alloc] init];
     if (indexPath.section==0) {
+        ZCAppointmentCoachViewController *vc=[[ZCAppointmentCoachViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+    
+    ZCCoachViewController *vc=[[ZCCoachViewController alloc] init];
+    if (indexPath.section==1) {
         vc.uuid=[self.teachingModel.featured[indexPath.row] uuid];
     }else{
         vc.uuid=[self.teachingModel.normal[indexPath.row] uuid];
     }
     
     [self.navigationController pushViewController:vc animated:YES];
-   
+    }
 }
 
 

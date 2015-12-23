@@ -11,7 +11,9 @@
 #import "ZCDetailViewController.h"
 #import "ZCRecordsOfConsumptionModel.h"
 #import "MJRefresh.h"
-@interface ZCRecordsOfConsumptionViewController ()<UITableViewDelegate,UITableViewDataSource,ZCConsumptionCellDelegate>
+//#import "UMSocialSnsService.h"
+#import "UMSocial.h"
+@interface ZCRecordsOfConsumptionViewController ()<UITableViewDelegate,UITableViewDataSource,ZCConsumptionCellDelegate,UMSocialUIDelegate>
 @property(nonatomic,strong)NSMutableArray *dataArray;
 @property(nonatomic,weak)UITableView *tableView;
 @property(nonatomic,assign) int page;
@@ -65,6 +67,8 @@
         
         [self.tableView reloadData];
     } failure:^(NSError *error) {
+        
+        ZCLog(@"%@",error);
         
         if (self.isYes==NO) {
             self.page--;
@@ -179,15 +183,57 @@
 }
 
 
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    //取消反选
-//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //取消反选
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:@"566111f367e58e8d35001ab0"
+                                      shareText:@"红包红包大红包，红包红包大红包，红包红包大红包"
+                                     shareImage:[UIImage imageNamed:@"ic_launcher.png"]
+                                shareToSnsNames:@[UMShareToWechatSession,UMShareToWechatTimeline]
+                                       delegate:self];
+    
+    
+    
+    
+//    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:@"红包红包大红包，红包红包大红包，红包红包大红包" image:[UIImage imageNamed:@"iconfenxiang.png"] location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
+//        if (response.responseCode == UMSResponseCodeSuccess) {
+//            NSLog(@"分享成功！");
+//        }
+//    }];
+    
 //    ZCDetailViewController *vc=[[ZCDetailViewController alloc] init];
 //    [self.navigationController pushViewController:vc animated:YES];
-//
-//}
+
+    
+    
+    //微信
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://baidu.com";
+    //如果是朋友圈
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = @"http://baidu.com";
+    
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = @"微信好友title";
+    
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = @"微信朋友圈title";
+
+}
+
+
+
+//实现回调方法（可选）：
+-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+{
+    //根据`responseCode`得到发送结果,如果分享成功
+    if(response.responseCode == UMSResponseCodeSuccess)
+    {
+        //得到分享到的微博平台名
+        NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
+    }
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

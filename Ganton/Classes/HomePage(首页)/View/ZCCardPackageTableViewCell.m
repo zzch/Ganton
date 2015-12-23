@@ -122,12 +122,15 @@
 }
 
 
-
 -(void)setCardModel:(ZCCardModel *)cardModel
 {
     _cardModel=cardModel;
     
-    [self.photoImageView sd_setImageWithURL:[NSURL URLWithString:cardModel.logo] placeholderImage:[UIImage imageNamed:@"3088644_150703431167_2"] ];
+    if ([ZCTool _valueOrNil:cardModel.logo]) {
+       [self.photoImageView sd_setImageWithURL:[NSURL URLWithString:cardModel.logo] placeholderImage:[UIImage imageNamed:@"3088644_150703431167_2"] ];
+    }
+    
+    
     
     self.nameLabel.text=[NSString stringWithFormat:@"%@",cardModel.name];
 
