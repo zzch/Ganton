@@ -96,6 +96,7 @@
 		A97115DE1BCBA2270013C17A /* ZCConsumptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A97115DD1BCBA2270013C17A /* ZCConsumptionCell.m */; };
 		A97115E11BCBB6180013C17A /* ZCDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97115E01BCBB6180013C17A /* ZCDetailViewController.m */; };
 		A974E1EA1BD2923500EF4CF1 /* ZCCourseDetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A974E1E91BD2923500EF4CF1 /* ZCCourseDetailsModel.m */; };
+		A978C6671C2BC533000ADCC0 /* ZCStudentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A978C6661C2BC533000ADCC0 /* ZCStudentModel.m */; };
 		A97D71B91BD7742A00F27A00 /* DCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A97D71B81BD7742A00F27A00 /* DCButton.m */; };
 		A97D9AE41BE0BF4D00E17583 /* ZCBirthdayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97D9AE31BE0BF4D00E17583 /* ZCBirthdayViewController.m */; };
 		A98436BF1BC8BE4E0004AC94 /* ZCAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A98436BE1BC8BE4E0004AC94 /* ZCAccountViewController.m */; };
@@ -344,6 +345,8 @@
 		A97115E01BCBB6180013C17A /* ZCDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCDetailViewController.m; sourceTree = "<group>"; };
 		A974E1E81BD2923500EF4CF1 /* ZCCourseDetailsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCCourseDetailsModel.h; sourceTree = "<group>"; };
 		A974E1E91BD2923500EF4CF1 /* ZCCourseDetailsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCCourseDetailsModel.m; sourceTree = "<group>"; };
+		A978C6651C2BC533000ADCC0 /* ZCStudentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCStudentModel.h; sourceTree = "<group>"; };
+		A978C6661C2BC533000ADCC0 /* ZCStudentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCStudentModel.m; sourceTree = "<group>"; };
 		A97D71B71BD7742A00F27A00 /* DCButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCButton.h; sourceTree = "<group>"; };
 		A97D71B81BD7742A00F27A00 /* DCButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCButton.m; sourceTree = "<group>"; };
 		A97D9AE21BE0BF4D00E17583 /* ZCBirthdayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCBirthdayViewController.h; sourceTree = "<group>"; };
@@ -823,6 +826,8 @@
 				A991CF471BF1CCCF00A7C34C /* ZCRecordsOfConsumptionModel.m */,
 				A991CF491BF1DBC100A7C34C /* ZCConsumptionDetailModel.h */,
 				A991CF4A1BF1DBC100A7C34C /* ZCConsumptionDetailModel.m */,
+				A978C6651C2BC533000ADCC0 /* ZCStudentModel.h */,
+				A978C6661C2BC533000ADCC0 /* ZCStudentModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1370,6 +1375,7 @@
 				A9094BB31C04775E00A94DA6 /* AFURLRequestSerialization.m in Sources */,
 				A9AA53021C29094A00524D5F /* ZCTeachingCourseCell.m in Sources */,
 				A9094BBF1C04775E00A94DA6 /* MJType.m in Sources */,
+				A978C6671C2BC533000ADCC0 /* ZCStudentModel.m in Sources */,
 				A9094BC61C04775E00A94DA6 /* MJRefreshConst.m in Sources */,
 				A9094BCB1C04775E00A94DA6 /* UIView+MJExtension.m in Sources */,
 				A9094BB81C04775E00A94DA6 /* MBProgressHUD.m in Sources */,

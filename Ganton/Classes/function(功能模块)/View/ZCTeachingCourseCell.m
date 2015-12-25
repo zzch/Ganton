@@ -82,6 +82,24 @@
 
 
 
+-(void)setStudentModel:(ZCStudentModel *)studentModel
+{
+    _studentModel=studentModel;
+    self.nameLabel.text=studentModel.name;
+    
+     NSDate *confromTimesp=[NSDate dateWithTimeIntervalSince1970:studentModel.expired_at];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy.MM.dd";
+    NSString *selfStr = [dateFormatter stringFromDate:confromTimesp];
+    
+    self.timeLabel.text=[NSString stringWithFormat:@"有效期: %@",selfStr];
+
+}
+
+
+
+
 -(void)layoutSubviews
 {
     [super layoutSubviews];
@@ -102,7 +120,7 @@
     CGFloat numberLabelY=nameLabelY;
     CGFloat numberLabelW=100;
     CGFloat numberLabelH=15;
-    self.numberLabel.frame=CGRectMake(numberLabelX, numberLabelY, numberLabelW, numberLabelH);
+   // self.numberLabel.frame=CGRectMake(numberLabelX, numberLabelY, numberLabelW, numberLabelH);
     
     
     CGFloat appointmentLabelW=40;

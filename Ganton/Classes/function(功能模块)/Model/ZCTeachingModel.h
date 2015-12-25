@@ -11,6 +11,7 @@
 @interface ZCTeachingModel : NSObject
 @property(nonatomic,strong)NSMutableArray *featured;
 @property(nonatomic,strong)NSMutableArray *normal;
+@property(nonatomic,strong)NSMutableArray *students;
 
 + (instancetype)teachingModelWithDict:(NSDictionary *)dict;
 - (instancetype)initWithDict:(NSDictionary *)dict;

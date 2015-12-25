@@ -9,7 +9,7 @@
 #import "ZCAppointmentCoachViewController.h"
 #import "ZCAppointmentCoachCell.h"
 #import "ZCAppointmentTimeViewController.h"
-@interface ZCAppointmentCoachViewController ()<UITableViewDataSource,UITableViewDelegate,UIWebViewDelegate>
+@interface ZCAppointmentCoachViewController ()<UITableViewDataSource,UITableViewDelegate,UIWebViewDelegate,ZCAppointmentCoachCellDelegate>
 @property(nonatomic,weak)UITableView *tableView;
 
 
@@ -134,6 +134,7 @@
     
     
     ZCAppointmentCoachCell *cell=[ZCAppointmentCoachCell cellWithTableView:tableView];
+    cell.delegate=self;
 //    cell.courseModel=self.coachDetailsModel.courses[indexPath.row];
     return cell;
     
@@ -149,13 +150,47 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    ZCAppointmentTimeViewController *vc=[[ZCAppointmentTimeViewController alloc] init];
-   // vc.uuid=[self.coachDetailsModel.courses[indexPath.row] uuid];
-    [self.navigationController pushViewController:vc animated:YES];
+//    ZCAppointmentTimeViewController *vc=[[ZCAppointmentTimeViewController alloc] init];
+//   // vc.uuid=[self.coachDetailsModel.courses[indexPath.row] uuid];
+//    [self.navigationController pushViewController:vc animated:YES];
     
 }
 
+//代理方法
 
+-(void)clickTheButton:(NSString *)str
+{
+    // 弹框
+    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"预定成功" message:@"球场预定成功，请在个人中心查看" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+    // 设置对话框的类型
+    alert.alertViewStyle=UIKeyboardTypeNumberPad;
+    [alert show];
+
+}
+
+
+#pragma mark - alertView的代理方法
+/**
+ *  点击了alertView上面的按钮就会调用这个方法
+ *
+ *  @param buttonIndex 按钮的索引,从0开始
+ */
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        ZCLog(@"asdasda");
+        //[self.navigationController popViewControllerAnimated:YES];
+    }else
+    {
+        ZCLog(@"asdasda");
+        //[self saveOtherView];
+    }
+    
+    // 按钮的索引肯定不是0
+    
+}
 
 
 -(void)addTopViewControls:(UIView *)view

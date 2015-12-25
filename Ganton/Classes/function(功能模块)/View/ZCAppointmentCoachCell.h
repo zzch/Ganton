@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@protocol ZCAppointmentCoachCellDelegate<NSObject>
+@optional
+-(void)clickTheButton:(NSString *)str;
+@end
 @interface ZCAppointmentCoachCell : UITableViewCell
+@property(nonatomic,weak)id<ZCAppointmentCoachCellDelegate>delegate;
 +(instancetype)cellWithTableView:(UITableView *)tableView;
 @end

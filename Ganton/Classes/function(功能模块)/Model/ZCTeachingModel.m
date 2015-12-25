@@ -8,6 +8,7 @@
 
 #import "ZCTeachingModel.h"
 #import "ZCCoachModel.h"
+#import "ZCStudentModel.h"
 @implementation ZCTeachingModel
 + (instancetype)teachingModelWithDict:(NSDictionary *)dict
 {
@@ -32,6 +33,18 @@
             ZCCoachModel *CoachModel=[ZCCoachModel coachModelWithDict:dict];
             [self.normal addObject:CoachModel];
         }
+        
+        
+        self.students=[NSMutableArray array];
+        NSMutableArray *array3=[NSMutableArray array];
+        array3=dict[@"students"];
+        for (NSDictionary *dict in array3) {
+            ZCStudentModel *studentModel=[ZCStudentModel studentModelWithDict:dict];
+            [self.students addObject:studentModel];
+        }
+
+
+        
     }
     return self;
 

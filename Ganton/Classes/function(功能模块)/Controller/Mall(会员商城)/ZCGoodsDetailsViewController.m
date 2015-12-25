@@ -10,6 +10,7 @@
 
 @interface ZCGoodsDetailsViewController ()<UIWebViewDelegate>
 @property(nonatomic,strong)NSDictionary *goodsDetailsDict;
+@property(nonatomic,weak)UIScrollView *scrollView;
 @end
 
 @implementation ZCGoodsDetailsViewController
@@ -54,17 +55,23 @@
 -(void)addControls
 {
     
+    UIScrollView *scrollView=[[UIScrollView alloc] init];
+    scrollView.frame=self.view.frame;
+    [self.view addSubview:scrollView];
+    self.scrollView=scrollView;
+    
+    
     UILabel *nameLabel=[[UILabel alloc] init];
     nameLabel.frame=CGRectMake(0, 0, SCREEN_WIDTH, 50);
     nameLabel.textAlignment=NSTextAlignmentCenter;
     nameLabel.text=self.goodsDetailsDict[@"title"];
     nameLabel.font=[UIFont systemFontOfSize:24];
-    [self.view addSubview:nameLabel];
+    [scrollView addSubview:nameLabel];
     
     UIWebView *webView=[[UIWebView alloc] init];
     webView.frame=CGRectMake(0, 50, SCREEN_WIDTH, 10);
     webView.delegate=self;
-    [self.view addSubview:webView];
+    [scrollView addSubview:webView];
     
     webView.scrollView.bounces = NO;
     webView.scrollView.showsHorizontalScrollIndicator = NO;
@@ -82,6 +89,15 @@
     newFrame.size.height = webViewHeight;
     webView.frame = newFrame;
     
+    
+    CGFloat W=[webView.scrollView contentSize].width;
+    ZCLog(@"%f",webViewHeight);
+    CGFloat bei=(SCREEN_WIDTH)/W;
+    NSString *str=[NSString stringWithFormat:@"document.body.style.zoom=%f",bei];
+    [webView
+     stringByEvaluatingJavaScriptFromString:str];
+    
+    self.scrollView.contentSize=CGSizeMake(0, webViewHeight+70);
     // self.scrollView.contentSize=CGSizeMake(0, webViewHeight+130);
     
     ZCLog(@"%f",webViewHeight);

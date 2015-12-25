@@ -10,7 +10,7 @@
 @interface ZCAppointmentCoachCell()
 @property(nonatomic,weak)UILabel *timeLabel;
 @property(nonatomic,weak)UILabel *numberLabel;
-@property(nonatomic,weak)UILabel *stateLabel;
+@property(nonatomic,weak)UIButton *stateButton;
 @property(nonatomic,weak)UIImageView *bjImageView;
 @end
 @implementation ZCAppointmentCoachCell
@@ -30,6 +30,9 @@
 {
     if (self=[super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
+        
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         UILabel *timeLabel=[[UILabel alloc] init];
         timeLabel.text=@"2015.12.12    2016.15.16";
         timeLabel.textColor=ZCColor(85, 85, 85);
@@ -45,24 +48,36 @@
         self.numberLabel=numberLabel;
         
         
-        UIImageView *bjImageView=[[UIImageView alloc] init];
-        bjImageView.image=[UIImage imageNamed:@"yy_keyuyue"];
-        [self.contentView addSubview:bjImageView];
-        self.bjImageView=bjImageView;
+//        UIImageView *bjImageView=[[UIImageView alloc] init];
+//        bjImageView.image=[UIImage imageNamed:@"yy_keyuyue"];
+//        [self.contentView addSubview:bjImageView];
+//        self.bjImageView=bjImageView;
         
-        UILabel *stateLabel=[[UILabel alloc] init];
-        stateLabel.text=@"可预约";
+        UIButton *stateButton=[[UIButton alloc] init];
+        [stateButton setTitle:@"可预约" forState:UIControlStateNormal];
+        [stateButton setBackgroundImage:[UIImage imageNamed:@"yy_keyuyue"] forState:UIControlStateNormal];
         //stateLabel.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"yy_keyuyue"]];
-        stateLabel.font=[UIFont systemFontOfSize:15];
-        stateLabel.textAlignment=NSTextAlignmentCenter;
-        stateLabel.textColor=[UIColor whiteColor];
-        [bjImageView addSubview:stateLabel];
-        self.stateLabel=stateLabel;
+        stateButton.titleLabel.font=[UIFont systemFontOfSize:15];
+        //stateLabel.textAlignment=NSTextAlignmentCenter;
+        //stateLabel.textColor=[UIColor whiteColor];
+        [self.contentView addSubview:stateButton];
+        self.stateButton=stateButton;
+        [stateButton addTarget:self action:@selector(clickTheStateButton) forControlEvents:UIControlEventTouchUpInside];
+        
     }
     return self;
 }
 
 
+
+-(void)clickTheStateButton
+{
+
+    if ([self.delegate respondsToSelector:@selector(clickTheButton:)]) {
+        [self.delegate clickTheButton:nil];
+    }
+    
+}
 
 
 
@@ -87,9 +102,9 @@
     CGFloat stateLabelH=30;
     CGFloat stateLabelX=self.frame.size.width-stateLabelW-15;
     CGFloat stateLabelY=(self.frame.size.height-stateLabelH)/2;
-    self.bjImageView.frame=CGRectMake(stateLabelX, stateLabelY, stateLabelW, stateLabelH);
+    self.stateButton.frame=CGRectMake(stateLabelX, stateLabelY, stateLabelW, stateLabelH);
     
-    self.stateLabel.frame=CGRectMake(0, 0, stateLabelW, stateLabelH);
+   // self.stateButton.frame=CGRectMake(0, 0, stateLabelW, stateLabelH);
 
 }
 - (void)awakeFromNib {

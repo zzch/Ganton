@@ -183,44 +183,44 @@
 }
 
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    //取消反选
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    
-    [UMSocialSnsService presentSnsIconSheetView:self
-                                         appKey:@"566111f367e58e8d35001ab0"
-                                      shareText:@"红包红包大红包，红包红包大红包，红包红包大红包"
-                                     shareImage:[UIImage imageNamed:@"ic_launcher.png"]
-                                shareToSnsNames:@[UMShareToWechatSession,UMShareToWechatTimeline]
-                                       delegate:self];
-    
-    
-    
-    
-//    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:@"红包红包大红包，红包红包大红包，红包红包大红包" image:[UIImage imageNamed:@"iconfenxiang.png"] location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
-//        if (response.responseCode == UMSResponseCodeSuccess) {
-//            NSLog(@"分享成功！");
-//        }
-//    }];
-    
-//    ZCDetailViewController *vc=[[ZCDetailViewController alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
-
-    
-    
-    //微信
-    [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://baidu.com";
-    //如果是朋友圈
-    [UMSocialData defaultData].extConfig.wechatTimelineData.url = @"http://baidu.com";
-    
-    [UMSocialData defaultData].extConfig.wechatSessionData.title = @"微信好友title";
-    
-    [UMSocialData defaultData].extConfig.wechatTimelineData.title = @"微信朋友圈title";
-
-}
-
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    //取消反选
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    
+//    
+//    [UMSocialSnsService presentSnsIconSheetView:self
+//                                         appKey:@"566111f367e58e8d35001ab0"
+//                                      shareText:@"红包红包大红包，红包红包大红包，红包红包大红包"
+//                                     shareImage:[UIImage imageNamed:@"ic_launcher.png"]
+//                                shareToSnsNames:@[UMShareToWechatSession,UMShareToWechatTimeline]
+//                                       delegate:self];
+//    
+//    
+//    
+//    
+////    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:@"红包红包大红包，红包红包大红包，红包红包大红包" image:[UIImage imageNamed:@"iconfenxiang.png"] location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
+////        if (response.responseCode == UMSResponseCodeSuccess) {
+////            NSLog(@"分享成功！");
+////        }
+////    }];
+//    
+////    ZCDetailViewController *vc=[[ZCDetailViewController alloc] init];
+////    [self.navigationController pushViewController:vc animated:YES];
+//
+//    
+//    
+//    //微信
+//    [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://baidu.com";
+//    //如果是朋友圈
+//    [UMSocialData defaultData].extConfig.wechatTimelineData.url = @"http://baidu.com";
+//    
+//    [UMSocialData defaultData].extConfig.wechatSessionData.title = @"微信好友title";
+//    
+//    [UMSocialData defaultData].extConfig.wechatTimelineData.title = @"微信朋友圈title";
+//
+//}
+//
 
 
 //实现回调方法（可选）：

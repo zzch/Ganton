@@ -14,6 +14,7 @@
 #import "ZCCoachModel.h"
 #import "ZCTeachingCourseCell.h"
 #import "ZCAppointmentCoachViewController.h"
+#import "ZCAppointmentTimeViewController.h"
 @interface ZCTeachingViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)ZCTeachingModel *teachingModel;
 @property(nonatomic,weak)UITableView *tableView;
@@ -64,7 +65,8 @@
     NSString *uuid = [defaults objectForKey:@"uuid"];
     params[@"token"]=token;
     params[@"club_uuid"]=uuid;
-    NSString *URL=[NSString stringWithFormat:@"%@v1/coaches",API];
+    
+    NSString *URL=[NSString stringWithFormat:@"%@v1/students_and_coaches.json",API];
     
     [ZCTool getWithUrl:URL params:params success:^(id responseObject) {
         ZCLog(@"%@",responseObject);
@@ -94,7 +96,7 @@
 {
     if (section==0) {
         
-        return 5;
+        return self.teachingModel.students.count;
         
     }else if (section==1) {
         return self.teachingModel.featured.count;
@@ -108,7 +110,7 @@
 {
     if (indexPath.section==0) {
         ZCTeachingCourseCell *cell=[ZCTeachingCourseCell cellWithTableView:tableView];
-        
+        cell.studentModel=self.teachingModel.students[indexPath.row];
         return cell;
     }
     
@@ -204,8 +206,17 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.section==0) {
-        ZCAppointmentCoachViewController *vc=[[ZCAppointmentCoachViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+        ZCStudentModel *Model=self.teachingModel.students[indexPath.row];
+        if ([ Model.type isEqual:@"open"]) {
+            ZCAppointmentCoachViewController *vc=[[ZCAppointmentCoachViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{
+        
+            ZCAppointmentTimeViewController *vc=[[ZCAppointmentTimeViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        
+        
     }else{
     
     ZCCoachViewController *vc=[[ZCCoachViewController alloc] init];
