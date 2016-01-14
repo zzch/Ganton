@@ -8,6 +8,7 @@
 
 #import "ZCAppointmentCoachCell.h"
 @interface ZCAppointmentCoachCell()
+@property(nonatomic,weak)UILabel *nameLabel;
 @property(nonatomic,weak)UILabel *timeLabel;
 @property(nonatomic,weak)UILabel *numberLabel;
 @property(nonatomic,weak)UIButton *stateButton;
@@ -33,6 +34,12 @@
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
+        UILabel *nameLabel=[[UILabel alloc] init];
+        nameLabel.textColor=ZCColor(34, 34, 34);
+        nameLabel.font=[UIFont systemFontOfSize:16];
+        [self.contentView addSubview:nameLabel];
+        self.nameLabel=nameLabel;
+        
         UILabel *timeLabel=[[UILabel alloc] init];
         timeLabel.text=@"2015.12.12    2016.15.16";
         timeLabel.textColor=ZCColor(85, 85, 85);
@@ -41,9 +48,9 @@
         self.timeLabel=timeLabel;
         
         UILabel *numberLabel=[[UILabel alloc] init];
-        numberLabel.textColor=ZCColor(34, 34, 34);
+        numberLabel.textColor=ZCColor(102, 102, 102);
         numberLabel.text=@"预约人数 (3/6)";
-        numberLabel.font=[UIFont systemFontOfSize:15];
+        numberLabel.font=[UIFont systemFontOfSize:12];
         [self.contentView addSubview:numberLabel];
         self.numberLabel=numberLabel;
         
@@ -70,6 +77,48 @@
 
 
 
+-(void)setUnstartedLessonsModel:(ZCUnstartedLessonsModel *)unstartedLessonsModel
+{
+    _unstartedLessonsModel=unstartedLessonsModel;
+    
+    self.nameLabel.text=[NSString stringWithFormat:@"%@",unstartedLessonsModel.name];
+    
+    
+    
+    NSDate *started_atDate=[NSDate dateWithTimeIntervalSince1970:unstartedLessonsModel.started_at];
+    NSDate *finished_atDate=[NSDate dateWithTimeIntervalSince1970:unstartedLessonsModel.finished_at];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy.MM.dd";
+    NSString *started_at = [dateFormatter stringFromDate:started_atDate];
+    NSString *finished_at = [dateFormatter stringFromDate:finished_atDate];
+
+    
+    
+    self.timeLabel.text=[NSString stringWithFormat:@"%@    %@",started_at,finished_at];
+    
+    self.numberLabel.text=[NSString stringWithFormat:@"预约人数 (%@/%@)",unstartedLessonsModel.current_students,unstartedLessonsModel.maximum_students];
+    
+    if ([unstartedLessonsModel.state isEqual:@"available"]) {
+        self.stateButton.enabled=YES;
+        [self.stateButton setBackgroundImage:[UIImage imageNamed:@"yy_keyuyue"] forState:UIControlStateNormal];
+        [self.stateButton setTitle:@"可预约" forState:UIControlStateNormal];
+    }else if ([unstartedLessonsModel.state isEqual:@"full"]){
+    
+        self.stateButton.enabled=NO;
+        [self.stateButton setBackgroundImage:[UIImage imageNamed:@"yy_yiman"] forState:UIControlStateNormal];
+        [self.stateButton setTitle:@"已满" forState:UIControlStateNormal];
+    }else{
+        self.stateButton.enabled=NO;
+       [self.stateButton setBackgroundImage:[UIImage imageNamed:@"yy_yiyuyue"] forState:UIControlStateNormal];
+        [self.stateButton setTitle:@"已预约" forState:UIControlStateNormal];
+    }
+
+}
+
+
+
+
 -(void)clickTheStateButton
 {
 
@@ -86,14 +135,21 @@
 -(void)layoutSubviews{
     [super layoutSubviews];
     
+    
+    CGFloat nameLabelX=20;
+    CGFloat nameLabelY=15;
+    CGFloat nameLabelW=self.frame.size.width-100;
+    CGFloat nameLabelH=15;
+    self.nameLabel.frame=CGRectMake(nameLabelX, nameLabelY, nameLabelW, nameLabelH);
+    
     CGFloat timeLabelX=20;
-    CGFloat timeLabelY=17;
+    CGFloat timeLabelY=nameLabelY+nameLabelH+12;
     CGFloat timeLabelW=self.frame.size.width-100;
     CGFloat timeLabelH=15;
     self.timeLabel.frame=CGRectMake(timeLabelX, timeLabelY, timeLabelW, timeLabelH);
     
     CGFloat numberLabelX=timeLabelX;
-    CGFloat numberLabelY=timeLabelY+timeLabelH+15;
+    CGFloat numberLabelY=timeLabelY+timeLabelH+10;
     CGFloat numberLabelW=timeLabelW;
     CGFloat numberLabelH=15;
     self.numberLabel.frame=CGRectMake(numberLabelX, numberLabelY, numberLabelW, numberLabelH);

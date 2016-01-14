@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ZCAppointmentCoachViewController : UIViewController
-
+@property(nonatomic,copy)NSString *uuid;
 @end

@@ -87,6 +87,7 @@
 		A953ABCF1C117323006BD3AD /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A953ABCE1C117323006BD3AD /* libstdc++.tbd */; };
 		A96084431C27A15D00C19456 /* ZCMyCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A96084421C27A15D00C19456 /* ZCMyCourseViewController.m */; };
 		A96084461C27BBFE00C19456 /* ZCMyCourseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A96084451C27BBFE00C19456 /* ZCMyCourseCell.m */; };
+		A96296881C45022200BCE919 /* ZCPrivateAppointmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A96296871C45022200BCE919 /* ZCPrivateAppointmentView.m */; };
 		A9641A631C294BB4001B5AAB /* ZCAppointmentCoachCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9641A621C294BB4001B5AAB /* ZCAppointmentCoachCell.m */; };
 		A965FC331C2A4EAF00270F1B /* ZCAppointmentTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A965FC321C2A4EAF00270F1B /* ZCAppointmentTimeViewController.m */; };
 		A96AC3A11BCCD746008A1D4B /* ZCGoodsDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A96AC3A01BCCD746008A1D4B /* ZCGoodsDetailsViewController.m */; };
@@ -96,6 +97,9 @@
 		A97115DE1BCBA2270013C17A /* ZCConsumptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A97115DD1BCBA2270013C17A /* ZCConsumptionCell.m */; };
 		A97115E11BCBB6180013C17A /* ZCDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97115E01BCBB6180013C17A /* ZCDetailViewController.m */; };
 		A974E1EA1BD2923500EF4CF1 /* ZCCourseDetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A974E1E91BD2923500EF4CF1 /* ZCCourseDetailsModel.m */; };
+		A9758FE41C3FAC6F0047B289 /* ZCPrivateCoursesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9758FE31C3FAC6F0047B289 /* ZCPrivateCoursesModel.m */; };
+		A9758FE71C3FB2710047B289 /* ZCRecentlyScheduleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9758FE61C3FB2710047B289 /* ZCRecentlyScheduleModel.m */; };
+		A9758FEA1C3FB32D0047B289 /* ZCScheduleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9758FE91C3FB32D0047B289 /* ZCScheduleModel.m */; };
 		A978C6671C2BC533000ADCC0 /* ZCStudentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A978C6661C2BC533000ADCC0 /* ZCStudentModel.m */; };
 		A97D71B91BD7742A00F27A00 /* DCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A97D71B81BD7742A00F27A00 /* DCButton.m */; };
 		A97D9AE41BE0BF4D00E17583 /* ZCBirthdayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97D9AE31BE0BF4D00E17583 /* ZCBirthdayViewController.m */; };
@@ -106,6 +110,8 @@
 		A98436D11BC913170004AC94 /* ZCTeachingHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A98436D01BC913170004AC94 /* ZCTeachingHeaderCell.m */; };
 		A98436D41BC926BE0004AC94 /* ZCCoachViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A98436D31BC926BE0004AC94 /* ZCCoachViewController.m */; };
 		A985CF131BEC9382001FFB46 /* ZCPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A985CF121BEC9382001FFB46 /* ZCPickerView.m */; };
+		A98778381C3E46B3008B785A /* ZCOpenCoursesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A98778371C3E46B3008B785A /* ZCOpenCoursesModel.m */; };
+		A987783B1C3E46EB008B785A /* ZCUnstartedLessonsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A987783A1C3E46EB008B785A /* ZCUnstartedLessonsModel.m */; };
 		A98A3EAC1C293FCE00A9EA3F /* ZCAppointmentCoachViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A98A3EAB1C293FCE00A9EA3F /* ZCAppointmentCoachViewController.m */; };
 		A98CA3811BC75A5800695BD0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A98CA3801BC75A5800695BD0 /* main.m */; };
 		A98CA3841BC75A5800695BD0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A98CA3831BC75A5800695BD0 /* AppDelegate.m */; };
@@ -327,6 +333,8 @@
 		A96084421C27A15D00C19456 /* ZCMyCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCMyCourseViewController.m; sourceTree = "<group>"; };
 		A96084441C27BBFE00C19456 /* ZCMyCourseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCMyCourseCell.h; sourceTree = "<group>"; };
 		A96084451C27BBFE00C19456 /* ZCMyCourseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCMyCourseCell.m; sourceTree = "<group>"; };
+		A96296861C45022200BCE919 /* ZCPrivateAppointmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCPrivateAppointmentView.h; sourceTree = "<group>"; };
+		A96296871C45022200BCE919 /* ZCPrivateAppointmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCPrivateAppointmentView.m; sourceTree = "<group>"; };
 		A9641A611C294BB4001B5AAB /* ZCAppointmentCoachCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCAppointmentCoachCell.h; sourceTree = "<group>"; };
 		A9641A621C294BB4001B5AAB /* ZCAppointmentCoachCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCAppointmentCoachCell.m; sourceTree = "<group>"; };
 		A965FC311C2A4EAF00270F1B /* ZCAppointmentTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCAppointmentTimeViewController.h; sourceTree = "<group>"; };
@@ -345,6 +353,12 @@
 		A97115E01BCBB6180013C17A /* ZCDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCDetailViewController.m; sourceTree = "<group>"; };
 		A974E1E81BD2923500EF4CF1 /* ZCCourseDetailsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCCourseDetailsModel.h; sourceTree = "<group>"; };
 		A974E1E91BD2923500EF4CF1 /* ZCCourseDetailsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCCourseDetailsModel.m; sourceTree = "<group>"; };
+		A9758FE21C3FAC6F0047B289 /* ZCPrivateCoursesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCPrivateCoursesModel.h; sourceTree = "<group>"; };
+		A9758FE31C3FAC6F0047B289 /* ZCPrivateCoursesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCPrivateCoursesModel.m; sourceTree = "<group>"; };
+		A9758FE51C3FB2710047B289 /* ZCRecentlyScheduleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCRecentlyScheduleModel.h; sourceTree = "<group>"; };
+		A9758FE61C3FB2710047B289 /* ZCRecentlyScheduleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCRecentlyScheduleModel.m; sourceTree = "<group>"; };
+		A9758FE81C3FB32D0047B289 /* ZCScheduleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCScheduleModel.h; sourceTree = "<group>"; };
+		A9758FE91C3FB32D0047B289 /* ZCScheduleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCScheduleModel.m; sourceTree = "<group>"; };
 		A978C6651C2BC533000ADCC0 /* ZCStudentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCStudentModel.h; sourceTree = "<group>"; };
 		A978C6661C2BC533000ADCC0 /* ZCStudentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCStudentModel.m; sourceTree = "<group>"; };
 		A97D71B71BD7742A00F27A00 /* DCButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCButton.h; sourceTree = "<group>"; };
@@ -365,6 +379,10 @@
 		A98436D31BC926BE0004AC94 /* ZCCoachViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCCoachViewController.m; sourceTree = "<group>"; };
 		A985CF111BEC9382001FFB46 /* ZCPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCPickerView.h; sourceTree = "<group>"; };
 		A985CF121BEC9382001FFB46 /* ZCPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCPickerView.m; sourceTree = "<group>"; };
+		A98778361C3E46B2008B785A /* ZCOpenCoursesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCOpenCoursesModel.h; sourceTree = "<group>"; };
+		A98778371C3E46B3008B785A /* ZCOpenCoursesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCOpenCoursesModel.m; sourceTree = "<group>"; };
+		A98778391C3E46EB008B785A /* ZCUnstartedLessonsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCUnstartedLessonsModel.h; sourceTree = "<group>"; };
+		A987783A1C3E46EB008B785A /* ZCUnstartedLessonsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCUnstartedLessonsModel.m; sourceTree = "<group>"; };
 		A98A3EAA1C293FCE00A9EA3F /* ZCAppointmentCoachViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCAppointmentCoachViewController.h; sourceTree = "<group>"; };
 		A98A3EAB1C293FCE00A9EA3F /* ZCAppointmentCoachViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCAppointmentCoachViewController.m; sourceTree = "<group>"; };
 		A98CA37C1BC75A5700695BD0 /* Ganton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ganton.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -828,6 +846,16 @@
 				A991CF4A1BF1DBC100A7C34C /* ZCConsumptionDetailModel.m */,
 				A978C6651C2BC533000ADCC0 /* ZCStudentModel.h */,
 				A978C6661C2BC533000ADCC0 /* ZCStudentModel.m */,
+				A98778361C3E46B2008B785A /* ZCOpenCoursesModel.h */,
+				A98778371C3E46B3008B785A /* ZCOpenCoursesModel.m */,
+				A98778391C3E46EB008B785A /* ZCUnstartedLessonsModel.h */,
+				A987783A1C3E46EB008B785A /* ZCUnstartedLessonsModel.m */,
+				A9758FE21C3FAC6F0047B289 /* ZCPrivateCoursesModel.h */,
+				A9758FE31C3FAC6F0047B289 /* ZCPrivateCoursesModel.m */,
+				A9758FE51C3FB2710047B289 /* ZCRecentlyScheduleModel.h */,
+				A9758FE61C3FB2710047B289 /* ZCRecentlyScheduleModel.m */,
+				A9758FE81C3FB32D0047B289 /* ZCScheduleModel.h */,
+				A9758FE91C3FB32D0047B289 /* ZCScheduleModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -855,6 +883,8 @@
 				A9AA53011C29094A00524D5F /* ZCTeachingCourseCell.m */,
 				A9641A611C294BB4001B5AAB /* ZCAppointmentCoachCell.h */,
 				A9641A621C294BB4001B5AAB /* ZCAppointmentCoachCell.m */,
+				A96296861C45022200BCE919 /* ZCPrivateAppointmentView.h */,
+				A96296871C45022200BCE919 /* ZCPrivateAppointmentView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1315,6 +1345,7 @@
 				A98A3EAC1C293FCE00A9EA3F /* ZCAppointmentCoachViewController.m in Sources */,
 				A9094BAD1C04775E00A94DA6 /* AFHTTPRequestOperation.m in Sources */,
 				A99E47D31BD4C885007F6158 /* ZCWeathersModel.m in Sources */,
+				A9758FE41C3FAC6F0047B289 /* ZCPrivateCoursesModel.m in Sources */,
 				A99CB9BB1BD0EB0A00877A19 /* ZCCoachModel.m in Sources */,
 				A99CB9C11BD105A200877A19 /* ZCCourseModel.m in Sources */,
 				A9F28FCE1BDF5B9E0062BA65 /* ZCTimeView.m in Sources */,
@@ -1325,6 +1356,7 @@
 				A9929E7D1BCCB81100342A58 /* ZCMallCell.m in Sources */,
 				A97D71B91BD7742A00F27A00 /* DCButton.m in Sources */,
 				A99CB9AF1BD0CAA200877A19 /* ZCAnnouncementCell.m in Sources */,
+				A9758FE71C3FB2710047B289 /* ZCRecentlyScheduleModel.m in Sources */,
 				A9D463301BCF9AEC00EA13C5 /* ZCTool.m in Sources */,
 				A9D4632D1BCF8FFD00EA13C5 /* ZCAnnouncementView.m in Sources */,
 				A98CA3BB1BC7810900695BD0 /* ZCHomeViewController.m in Sources */,
@@ -1362,6 +1394,7 @@
 				A9094BB91C04775E00A94DA6 /* MJArgument.m in Sources */,
 				A9094BDB1C04775E00A94DA6 /* UIView+WebCacheOperation.m in Sources */,
 				A9094BB21C04775E00A94DA6 /* AFURLConnectionOperation.m in Sources */,
+				A96296881C45022200BCE919 /* ZCPrivateAppointmentView.m in Sources */,
 				A9D463271BCF5C5A00EA13C5 /* ZCMakeAnAppointmentViewController.m in Sources */,
 				A9094BC91C04775E00A94DA6 /* UIScrollView+MJExtension.m in Sources */,
 				A97D9AE41BE0BF4D00E17583 /* ZCBirthdayViewController.m in Sources */,
@@ -1369,17 +1402,20 @@
 				A9094BC31C04775E00A94DA6 /* NSObject+MJMember.m in Sources */,
 				A9094BD21C04775E00A94DA6 /* SDWebImageDownloaderOperation.m in Sources */,
 				A9094BDA1C04775E00A94DA6 /* UIImageView+WebCache.m in Sources */,
+				A98778381C3E46B3008B785A /* ZCOpenCoursesModel.m in Sources */,
 				A99CB9BE1BD102E100877A19 /* ZCCoachDetailsModel.m in Sources */,
 				A9929E7A1BCCB60000342A58 /* ZCMallViewController.m in Sources */,
 				A9641A631C294BB4001B5AAB /* ZCAppointmentCoachCell.m in Sources */,
 				A9094BB31C04775E00A94DA6 /* AFURLRequestSerialization.m in Sources */,
 				A9AA53021C29094A00524D5F /* ZCTeachingCourseCell.m in Sources */,
+				A9758FEA1C3FB32D0047B289 /* ZCScheduleModel.m in Sources */,
 				A9094BBF1C04775E00A94DA6 /* MJType.m in Sources */,
 				A978C6671C2BC533000ADCC0 /* ZCStudentModel.m in Sources */,
 				A9094BC61C04775E00A94DA6 /* MJRefreshConst.m in Sources */,
 				A9094BCB1C04775E00A94DA6 /* UIView+MJExtension.m in Sources */,
 				A9094BB81C04775E00A94DA6 /* MBProgressHUD.m in Sources */,
 				A9094BB01C04775E00A94DA6 /* AFNetworkReachabilityManager.m in Sources */,
+				A987783B1C3E46EB008B785A /* ZCUnstartedLessonsModel.m in Sources */,
 				A98436C71BC8FB840004AC94 /* ZCReservationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1522,6 +1558,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Ganton/Classes/Other(其他)/Lib/umeng_ios_social_sdk_4.2-2.3_arm64_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
@@ -1559,6 +1596,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Ganton/Classes/Other(其他)/Lib/umeng_ios_social_sdk_4.2-2.3_arm64_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",

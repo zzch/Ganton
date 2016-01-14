@@ -36,7 +36,9 @@
     tableView.delegate=self;
     [self.view addSubview:tableView];
     self.tableView=tableView;
-    tableView.rowHeight=150;
+    
+    
+    tableView.rowHeight=((SCREEN_WIDTH-20)*0.5468);
     self.tableView.tableFooterView=[[UIView alloc] init];
     
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 85, 0);
@@ -140,9 +142,11 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZCGoodsDetailsViewController *vc=[[ZCGoodsDetailsViewController alloc] init];
-    vc.uuid=[self.mallArray[indexPath.row] uuid];
-    [self.navigationController pushViewController:vc animated:YES];
+    vc.uuid=[self.mallArray[indexPath.section] uuid];
+   // ZCLog(@"%@",[self.mallArray[indexPath.row] uuid]);
     
+    [self.navigationController pushViewController:vc animated:YES];
+   //bf87c818-d27b-4522-bd76-6345ecd78be0
 }
 
 

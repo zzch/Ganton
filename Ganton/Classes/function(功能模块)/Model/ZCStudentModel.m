@@ -20,11 +20,13 @@
 {
     if (self=[super init]) {
         
+       
+        
         self.name=dict[@"course"][@"name"];
         self.type=dict[@"course"][@"type"];
         self.expired_at=[dict[@"expired_at"] longValue];
         self.total_lessons=dict[@"total_lessons"];
-        self.uuid=dict[@"uuid"];
+        self.uuid=dict[@"course"][@"uuid"];
     }
     return self;
 }

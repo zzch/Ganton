@@ -710,9 +710,6 @@
         
         ZCLog(@"%@",responseObject);
         
-        if (responseObject[@"exception_code"]) {
-            [MBProgressHUD showError:@"验证码输入错误"];
-        }else{
         
         NSUserDefaults *userDf = [NSUserDefaults standardUserDefaults];
         [userDf setObject:responseObject[@"club"][@"uuid"] forKey:@"uuid"];
@@ -734,7 +731,7 @@
         
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[ZCHomeViewController alloc] init]];
         window.rootViewController = nav;
-        }
+        
         
         //上传用户推送ID
         [ZCTool uploadThePushID];

@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZCUnstartedLessonsModel.h"
 @protocol ZCAppointmentCoachCellDelegate<NSObject>
 @optional
 -(void)clickTheButton:(NSString *)str;
 @end
 @interface ZCAppointmentCoachCell : UITableViewCell
 @property(nonatomic,weak)id<ZCAppointmentCoachCellDelegate>delegate;
+
+@property(nonatomic,strong)ZCUnstartedLessonsModel *unstartedLessonsModel;
 +(instancetype)cellWithTableView:(UITableView *)tableView;
 @end

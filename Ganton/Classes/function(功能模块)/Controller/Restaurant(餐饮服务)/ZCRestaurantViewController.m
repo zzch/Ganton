@@ -68,8 +68,11 @@ static NSString *const identifier=@"cell";
             [self.array addObject:model];
         }
       
+        if (self.array.count>0) {
+            [self addControls];
+        }
         
-       [self addControls];
+       
     } failure:^(NSError *error) {
         ZCLog(@"%@",error);
     }];
@@ -109,7 +112,7 @@ static NSString *const identifier=@"cell";
 
      UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc] init];
     //设置每个格子宽高100
-     layout.itemSize=CGSizeMake((SCREEN_WIDTH-30)/2, 165);
+     layout.itemSize=CGSizeMake((SCREEN_WIDTH-30)/2, ((SCREEN_WIDTH-30)/2)*0.7586+55);
    // layout.minimumInteritemSpacing=10;
    // layout.minimumInteritemSpacing=10;
    // layout.contentInset = UIEdgeInsetsMake(0, 0, 10, 0);

@@ -207,12 +207,16 @@
     
     if (indexPath.section==0) {
         ZCStudentModel *Model=self.teachingModel.students[indexPath.row];
+        ZCLog(@"%@",Model);
+        
         if ([ Model.type isEqual:@"open"]) {
             ZCAppointmentCoachViewController *vc=[[ZCAppointmentCoachViewController alloc] init];
+            vc.uuid=Model.uuid;
             [self.navigationController pushViewController:vc animated:YES];
         }else{
         
             ZCAppointmentTimeViewController *vc=[[ZCAppointmentTimeViewController alloc] init];
+            vc.uuid=Model.uuid;
             [self.navigationController pushViewController:vc animated:YES];
         }
         

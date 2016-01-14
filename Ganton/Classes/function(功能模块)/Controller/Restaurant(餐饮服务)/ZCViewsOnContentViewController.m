@@ -8,8 +8,9 @@
 
 #import "ZCViewsOnContentViewController.h"
 #import "DCTextView.h"
-@interface ZCViewsOnContentViewController ()
+@interface ZCViewsOnContentViewController ()<UITextViewDelegate>
 @property(nonatomic,weak)DCTextView *content;
+@property(nonatomic,weak)UIButton *button;
 @end
 
 @implementation ZCViewsOnContentViewController
@@ -39,7 +40,9 @@
     content.font=[UIFont systemFontOfSize:18];
     content.backgroundColor = [UIColor whiteColor];
     content.placehoder=@"输入您的建议...";
+    content.delegate=self;
     [self.view addSubview:content];
+    
     self.content=content;
     
     
@@ -50,14 +53,31 @@
     CGFloat buttonX=(SCREEN_WIDTH-buttonW)/2;
     CGFloat buttonY=contentY+contentH+37;
     button.frame=CGRectMake(buttonX, buttonY, buttonW, buttonH);
-    button.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"yjfk_anniu"]];
+    button.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"yiwancheng_anniu-1"]];
     [button setTitle:@"提交" forState:UIControlStateNormal];
     [self.view addSubview:button];
     [button addTarget:self action:@selector(clickTheRightBarButtonItem) forControlEvents:UIControlEventTouchUpInside];
+    button.enabled=NO;
+    self.button=button;
     
     
 }
 
+- (void)textViewDidChange:(UITextView *)textView
+{
+//    if (textView.markedTextRange == nil) {
+//        NSLog(@"text:%@", textView.text);
+//    }
+    
+    if (textView.text.length>0) {
+       self.button.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"yjfk_anniu"]];
+        self.button.enabled=YES;
+    }else{
+     self.button.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"yiwancheng_anniu-1"]];
+        self.button.enabled=NO;
+    }
+    
+}
 //点击提交
 -(void)clickTheRightBarButtonItem
 {
@@ -72,7 +92,7 @@
     if (self.chooseIndex==1) {
         params[@"type"]=@"manager";
     }else if (self.chooseIndex==2){
-        params[@"type"]=@"receiption";
+        params[@"type"]=@"reception";
     }else if (self.chooseIndex==3){
         params[@"type"]=@"restaurant";
     }

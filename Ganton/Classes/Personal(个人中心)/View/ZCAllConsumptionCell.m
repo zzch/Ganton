@@ -392,10 +392,21 @@
     CGFloat label1W=80;
     CGFloat label1H=35;
     label1.frame=CGRectMake(label1X, label1Y, label1W, label1H);
-    label1.text=consumptionDetailModel.name;
+    
     label1.font=[UIFont systemFontOfSize:14];
     label1.textColor=ZCColor(85, 85, 85);
     [view addSubview:label1];
+    
+    if ([consumptionDetailModel.name isEqual:@"club_rental"]) {
+        label1.text=@"租杆费";
+    }else if ([consumptionDetailModel.name isEqual:@"locker"]){
+        label1.text=@"存包费";
+    }else if ([consumptionDetailModel.name isEqual:@"other"]){
+        label1.text=@"其他";
+    }else{
+        label1.text=consumptionDetailModel.name;
+    }
+    
     
     
     UILabel *label2=[[UILabel alloc] init];

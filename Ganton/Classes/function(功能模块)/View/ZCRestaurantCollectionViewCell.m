@@ -93,7 +93,7 @@
     CGFloat foodImageX=0;
     CGFloat foodImageY=0;
     CGFloat foodImageW=viewW;
-    CGFloat foodImageH=110;
+    CGFloat foodImageH=viewW*0.7586;
     self.foodImage.frame=CGRectMake(foodImageX, foodImageY, foodImageW, foodImageH);
     
     

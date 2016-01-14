@@ -13,6 +13,7 @@
 #import "ZCRecordsOfConsumptionViewController.h"
 #import "UMSocialWechatHandler.h"
 #import "UMSocialSnsService.h"
+#import "UMSocial.h"
 @interface AppDelegate ()<UIAlertViewDelegate>
 @property(nonatomic,strong)NSDictionary *userInfo;
 @end
@@ -53,7 +54,10 @@
     
    
     
-    //友盟分享
+//    //友盟分享
+    
+    [UMSocialData setAppKey:@"566111f367e58e8d35001ab0"];
+    
      [UMSocialWechatHandler setWXAppId:@"wxaf828c2ffaaa6f94" appSecret:@"6bb03e9ee3ed10160b2df80eca4c6a4d" url:@"http://www.umeng.com/social"];
     
     

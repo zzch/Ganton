@@ -348,6 +348,8 @@
 {
     if (errorID==20004) {
         [MBProgressHUD showError:@"重复预约：您已经预约过当天的打位"];
+    }else if (errorID==20003){
+        [MBProgressHUD showError:@"验证码不正确,请重新输入"];
     }
 
 }
@@ -397,7 +399,7 @@
     
     //获取registrationID
     NSString *registrationID1= [APService registrationID];
-    
+    ZCLog(@"-----%@",registrationID1);
     if ([registrationID1 isEqual:@""]) {
         return;
     }

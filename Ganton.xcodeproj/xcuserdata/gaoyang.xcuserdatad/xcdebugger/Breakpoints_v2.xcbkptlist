@@ -16,16 +16,112 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Ganton/Classes/function(&#x529f;&#x80fd;&#x6a21;&#x5757;)/Controller/Teaching&#xff08;&#x6559;&#x5b66;&#xff09;/ZCTeachingViewController.m"
+            timestampString = "473842714.3592"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Ganton/Classes/function(&#x529f;&#x80fd;&#x6a21;&#x5757;)/Controller/Restaurant(&#x9910;&#x996e;&#x670d;&#x52a1;)/ZCRestaurantViewController.m"
-            timestampString = "467194852.633778"
+            filePath = "Ganton/Classes/function(&#x529f;&#x80fd;&#x6a21;&#x5757;)/Controller/Restaurant(&#x9910;&#x996e;&#x670d;&#x52a1;)/ZCViewsOnContentViewController.m"
+            timestampString = "473852775.565912"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "-addData"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "-clickTheRightBarButtonItem"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Ganton/Classes/function(&#x529f;&#x80fd;&#x6a21;&#x5757;)/View/ZCPrivateAppointmentView.m"
+            timestampString = "474371051.326368"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
+            landmarkName = "-pickerView:didSelectRow:inComponent:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Ganton/Classes/function(&#x529f;&#x80fd;&#x6a21;&#x5757;)/View/ZCPrivateAppointmentView.m"
+            timestampString = "474431915.617429"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "-pickerView:didSelectRow:inComponent:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Ganton/Classes/function(&#x529f;&#x80fd;&#x6a21;&#x5757;)/View/ZCPrivateAppointmentView.m"
+            timestampString = "474371287.369476"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "-pickerView:didSelectRow:inComponent:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Ganton/Classes/function(&#x529f;&#x80fd;&#x6a21;&#x5757;)/View/ZCPrivateAppointmentView.m"
+            timestampString = "474431915.617429"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "-pickerView:didSelectRow:inComponent:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Ganton/Classes/Other(&#x5176;&#x4ed6;)/Tool(&#x5de5;&#x5177;)/ZCTool.m"
+            timestampString = "474432173.270445"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "402"
+            endingLineNumber = "402"
+            landmarkName = "+uploadThePushID"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
