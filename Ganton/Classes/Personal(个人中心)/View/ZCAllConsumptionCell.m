@@ -181,7 +181,7 @@
     //self.timeLabel=timeLabel;
     
     NSDate *entranceDate=[NSDate dateWithTimeIntervalSince1970:allConsumptionModel.entrance_time];
-    NSDate *departureDate=[NSDate dateWithTimeIntervalSince1970:allConsumptionModel.departure_time];
+    
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     
@@ -190,7 +190,13 @@
     
     dateFormatter.dateFormat = @"HH: dd";
     NSString *entranceStr = [dateFormatter stringFromDate:entranceDate];
-    NSString *departureStr = [dateFormatter stringFromDate:departureDate];
+    NSString *departureStr;
+    if (allConsumptionModel.departure_time==0) {
+        departureStr=@"";
+    }else{
+    NSDate *departureDate=[NSDate dateWithTimeIntervalSince1970:allConsumptionModel.departure_time];
+    departureStr = [dateFormatter stringFromDate:departureDate];
+    }
     NSString *str=[NSString stringWithFormat:@"%@ %@ - %@",selfStr,entranceStr,departureStr];
     
     timeLabel.text=str;

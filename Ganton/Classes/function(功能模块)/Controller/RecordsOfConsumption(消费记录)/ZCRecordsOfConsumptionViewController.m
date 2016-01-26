@@ -189,13 +189,13 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     
-    [UMSocialSnsService presentSnsIconSheetView:self
-                                         appKey:@"566111f367e58e8d35001ab0"
-                                      shareText:@"红包红包大红包，红包红包大红包，红包红包大红包"
-                                     shareImage:[UIImage imageNamed:@"ic_launcher.png"]
-                                shareToSnsNames:@[UMShareToWechatSession,UMShareToWechatTimeline]
-                                       delegate:self];
-    
+//    [UMSocialSnsService presentSnsIconSheetView:self
+//                                         appKey:@"566111f367e58e8d35001ab0"
+//                                      shareText:@"红包红包大红包，红包红包大红包，红包红包大红包"
+//                                     shareImage:[UIImage imageNamed:@"ic_launcher.png"]
+//                                shareToSnsNames:@[UMShareToWechatSession,UMShareToWechatTimeline]
+//                                       delegate:self];
+//    
     
     
     
@@ -210,14 +210,14 @@
 
     
     
-    //微信
-    [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://baidu.com";
-    //如果是朋友圈
-    [UMSocialData defaultData].extConfig.wechatTimelineData.url = @"http://baidu.com";
-    
-    [UMSocialData defaultData].extConfig.wechatSessionData.title = @"微信好友title";
-    
-    [UMSocialData defaultData].extConfig.wechatTimelineData.title = @"微信朋友圈title";
+//    //微信
+//    [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://baidu.com";
+//    //如果是朋友圈
+//    [UMSocialData defaultData].extConfig.wechatTimelineData.url = @"http://baidu.com";
+//    
+//    [UMSocialData defaultData].extConfig.wechatSessionData.title = @"微信好友title";
+//    
+//    [UMSocialData defaultData].extConfig.wechatTimelineData.title = @"微信朋友圈title";
 
 }
 

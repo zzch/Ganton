@@ -91,8 +91,8 @@
         self.stadiumLabel=stadiumLabel;
         
         UILabel *stateLabel=[[UILabel alloc] init];
-        stateLabel.backgroundColor=[UIColor redColor];
-        stateLabel.text=@"等待上课";
+        
+        
         stateLabel.layer.cornerRadius=3;
         stateLabel.layer.masksToBounds=YES;
         stateLabel.textColor=[UIColor whiteColor];
@@ -103,6 +103,55 @@
         
     }
     return self;
+}
+
+
+-(void)setMyCourseModel:(ZCMyCourseModel *)myCourseModel
+{
+    _myCourseModel=myCourseModel;
+    
+    NSDate *started_atDate=[NSDate dateWithTimeIntervalSince1970:myCourseModel.lesson.started_at];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"MM月";
+    
+    NSString *monthStr = [dateFormatter stringFromDate:started_atDate];
+    
+    
+    dateFormatter.dateFormat = @"dd";
+    
+    NSString *dayStr = [dateFormatter stringFromDate:started_atDate];
+    ZCLog(@"%@",dayStr);
+    dateFormatter.dateFormat = @"HH:mm";
+    
+    NSString *hourStr = [dateFormatter stringFromDate:started_atDate];
+     ZCLog(@"%@",hourStr);
+    
+    
+    self.monthLabel.text=monthStr;
+    self.dayLabel.text=dayStr;
+    self.timeLabel.text=hourStr;
+    
+    self.courseNameLabel.text=myCourseModel.lesson.name;
+    
+    self.typeLabel.text=[NSString stringWithFormat:@"%@: %@",myCourseModel.lesson.course.title,myCourseModel.lesson.course.coachName];
+
+    self.stadiumLabel.text=[NSString stringWithFormat:@"球场: %@",myCourseModel.club_name];
+    
+    
+    if ([myCourseModel.state isEqual:@"progressing"]) {
+        self.stateLabel.text=@"等待上课";
+        self.stateLabel.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"wodekecheng_zt_bj"]];
+    }else if ([myCourseModel.state isEqual:@"confirming"]){
+        self.stateLabel.text=@"等待评分";
+        self.stateLabel.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"wodekecheng_zt_bj"]];
+    }else if ([myCourseModel.state isEqual:@"cancelled"]){
+        self.stateLabel.text=@"已取消";
+        self.stateLabel.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"wdkc_wc"]];
+    }else if ([myCourseModel.state isEqual:@"finished"]){
+        self.stateLabel.text=@"已完成";
+        self.stateLabel.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"wdkc_wc"]];
+    }
 }
 
 
@@ -153,8 +202,8 @@
     self.stadiumLabel.frame=CGRectMake(courseNameLabelX, stadiumLabelY, typeLabelW, typeLabelH);
     
     
-    CGFloat stateLabelW=75;
-    CGFloat stateLabelH=30;
+    CGFloat stateLabelW=69.5;
+    CGFloat stateLabelH=25;
     CGFloat stateLabelX=(self.bjImageView.frame.size.width-stateLabelW)-8;
     CGFloat stateLabelY=8;
     self.stateLabel.frame=CGRectMake(stateLabelX, stateLabelY, stateLabelW, stateLabelH);

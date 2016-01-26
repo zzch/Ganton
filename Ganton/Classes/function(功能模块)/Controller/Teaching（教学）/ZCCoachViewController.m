@@ -37,6 +37,7 @@
 // 网络加载
 -(void)addData
 {
+    [MBProgressHUD showMessage:@"数据加载中..."];
     NSMutableDictionary *params=[NSMutableDictionary dictionary];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [defaults objectForKey:@"token"];
@@ -61,8 +62,11 @@
        // self.headerView=[self tableViewHeaderView];
         [self webViewForHight];
         
+        [MBProgressHUD hideHUD];
+        
     } failure:^(NSError *error) {
         ZCLog(@"%@",error);
+        [MBProgressHUD hideHUD];
     }];
     
 }
@@ -231,9 +235,9 @@
     personImage.layer.cornerRadius=5;//设置圆角的半径为10
     personImage.layer.masksToBounds=YES;
     if ([ZCTool _valueOrNil:self.coachDetailsModel.portrait]==nil) {
-        personImage.image=[UIImage imageNamed:@"3088644_150703431167_2.jpg"];
+        personImage.image=[UIImage imageNamed:@"shape-87"];
     }else{
-    [personImage sd_setImageWithURL:[NSURL URLWithString:self.coachDetailsModel.portrait] placeholderImage:[UIImage imageNamed:@"3088644_150703431167_2.jpg"]];
+    [personImage sd_setImageWithURL:[NSURL URLWithString:self.coachDetailsModel.portrait] placeholderImage:[UIImage imageNamed:@"shape-87"]];
     }
     [view addSubview:personImage];
     

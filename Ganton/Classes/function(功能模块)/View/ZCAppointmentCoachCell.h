@@ -10,7 +10,7 @@
 #import "ZCUnstartedLessonsModel.h"
 @protocol ZCAppointmentCoachCellDelegate<NSObject>
 @optional
--(void)clickTheButton:(NSString *)str;
+-(void)clickTheButton:(UIButton *)sender andnName:(NSString *)str andUUID:(NSString *)uuid;
 @end
 @interface ZCAppointmentCoachCell : UITableViewCell
 @property(nonatomic,weak)id<ZCAppointmentCoachCellDelegate>delegate;

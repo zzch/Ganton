@@ -31,7 +31,7 @@
 //网络加载
 -(void)onlineData
 {
-    
+    [MBProgressHUD showMessage:@"数据加载中..."];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [defaults objectForKey:@"token"];
     NSMutableDictionary *params=[NSMutableDictionary dictionary];
@@ -46,8 +46,9 @@
         self.detailsDict=responseObject;
         
         [self addControls];
+        [MBProgressHUD hideHUD];
     } failure:^(NSError *error) {
-        
+        [MBProgressHUD hideHUD];
         ZCLog(@"%@",error);
     }];
 

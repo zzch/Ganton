@@ -45,6 +45,7 @@
 //网络数据
 -(void)onlineData
 {
+    [MBProgressHUD showMessage:@"数据加载中..."];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [defaults objectForKey:@"token"];
     NSMutableDictionary *params=[NSMutableDictionary dictionary];
@@ -62,10 +63,10 @@
             [self.announcementListArray addObject:announcementListModel];
         }
         [self.tableView reloadData];
-        
+        [MBProgressHUD hideHUD];
         
     } failure:^(NSError *error) {
-        
+        [MBProgressHUD hideHUD];
         ZCLog(@"%@",error);
     }];
     

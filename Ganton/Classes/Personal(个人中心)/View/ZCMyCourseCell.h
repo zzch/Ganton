@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZCMyCourseModel.h"
 @interface ZCMyCourseCell : UITableViewCell
 +(instancetype)CellWithTabaleView:(UITableView *)tableView;
+@property(nonatomic,strong)ZCMyCourseModel *myCourseModel;
 @end

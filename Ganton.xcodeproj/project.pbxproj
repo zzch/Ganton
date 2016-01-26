@@ -161,6 +161,9 @@
 		A9D464091BCFC48B00EA13C5 /* ZCMemberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D464081BCFC48B00EA13C5 /* ZCMemberModel.m */; };
 		A9D4640C1BCFC67E00EA13C5 /* ZCAnnouncementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D4640B1BCFC67E00EA13C5 /* ZCAnnouncementModel.m */; };
 		A9DE5D961BEB168D00BF713F /* ZCMakeAnAppointmentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9DE5D951BEB168D00BF713F /* ZCMakeAnAppointmentModel.m */; };
+		A9E681DB1C55F6C800CB6627 /* ZCMyCourseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E681DA1C55F6C800CB6627 /* ZCMyCourseModel.m */; };
+		A9E681DE1C55F76C00CB6627 /* ZCLessonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E681DD1C55F76C00CB6627 /* ZCLessonModel.m */; };
+		A9E681E11C55FBA300CB6627 /* ZCMyLessonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E681E01C55FBA300CB6627 /* ZCMyLessonModel.m */; };
 		A9F28FCE1BDF5B9E0062BA65 /* ZCTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F28FCD1BDF5B9E0062BA65 /* ZCTimeView.m */; };
 /* End PBXBuildFile section */
 
@@ -482,6 +485,12 @@
 		A9D4640B1BCFC67E00EA13C5 /* ZCAnnouncementModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCAnnouncementModel.m; sourceTree = "<group>"; };
 		A9DE5D941BEB168D00BF713F /* ZCMakeAnAppointmentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCMakeAnAppointmentModel.h; sourceTree = "<group>"; };
 		A9DE5D951BEB168D00BF713F /* ZCMakeAnAppointmentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCMakeAnAppointmentModel.m; sourceTree = "<group>"; };
+		A9E681D91C55F6C800CB6627 /* ZCMyCourseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCMyCourseModel.h; sourceTree = "<group>"; };
+		A9E681DA1C55F6C800CB6627 /* ZCMyCourseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCMyCourseModel.m; sourceTree = "<group>"; };
+		A9E681DC1C55F76C00CB6627 /* ZCLessonModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCLessonModel.h; sourceTree = "<group>"; };
+		A9E681DD1C55F76C00CB6627 /* ZCLessonModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCLessonModel.m; sourceTree = "<group>"; };
+		A9E681DF1C55FBA300CB6627 /* ZCMyLessonModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCMyLessonModel.h; sourceTree = "<group>"; };
+		A9E681E01C55FBA300CB6627 /* ZCMyLessonModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCMyLessonModel.m; sourceTree = "<group>"; };
 		A9F28FCC1BDF5B9E0062BA65 /* ZCTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCTimeView.h; sourceTree = "<group>"; };
 		A9F28FCD1BDF5B9E0062BA65 /* ZCTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCTimeView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1115,6 +1124,12 @@
 				A9DE5D951BEB168D00BF713F /* ZCMakeAnAppointmentModel.m */,
 				A92C702C1BFB13C1005A2106 /* ZCAllConsumptionModel.h */,
 				A92C702D1BFB13C1005A2106 /* ZCAllConsumptionModel.m */,
+				A9E681D91C55F6C800CB6627 /* ZCMyCourseModel.h */,
+				A9E681DA1C55F6C800CB6627 /* ZCMyCourseModel.m */,
+				A9E681DC1C55F76C00CB6627 /* ZCLessonModel.h */,
+				A9E681DD1C55F76C00CB6627 /* ZCLessonModel.m */,
+				A9E681DF1C55FBA300CB6627 /* ZCMyLessonModel.h */,
+				A9E681E01C55FBA300CB6627 /* ZCMyLessonModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1378,6 +1393,7 @@
 				A9094BD51C04775E00A94DA6 /* UIButton+WebCache.m in Sources */,
 				A98436D11BC913170004AC94 /* ZCTeachingHeaderCell.m in Sources */,
 				A9094BB41C04775E00A94DA6 /* AFURLResponseSerialization.m in Sources */,
+				A9E681DE1C55F76C00CB6627 /* ZCLessonModel.m in Sources */,
 				A9094BB51C04775E00A94DA6 /* AFURLSessionManager.m in Sources */,
 				A9DE5D961BEB168D00BF713F /* ZCMakeAnAppointmentModel.m in Sources */,
 				A9094BCA1C04775E00A94DA6 /* UIScrollView+MJRefresh.m in Sources */,
@@ -1395,6 +1411,7 @@
 				A9094BDB1C04775E00A94DA6 /* UIView+WebCacheOperation.m in Sources */,
 				A9094BB21C04775E00A94DA6 /* AFURLConnectionOperation.m in Sources */,
 				A96296881C45022200BCE919 /* ZCPrivateAppointmentView.m in Sources */,
+				A9E681E11C55FBA300CB6627 /* ZCMyLessonModel.m in Sources */,
 				A9D463271BCF5C5A00EA13C5 /* ZCMakeAnAppointmentViewController.m in Sources */,
 				A9094BC91C04775E00A94DA6 /* UIScrollView+MJExtension.m in Sources */,
 				A97D9AE41BE0BF4D00E17583 /* ZCBirthdayViewController.m in Sources */,
@@ -1411,6 +1428,7 @@
 				A9758FEA1C3FB32D0047B289 /* ZCScheduleModel.m in Sources */,
 				A9094BBF1C04775E00A94DA6 /* MJType.m in Sources */,
 				A978C6671C2BC533000ADCC0 /* ZCStudentModel.m in Sources */,
+				A9E681DB1C55F6C800CB6627 /* ZCMyCourseModel.m in Sources */,
 				A9094BC61C04775E00A94DA6 /* MJRefreshConst.m in Sources */,
 				A9094BCB1C04775E00A94DA6 /* UIView+MJExtension.m in Sources */,
 				A9094BB81C04775E00A94DA6 /* MBProgressHUD.m in Sources */,

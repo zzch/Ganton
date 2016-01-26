@@ -16,6 +16,7 @@
 @property(nonatomic,copy)NSString *current_students;
 @property(nonatomic,copy)NSString *maximum_students;
 @property(nonatomic,copy)NSString *state;
+@property(nonatomic,copy)NSString *uuid;
 
 + (instancetype)unstartedLessonsModelWithDict:(NSDictionary *)dict;
 - (instancetype)initWithDict:(NSDictionary *)dict;

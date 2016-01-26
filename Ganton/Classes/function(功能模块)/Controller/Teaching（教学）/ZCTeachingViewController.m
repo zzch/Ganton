@@ -59,6 +59,8 @@
 // 网络加载
 -(void)addData
 {
+    [MBProgressHUD showMessage:@"数据加载中..."];
+    
     NSMutableDictionary *params=[NSMutableDictionary dictionary];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [defaults objectForKey:@"token"];
@@ -77,8 +79,11 @@
 //        
 //        [self addControls];
         [self.tableView reloadData];
+        
+        [MBProgressHUD hideHUD];
     } failure:^(NSError *error) {
         ZCLog(@"%@",error);
+        [MBProgressHUD hideHUD];
     }];
     
 }

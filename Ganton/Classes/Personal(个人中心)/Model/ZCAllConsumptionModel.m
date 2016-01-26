@@ -16,13 +16,19 @@
 }
 - (instancetype)initWithDict:(NSDictionary *)dict
 {
+    
+    
     if (self=[super init]) {
-        
+        ZCLog(@"%@",dict);
         self.uuid=dict[@"uuid"];
         self.sequence=dict[@"sequence"];
         self.reception_payment=dict[@"reception_payment"];
         self.entrance_time=[dict[@"entrance_time"] longValue];
+        if ([ZCTool _valueOrNil:dict[@"departure_time"]]==nil) {
+            self.departure_time=0;
+        }else{
         self.departure_time=[dict[@"departure_time"] longValue];
+        }
         self.name=dict[@"club"][@"name"];
         self.state=dict[@"state"];
         

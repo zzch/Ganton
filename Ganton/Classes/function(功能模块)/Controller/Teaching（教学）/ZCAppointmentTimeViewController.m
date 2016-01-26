@@ -11,7 +11,7 @@
 #import "ZCRecentlyScheduleModel.h"
 #import "ZCScheduleModel.h"
 #import "ZCPrivateAppointmentView.h"
-@interface ZCAppointmentTimeViewController ()<UIWebViewDelegate>
+@interface ZCAppointmentTimeViewController ()<UIWebViewDelegate,UIAlertViewDelegate>
 @property(nonatomic,assign)CGFloat webViewHight;
 @property(nonatomic,weak)UIScrollView *scrollView;
 @property(nonatomic,weak)UIWebView *webView;
@@ -29,6 +29,12 @@
 //选中的数组，传递给pickerView的值
 @property(nonatomic,strong)NSMutableArray *pickArray;
 @property(nonatomic,weak)UIView *rightView;
+//保存选择几点几时的字符串
+@property(nonatomic,copy)NSString *chooseTime;
+//保存选择哪天的时间
+@property(nonatomic,assign)long dateTime;
+//保存点击是 今天 0  明天 1  后天2 按钮
+@property(nonatomic,assign)int clickIndex;
 @end
 
 @implementation ZCAppointmentTimeViewController
@@ -149,8 +155,153 @@
 //    PrivateAppointmentView.delegate=self;
     PrivateAppointmentView.array=self.pickArray;
     [win addSubview:PrivateAppointmentView];
+    
+    
+    __weak ZCAppointmentTimeViewController *weakSelf=self;
+    PrivateAppointmentView.chooseTimeBlock=^(NSString *chooseTime){
+        ZCLog(@"%@",chooseTime);
+        weakSelf.chooseTime=chooseTime;
+        
+        
+        NSDate *selfDate=[NSDate dateWithTimeIntervalSince1970:[self joiningTogetherTime]];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        
+        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm";
+        NSString *selfStr = [dateFormatter stringFromDate:selfDate];
+
+        
+        // 弹框
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"确定预定%@的时间吗？",selfStr ] message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        // 设置对话框的类型
+        alert.alertViewStyle=UIKeyboardTypeNumberPad;
+        [alert show];
+
+        
+        
+        
+    };
 }
 
+
+
+#pragma mark - alertView的代理方法
+/**
+ *  点击了alertView上面的按钮就会调用这个方法
+ *
+ *  @param buttonIndex 按钮的索引,从0开始
+ */
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        ZCLog(@"asdasda");
+        //[self.navigationController popViewControllerAnimated:YES];
+    }else
+    {
+        ZCLog(@"asdasda");
+        [self uploadTime];
+    }
+    
+    // 按钮的索引肯定不是0
+    
+}
+
+//上传服务器选中的时间
+-(void)uploadTime
+{
+    [MBProgressHUD showMessage:@"正在加载..."];
+    
+    NSMutableDictionary *params=[NSMutableDictionary dictionary];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [defaults objectForKey:@"token"];
+    NSString *club_uuid = [defaults objectForKey:@"uuid"];
+    params[@"token"]=token;
+    params[@"club_uuid"]=club_uuid;
+    params[@"course_uuid"]=self.uuid;
+    params[@"reserved_at"]=[NSString stringWithFormat:@"%ld",[self joiningTogetherTime]];
+    
+    NSString *URL=[NSString stringWithFormat:@"%@v1/lessons/reserve_private.json",API];
+    
+    [ZCTool postWithUrl:URL params:params success:^(id responseObject) {
+         [MBProgressHUD hideHUD];
+        ZCLog(@"%@",responseObject);
+        
+        
+        
+        
+        //预定成功后 修改模型中属性
+        
+        ZCRecentlyScheduleModel *model=self.privateCoursesModel.recently_scheduleArray[self.clickIndex];
+       
+        [model.scheduleArray enumerateObjectsUsingBlock:^(ZCScheduleModel *model, NSUInteger idx, BOOL *stop) {
+           
+            ZCLog(@"%@",model.state);
+            
+            if ([model.time isEqual:self.chooseTime]) {
+                model.state=@"unavailable";
+                *stop = YES;
+            }
+            
+           
+        }];
+
+        [self refreshTimeView:model.scheduleArray];
+        
+        
+        // 弹框
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"预定成功" message:@"教练预定成功，请在个人中心查看" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        // 设置对话框的类型
+        alert.alertViewStyle=UIKeyboardTypeNumberPad;
+        [alert show];
+        
+    } failure:^(NSError *error) {
+        
+        ZCLog(@"%@",error);
+         [MBProgressHUD hideHUD];
+    }];
+    
+
+}
+
+
+//拼接成时间戳
+-(long)joiningTogetherTime
+{
+    ZCLog(@"%ld",self.dateTime);
+    
+    NSDate *selfDate=[NSDate dateWithTimeIntervalSince1970:self.dateTime];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd";
+    NSString *selfStr = [dateFormatter stringFromDate:selfDate];
+    ZCLog(@"%@",selfStr);
+    
+    NSString *timeStr=[NSString stringWithFormat:@"%@ %@:00",selfStr,self.chooseTime];
+    ZCLog(@"%@",timeStr);
+    
+    
+    
+    NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
+    dateFormatter2.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    [dateFormatter2 setLocale:[NSLocale currentLocale]];
+    
+    NSDate *timeDate=[dateFormatter2 dateFromString:timeStr];
+    
+    ZCLog(@"%@",timeDate);
+
+    //吧时间变成时间濯
+    long time=(long)[timeDate timeIntervalSince1970];
+
+    return time;
+}
+
+-(void)dealloc
+{
+    ZCLog(@"我去了");
+
+}
 
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
@@ -336,17 +487,6 @@
 }
 
 
-////选择时间
-//-(void)clickTheTimeViewButton:(UIButton *)button
-//{
-//    [self.timeButton setBackgroundImage:[UIImage imageNamed:@"xttk_sj_bj_mr"] forState:UIControlStateNormal];
-//    [self.timeButton setTitleColor:ZCColor(166, 166, 166) forState:UIControlStateNormal];
-//    
-//    self.timeButton=button;
-//    
-//    [button setBackgroundImage:[UIImage imageNamed:@"xttk_sj_bj_xz"] forState:UIControlStateNormal];
-//    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//}
 
 
 
@@ -360,11 +500,10 @@
     personImage.frame=CGRectMake(personImageX, personImageY, personImageW, personImageH);
     personImage.layer.cornerRadius=5;//设置圆角的半径为10
     personImage.layer.masksToBounds=YES;
-    personImage.image=[UIImage imageNamed:@"3088644_150703431167_2.jpg"];
-        if ([ZCTool _valueOrNil:self.privateCoursesModel.portrait]==nil) {
-            personImage.image=[UIImage imageNamed:@"3088644_150703431167_2.jpg"];
+    if ([ZCTool _valueOrNil:self.privateCoursesModel.portrait]==nil) {
+            personImage.image=[UIImage imageNamed:@"shape-87"];
         }else{
-            [personImage sd_setImageWithURL:[NSURL URLWithString:self.privateCoursesModel.portrait] placeholderImage:[UIImage imageNamed:@"3088644_150703431167_2.jpg"]];
+            [personImage sd_setImageWithURL:[NSURL URLWithString:self.privateCoursesModel.portrait] placeholderImage:[UIImage imageNamed:@"shape-87"]];
         }
     [view addSubview:personImage];
     
@@ -502,11 +641,15 @@
 
 -(void)clickTheFirstButton
 {
-   // ZCWeathersModel *model=self.weathersArray[0];
-    //[self ToControlTheAssignmentOnTheWeather:model];
-    [self refreshTimeView:[self.privateCoursesModel.recently_scheduleArray[0] scheduleArray]];
     
-    self.pickArray=[self.privateCoursesModel.recently_scheduleArray[0] scheduleArray];
+    self.clickIndex=0;
+    ZCRecentlyScheduleModel *model=self.privateCoursesModel.recently_scheduleArray[0];
+    
+    self.dateTime=model.date;
+    self.pickArray=model.scheduleArray;
+    [self refreshTimeView:model.scheduleArray];
+    
+    
     
     self.firstButton.selected=YES;
     self.secondButton.selected=NO;
@@ -540,10 +683,12 @@
 
 -(void)clickTheSecondButton
 {
-    self.pickArray=[self.privateCoursesModel.recently_scheduleArray[1] scheduleArray];
-//    ZCWeathersModel *model=self.weathersArray[1];
-//    [self ToControlTheAssignmentOnTheWeather:model];
-    [self refreshTimeView:[self.privateCoursesModel.recently_scheduleArray[1] scheduleArray]];
+    self.clickIndex=1;
+    ZCRecentlyScheduleModel *model=self.privateCoursesModel.recently_scheduleArray[1];
+    ZCLog(@"%ld",model.date);
+    self.dateTime=model.date;
+    self.pickArray=model.scheduleArray;
+    [self refreshTimeView:model.scheduleArray];
     
     self.firstButton.selected=NO;
     self.secondButton.selected=YES;
@@ -576,11 +721,13 @@
 
 -(void)clickTheThirdButton
 {
-    self.pickArray=[self.privateCoursesModel.recently_scheduleArray[2] scheduleArray];
-//    ZCWeathersModel *model=self.weathersArray[2];
-//    [self ToControlTheAssignmentOnTheWeather:model];
+    self.clickIndex=2;
     
-    [self refreshTimeView:[self.privateCoursesModel.recently_scheduleArray[2] scheduleArray]];
+    ZCRecentlyScheduleModel *model=self.privateCoursesModel.recently_scheduleArray[2];
+    
+    self.dateTime=model.date;
+    self.pickArray=model.scheduleArray;
+    [self refreshTimeView:model.scheduleArray];
     
     self.firstButton.selected=NO;
     self.secondButton.selected=NO;

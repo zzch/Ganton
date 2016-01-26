@@ -39,7 +39,28 @@
     
 }
 
-
+//-(void)asdasdasd
+//{
+//    [MBProgressHUD showMessage:@"数据加载中..."];
+//
+//    NSMutableDictionary *params=[NSMutableDictionary dictionary];
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSString *token = [defaults objectForKey:@"token"];
+//    NSString *uuid = [defaults objectForKey:@"uuid"];
+//    params[@"token"]=token;
+//    params[@"club_uuid"]=uuid;
+//    NSString *URL=[NSString stringWithFormat:@"%@v1/clubs/home",API];
+//
+//    [ZCTool getWithUrl:URL params:params success:^(id responseObject) {
+//        ZCLog(@"%@",responseObject);
+//        [MBProgressHUD hideHUD];
+//
+//    } failure:^(NSError *error) {
+//        [MBProgressHUD hideHUD];
+//    }];
+//  [MBProgressHUD hideHUD];
+//}
+//
 
 //网络数据
 -(void)onlineData
@@ -66,7 +87,7 @@
         [MBProgressHUD hideHUD];
         ZCLog(@"%@",self.cardArray);
     } failure:^(NSError *error) {
-        
+        [MBProgressHUD hideHUD];
         ZCLog(@"%@",error);
     }];
 

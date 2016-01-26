@@ -13,6 +13,8 @@
 @property(nonatomic,weak)UIView *view2;
 @property(nonatomic,weak)UIView *view3;
 @property(nonatomic,weak)UIButton *submitButton;
+//选择的评分
+@property(nonatomic,assign)NSInteger score;
 
 @end
 
@@ -63,9 +65,29 @@
     
     UIButton *submitButton=[[UIButton alloc] init];
     submitButton.frame=CGRectMake((SCREEN_WIDTH-215)/2, 310, 215, 40);
-    submitButton.backgroundColor=[UIColor colorWithPatternImage:[ZCTool imagePullLitre:@"pingjia_anniu"]];
     
-    [submitButton setTitle:@"评价" forState:UIControlStateNormal];
+    if ([self.myCourseModel.state isEqual:@"confirming"]) {
+        
+            submitButton.backgroundColor=[UIColor colorWithPatternImage:[ZCTool imagePullLitre:@"pingjia_anniu"]];
+            [submitButton setTitle:@"评价" forState:UIControlStateNormal];
+        
+
+    }else if ([self.myCourseModel.state isEqual:@"finished"]){
+    
+        submitButton.backgroundColor=[UIColor colorWithPatternImage:[ZCTool imagePullLitre:@"yiwancheng_anniu"]];
+        [submitButton setTitle:@"已评价" forState:UIControlStateNormal];
+        submitButton.enabled=NO;
+        
+    }else{
+        submitButton.backgroundColor=[UIColor colorWithPatternImage:[ZCTool imagePullLitre:@"yiwancheng_anniu"]];
+        [submitButton setTitle:@"不可评价" forState:UIControlStateNormal];
+        submitButton.enabled=NO;
+    
+    }
+    
+    
+    
+    [submitButton addTarget:self action:@selector(clickThesubmitButton:) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:submitButton];
     self.submitButton=submitButton;
 
@@ -75,6 +97,46 @@
     
 
 }
+
+//点击评价
+-(void)clickThesubmitButton:(UIButton *)button
+{
+    if (self.score==0) {
+        [MBProgressHUD showError:@"您还没有评价，请先评价..."];
+    }else{
+    
+        [MBProgressHUD showMessage:@"评价中..."];
+        
+        NSMutableDictionary *params=[NSMutableDictionary dictionary];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *token = [defaults objectForKey:@"token"];
+        params[@"uuid"]=self.myCourseModel.uuid;
+        params[@"token"]=token;
+        params[@"score"]=@(self.score);
+        NSString *URL=[NSString stringWithFormat:@"%@v1/curriculums/rating.json",API];
+        [ZCTool getWithUrl:URL params:params success:^(id responseObject) {
+            ZCLog(@"%@",responseObject);
+            
+            button.backgroundColor=[UIColor colorWithPatternImage:[ZCTool imagePullLitre:@"yiwancheng_anniu"]];
+            [button setTitle:@"已评价" forState:UIControlStateNormal];
+            button.enabled=NO;
+            
+            self.myCourseModel.rating=(int)self.score;
+            //修改模型中属性，为返回上一个界面刷新数据，避免再次网络请求
+            self.myCourseModel.state=@"finished";
+            
+            [MBProgressHUD hideHUD];
+        } failure:^(NSError *error) {
+            [MBProgressHUD hideHUD];
+            ZCLog(@"%@",error);
+        }];
+
+    
+    }
+    
+
+}
+
 
 
 
@@ -111,19 +173,31 @@
     nameLabel.textColor=ZCColor(34, 34, 34);
     [view addSubview:nameLabel];
     
+    
+    NSDate *startDate=[NSDate dateWithTimeIntervalSince1970:self.myCourseModel.lesson.started_at];
+    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat=@"yyyy.MM.dd";
+    NSString *dateStr=[dateFormatter stringFromDate:startDate];
+    
     UILabel *startLabel=[[UILabel alloc] init];
     startLabel.frame=CGRectMake(15, 33, 100, 15);
     startLabel.font=[UIFont systemFontOfSize:13];
     startLabel.textColor=ZCColor(85, 85, 85);
-    startLabel.text=@"2015.12.16";
+    startLabel.text=dateStr;
     [view addSubview:startLabel];
+    
+    
+    dateFormatter.dateFormat=@"HH:mm";
+    NSString *startStr=[dateFormatter stringFromDate:startDate];
+    NSDate *finishDate=[NSDate dateWithTimeIntervalSince1970:self.myCourseModel.lesson.finished_at];
+    NSString *finishStr=[dateFormatter stringFromDate:finishDate];
     
     
     UILabel *endLabel=[[UILabel alloc] init];
     endLabel.frame=CGRectMake(140, 33, 100, 15);
     endLabel.font=[UIFont systemFontOfSize:13];
     endLabel.textColor=ZCColor(85, 85, 85);
-    endLabel.text=@"2015.12.16";
+    endLabel.text=[NSString stringWithFormat:@"%@-%@",startStr,finishStr];
     [view addSubview:endLabel];
 
     
@@ -135,7 +209,7 @@
     
     
     UIWebView *webView=[[UIWebView alloc] init];
-    webView.frame=CGRectMake(0, 73, SCREEN_WIDTH, 10);
+    webView.frame=CGRectMake(6, 73, SCREEN_WIDTH-12, 10);
     webView.delegate=self;
     [view addSubview:webView];
     
@@ -145,7 +219,7 @@
     [webView sizeToFit];
     //    webView.scalesPageToFit = YES;
     //    [webView setScalesPageToFit:YES];
-    [webView loadHTMLString:@"2013年12月11日 - Charles 中国特惠 Charles 正版五折优惠活动(限时:2015 年 11 月 14 日– 30 日),仅限中国区购买,点击购买。在活动期结束后,价格将从 169 元上涨到 199 元..." baseURL:nil];
+    [webView loadHTMLString:self.myCourseModel.lesson.course.Description baseURL:nil];
     
 }
 
@@ -159,13 +233,13 @@
     personImage.frame=CGRectMake(personImageX, personImageY, personImageW, personImageH);
     personImage.layer.cornerRadius=5;//设置圆角的半径为10
     personImage.layer.masksToBounds=YES;
-//    if ([ZCTool _valueOrNil:self.coachDetailsModel.portrait]==nil) {
-//        personImage.image=[UIImage imageNamed:@"3088644_150703431167_2.jpg"];
-//    }else{
-//        [personImage sd_setImageWithURL:[NSURL URLWithString:self.coachDetailsModel.portrait] placeholderImage:[UIImage imageNamed:@"3088644_150703431167_2.jpg"]];
-//    }
+    if ([ZCTool _valueOrNil:self.myCourseModel.lesson.course.portrait]==nil) {
+        personImage.image=[UIImage imageNamed:@"shape-87"];
+    }else{
+        [personImage sd_setImageWithURL:[NSURL URLWithString:self.myCourseModel.lesson.course.portrait] placeholderImage:[UIImage imageNamed:@"shape-87"]];
+    }
     [view addSubview:personImage];
-    personImage.image=[UIImage imageNamed:@"3088644_150703431167_2.jpg"];
+   
     
     UILabel *nameLabel=[[UILabel alloc] init];
     CGFloat nameLabelX=personImageX+personImageW+15;
@@ -174,7 +248,7 @@
     CGFloat nameLabelH=25;
     nameLabel.frame=CGRectMake(nameLabelX, nameLabelY, nameLabelW, nameLabelH);
     nameLabel.font=[UIFont systemFontOfSize:18];
-    nameLabel.text=@"张三";
+    nameLabel.text=[NSString stringWithFormat:@"%@",self.myCourseModel.lesson.course.coachName];
     [view addSubview:nameLabel];
     
     
@@ -186,7 +260,7 @@
     titleLabel.frame=CGRectMake(titleLabelX, titleLabelY, titleLabelW, titleLabelH);
     titleLabel.textColor=ZCColor(85, 85, 85);
     titleLabel.font=[UIFont systemFontOfSize:14];
-    titleLabel.text=@"主教练";
+    titleLabel.text=[NSString stringWithFormat:@"%@",self.myCourseModel.lesson.course.title];
     [view addSubview:titleLabel];
     //self.titleLabel=titleLabel;
     
@@ -219,9 +293,34 @@
         
         CGFloat X=(view.frame.size.width-(5*(29.5+10)))/2+i*(29.5+10);
         UIButton *button=[[UIButton alloc] init];
+        
         button.tag=2000+i;
         button.frame=CGRectMake(X, 50, 29.5, 28);
-        [button setImage:[UIImage imageNamed:@"xx_mr"] forState:UIControlStateNormal];
+        
+        ZCLog(@"%d",self.myCourseModel.rating);
+        if ([self.myCourseModel.state isEqual:@"confirming"]) {
+           
+                [button setImage:[UIImage imageNamed:@"xx_mr"] forState:UIControlStateNormal];
+                button.enabled=YES;
+           
+        
+        
+        }else if ([self.myCourseModel.state isEqual:@"finished"]){
+        
+            button.enabled=NO;
+            if (i<self.myCourseModel.rating) {
+                [button setImage:[UIImage imageNamed:@"xx_xz"] forState:UIControlStateNormal];
+            }else{
+                [button setImage:[UIImage imageNamed:@"xx_mr"] forState:UIControlStateNormal];
+            }
+
+            
+        }else{
+           [button setImage:[UIImage imageNamed:@"xx_mr"] forState:UIControlStateNormal];
+            button.enabled=NO;
+        }
+        
+        
         [view addSubview:button];
         [button addTarget:self action:@selector(clickTheButton:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -231,7 +330,9 @@
 //点击评价
 -(void)clickTheButton:(UIButton *)button
 {
-    
+    self.score=button.tag-2000+1;
+    ZCLog(@"-------%ld",(long)
+          self.score);
     for (id view in self.view3.subviews) {
         if ([view isKindOfClass:[UIButton class]]) {
             UIButton *viewButton=view;

@@ -10,4 +10,5 @@
 
 @interface ZCPrivateAppointmentView : UIView
 @property(nonatomic,strong)NSArray *array;
+@property(nonatomic,copy)void (^chooseTimeBlock)(NSString *chooseTime);
 @end

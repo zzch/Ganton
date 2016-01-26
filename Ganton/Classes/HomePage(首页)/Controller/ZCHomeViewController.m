@@ -51,18 +51,42 @@
     
     self.navigationItem.leftBarButtonItem=[UIBarButtonItem barBtnItemWithNormalImageName:@"user-profile" hightImageName:nil action:@selector(clickTheLiftBarButtonItem) target:self withBtnName:nil];
     
-    [self addData];
+    [self addOnlineData];
     
-    
+    //[self asdasdasd];
     
 }
 
 
 
+//-(void)asdasdasd
+//{
+//    [MBProgressHUD showMessage:@"数据加载中..."];
+//    
+//    NSMutableDictionary *params=[NSMutableDictionary dictionary];
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSString *token = [defaults objectForKey:@"token"];
+//    NSString *uuid = [defaults objectForKey:@"uuid"];
+//    params[@"token"]=token;
+//    params[@"club_uuid"]=uuid;
+//    NSString *URL=[NSString stringWithFormat:@"%@v1/clubs/home",API];
+//
+//    [ZCTool getWithUrl:URL params:params success:^(id responseObject) {
+//        ZCLog(@"%@",responseObject);
+//        [MBProgressHUD hideHUD];
+//        
+//    } failure:^(NSError *error) {
+//        [MBProgressHUD hideHUD];
+//    }];
+//  [MBProgressHUD hideHUD];
+//}
+//
+
+
 // 网络加载
--(void)addData
+-(void)addOnlineData
 {
-    //[MBProgressHUD showMessage:@"数据加载中..."];
+   
     
     
     
@@ -74,17 +98,18 @@
     params[@"club_uuid"]=uuid;
     NSString *URL=[NSString stringWithFormat:@"%@v1/clubs/home",API];
     
-    //[MBProgressHUD showMessage:@"数据加载中..."];
     
     [ZCTool getWithUrl:URL params:params success:^(id responseObject) {
+        
+        //移除
+        //[MBProgressHUD hideHUD];
         ZCLog(@"%@",responseObject);
         
         ZCHomeModel *homeModel=[ZCHomeModel homeModelWithDict:responseObject];
         self.homeModel=homeModel;
         
         
-        //移除
-       // [MBProgressHUD hideHUD];
+        
         [self addControls];
         
     } failure:^(NSError *error) {
@@ -108,7 +133,7 @@
     
     
 
-    [self addData];
+    [self addOnlineData];
     
     
      ZCLog(@"%lu",(unsigned long)self.view.subviews.count);
@@ -119,7 +144,7 @@
 -(void)addControls
 {
     //移除
-    [MBProgressHUD hideHUD];
+   // [MBProgressHUD hideHUD];
     
       self.automaticallyAdjustsScrollViewInsets = NO;
 

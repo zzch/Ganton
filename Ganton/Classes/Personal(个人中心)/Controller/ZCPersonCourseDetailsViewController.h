@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZCMyCourseModel.h"
 @interface ZCPersonCourseDetailsViewController : UIViewController
-
+@property(nonatomic,strong)ZCMyCourseModel *myCourseModel;
 @end

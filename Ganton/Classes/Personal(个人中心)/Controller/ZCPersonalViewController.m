@@ -118,7 +118,7 @@
     button1.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:button1];
     [button1 addTarget:self action:@selector(clickTheButton1) forControlEvents:UIControlEventTouchUpInside];
-    [self addChildControls:button1 andImageStr:@"geren_dawei_icon" andText:@"打位预约"];
+    [self addChildControls:button1 andImageStr:@"yuyue_icon" andText:@"打位预约"];
     
     
     
@@ -136,7 +136,7 @@
     button2.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:button2];
     [button2 addTarget:self action:@selector(clickTheButton2) forControlEvents:UIControlEventTouchUpInside];
-    [self addChildControls:button2 andImageStr:@"geren_xiaof_icon" andText:@"我的消费"];
+    [self addChildControls:button2 andImageStr:@"xiaofei_icon" andText:@"我的消费"];
     
     UIView *bjView2=[[UIView alloc] init];
     bjView2.frame=CGRectMake(0, button2Y+button2H, 20, 1);
@@ -144,22 +144,22 @@
     [self.view addSubview:bjView2];
     
     
-//    UIButton *button3=[[UIButton alloc] init];
-//    CGFloat button3X=0;
-//    CGFloat button3Y=button2Y+button2H+15;
-//    CGFloat button3W=SCREEN_WIDTH;
-//    CGFloat button3H=50;
-//    button3.frame=CGRectMake(button3X, button3Y, button3W, button3H);
-////        CGFloat button3X=0;
-////        CGFloat button3Y=photoViewBtnY+photoViewBtnH+15;
-////        CGFloat button3W=SCREEN_WIDTH;
-////        CGFloat button3H=50;
-////        button3.frame=CGRectMake(button3X, button3Y, button3W, button3H);
-//
-//    button3.backgroundColor=[UIColor whiteColor];
-//    [self.view addSubview:button3];
-//    [button3 addTarget:self action:@selector(clickTheButton3) forControlEvents:UIControlEventTouchUpInside];
-//    [self addChildControls:button3 andImageStr:@"geren_dawei_icon" andText:@"我的课程"];
+    UIButton *button3=[[UIButton alloc] init];
+    CGFloat button3X=0;
+    CGFloat button3Y=button2Y+button2H+15;
+    CGFloat button3W=SCREEN_WIDTH;
+    CGFloat button3H=50;
+    button3.frame=CGRectMake(button3X, button3Y, button3W, button3H);
+//        CGFloat button3X=0;
+//        CGFloat button3Y=photoViewBtnY+photoViewBtnH+15;
+//        CGFloat button3W=SCREEN_WIDTH;
+//        CGFloat button3H=50;
+//        button3.frame=CGRectMake(button3X, button3Y, button3W, button3H);
+
+    button3.backgroundColor=[UIColor whiteColor];
+    [self.view addSubview:button3];
+    [button3 addTarget:self action:@selector(clickTheButton3) forControlEvents:UIControlEventTouchUpInside];
+    [self addChildControls:button3 andImageStr:@"kecheng_icon" andText:@"我的课程"];
     
     
     
@@ -167,7 +167,7 @@
     UIButton *exitButton=[[UIButton alloc] init];
     exitButton.backgroundColor=[UIColor whiteColor];
     CGFloat exitButtonX=0;
-    CGFloat exitButtonY=button2Y+button2H+15;
+    CGFloat exitButtonY=button3Y+button3H+15;
     CGFloat exitButtonW=SCREEN_WIDTH-2*exitButtonX;
     CGFloat exitButtonH=50;
     exitButton.frame=CGRectMake(exitButtonX, exitButtonY, exitButtonW, exitButtonH);
@@ -388,8 +388,8 @@
 {
     
     UIImageView *iocnImage=[[UIImageView alloc] init];
-    CGFloat iocnImageW=16;
-    CGFloat iocnImageH=21;
+    CGFloat iocnImageW=40;
+    CGFloat iocnImageH=40;
     CGFloat iocnImageX=20;
     CGFloat iocnImageY=(Button.frame.size.height-iocnImageH)/2;
     iocnImage.frame=CGRectMake(iocnImageX, iocnImageY, iocnImageW, iocnImageH);
@@ -400,7 +400,7 @@
     
     //设置
     UILabel *settingsLabel=[[UILabel alloc] init];
-    CGFloat settingsLabelX=iocnImageX+iocnImageW+15;
+    CGFloat settingsLabelX=iocnImageX+iocnImageW+5;
     CGFloat settingsLabelW=SCREEN_WIDTH*0.5;
     CGFloat settingsLabelH=30;
     CGFloat settingsLabelY=(Button.frame.size.height-settingsLabelH)*0.5;

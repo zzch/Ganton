@@ -103,9 +103,9 @@
     _coachModel=coachModel;
     
     if ([ZCTool _valueOrNil:coachModel.portrait]==nil) {
-        self.personImage.image=[UIImage imageNamed:@"3088644_150703431167_2.jpg"];
+        self.personImage.image=[UIImage imageNamed:@"shape-87"];
     }else{
-    [self.personImage sd_setImageWithURL:[NSURL URLWithString:coachModel.portrait] placeholderImage:[UIImage imageNamed:@"3088644_150703431167_2.jpg"]];
+    [self.personImage sd_setImageWithURL:[NSURL URLWithString:coachModel.portrait] placeholderImage:[UIImage imageNamed:@"shape-87"]];
     }
     self.nameLabel.text=[NSString stringWithFormat:@"%@",coachModel.name];
     self.titleLabel.text=[NSString stringWithFormat:@"%@",coachModel.title];

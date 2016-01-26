@@ -16,6 +16,9 @@
 
 @property(nonatomic,weak)UIView *headerView;
 @property(nonatomic,assign)CGFloat webViewHight;
+//预约选中的课程id
+@property(nonatomic,copy)NSString *courseUuid;
+@property(nonatomic,strong)NSIndexPath *indexPath;
 @end
 
 @implementation ZCAppointmentCoachViewController
@@ -158,7 +161,7 @@
     //添加控件
     [self addControls];
     
-    }
+}
 
 
 
@@ -195,15 +198,36 @@
 }
 
 //代理方法
-
--(void)clickTheButton:(NSString *)str
+-(void)clickTheButton:(UIButton *)sender andnName:(NSString *)str andUUID:(NSString *)uuid
 {
+    self.courseUuid=uuid;
+    
+    //拿到对应cell的indexPath
+    UIView *view=(UIView *)sender;
+    UIView *superView=view.superview;
+    while (![superView isKindOfClass:[UITableViewCell class]]) {
+        superView=superView.superview;
+    }
+    NSIndexPath *indexPath=[self.tableView  indexPathForCell:(UITableViewCell *)superView ];
+    self.indexPath=indexPath;
+    
+    
+    ZCLog(@"%@",self.indexPath);
+    
+    [self alertView:self Title:[NSString stringWithFormat:@"是否确定预约 %@ 课程",str] message:nil andcancel:@"取消"];
+
+}
+
+
+-(void)alertView:(UIViewController *)vc Title:(NSString *)title message:(NSString *)message andcancel:(NSString *)cancel
+{
+
     // 弹框
-    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"预定成功" message:@"球场预定成功，请在个人中心查看" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:title message:message delegate:vc cancelButtonTitle:cancel otherButtonTitles:@"确定", nil];
     // 设置对话框的类型
     alert.alertViewStyle=UIKeyboardTypeNumberPad;
     [alert show];
-
+    
 }
 
 
@@ -223,12 +247,50 @@
     }else
     {
         ZCLog(@"asdasda");
-        //[self saveOtherView];
+        [self uploadTime];
     }
     
     // 按钮的索引肯定不是0
     
 }
+
+//上传服务器选中的时间
+-(void)uploadTime
+{
+    [MBProgressHUD showMessage:@"正在加载..."];
+    
+    NSMutableDictionary *params=[NSMutableDictionary dictionary];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [defaults objectForKey:@"token"];
+    NSString *club_uuid = [defaults objectForKey:@"uuid"];
+    params[@"token"]=token;
+    params[@"club_uuid"]=club_uuid;
+    params[@"uuid"]=self.courseUuid;
+   
+    
+    NSString *URL=[NSString stringWithFormat:@"%@v1/lessons/reserve_open.json",API];
+    
+    [ZCTool postWithUrl:URL params:params success:^(id responseObject) {
+        [MBProgressHUD hideHUD];
+        ZCLog(@"%@",responseObject);
+        
+        [self alertView:nil Title:@"预定成功" message:@"课程预定成功，请在个人中心查看" andcancel:nil];
+        
+        
+        ZCUnstartedLessonsModel *model=  self.openCoursesModel.unstarted_lessonsArray[self.indexPath.row];
+        model.state=@"reserved";
+        
+        [self.tableView reloadData];
+        
+    } failure:^(NSError *error) {
+        
+        ZCLog(@"%@",error);
+        [MBProgressHUD hideHUD];
+    }];
+    
+    
+}
+
 
 
 -(void)addTopViewControls:(UIView *)view
@@ -243,9 +305,9 @@
     personImage.layer.masksToBounds=YES;
    // personImage.image=[UIImage imageNamed:@"3088644_150703431167_2.jpg"];
     if ([ZCTool _valueOrNil:self.openCoursesModel.portrait]==nil) {
-        personImage.image=[UIImage imageNamed:@"3088644_150703431167_2.jpg"];
+        personImage.image=[UIImage imageNamed:@"shape-87"];
     }else{
-        [personImage sd_setImageWithURL:[NSURL URLWithString:self.openCoursesModel.portrait] placeholderImage:[UIImage imageNamed:@"3088644_150703431167_2.jpg"]];
+        [personImage sd_setImageWithURL:[NSURL URLWithString:self.openCoursesModel.portrait] placeholderImage:[UIImage imageNamed:@"shape-87"]];
     }
     [view addSubview:personImage];
     

@@ -11,6 +11,7 @@
 @interface ZCPrivateAppointmentView()<UIPickerViewDataSource,UIPickerViewDelegate>
 @property(nonatomic,weak)UIView *bjView;
 @property(nonatomic,weak)UIPickerView *pickView;
+@property(nonatomic,copy)NSString *chooseTime;
 
 @end
 @implementation ZCPrivateAppointmentView
@@ -74,14 +75,27 @@
     [bjView addSubview:pickView];
     
 
+    
 
 }
 
+-(void)setArray:(NSArray *)array
+{
+    _array=array;
+    
+    [self pickerView:self.pickView didSelectRow:0 inComponent:0];
 
+}
 
 //点击确定
 -(void)clickTheDetermineButton
 {
+    if (self.chooseTimeBlock) {
+        self.chooseTimeBlock(self.chooseTime);
+        [self clickTheCancelButton];
+    }
+    
+    
 //    if ([self.delegate respondsToSelector:@selector(timeViewChooseTime:)]) {
 //        [self.delegate timeViewChooseTime:self.chooseTime];
 //        
@@ -163,25 +177,43 @@
     ZCLog(@"%ld",(long)row);
     
     //self.chooseTime=self.pickArray[row];
-    ZCScheduleModel *model=self.array[row];
-    NSInteger nowRow;
-    for (NSInteger i=row; i<self.array.count-row; i++) {
+   // ZCScheduleModel *model=self.array[row];
+   // NSInteger nowRow;
+    for (NSInteger i=row; i<self.array.count; i++) {
         ZCScheduleModel *model=self.array[i];
         if ([model.state isEqual:@"available"]) {
-            
+            self.chooseTime=model.time;
+            [self.pickView selectRow:i inComponent:0 animated:YES];
+            break;
+        }else{
+        
+            if (i==self.array.count-1) {
+                for (NSInteger j=self.array.count-1; j>-1; j--) {
+                    ZCScheduleModel *model=self.array[j];
+                    if ([model.state isEqual:@"available"]) {
+                        self.chooseTime=model.time;
+                        [self.pickView selectRow:j inComponent:0 animated:YES];
+                        break;
+                    }
+                }
+            }
         }
+        
+        //ZCLog(@"%@",self.chooseTime);
     }
     
-    if ([model.state isEqual:@"available"]) {
-        ZCLog(@"%ld",(long)row);
-        
-    }else{
-        ZCLog(@"%ld",(long)row);
-        
-        [self.pickView selectRow:row+1 inComponent:0 animated:YES];
-        //[self pickerView:self.pickView didSelectRow:row+1 inComponent:0];
-         ZCLog(@"%ld",(long)row);
-    }
+     ZCLog(@"%@",self.chooseTime);
+    
+//    if ([model.state isEqual:@"available"]) {
+//        ZCLog(@"%ld",(long)row);
+//        
+//    }else{
+//        ZCLog(@"%ld",(long)row);
+//        
+//        [self.pickView selectRow:row+1 inComponent:0 animated:YES];
+//        //[self pickerView:self.pickView didSelectRow:row+1 inComponent:0];
+//         ZCLog(@"%ld",(long)row);
+//    }
 }
 
 

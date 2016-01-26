@@ -197,12 +197,13 @@
     [manger GET:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //        WWLog(@"AFN原生返回的数据%@",responseObject);
          ZCLog(@"%@",responseObject);
-        
+       
         
         if (![responseObject isKindOfClass:[NSArray class]]) {
             //判断失败信息
             if ([responseObject[@"exception_code"] integerValue])
             {
+                [MBProgressHUD hideHUD];
                 // [AppDelegate resetUserInfo];
                 
                 if ([responseObject[@"exception_code"] integerValue]==20001) {
@@ -227,6 +228,7 @@
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         ZCLog(@"%ld",(long)[operation.response statusCode]);
+        [MBProgressHUD hideHUD];
         
         if ((long)[operation.response statusCode]==401 ) {
             
@@ -251,11 +253,13 @@
     [manger POST:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         // 请求成功, 通知调用者请求成功
         
+        ZCLog(@"%@",responseObject);
+        
         if (![responseObject isKindOfClass:[NSArray class]]) {
             //判断失败信息
             if ([responseObject[@"exception_code"] integerValue])
             {
-                
+                [MBProgressHUD hideHUD];
                 
                 // [AppDelegate resetUserInfo];
                 [self TheErrorMessage:[responseObject[@"exception_code"] integerValue]];
@@ -275,6 +279,7 @@
         // 通知调用者请求失败
 //        WWLog(@"请求成功");
         //判断token是否过期
+        [MBProgressHUD hideHUD];
         if ((long)[operation.response statusCode]==401 ) {
             
             [self tokenIsFailure];
@@ -350,6 +355,12 @@
         [MBProgressHUD showError:@"重复预约：您已经预约过当天的打位"];
     }else if (errorID==20003){
         [MBProgressHUD showError:@"验证码不正确,请重新输入"];
+    }else if (errorID==20006){
+        [MBProgressHUD showError:@"该时段已预约或预约已满"];
+    }else if (errorID==10004){
+        [MBProgressHUD showError:@"非本人预约课程"];
+    }else if (errorID==20004){
+        [MBProgressHUD showError:@"重复预约"];
     }
 
 }

@@ -22,6 +22,7 @@
         self.current_students=dict[@"current_students"];
         self.maximum_students=dict[@"maximum_students"];
         self.state=dict[@"state"];
+        self.uuid=dict[@"uuid"];
     }
     return self;
 }

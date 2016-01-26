@@ -69,7 +69,7 @@
         //stateLabel.textColor=[UIColor whiteColor];
         [self.contentView addSubview:stateButton];
         self.stateButton=stateButton;
-        [stateButton addTarget:self action:@selector(clickTheStateButton) forControlEvents:UIControlEventTouchUpInside];
+        [stateButton addTarget:self action:@selector(clickTheStateButton:) forControlEvents:UIControlEventTouchUpInside];
         
     }
     return self;
@@ -91,11 +91,15 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"yyyy.MM.dd";
     NSString *started_at = [dateFormatter stringFromDate:started_atDate];
-    NSString *finished_at = [dateFormatter stringFromDate:finished_atDate];
+   // NSString *finished_at = [dateFormatter stringFromDate:finished_atDate];
 
+    dateFormatter.dateFormat=@"HH:mm";
+    NSString *startStr=[dateFormatter stringFromDate:started_atDate];
+   
+    NSString *finishStr=[dateFormatter stringFromDate:finished_atDate];
     
     
-    self.timeLabel.text=[NSString stringWithFormat:@"%@    %@",started_at,finished_at];
+    self.timeLabel.text=[NSString stringWithFormat:@"%@  %@-%@",started_at,startStr,finishStr];
     
     self.numberLabel.text=[NSString stringWithFormat:@"预约人数 (%@/%@)",unstartedLessonsModel.current_students,unstartedLessonsModel.maximum_students];
     
@@ -119,11 +123,12 @@
 
 
 
--(void)clickTheStateButton
+-(void)clickTheStateButton:(UIButton *)sender
 {
 
-    if ([self.delegate respondsToSelector:@selector(clickTheButton:)]) {
-        [self.delegate clickTheButton:nil];
+    if ([self.delegate respondsToSelector:@selector(clickTheButton:andnName:andUUID:)]) {
+
+        [self.delegate clickTheButton:sender andnName:self.unstartedLessonsModel.name andUUID:self.unstartedLessonsModel.uuid];
     }
     
 }

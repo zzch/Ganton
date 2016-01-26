@@ -118,9 +118,9 @@
     
     
     if ([ZCTool _valueOrNil:coachModel.portrait]==nil) {
-        self.personImage.image=[UIImage imageNamed:@"3088644_150703431167_2.jpg"];
+        self.personImage.image=[UIImage imageNamed:@"shape-87"];
     }else{
-        [self.personImage sd_setImageWithURL:[NSURL URLWithString:coachModel.portrait] placeholderImage:[UIImage imageNamed:@"3088644_150703431167_2.jpg"]];
+        [self.personImage sd_setImageWithURL:[NSURL URLWithString:coachModel.portrait] placeholderImage:[UIImage imageNamed:@"shape-87"]];
     }
     
     
@@ -144,7 +144,7 @@
     
     CGFloat nameLabelX=personImageX+personImageW+15;
     CGFloat nameLabelY=personImageY;
-    CGFloat nameLabelW=60;
+    CGFloat nameLabelW=90;
     CGFloat nameLabelH=25;
     self.nameLabel.frame=CGRectMake(nameLabelX, nameLabelY, nameLabelW, nameLabelH);
     
