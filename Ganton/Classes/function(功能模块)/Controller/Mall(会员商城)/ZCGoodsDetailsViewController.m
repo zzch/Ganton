@@ -60,16 +60,18 @@
     [self.view addSubview:scrollView];
     self.scrollView=scrollView;
     
+    CGFloat H=[ZCTool getFrame:CGSizeMake(SCREEN_WIDTH-60, 200) content:self.goodsDetailsDict[@"title"] fontSize:[UIFont systemFontOfSize:24]].size.height;
     
     UILabel *nameLabel=[[UILabel alloc] init];
-    nameLabel.frame=CGRectMake(0, 0, SCREEN_WIDTH, 50);
+    nameLabel.frame=CGRectMake(30, 10, SCREEN_WIDTH-60, H);
     nameLabel.textAlignment=NSTextAlignmentCenter;
     nameLabel.text=self.goodsDetailsDict[@"title"];
     nameLabel.font=[UIFont systemFontOfSize:24];
+    nameLabel.numberOfLines=0;
     [scrollView addSubview:nameLabel];
     
     UIWebView *webView=[[UIWebView alloc] init];
-    webView.frame=CGRectMake(0, 50, SCREEN_WIDTH, 10);
+    webView.frame=CGRectMake(5, H+5, SCREEN_WIDTH-10, 10);
     webView.delegate=self;
     [scrollView addSubview:webView];
     
@@ -78,7 +80,8 @@
     webView.scrollView.scrollEnabled = NO;
     [webView sizeToFit];
     
-    [webView loadHTMLString:self.goodsDetailsDict[@"content"] baseURL:nil];
+    NSString *newStr=[NSString stringWithFormat:@"<html><head><title>Example</title><style>img { width: 100%%}</style></head><body>%@</body></html>",self.goodsDetailsDict[@"content"]];
+    [webView loadHTMLString:newStr baseURL:nil];
 }
 
 

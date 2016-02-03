@@ -84,7 +84,7 @@
     
     
     UIWebView *webView=[[UIWebView alloc] init];
-    webView.frame=CGRectMake(0, topView.frame.size.height+topView.frame.origin.y+15, SCREEN_WIDTH, 200);
+    webView.frame=CGRectMake(5, topView.frame.size.height+topView.frame.origin.y+15, SCREEN_WIDTH-10, 10);
      webView.delegate=self;
     
     webView.scrollView.bounces = NO;
@@ -94,8 +94,15 @@
     
     //webView.backgroundColor=[UIColor redColor];
     //[webView loadHTMLString:[NSString stringWithFormat:@"%@",self.coachDetailsModel.description] baseURL:nil];
+    
+    
+    
+    
     [scrollView addSubview:webView];
-    [webView loadHTMLString:[NSString stringWithFormat:@"%@",self.courseDetailsModel.Description] baseURL:nil];
+    
+    NSString *newStr=[NSString stringWithFormat:@"<html><head><title>Example</title><style>img { width: 100%%}</style></head><body>%@</body></html>",self.courseDetailsModel.Description];
+    [webView loadHTMLString:newStr baseURL:nil];
+   
 
 }
 

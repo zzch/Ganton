@@ -101,7 +101,7 @@
 {
     
     UIWebView *webView=[[UIWebView alloc] init];
-    webView.frame=CGRectMake(0, 0, SCREEN_WIDTH, 1);
+    webView.frame=CGRectMake(5, 0, SCREEN_WIDTH-10, 1);
     webView.delegate=self;
     
     webView.scrollView.bounces = NO;
@@ -110,7 +110,10 @@
     [webView sizeToFit];
     
     [self.view addSubview:webView];
-    [webView loadHTMLString:self.openCoursesModel.Description baseURL:nil];
+    
+    NSString *newStr=[NSString stringWithFormat:@"<html><head><title>Example</title><style>img { width: 100%%}</style></head><body>%@</body></html>",self.openCoursesModel.Description];
+    [webView loadHTMLString:newStr baseURL:nil];
+    //[webView loadHTMLString:self.openCoursesModel.Description baseURL:nil];
     
     webView.hidden=YES;
 }
@@ -129,7 +132,7 @@
     
     
     UIWebView *webView=[[UIWebView alloc] init];
-    webView.frame=CGRectMake(0, topView.frame.size.height+topView.frame.origin.y+15, SCREEN_WIDTH, self.webViewHight);
+    webView.frame=CGRectMake(5, topView.frame.size.height+topView.frame.origin.y+15, SCREEN_WIDTH-10, self.webViewHight);
     
     webView.scrollView.bounces = NO;
     webView.scrollView.showsHorizontalScrollIndicator = NO;
@@ -138,9 +141,9 @@
     
     
     [view addSubview:webView];
-    [webView loadHTMLString:self.openCoursesModel.Description baseURL:nil];
-    //[webView loadHTMLString: baseURL:nil];
-   
+    
+    NSString *newStr=[NSString stringWithFormat:@"<html><head><title>Example</title><style>img { width: 100%%}</style></head><body>%@</body></html>",self.openCoursesModel.Description];
+    [webView loadHTMLString:newStr baseURL:nil];
     return view;
     
 }
