@@ -14,6 +14,13 @@
 #import "UMSocialWechatHandler.h"
 #import "UMSocialSnsService.h"
 #import "UMSocial.h"
+#import "YZSDK.h"
+
+
+static NSString *userAgent = @"5252300f8935683a9c1456191629356";//  //kdtUnion_demo  注意UA的规范，UA一定是kdtUnion_xxx的规范
+static NSString *appID = @"8a0c4cda44ac62f216";///应用营销三方开放API出可以设置
+static NSString *appSecret = @"996b1a3f4ece78039a6fcbb35ce4909f";//这里设置时候注意，UA一定是以kdtUnion_为前缀的，如果给您的UA是没有kdtUnion_的前缀，请联系墨迹，看UA是否给您的是正确的
+
 @interface AppDelegate ()<UIAlertViewDelegate>
 @property(nonatomic,strong)NSDictionary *userInfo;
 @end
@@ -51,8 +58,17 @@
     
     NSDictionary *remoteNotification = [launchOptions objectForKey: UIApplicationLaunchOptionsRemoteNotificationKey];
     
+    //有赞商城
+    [YZSDK setOpenDebugLog:YES];
+    [YZSDK userAgentInit:userAgent version:@""];
+    [YZSDK setOpenInterfaceAppID:appID appSecret:appSecret];
+    NSLog(@"版本号：  %@ " , [YZSDK getSdkVersion]);
     
-   
+    //避免跟其他三方库中获取ip地址的方法冲突，暂时通过三方app自己设置，注意：当且仅当在使用自有微信支付的时候才需要设置ip地址
+    [YZSDK setSelfWxPayInterfaceClientIPAddress:@""];
+
+    
+    
     
 //    //友盟分享
     
@@ -78,10 +94,12 @@
 
     }
     
-    
+//    //获取registrationID
+//    NSString *registrationID1= [APService registrationID];
+//    ZCLog(@"-----%@--",registrationID1);
     
     //监听极光推送注册成功后调用
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(registeredSuccessfully) name:@"kJPFNetworkDidLoginNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(registeredSuccessfully) name:kJPFNetworkDidLoginNotification object:nil];
     
     
     //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -140,7 +158,15 @@
    [ZCTool uploadThePushID];
         
     }
-
+    
+    //如果本地存了 极光推送且说明已经上传到服务器 就可以移除通知，否则该通知会在几分钟执行一次，直到上传成功
+    NSString *registrationID = [defaults objectForKey:@"registrationID"];
+    if (registrationID) {
+        //注销通知
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:kJPFNetworkDidLoginNotification object:nil];
+    }
+    
+    
 
 }
 

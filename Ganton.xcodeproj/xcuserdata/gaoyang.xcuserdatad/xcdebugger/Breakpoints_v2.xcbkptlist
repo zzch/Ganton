@@ -32,7 +32,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ganton/Classes/function(&#x529f;&#x80fd;&#x6a21;&#x5757;)/Controller/Restaurant(&#x9910;&#x996e;&#x670d;&#x52a1;)/ZCViewsOnContentViewController.m"
@@ -48,7 +48,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ganton/Classes/Personal(&#x4e2a;&#x4eba;&#x4e2d;&#x5fc3;)/Controller/ZCPersonCourseDetailsViewController.m"
@@ -58,6 +58,22 @@
             startingLineNumber = "131"
             endingLineNumber = "131"
             landmarkName = "-clickThesubmitButton:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Ganton/Classes/AccountInformation(&#x8d26;&#x53f7;)/ZCAccountViewController.m"
+            timestampString = "478423117.407896"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "324"
+            endingLineNumber = "324"
+            landmarkName = "-networkRequest"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

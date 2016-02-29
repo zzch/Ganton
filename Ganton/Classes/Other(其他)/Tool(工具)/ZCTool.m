@@ -412,6 +412,7 @@
     NSString *registrationID1= [APService registrationID];
     ZCLog(@"-----%@",registrationID1);
     if ([registrationID1 isEqual:@""]) {
+        ZCLog(@"-----%@",registrationID1);
         return;
     }
     
@@ -447,6 +448,8 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [defaults objectForKey:@"token"];
     NSString *registrationID = [defaults objectForKey:@"registrationID"];
+    
+    ZCLog(@"%@----",registrationID);
     params[@"registration_id"]=registrationID;
     params[@"token"]=token;
     NSString *URL=[NSString stringWithFormat:@"%@v1/users/registration_id",API];
@@ -460,6 +463,10 @@
         
     } failure:^(NSError *error) {
         ZCLog(@"%@",error);
+        //上传服务器失败的话，清空本地保存的值
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+       [defaults removeObjectForKey:@"registrationID"];
+        
     }];
     
 }

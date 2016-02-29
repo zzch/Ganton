@@ -20,6 +20,9 @@
 #import "ZCMemberModel.h"
 #import "ZCAnnouncementModel.h"
 #import "ZCAnnouncementViewController.h"
+#import "ZCYouZanViewController.h"
+
+
 @interface ZCHomeViewController ()<UIScrollViewDelegate,ZCCardPackageViewControllerDelegate>
 @property(nonatomic,weak)UIScrollView *scrollView;
 @property(nonatomic,strong)ZCHomeModel *homeModel;
@@ -543,8 +546,8 @@
         [self.navigationController pushViewController:VC animated:YES];
     
     }else if (button.tag==102){
-        
-        ZCMallViewController *VC=[[ZCMallViewController alloc] init];
+        ZCYouZanViewController *VC=[[ZCYouZanViewController alloc] init];
+//        ZCMallViewController *VC=[[ZCMallViewController alloc] init];
         [self.navigationController pushViewController:VC animated:YES];
         
     }else if (button.tag==103){

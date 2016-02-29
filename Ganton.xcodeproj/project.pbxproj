@@ -69,6 +69,9 @@
 		A92C702E1BFB13C1005A2106 /* ZCAllConsumptionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A92C702D1BFB13C1005A2106 /* ZCAllConsumptionModel.m */; };
 		A92C70311BFB1BCF005A2106 /* ZCAllConsumptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A92C70301BFB1BCF005A2106 /* ZCAllConsumptionCell.m */; };
 		A9329B5B1C27E89E006DCC79 /* ZCPersonCourseDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9329B5A1C27E89E006DCC79 /* ZCPersonCourseDetailsViewController.m */; };
+		A9384D4F1C80272D005C149A /* YouzanIOSSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9384D4C1C80272D005C149A /* YouzanIOSSDK.a */; };
+		A9384D531C8029A4005C149A /* ZCYouZanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9384D521C8029A4005C149A /* ZCYouZanViewController.m */; };
+		A9384D571C802DA9005C149A /* CacheUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A9384D561C802DA9005C149A /* CacheUserInfo.m */; };
 		A953ABBD1C11721E006BD3AD /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A953AB9C1C11721E006BD3AD /* UMSocialLocalizable.strings */; };
 		A953ABBE1C11721E006BD3AD /* libUMSocial_Sdk_4.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A953ABAA1C11721E006BD3AD /* libUMSocial_Sdk_4.4.a */; };
 		A953ABBF1C11721E006BD3AD /* UMSCommentDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A953ABAC1C11721E006BD3AD /* UMSCommentDetailController.xib */; };
@@ -85,6 +88,7 @@
 		A953ABCB1C1172BD006BD3AD /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A953ABCA1C1172BD006BD3AD /* libiconv.tbd */; };
 		A953ABCD1C117303006BD3AD /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A953ABCC1C117303006BD3AD /* libsqlite3.tbd */; };
 		A953ABCF1C117323006BD3AD /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A953ABCE1C117323006BD3AD /* libstdc++.tbd */; };
+		A95E19E91C8033B80063AE1B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A95E19E71C8033B80063AE1B /* LoginViewController.m */; };
 		A96084431C27A15D00C19456 /* ZCMyCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A96084421C27A15D00C19456 /* ZCMyCourseViewController.m */; };
 		A96084461C27BBFE00C19456 /* ZCMyCourseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A96084451C27BBFE00C19456 /* ZCMyCourseCell.m */; };
 		A96296881C45022200BCE919 /* ZCPrivateAppointmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A96296871C45022200BCE919 /* ZCPrivateAppointmentView.m */; };
@@ -161,6 +165,7 @@
 		A9D464091BCFC48B00EA13C5 /* ZCMemberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D464081BCFC48B00EA13C5 /* ZCMemberModel.m */; };
 		A9D4640C1BCFC67E00EA13C5 /* ZCAnnouncementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D4640B1BCFC67E00EA13C5 /* ZCAnnouncementModel.m */; };
 		A9DE5D961BEB168D00BF713F /* ZCMakeAnAppointmentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9DE5D951BEB168D00BF713F /* ZCMakeAnAppointmentModel.m */; };
+		A9E3D59B1C804343008B7AE9 /* CommonWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E3D59A1C804343008B7AE9 /* CommonWebViewController.m */; };
 		A9E681DB1C55F6C800CB6627 /* ZCMyCourseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E681DA1C55F6C800CB6627 /* ZCMyCourseModel.m */; };
 		A9E681DE1C55F76C00CB6627 /* ZCLessonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E681DD1C55F76C00CB6627 /* ZCLessonModel.m */; };
 		A9E681E11C55FBA300CB6627 /* ZCMyLessonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E681E01C55FBA300CB6627 /* ZCMyLessonModel.m */; };
@@ -301,6 +306,20 @@
 		A92C70301BFB1BCF005A2106 /* ZCAllConsumptionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCAllConsumptionCell.m; sourceTree = "<group>"; };
 		A9329B591C27E89E006DCC79 /* ZCPersonCourseDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCPersonCourseDetailsViewController.h; sourceTree = "<group>"; };
 		A9329B5A1C27E89E006DCC79 /* ZCPersonCourseDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCPersonCourseDetailsViewController.m; sourceTree = "<group>"; };
+		A9384D431C80272D005C149A /* NSError+YZNetworkError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+YZNetworkError.h"; sourceTree = "<group>"; };
+		A9384D441C80272D005C149A /* NSMutableDictionary+NullObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+NullObject.h"; sourceTree = "<group>"; };
+		A9384D461C80272D005C149A /* YZUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZUserModel.h; sourceTree = "<group>"; };
+		A9384D481C80272D005C149A /* OpenGoodsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGoodsService.h; sourceTree = "<group>"; };
+		A9384D491C80272D005C149A /* OpenGoodsServiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGoodsServiceProtocol.h; sourceTree = "<group>"; };
+		A9384D4A1C80272D005C149A /* OpenTradeService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenTradeService.h; sourceTree = "<group>"; };
+		A9384D4B1C80272D005C149A /* OpenTradeServiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenTradeServiceProtocol.h; sourceTree = "<group>"; };
+		A9384D4C1C80272D005C149A /* YouzanIOSSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = YouzanIOSSDK.a; sourceTree = "<group>"; };
+		A9384D4D1C80272D005C149A /* YZSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZSDK.h; sourceTree = "<group>"; };
+		A9384D4E1C80272D005C149A /* YZSDKDefination.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZSDKDefination.h; sourceTree = "<group>"; };
+		A9384D511C8029A4005C149A /* ZCYouZanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCYouZanViewController.h; sourceTree = "<group>"; };
+		A9384D521C8029A4005C149A /* ZCYouZanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCYouZanViewController.m; sourceTree = "<group>"; };
+		A9384D551C802DA9005C149A /* CacheUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheUserInfo.h; sourceTree = "<group>"; };
+		A9384D561C802DA9005C149A /* CacheUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheUserInfo.m; sourceTree = "<group>"; };
 		A953AB9D1C11721E006BD3AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
 		A953AB9F1C11721E006BD3AD /* UMSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocial.h; sourceTree = "<group>"; };
 		A953ABA01C11721E006BD3AD /* UMSocialAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialAccountManager.h; sourceTree = "<group>"; };
@@ -332,6 +351,8 @@
 		A953ABCA1C1172BD006BD3AD /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		A953ABCC1C117303006BD3AD /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		A953ABCE1C117323006BD3AD /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		A95E19E61C8033B80063AE1B /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		A95E19E71C8033B80063AE1B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		A96084411C27A15D00C19456 /* ZCMyCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCMyCourseViewController.h; sourceTree = "<group>"; };
 		A96084421C27A15D00C19456 /* ZCMyCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCMyCourseViewController.m; sourceTree = "<group>"; };
 		A96084441C27BBFE00C19456 /* ZCMyCourseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCMyCourseCell.h; sourceTree = "<group>"; };
@@ -485,6 +506,8 @@
 		A9D4640B1BCFC67E00EA13C5 /* ZCAnnouncementModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCAnnouncementModel.m; sourceTree = "<group>"; };
 		A9DE5D941BEB168D00BF713F /* ZCMakeAnAppointmentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCMakeAnAppointmentModel.h; sourceTree = "<group>"; };
 		A9DE5D951BEB168D00BF713F /* ZCMakeAnAppointmentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCMakeAnAppointmentModel.m; sourceTree = "<group>"; };
+		A9E3D5991C804343008B7AE9 /* CommonWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonWebViewController.h; sourceTree = "<group>"; };
+		A9E3D59A1C804343008B7AE9 /* CommonWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonWebViewController.m; sourceTree = "<group>"; };
 		A9E681D91C55F6C800CB6627 /* ZCMyCourseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCMyCourseModel.h; sourceTree = "<group>"; };
 		A9E681DA1C55F6C800CB6627 /* ZCMyCourseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCMyCourseModel.m; sourceTree = "<group>"; };
 		A9E681DC1C55F76C00CB6627 /* ZCLessonModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCLessonModel.h; sourceTree = "<group>"; };
@@ -508,6 +531,7 @@
 				A953ABC91C11721E006BD3AD /* libWeChatSDK.a in Frameworks */,
 				A9094B191C0473DF00A94DA6 /* libz.tbd in Frameworks */,
 				A9094B151C0473C400A94DA6 /* UIKit.framework in Frameworks */,
+				A9384D4F1C80272D005C149A /* YouzanIOSSDK.a in Frameworks */,
 				A953ABC81C11721E006BD3AD /* libSocialWechat.a in Frameworks */,
 				A9094B131C0473B800A94DA6 /* Foundation.framework in Frameworks */,
 				A9094BF01C04777200A94DA6 /* libPushSDK-1.8.8.a in Frameworks */,
@@ -540,6 +564,7 @@
 		A9094B1C1C04775E00A94DA6 /* Lib1 */ = {
 			isa = PBXGroup;
 			children = (
+				A9384D411C80272D005C149A /* YouzanSDK */,
 				A953AB9A1C11721E006BD3AD /* umeng_ios_social_sdk_4.4_arm64_custom */,
 				A9094B1D1C04775E00A94DA6 /* AFNetworking */,
 				A9094B311C04775E00A94DA6 /* MBProgressHUD */,
@@ -688,6 +713,70 @@
 				A9094BEF1C04777200A94DA6 /* libPushSDK-1.8.8.a */,
 			);
 			path = lib;
+			sourceTree = "<group>";
+		};
+		A9384D411C80272D005C149A /* YouzanSDK */ = {
+			isa = PBXGroup;
+			children = (
+				A9384D421C80272D005C149A /* Category */,
+				A9384D451C80272D005C149A /* Model */,
+				A9384D471C80272D005C149A /* Service */,
+				A9384D4C1C80272D005C149A /* YouzanIOSSDK.a */,
+				A9384D4D1C80272D005C149A /* YZSDK.h */,
+				A9384D4E1C80272D005C149A /* YZSDKDefination.h */,
+			);
+			path = YouzanSDK;
+			sourceTree = "<group>";
+		};
+		A9384D421C80272D005C149A /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				A9384D431C80272D005C149A /* NSError+YZNetworkError.h */,
+				A9384D441C80272D005C149A /* NSMutableDictionary+NullObject.h */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		A9384D451C80272D005C149A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A9384D461C80272D005C149A /* YZUserModel.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A9384D471C80272D005C149A /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				A9384D481C80272D005C149A /* OpenGoodsService.h */,
+				A9384D491C80272D005C149A /* OpenGoodsServiceProtocol.h */,
+				A9384D4A1C80272D005C149A /* OpenTradeService.h */,
+				A9384D4B1C80272D005C149A /* OpenTradeServiceProtocol.h */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		A9384D501C80278C005C149A /* Youzan(有赞商城) */ = {
+			isa = PBXGroup;
+			children = (
+				A9384D541C802DA9005C149A /* Model */,
+				A9E3D5991C804343008B7AE9 /* CommonWebViewController.h */,
+				A9E3D59A1C804343008B7AE9 /* CommonWebViewController.m */,
+				A95E19E61C8033B80063AE1B /* LoginViewController.h */,
+				A95E19E71C8033B80063AE1B /* LoginViewController.m */,
+				A9384D511C8029A4005C149A /* ZCYouZanViewController.h */,
+				A9384D521C8029A4005C149A /* ZCYouZanViewController.m */,
+			);
+			path = "Youzan(有赞商城)";
+			sourceTree = "<group>";
+		};
+		A9384D541C802DA9005C149A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A9384D551C802DA9005C149A /* CacheUserInfo.h */,
+				A9384D561C802DA9005C149A /* CacheUserInfo.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		A953AB9A1C11721E006BD3AD /* umeng_ios_social_sdk_4.4_arm64_custom */ = {
@@ -1154,6 +1243,7 @@
 		A9929E771BCCB5EE00342A58 /* Mall(会员商城) */ = {
 			isa = PBXGroup;
 			children = (
+				A9384D501C80278C005C149A /* Youzan(有赞商城) */,
 				A9929E781BCCB60000342A58 /* ZCMallViewController.h */,
 				A9929E791BCCB60000342A58 /* ZCMallViewController.m */,
 				A96AC39F1BCCD746008A1D4B /* ZCGoodsDetailsViewController.h */,
@@ -1413,6 +1503,8 @@
 				A96296881C45022200BCE919 /* ZCPrivateAppointmentView.m in Sources */,
 				A9E681E11C55FBA300CB6627 /* ZCMyLessonModel.m in Sources */,
 				A9D463271BCF5C5A00EA13C5 /* ZCMakeAnAppointmentViewController.m in Sources */,
+				A9384D531C8029A4005C149A /* ZCYouZanViewController.m in Sources */,
+				A95E19E91C8033B80063AE1B /* LoginViewController.m in Sources */,
 				A9094BC91C04775E00A94DA6 /* UIScrollView+MJExtension.m in Sources */,
 				A97D9AE41BE0BF4D00E17583 /* ZCBirthdayViewController.m in Sources */,
 				A98E76311BCE17B000583866 /* ZCOpinionViewController.m in Sources */,
@@ -1425,11 +1517,13 @@
 				A9641A631C294BB4001B5AAB /* ZCAppointmentCoachCell.m in Sources */,
 				A9094BB31C04775E00A94DA6 /* AFURLRequestSerialization.m in Sources */,
 				A9AA53021C29094A00524D5F /* ZCTeachingCourseCell.m in Sources */,
+				A9384D571C802DA9005C149A /* CacheUserInfo.m in Sources */,
 				A9758FEA1C3FB32D0047B289 /* ZCScheduleModel.m in Sources */,
 				A9094BBF1C04775E00A94DA6 /* MJType.m in Sources */,
 				A978C6671C2BC533000ADCC0 /* ZCStudentModel.m in Sources */,
 				A9E681DB1C55F6C800CB6627 /* ZCMyCourseModel.m in Sources */,
 				A9094BC61C04775E00A94DA6 /* MJRefreshConst.m in Sources */,
+				A9E3D59B1C804343008B7AE9 /* CommonWebViewController.m in Sources */,
 				A9094BCB1C04775E00A94DA6 /* UIView+MJExtension.m in Sources */,
 				A9094BB81C04775E00A94DA6 /* MBProgressHUD.m in Sources */,
 				A9094BB01C04775E00A94DA6 /* AFNetworkReachabilityManager.m in Sources */,
@@ -1601,6 +1695,7 @@
 					"$(PROJECT_DIR)/Ganton/Classes/Other(其他)/Lib1/UMSocial_Sdk_4.4",
 					"$(PROJECT_DIR)/Ganton/Classes/Other(其他)/Lib1/umeng_ios_social_sdk_4.4_arm64_custom/UMSocial_Sdk_4.4",
 					"$(PROJECT_DIR)/Ganton/Classes/Other(其他)/Lib1/umeng_ios_social_sdk_4.4_arm64_custom/UMSocial_Sdk_Extra_Frameworks/Wechat",
+					"$(PROJECT_DIR)/Ganton/Classes/Other(其他)/Lib1/YouzanSDK",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhongchuangtiyu.ganton;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1639,6 +1734,7 @@
 					"$(PROJECT_DIR)/Ganton/Classes/Other(其他)/Lib1/UMSocial_Sdk_4.4",
 					"$(PROJECT_DIR)/Ganton/Classes/Other(其他)/Lib1/umeng_ios_social_sdk_4.4_arm64_custom/UMSocial_Sdk_4.4",
 					"$(PROJECT_DIR)/Ganton/Classes/Other(其他)/Lib1/umeng_ios_social_sdk_4.4_arm64_custom/UMSocial_Sdk_Extra_Frameworks/Wechat",
+					"$(PROJECT_DIR)/Ganton/Classes/Other(其他)/Lib1/YouzanSDK",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhongchuangtiyu.ganton;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -725,6 +725,10 @@
         
         [userDf setObject:responseObject[@"user"][@"token"] forKey:@"token"];
         
+        [userDf setObject:self.PhoneTextField.text forKey:@"numberPhone"];
+        
+        [userDf setObject:responseObject[@"user"][@"uuid"] forKey:@"userUuid"];
+        
         ZCLog(@"%@",[userDf objectForKey:@"token"]);
         
         UIWindow *window=[[UIApplication sharedApplication].delegate window];

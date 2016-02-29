@@ -201,6 +201,7 @@
     self.thirdButton=thirdButton;
 
     if (self.weathersArray.count!=0) {
+        ZCLog(@"%lu",(unsigned long)self.weathersArray.count);
     ZCWeathersModel *model3=self.weathersArray[2];
     [self theTextOnTheAddButton:thirdButton andTime:model3.date];
     
