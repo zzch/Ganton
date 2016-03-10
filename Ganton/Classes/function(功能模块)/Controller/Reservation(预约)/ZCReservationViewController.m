@@ -9,7 +9,7 @@
 #import "ZCReservationViewController.h"
 #import "ZCWeathersModel.h"
 #import "ZCTimeView.h"
-@interface ZCReservationViewController ()<ZCTimeViewDelegate>
+@interface ZCReservationViewController ()<ZCTimeViewDelegate,UIAlertViewDelegate>
 @property(nonatomic,weak)UIView *weatherView;
 @property(nonatomic,weak)UILabel *timeLabel;
 @property(nonatomic,weak)UIImageView *imageView;
@@ -25,6 +25,8 @@
 @property(nonatomic,copy)NSString *chooseTime;
 //选中今天  明天 的时间戳
 @property(nonatomic,assign)long time;
+//拼接完成的时间字符串，是用作上传服务器待转化时间戳的字符串
+@property(nonatomic,copy)NSString *timeStr;
 
 @property(nonatomic,weak)UILabel *chooseTimeLabel;
 
@@ -398,30 +400,24 @@
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     
-    dateFormatter.dateFormat = @"yyyy-MM-dd";
+    dateFormatter.dateFormat = @"MM月dd日";
     NSString *selfStr = [dateFormatter stringFromDate:selfDate];
     //
    
-    NSString *timeStr=[NSString stringWithFormat:@"%@ %@:00",selfStr,self.chooseTime];
+    NSString *timeStr=[NSString stringWithFormat:@"%@ %@",selfStr,self.chooseTime];
     ZCLog(@"%@",timeStr);
+    self.timeStr=timeStr;
     
     
     
-     NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
-     dateFormatter2.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    [dateFormatter2 setLocale:[NSLocale currentLocale]];
-   
-     NSDate *timeDate=[dateFormatter2 dateFromString:timeStr];
     
-     ZCLog(@"%@",timeDate);
-//    NSTimeZone *fromzone = [NSTimeZone systemTimeZone];
-//    NSInteger frominterval = [fromzone secondsFromGMTForDate: date];
-//    NSDate *fromDate = [date  dateByAddingTimeInterval: frominterval];
-    //吧时间变成时间濯
-    long time=(long)[timeDate timeIntervalSince1970];
     
-    ZCLog(@"%ld",time);
     
+    
+    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"您预约的时间: %@ 是否确认?",timeStr ] message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    // 设置对话框的类型
+    alert.alertViewStyle=UIKeyboardTypeNumberPad;
+    [alert show];
     
     
 //    // 创建一个日期格式器
@@ -436,6 +432,59 @@
     
     
     
+    
+    
+    
+    
+   
+}
+
+
+
+#pragma mark - alertView的代理方法
+/**
+ *  点击了alertView上面的按钮就会调用这个方法
+ *
+ *  @param buttonIndex 按钮的索引,从0开始
+ */
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        ZCLog(@"asdasda");
+        //[self.navigationController popViewControllerAnimated:YES];
+    }else
+    {
+        
+        [self uploadTimeData];
+    }
+    
+    // 按钮的索引肯定不是0
+    
+}
+
+
+
+
+//上传预定球场时间数据
+-(void)uploadTimeData
+{
+    
+    NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
+    dateFormatter2.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    [dateFormatter2 setLocale:[NSLocale currentLocale]];
+    
+    NSDate *timeDate=[dateFormatter2 dateFromString:self.timeStr];
+    
+    ZCLog(@"%@",timeDate);
+    
+    //吧时间变成时间濯
+    long time=(long)[timeDate timeIntervalSince1970];
+    
+    ZCLog(@"%ld",time);
+
+    
     NSMutableDictionary *params=[NSMutableDictionary dictionary];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [defaults objectForKey:@"token"];
@@ -446,12 +495,12 @@
     NSString *URL=[NSString stringWithFormat:@"%@v1/reservations",API];
     ZCLog(@"%@",token);
     ZCLog(@"%@",uuid);
-
+    
     [ZCTool postWithUrl:URL params:params success:^(id responseObject) {
         ZCLog(@"%@",responseObject);
         
         // 弹框
-        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"预定成功" message:@"球场预定成功，请在个人中心查看" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"预约成功" message:@"您已成功预约当天打位，请进入个人中心查看" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
         // 设置对话框的类型
         alert.alertViewStyle=UIKeyboardTypeNumberPad;
         [alert show];
@@ -460,11 +509,8 @@
     } failure:^(NSError *error) {
         ZCLog(@"%@",error);
     }];
-    
-    
-    
-    
-   
+
+
 }
 
 

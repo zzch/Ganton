@@ -115,8 +115,12 @@
     ZCLog(@"%f, %f ", location.coordinate.latitude , location.coordinate.longitude);
     self.longitude=location.coordinate.longitude;
     self.latitude=location.coordinate.latitude;
+    //停止跟新
+    [self.locationMgr stopUpdatingLocation];
     
     //网络数据加载
+    
+    ZCLog(@"定位到了");
     
     
 }

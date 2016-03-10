@@ -118,7 +118,7 @@ static NSString *const identifier=@"cell";
    // layout.contentInset = UIEdgeInsetsMake(0, 0, 10, 0);
     UICollectionView *clView=[[UICollectionView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, SCREEN_HEIGHT-40) collectionViewLayout:layout];
     
-    clView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
+    clView.contentInset = UIEdgeInsetsMake(10, 10, 75, 10);
     
     //在成为数据源之前，告诉系统通过哪一个类来创建UICollectionViewCell
     [clView registerClass:[ZCRestaurantCollectionViewCell class] forCellWithReuseIdentifier:identifier];
@@ -129,6 +129,9 @@ static NSString *const identifier=@"cell";
     clView.backgroundColor=ZCColor(237, 237, 237);
     [self.view addSubview:clView];
     self.collectionView=clView;
+    
+    //self.collectionView.contentOffset
+   // self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, 70, 0);
 
 }
 

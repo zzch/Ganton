@@ -19,22 +19,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Ganton/Classes/function(&#x529f;&#x80fd;&#x6a21;&#x5757;)/Controller/Teaching&#xff08;&#x6559;&#x5b66;&#xff09;/ZCTeachingViewController.m"
-            timestampString = "473842714.3592"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Ganton/Classes/function(&#x529f;&#x80fd;&#x6a21;&#x5757;)/Controller/Restaurant(&#x9910;&#x996e;&#x670d;&#x52a1;)/ZCViewsOnContentViewController.m"
             timestampString = "473852775.565912"
             startingColumnNumber = "9223372036854775807"
@@ -68,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ganton/Classes/AccountInformation(&#x8d26;&#x53f7;)/ZCAccountViewController.m"
-            timestampString = "478423117.407896"
+            timestampString = "479289624.341933"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "324"
-            endingLineNumber = "324"
+            startingLineNumber = "328"
+            endingLineNumber = "328"
             landmarkName = "-networkRequest"
             landmarkType = "5">
          </BreakpointContent>

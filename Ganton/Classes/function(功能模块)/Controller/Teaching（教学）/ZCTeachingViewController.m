@@ -219,7 +219,7 @@
             vc.uuid=Model.uuid;
             [self.navigationController pushViewController:vc animated:YES];
         }else{
-        
+
             ZCAppointmentTimeViewController *vc=[[ZCAppointmentTimeViewController alloc] init];
             vc.uuid=Model.uuid;
             [self.navigationController pushViewController:vc animated:YES];

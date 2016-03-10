@@ -188,7 +188,7 @@
     dateFormatter.dateFormat = @"MM月dd日";
     NSString *selfStr = [dateFormatter stringFromDate:entranceDate];
     
-    dateFormatter.dateFormat = @"HH: dd";
+    dateFormatter.dateFormat = @"HH: mm";
     NSString *entranceStr = [dateFormatter stringFromDate:entranceDate];
     NSString *departureStr;
     if (allConsumptionModel.departure_time==0) {

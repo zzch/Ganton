@@ -220,13 +220,17 @@
     NSDate *entranceDate=[NSDate dateWithTimeIntervalSince1970:recordsOfConsumptionModel.entrance_time];
     
     
+    
+    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     
     dateFormatter.dateFormat = @"MM月dd日";
     NSString *selfStr = [dateFormatter stringFromDate:entranceDate];
 
-    dateFormatter.dateFormat = @"HH: dd";
+    dateFormatter.dateFormat = @"HH: mm";
     NSString *entranceStr = [dateFormatter stringFromDate:entranceDate];
+    
+    
     
     NSString *departureStr;
     if (recordsOfConsumptionModel.departure_time==0) {

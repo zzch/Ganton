@@ -248,7 +248,7 @@
     UILabel *nameLabel=[[UILabel alloc] init];
     CGFloat nameLabelX=personImageX+personImageW+15;
     CGFloat nameLabelY=personImageY;
-    CGFloat nameLabelW=100;
+    CGFloat nameLabelW=self.view.frame.size.width-nameLabelX-10;
     CGFloat nameLabelH=25;
     nameLabel.frame=CGRectMake(nameLabelX, nameLabelY, nameLabelW, nameLabelH);
     nameLabel.font=[UIFont systemFontOfSize:18];

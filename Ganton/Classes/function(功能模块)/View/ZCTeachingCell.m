@@ -130,7 +130,7 @@
     
     CGFloat nameLabelX=personImageX+personImageW+15;
     CGFloat nameLabelY=personImageY;
-    CGFloat nameLabelW=100;
+    CGFloat nameLabelW=self.frame.size.width-[ZCTool getFrame:CGSizeMake(1000, 25) content:self.moneyLabel.text fontSize:[UIFont systemFontOfSize:22]].size.width+2-12-19-nameLabelX;
     CGFloat nameLabelH=25;
     self.nameLabel.frame=CGRectMake(nameLabelX, nameLabelY, nameLabelW, nameLabelH);
     
