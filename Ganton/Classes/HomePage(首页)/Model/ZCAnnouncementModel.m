@@ -19,6 +19,7 @@
     if (self=[super init]) {
         self.title=dict[@"title"];
         self.uuid=dict[@"uuid"];
+        self.published_at=[dict[@"published_at"] longValue];
     }
     return self;
 

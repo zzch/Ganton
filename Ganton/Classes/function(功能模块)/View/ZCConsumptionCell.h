@@ -18,6 +18,10 @@
 
 @interface ZCConsumptionCell : UITableViewCell
 @property(nonatomic,strong)ZCRecordsOfConsumptionModel *recordsOfConsumptionModel;
+
+//判断是否是从ZCCardDetailsViewController控制器跳转来的
+@property(nonatomic,assign)BOOL isYes;
+
 @property(nonatomic,strong)id<ZCConsumptionCellDelegate>delegete;
 @property(nonatomic,assign)CGFloat cellHight;
 +(instancetype)cellWithTable:(UITableView *)tableView;

@@ -10,7 +10,7 @@
 
 @interface ZCAnnouncementModel : NSObject
 //时间戳
-@property(nonatomic,assign)long *published_at;
+@property(nonatomic,assign)long published_at;
 @property(nonatomic,copy)NSString *title;
 @property(nonatomic,copy)NSString *uuid;
 

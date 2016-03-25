@@ -89,11 +89,13 @@
 		A953ABCD1C117303006BD3AD /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A953ABCC1C117303006BD3AD /* libsqlite3.tbd */; };
 		A953ABCF1C117323006BD3AD /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A953ABCE1C117323006BD3AD /* libstdc++.tbd */; };
 		A95E19E91C8033B80063AE1B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A95E19E71C8033B80063AE1B /* LoginViewController.m */; };
+		A9606C411C991F4F00AB065D /* ZCMembershipCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9606C401C991F4F00AB065D /* ZCMembershipCardView.m */; };
 		A96084431C27A15D00C19456 /* ZCMyCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A96084421C27A15D00C19456 /* ZCMyCourseViewController.m */; };
 		A96084461C27BBFE00C19456 /* ZCMyCourseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A96084451C27BBFE00C19456 /* ZCMyCourseCell.m */; };
 		A96296881C45022200BCE919 /* ZCPrivateAppointmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A96296871C45022200BCE919 /* ZCPrivateAppointmentView.m */; };
 		A9641A631C294BB4001B5AAB /* ZCAppointmentCoachCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9641A621C294BB4001B5AAB /* ZCAppointmentCoachCell.m */; };
 		A965FC331C2A4EAF00270F1B /* ZCAppointmentTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A965FC321C2A4EAF00270F1B /* ZCAppointmentTimeViewController.m */; };
+		A9684EEB1CA52A880000EF0F /* ZCCardDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9684EEA1CA52A880000EF0F /* ZCCardDetailsViewController.m */; };
 		A96AC3A11BCCD746008A1D4B /* ZCGoodsDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A96AC3A01BCCD746008A1D4B /* ZCGoodsDetailsViewController.m */; };
 		A96AC3A51BCCE41E008A1D4B /* ZCRestaurantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A96AC3A41BCCE41E008A1D4B /* ZCRestaurantViewController.m */; };
 		A97115D71BCB92400013C17A /* ZCCourseDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97115D61BCB92400013C17A /* ZCCourseDetailsViewController.m */; };
@@ -114,6 +116,9 @@
 		A98436D11BC913170004AC94 /* ZCTeachingHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A98436D01BC913170004AC94 /* ZCTeachingHeaderCell.m */; };
 		A98436D41BC926BE0004AC94 /* ZCCoachViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A98436D31BC926BE0004AC94 /* ZCCoachViewController.m */; };
 		A985CF131BEC9382001FFB46 /* ZCPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A985CF121BEC9382001FFB46 /* ZCPickerView.m */; };
+		A986E4C91C9FDD610081CB8B /* ZCPayByCardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A986E4C81C9FDD610081CB8B /* ZCPayByCardModel.m */; };
+		A986E4CC1C9FE8330081CB8B /* ZCPayCardItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A986E4CB1C9FE8330081CB8B /* ZCPayCardItemModel.m */; };
+		A986E4CF1C9FF1730081CB8B /* ZCPayByCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A986E4CE1C9FF1730081CB8B /* ZCPayByCardCell.m */; };
 		A98778381C3E46B3008B785A /* ZCOpenCoursesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A98778371C3E46B3008B785A /* ZCOpenCoursesModel.m */; };
 		A987783B1C3E46EB008B785A /* ZCUnstartedLessonsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A987783A1C3E46EB008B785A /* ZCUnstartedLessonsModel.m */; };
 		A98A3EAC1C293FCE00A9EA3F /* ZCAppointmentCoachViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A98A3EAB1C293FCE00A9EA3F /* ZCAppointmentCoachViewController.m */; };
@@ -156,6 +161,9 @@
 		A99FA5D91BD8F39400154BB5 /* UIBarButtonItem+DC.m in Sources */ = {isa = PBXBuildFile; fileRef = A99FA5D81BD8F39400154BB5 /* UIBarButtonItem+DC.m */; };
 		A99FA5DC1BD8FD2E00154BB5 /* ZCViewsOnContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A99FA5DB1BD8FD2D00154BB5 /* ZCViewsOnContentViewController.m */; };
 		A9AA53021C29094A00524D5F /* ZCTeachingCourseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9AA53011C29094A00524D5F /* ZCTeachingCourseCell.m */; };
+		A9C7861B1C9BDA3900D47677 /* ZCPayByCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C7861A1C9BDA3900D47677 /* ZCPayByCardController.m */; };
+		A9CCD6FB1C9A93F300EB1259 /* ZCNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9CCD6FA1C9A93F300EB1259 /* ZCNoticeView.m */; };
+		A9CCD6FE1C9A9D7500EB1259 /* ZCScrollCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9CCD6FD1C9A9D7500EB1259 /* ZCScrollCardView.m */; };
 		A9D463271BCF5C5A00EA13C5 /* ZCMakeAnAppointmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D463261BCF5C5A00EA13C5 /* ZCMakeAnAppointmentViewController.m */; };
 		A9D4632A1BCF5CF300EA13C5 /* ZCMakeAnAppointmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D463291BCF5CF300EA13C5 /* ZCMakeAnAppointmentCell.m */; };
 		A9D4632D1BCF8FFD00EA13C5 /* ZCAnnouncementView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D4632C1BCF8FFD00EA13C5 /* ZCAnnouncementView.m */; };
@@ -353,6 +361,8 @@
 		A953ABCE1C117323006BD3AD /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		A95E19E61C8033B80063AE1B /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		A95E19E71C8033B80063AE1B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		A9606C3F1C991F4F00AB065D /* ZCMembershipCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCMembershipCardView.h; sourceTree = "<group>"; };
+		A9606C401C991F4F00AB065D /* ZCMembershipCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCMembershipCardView.m; sourceTree = "<group>"; };
 		A96084411C27A15D00C19456 /* ZCMyCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCMyCourseViewController.h; sourceTree = "<group>"; };
 		A96084421C27A15D00C19456 /* ZCMyCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCMyCourseViewController.m; sourceTree = "<group>"; };
 		A96084441C27BBFE00C19456 /* ZCMyCourseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCMyCourseCell.h; sourceTree = "<group>"; };
@@ -363,6 +373,8 @@
 		A9641A621C294BB4001B5AAB /* ZCAppointmentCoachCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCAppointmentCoachCell.m; sourceTree = "<group>"; };
 		A965FC311C2A4EAF00270F1B /* ZCAppointmentTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCAppointmentTimeViewController.h; sourceTree = "<group>"; };
 		A965FC321C2A4EAF00270F1B /* ZCAppointmentTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCAppointmentTimeViewController.m; sourceTree = "<group>"; };
+		A9684EE91CA52A880000EF0F /* ZCCardDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCCardDetailsViewController.h; sourceTree = "<group>"; };
+		A9684EEA1CA52A880000EF0F /* ZCCardDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCCardDetailsViewController.m; sourceTree = "<group>"; };
 		A96AC39F1BCCD746008A1D4B /* ZCGoodsDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCGoodsDetailsViewController.h; sourceTree = "<group>"; };
 		A96AC3A01BCCD746008A1D4B /* ZCGoodsDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCGoodsDetailsViewController.m; sourceTree = "<group>"; };
 		A96AC3A31BCCE41E008A1D4B /* ZCRestaurantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCRestaurantViewController.h; sourceTree = "<group>"; };
@@ -403,6 +415,12 @@
 		A98436D31BC926BE0004AC94 /* ZCCoachViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCCoachViewController.m; sourceTree = "<group>"; };
 		A985CF111BEC9382001FFB46 /* ZCPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCPickerView.h; sourceTree = "<group>"; };
 		A985CF121BEC9382001FFB46 /* ZCPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCPickerView.m; sourceTree = "<group>"; };
+		A986E4C71C9FDD610081CB8B /* ZCPayByCardModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCPayByCardModel.h; sourceTree = "<group>"; };
+		A986E4C81C9FDD610081CB8B /* ZCPayByCardModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCPayByCardModel.m; sourceTree = "<group>"; };
+		A986E4CA1C9FE8330081CB8B /* ZCPayCardItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCPayCardItemModel.h; sourceTree = "<group>"; };
+		A986E4CB1C9FE8330081CB8B /* ZCPayCardItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCPayCardItemModel.m; sourceTree = "<group>"; };
+		A986E4CD1C9FF1730081CB8B /* ZCPayByCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCPayByCardCell.h; sourceTree = "<group>"; };
+		A986E4CE1C9FF1730081CB8B /* ZCPayByCardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCPayByCardCell.m; sourceTree = "<group>"; };
 		A98778361C3E46B2008B785A /* ZCOpenCoursesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCOpenCoursesModel.h; sourceTree = "<group>"; };
 		A98778371C3E46B3008B785A /* ZCOpenCoursesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCOpenCoursesModel.m; sourceTree = "<group>"; };
 		A98778391C3E46EB008B785A /* ZCUnstartedLessonsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCUnstartedLessonsModel.h; sourceTree = "<group>"; };
@@ -489,6 +507,12 @@
 		A99FA5DB1BD8FD2D00154BB5 /* ZCViewsOnContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCViewsOnContentViewController.m; sourceTree = "<group>"; };
 		A9AA53001C29094A00524D5F /* ZCTeachingCourseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCTeachingCourseCell.h; sourceTree = "<group>"; };
 		A9AA53011C29094A00524D5F /* ZCTeachingCourseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCTeachingCourseCell.m; sourceTree = "<group>"; };
+		A9C786191C9BDA3900D47677 /* ZCPayByCardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCPayByCardController.h; sourceTree = "<group>"; };
+		A9C7861A1C9BDA3900D47677 /* ZCPayByCardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCPayByCardController.m; sourceTree = "<group>"; };
+		A9CCD6F91C9A93F300EB1259 /* ZCNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCNoticeView.h; sourceTree = "<group>"; };
+		A9CCD6FA1C9A93F300EB1259 /* ZCNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCNoticeView.m; sourceTree = "<group>"; };
+		A9CCD6FC1C9A9D7500EB1259 /* ZCScrollCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCScrollCardView.h; sourceTree = "<group>"; };
+		A9CCD6FD1C9A9D7500EB1259 /* ZCScrollCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCScrollCardView.m; sourceTree = "<group>"; };
 		A9D463251BCF5C5A00EA13C5 /* ZCMakeAnAppointmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCMakeAnAppointmentViewController.h; sourceTree = "<group>"; };
 		A9D463261BCF5C5A00EA13C5 /* ZCMakeAnAppointmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCMakeAnAppointmentViewController.m; sourceTree = "<group>"; };
 		A9D463281BCF5CF300EA13C5 /* ZCMakeAnAppointmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCMakeAnAppointmentCell.h; sourceTree = "<group>"; };
@@ -1122,6 +1146,10 @@
 				A99CB9AB1BD0C94900877A19 /* ZCAnnouncementViewController.m */,
 				A99CB9B31BD0DAD400877A19 /* ZCAnnouncementDetailsViewController.h */,
 				A99CB9B41BD0DAD400877A19 /* ZCAnnouncementDetailsViewController.m */,
+				A9C786191C9BDA3900D47677 /* ZCPayByCardController.h */,
+				A9C7861A1C9BDA3900D47677 /* ZCPayByCardController.m */,
+				A9684EE91CA52A880000EF0F /* ZCCardDetailsViewController.h */,
+				A9684EEA1CA52A880000EF0F /* ZCCardDetailsViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1139,6 +1167,10 @@
 				A99CB9A81BD0B59300877A19 /* ZCCardModel.m */,
 				A99CB9B01BD0D55A00877A19 /* ZCAnnouncementListModel.h */,
 				A99CB9B11BD0D55A00877A19 /* ZCAnnouncementListModel.m */,
+				A986E4C71C9FDD610081CB8B /* ZCPayByCardModel.h */,
+				A986E4C81C9FDD610081CB8B /* ZCPayByCardModel.m */,
+				A986E4CA1C9FE8330081CB8B /* ZCPayCardItemModel.h */,
+				A986E4CB1C9FE8330081CB8B /* ZCPayCardItemModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1152,6 +1184,14 @@
 				A9D4632C1BCF8FFD00EA13C5 /* ZCAnnouncementView.m */,
 				A99CB9AD1BD0CAA200877A19 /* ZCAnnouncementCell.h */,
 				A99CB9AE1BD0CAA200877A19 /* ZCAnnouncementCell.m */,
+				A9606C3F1C991F4F00AB065D /* ZCMembershipCardView.h */,
+				A9606C401C991F4F00AB065D /* ZCMembershipCardView.m */,
+				A9CCD6F91C9A93F300EB1259 /* ZCNoticeView.h */,
+				A9CCD6FA1C9A93F300EB1259 /* ZCNoticeView.m */,
+				A9CCD6FC1C9A9D7500EB1259 /* ZCScrollCardView.h */,
+				A9CCD6FD1C9A9D7500EB1259 /* ZCScrollCardView.m */,
+				A986E4CD1C9FF1730081CB8B /* ZCPayByCardCell.h */,
+				A986E4CE1C9FF1730081CB8B /* ZCPayByCardCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1419,6 +1459,7 @@
 				A98E764E1BCE662300583866 /* ZCRedEnvelopeCell.m in Sources */,
 				A9094BAF1C04775E00A94DA6 /* AFHTTPSessionManager.m in Sources */,
 				A9094BC71C04775E00A94DA6 /* MJRefreshFooterView.m in Sources */,
+				A9C7861B1C9BDA3900D47677 /* ZCPayByCardController.m in Sources */,
 				A9094BCC1C04775E00A94DA6 /* MKAnnotationView+WebCache.m in Sources */,
 				A99FA5D61BD8D1BD00154BB5 /* ZCRestaurantCollectionViewCell.m in Sources */,
 				A97115DB1BCB9F530013C17A /* ZCRecordsOfConsumptionViewController.m in Sources */,
@@ -1446,17 +1487,21 @@
 				A92C702E1BFB13C1005A2106 /* ZCAllConsumptionModel.m in Sources */,
 				A97115DE1BCBA2270013C17A /* ZCConsumptionCell.m in Sources */,
 				A9094BD41C04775E00A94DA6 /* SDWebImagePrefetcher.m in Sources */,
+				A986E4CF1C9FF1730081CB8B /* ZCPayByCardCell.m in Sources */,
 				A98CA3CA1BC7BABA00695BD0 /* ZCCardPackageViewController.m in Sources */,
 				A98A3EAC1C293FCE00A9EA3F /* ZCAppointmentCoachViewController.m in Sources */,
 				A9094BAD1C04775E00A94DA6 /* AFHTTPRequestOperation.m in Sources */,
 				A99E47D31BD4C885007F6158 /* ZCWeathersModel.m in Sources */,
 				A9758FE41C3FAC6F0047B289 /* ZCPrivateCoursesModel.m in Sources */,
 				A99CB9BB1BD0EB0A00877A19 /* ZCCoachModel.m in Sources */,
+				A9606C411C991F4F00AB065D /* ZCMembershipCardView.m in Sources */,
 				A99CB9C11BD105A200877A19 /* ZCCourseModel.m in Sources */,
+				A986E4CC1C9FE8330081CB8B /* ZCPayCardItemModel.m in Sources */,
 				A9F28FCE1BDF5B9E0062BA65 /* ZCTimeView.m in Sources */,
 				A9094BCE1C04775E00A94DA6 /* SDImageCache.m in Sources */,
 				A9329B5B1C27E89E006DCC79 /* ZCPersonCourseDetailsViewController.m in Sources */,
 				A97115D71BCB92400013C17A /* ZCCourseDetailsViewController.m in Sources */,
+				A9CCD6FE1C9A9D7500EB1259 /* ZCScrollCardView.m in Sources */,
 				A98436CE1BC900280004AC94 /* ZCTeachingCell.m in Sources */,
 				A9929E7D1BCCB81100342A58 /* ZCMallCell.m in Sources */,
 				A97D71B91BD7742A00F27A00 /* DCButton.m in Sources */,
@@ -1464,6 +1509,7 @@
 				A9758FE71C3FB2710047B289 /* ZCRecentlyScheduleModel.m in Sources */,
 				A9D463301BCF9AEC00EA13C5 /* ZCTool.m in Sources */,
 				A9D4632D1BCF8FFD00EA13C5 /* ZCAnnouncementView.m in Sources */,
+				A986E4C91C9FDD610081CB8B /* ZCPayByCardModel.m in Sources */,
 				A98CA3BB1BC7810900695BD0 /* ZCHomeViewController.m in Sources */,
 				A98CA3841BC75A5800695BD0 /* AppDelegate.m in Sources */,
 				A99CB9AC1BD0C94900877A19 /* ZCAnnouncementViewController.m in Sources */,
@@ -1471,6 +1517,7 @@
 				A98436CB1BC8FC070004AC94 /* ZCTeachingViewController.m in Sources */,
 				A9094BC11C04775E00A94DA6 /* NSObject+MJCoding.m in Sources */,
 				A99CB9A91BD0B59300877A19 /* ZCCardModel.m in Sources */,
+				A9CCD6FB1C9A93F300EB1259 /* ZCNoticeView.m in Sources */,
 				A98CA3CD1BC7BDB800695BD0 /* ZCCardPackageTableViewCell.m in Sources */,
 				A9094BBD1C04775E00A94DA6 /* MJMember.m in Sources */,
 				A99FA5D91BD8F39400154BB5 /* UIBarButtonItem+DC.m in Sources */,
@@ -1502,6 +1549,7 @@
 				A9094BB21C04775E00A94DA6 /* AFURLConnectionOperation.m in Sources */,
 				A96296881C45022200BCE919 /* ZCPrivateAppointmentView.m in Sources */,
 				A9E681E11C55FBA300CB6627 /* ZCMyLessonModel.m in Sources */,
+				A9684EEB1CA52A880000EF0F /* ZCCardDetailsViewController.m in Sources */,
 				A9D463271BCF5C5A00EA13C5 /* ZCMakeAnAppointmentViewController.m in Sources */,
 				A9384D531C8029A4005C149A /* ZCYouZanViewController.m in Sources */,
 				A95E19E91C8033B80063AE1B /* LoginViewController.m in Sources */,

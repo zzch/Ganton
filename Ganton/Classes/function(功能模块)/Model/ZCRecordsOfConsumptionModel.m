@@ -17,8 +17,12 @@
 - (instancetype)initWithDict:(NSDictionary *)dict;
 {
     if (self=[super init]) {
-        ZCLog(@"%@",dict);
-        self.uuid=dict[@"uuid"];
+        ZCLog(@"%@",dict[@"uuid"]);
+        
+        ZCLog(@"%@",[dict objectForKey:@"uuid"]);
+        
+        self.uuid=[dict objectForKey:@"uuid"];
+       
         self.sequence=dict[@"sequence"];
         self.reception_payment=dict[@"reception_payment"];
         self.entrance_time=[dict[@"entrance_time"] longValue];

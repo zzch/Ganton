@@ -378,6 +378,8 @@
             textLabel.text=@"已取消";
         }else if ([recordsOfConsumptionModel.state isEqual:@"finished"]){
             textLabel.text=@"已完成";
+        }else if ([recordsOfConsumptionModel.state isEqual:@"voided"]){
+            textLabel.text=@"已撤销";
         }
         
     
@@ -403,13 +405,15 @@
 //点击确认按钮
 -(void)clickTheConfirmBtn
 {
+    if (!self.isYes) {
+        
     // 弹框
     UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"您要确认该笔消费吗？" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     // 设置对话框的类型
     alert.alertViewStyle=UIKeyboardTypeNumberPad;
     
     [alert show];
-
+    }
 }
 
 

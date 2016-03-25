@@ -358,6 +358,8 @@
         textLabel.text=@"已完成";
     }else if ([allConsumptionModel.state isEqual:@"confirming"]){
         textLabel.text=@"等待确认";
+    }else if ([allConsumptionModel.state isEqual:@"voided"]){
+        textLabel.text=@"已撤销";
     }
     
     

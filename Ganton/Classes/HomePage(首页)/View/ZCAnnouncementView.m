@@ -31,6 +31,8 @@
 {
     _announcements=announcements;
     
+    ZCLog(@"%@",announcements);
+    
 //    
 //    UILabel *weatherLabel=[[UILabel alloc] init];
 //    weatherLabel.frame=CGRectMake(0, 0, 90, 40);
@@ -41,19 +43,19 @@
     
     
     UIScrollView *scrollView=[[UIScrollView alloc] init];
-    scrollView.frame=CGRectMake(0, 0, self.frame.size.width, 40);
+    scrollView.frame=CGRectMake(0, 0, self.frame.size.width, 54);
     [self addSubview:scrollView];
     self.scrollView=scrollView;
     
-    scrollView.contentSize = CGSizeMake(0, 3*40);
+    scrollView.contentSize = CGSizeMake(0, 3*54);
     scrollView.pagingEnabled = YES;
     
     for (int i=0; i<announcements.count; i++) {
-        UILabel *label=[[UILabel alloc] init];
-        label.frame=CGRectMake(0, i*40, self.frame.size.width, 40);
-        label.text=[NSString stringWithFormat:@"%@",[announcements[i] title]];
-        label.font=[UIFont systemFontOfSize:14];
-        [scrollView addSubview:label];
+        UIView *view=[[UIView alloc] init];
+        view.frame=CGRectMake(0, i*54, self.frame.size.width, 54);
+        [self addContentForView:view andAnnouncementModel:announcements[i]];
+       
+        [scrollView addSubview:view];
         
     }
     
@@ -62,6 +64,41 @@
     
     
 }
+
+//添加滚动View上的控件
+-(void)addContentForView:(UIView *)view andAnnouncementModel:(ZCAnnouncementModel *)announcementModel
+{
+    UILabel *upLabel=[[UILabel alloc] init];
+    upLabel.textColor=[UIColor whiteColor];
+    upLabel.font=[UIFont systemFontOfSize:15];
+    upLabel.text=announcementModel.title;
+    upLabel.frame=CGRectMake(0, 7, self.frame.size.width, 20);
+    [view addSubview:upLabel];
+    
+    
+    
+    // 创建一个日期格式器
+    NSDateFormatter *nowDateFormatter = [[NSDateFormatter alloc] init];
+    // 为日期格式器设置格式字符串
+    [nowDateFormatter setDateFormat:@"yyyy年MM月dd日"];
+    // 使用日期格式器格式化日期、时间
+    NSDate *confromTimesp=[NSDate dateWithTimeIntervalSince1970:announcementModel.published_at];
+    NSString *nowDateString = [nowDateFormatter stringFromDate:confromTimesp ];
+    
+   
+
+    
+    UILabel *downLabel=[[UILabel alloc] init];
+    downLabel.textColor=[UIColor whiteColor];
+    downLabel.font=[UIFont systemFontOfSize:12];
+    downLabel.text=[NSString stringWithFormat:@"%@",nowDateString ];
+    downLabel.frame=CGRectMake(0, 30, self.frame.size.width, 17);
+    [view addSubview:downLabel];
+    
+    
+
+}
+
 
 
 /**
@@ -104,7 +141,7 @@
     }
     
     // 2.计算scrollView滚动的位置
-    CGFloat offsetX = self.page * 40;
+    CGFloat offsetX = self.page * 54;
     CGPoint offset = CGPointMake(0, offsetX);
     [self.scrollView setContentOffset:offset animated:YES];
 }
